@@ -1,0 +1,22 @@
+{
+  "name": "degenhive_sdk",
+  "version": "1.0.0",
+  "description": "Package providing helper API functions to interact with DegenHive's move modules.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/compat": "^1.0.1",
+    "eslint": "^9.3.0",
+    "eslint-plugin-react": "^7.34.2",
+    "globals": "^15.3.0",
+    "typescript-eslint": "^7.11.0"
+  },
+  "scripts": {
+    "eslint": "eslint . --fix"
+  }  
+}
