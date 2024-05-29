@@ -2,7 +2,7 @@ import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
 
-export function init( txb: TransactionBlock, witnessBee: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::bee::init`, arguments: [ obj(txb, witnessBee) ], }) }
+// export function init( txb: TransactionBlock, witnessBee: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::bee::init`, arguments: [ obj(txb, witnessBee) ], }) }
 
 export function getTotalBeeSupply( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::bee::get_total_bee_Supply`, arguments: [ ], }) }
 

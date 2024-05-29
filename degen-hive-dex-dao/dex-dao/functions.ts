@@ -56,26 +56,6 @@ export interface DepositHiveAsIncentivesArgs { poolsGovernor: ObjectArg; hiveVau
 
 export function depositHiveAsIncentives( txb: TransactionBlock, args: DepositHiveAsIncentivesArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_hive_as_incentives`, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.hiveVault), obj(txb, args.hiveCoins), pure(txb, args.incentivesAmount, `u64`) ], }) }
 
-export interface DepositIntoBeeBoxArgs { profileAddr: string | TransactionArgument; username: string | TransactionArgument; poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; profileBeeBox: ObjectArg; lpBalance: ObjectArg; curEpoch: bigint | TransactionArgument }
-
-export function depositIntoBeeBox( txb: TransactionBlock, typeArg: string, args: DepositIntoBeeBoxArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_into_bee_box`, typeArguments: [typeArg], arguments: [ pure(txb, args.profileAddr, `address`), pure(txb, args.username, `0x1::string::String`), obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), obj(txb, args.profileBeeBox), obj(txb, args.lpBalance), pure(txb, args.curEpoch, `u64`) ], }) }
-
-export interface DepositIntoBeeBox0FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; lpBalance: ObjectArg }
-
-export function depositIntoBeeBox0Fruits( txb: TransactionBlock, typeArg: string, args: DepositIntoBeeBox0FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_into_bee_box_0_fruits`, typeArguments: [typeArg], arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), obj(txb, args.lpBalance) ], }) }
-
-export interface DepositIntoBeeBox1FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; lpBalance: ObjectArg }
-
-export function depositIntoBeeBox1Fruits( txb: TransactionBlock, typeArgs: [string, string], args: DepositIntoBeeBox1FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_into_bee_box_1_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), obj(txb, args.lpBalance) ], }) }
-
-export interface DepositIntoBeeBox2FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; lpBalance: ObjectArg }
-
-export function depositIntoBeeBox2Fruits( txb: TransactionBlock, typeArgs: [string, string, string], args: DepositIntoBeeBox2FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_into_bee_box_2_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), obj(txb, args.lpBalance) ], }) }
-
-export interface DepositIntoBeeBox3FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; lpBalance: ObjectArg }
-
-export function depositIntoBeeBox3Fruits( txb: TransactionBlock, typeArgs: [string, string, string, string], args: DepositIntoBeeBox3FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::deposit_into_bee_box_3_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), obj(txb, args.lpBalance) ], }) }
-
 export function destroyFruitRewards( txb: TransactionBlock, typeArg: string, fruitRewards: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::destroy_fruit_rewards`, typeArguments: [typeArg], arguments: [ obj(txb, fruitRewards) ], }) }
 
 export interface DestroyGovernorBuzzArgs { gIndex: bigint | TransactionArgument; gBuzz: ObjectArg }
@@ -209,26 +189,6 @@ export interface SubmitProposalToAddFruitArgs { poolsGovernor: ObjectArg; poolHi
 export function submitProposalToAddFruit( txb: TransactionBlock, typeArgs: [string, string], args: SubmitProposalToAddFruitArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::submit_proposal_to_add_fruit`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveLockup), pure(txb, args.proposalType, `u64`), pure(txb, args.title, `0x1::string::String`), pure(txb, args.description, `0x1::string::String`), pure(txb, args.link, `0x1::string::String`), pure(txb, args.fruitStartEpoch, `u64`), pure(txb, args.fruitEndEpoch, `u64`) ], }) }
 
 export function transitionIntoNextGemsCycle( txb: TransactionBlock, poolsGovernor: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::transition_into_next_gems_cycle`, arguments: [ obj(txb, poolsGovernor) ], }) }
-
-export interface UnbondFromBeeBox0FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; unbondAmount: bigint | TransactionArgument }
-
-export function unbondFromBeeBox0Fruits( txb: TransactionBlock, typeArg: string, args: UnbondFromBeeBox0FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::unbond_from_bee_box_0_fruits`, typeArguments: [typeArg], arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), pure(txb, args.unbondAmount, `u64`) ], }) }
-
-export interface UnbondFromBeeBox1FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; unbondAmount: bigint | TransactionArgument }
-
-export function unbondFromBeeBox1Fruits( txb: TransactionBlock, typeArgs: [string, string], args: UnbondFromBeeBox1FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::unbond_from_bee_box_1_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), pure(txb, args.unbondAmount, `u64`) ], }) }
-
-export interface UnbondFromBeeBox2FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; unbondAmount: bigint | TransactionArgument }
-
-export function unbondFromBeeBox2Fruits( txb: TransactionBlock, typeArgs: [string, string, string], args: UnbondFromBeeBox2FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::unbond_from_bee_box_2_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), pure(txb, args.unbondAmount, `u64`) ], }) }
-
-export interface UnbondFromBeeBox3FruitsArgs { poolsGovernor: ObjectArg; poolHive: ObjectArg; hiveProfile: ObjectArg; unbondAmount: bigint | TransactionArgument }
-
-export function unbondFromBeeBox3Fruits( txb: TransactionBlock, typeArgs: [string, string, string, string], args: UnbondFromBeeBox3FruitsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::unbond_from_bee_box_3_fruits`, typeArguments: typeArgs, arguments: [ obj(txb, args.poolsGovernor), obj(txb, args.poolHive), obj(txb, args.hiveProfile), pure(txb, args.unbondAmount, `u64`) ], }) }
-
-export interface UnlockFromBeeBoxArgs { poolHive: ObjectArg; hiveProfile: ObjectArg }
-
-export function unlockFromBeeBox( txb: TransactionBlock, typeArg: string, args: UnlockFromBeeBoxArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::dex_dao::unlock_from_bee_box`, typeArguments: [typeArg], arguments: [ obj(txb, args.poolHive), obj(txb, args.hiveProfile) ], }) }
 
 export interface UpdateGemsPerEpochArgs { poolsGovernor: ObjectArg; cap: ObjectArg; newGemsPerEpoch: bigint | TransactionArgument }
 

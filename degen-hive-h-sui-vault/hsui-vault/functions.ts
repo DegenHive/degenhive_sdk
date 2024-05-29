@@ -2,48 +2,6 @@ import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
 
-export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::init`, arguments: [ ], }) }
-
-export interface CalculateStakedSuiRewardsArgs { suiSystemState: ObjectArg; stakedSuiObj: ObjectArg; curEpoch: bigint | TransactionArgument }
-
-export function calculateStakedSuiRewards( txb: TransactionBlock, args: CalculateStakedSuiRewardsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::calculate_staked_sui_rewards`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.stakedSuiObj), pure(txb, args.curEpoch, `u64`) ], }) }
-
-export interface CalculateValidatorPoolRewardsIncreaseArgs { suiSystemState: ObjectArg; validatorAddr: string | TransactionArgument; validatorPool: ObjectArg; curEpoch: bigint | TransactionArgument }
-
-export function calculateValidatorPoolRewardsIncrease( txb: TransactionBlock, args: CalculateValidatorPoolRewardsIncreaseArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::calculate_validator_pool_rewards_increase`, arguments: [ obj(txb, args.suiSystemState), pure(txb, args.validatorAddr, `address`), obj(txb, args.validatorPool), pure(txb, args.curEpoch, `u64`) ], }) }
-
-export interface ClaimCollectedFeesArgs { cap: ObjectArg; suiSystemState: ObjectArg; vault: ObjectArg; treasury: ObjectArg }
-
-export function claimCollectedFees( txb: TransactionBlock, args: ClaimCollectedFeesArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::claim_collected_fees`, arguments: [ obj(txb, args.cap), obj(txb, args.suiSystemState), obj(txb, args.vault), obj(txb, args.treasury) ], }) }
-
-export interface ClaimUnstakeEpochArgs { vault: ObjectArg; requestedAtEpoch: bigint | TransactionArgument; suiToClaim: bigint | TransactionArgument }
-
-export function claimUnstakeEpoch( txb: TransactionBlock, args: ClaimUnstakeEpochArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::claim_unstake_epoch`, arguments: [ obj(txb, args.vault), pure(txb, args.requestedAtEpoch, `u64`), pure(txb, args.suiToClaim, `u64`) ], }) }
-
-export interface ClaimUnstakedSuiArgs { vault: ObjectArg; unstakeTicket: ObjectArg }
-
-export function claimUnstakedSui( txb: TransactionBlock, args: ClaimUnstakedSuiArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::claim_unstaked_sui`, arguments: [ obj(txb, args.vault), obj(txb, args.unstakeTicket) ], }) }
-
-export function destroyTicket( txb: TransactionBlock, ticket: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::destroy_ticket`, arguments: [ obj(txb, ticket) ], }) }
-
-export interface DestroyUnstakeEpochArgs { curEpoch: bigint | TransactionArgument; unstakeEpoch: ObjectArg }
-
-export function destroyUnstakeEpoch( txb: TransactionBlock, args: DestroyUnstakeEpochArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::destroy_unstake_epoch`, arguments: [ pure(txb, args.curEpoch, `u64`), obj(txb, args.unstakeEpoch) ], }) }
-
-export interface DestroyValidatorPoolArgs { vault: ObjectArg; valAddress: string | TransactionArgument; curEpoch: bigint | TransactionArgument }
-
-export function destroyValidatorPool( txb: TransactionBlock, args: DestroyValidatorPoolArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::destroy_validator_pool`, arguments: [ obj(txb, args.vault), pure(txb, args.valAddress, `address`), pure(txb, args.curEpoch, `u64`) ], }) }
-
-export function doBeforeUnstake( txb: TransactionBlock, vault: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::do_before_unstake`, arguments: [ obj(txb, vault) ], }) }
-
-export interface EmergencyPauseUpdateArgs { cap: ObjectArg; vault: ObjectArg; pauseStake: boolean | TransactionArgument }
-
-export function emergencyPauseUpdate( txb: TransactionBlock, args: EmergencyPauseUpdateArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::emergency_pause_update`, arguments: [ obj(txb, args.cap), obj(txb, args.vault), pure(txb, args.pauseStake, `bool`) ], }) }
-
-export interface ExecuteValidatorUnstakeArgs { suiSystemState: ObjectArg; vault: ObjectArg; suiUnstakedBalance: ObjectArg; valAddress: string | TransactionArgument; suiToUnstake: bigint | TransactionArgument; curEpoch: bigint | TransactionArgument }
-
-export function executeValidatorUnstake( txb: TransactionBlock, args: ExecuteValidatorUnstakeArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::execute_validator_unstake`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.vault), obj(txb, args.suiUnstakedBalance), pure(txb, args.valAddress, `address`), pure(txb, args.suiToUnstake, `u64`), pure(txb, args.curEpoch, `u64`) ], }) }
-
 export interface GetHsuiBySuiArgs { vault: ObjectArg; suiAmount: bigint | TransactionArgument }
 
 export function getHsuiBySui( txb: TransactionBlock, args: GetHsuiBySuiArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::get_hsui_by_sui`, arguments: [ obj(txb, args.vault), pure(txb, args.suiAmount, `u64`) ], }) }
@@ -130,14 +88,6 @@ export function queryVaultOverview( txb: TransactionBlock, vault: ObjectArg ) { 
 
 export function queryWhitelistedValidators( txb: TransactionBlock, vault: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::query_whitelisted_validators`, arguments: [ obj(txb, vault) ], }) }
 
-export interface RequestDelayedUnstakeArgs { suiSystemState: ObjectArg; vault: ObjectArg; hsuiBalance: ObjectArg }
-
-export function requestDelayedUnstake( txb: TransactionBlock, args: RequestDelayedUnstakeArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::request_delayed_unstake`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.vault), obj(txb, args.hsuiBalance) ], }) }
-
-export interface RequestInstantUnstakeArgs { suiSystemState: ObjectArg; vault: ObjectArg; hsuiBalance: ObjectArg }
-
-export function requestInstantUnstake( txb: TransactionBlock, args: RequestInstantUnstakeArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::request_instant_unstake`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.vault), obj(txb, args.hsuiBalance) ], }) }
-
 export function sortValsInDecreasingOrder( txb: TransactionBlock, vault: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::sort_vals_in_decreasing_order`, arguments: [ obj(txb, vault) ], }) }
 
 export interface StakeSuiRequestArgs { suiSystemState: ObjectArg; vault: ObjectArg; suiBalance: ObjectArg; selectedValidator: (string | TransactionArgument | TransactionArgument | null) }
@@ -147,10 +97,6 @@ export function stakeSuiRequest( txb: TransactionBlock, args: StakeSuiRequestArg
 export interface StakeUserSelectedValidatorsArgs { suiSystemState: ObjectArg; vault: ObjectArg; activeValidators: Array<string | TransactionArgument> | TransactionArgument }
 
 export function stakeUserSelectedValidators( txb: TransactionBlock, args: StakeUserSelectedValidatorsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::stake_user_selected_validators`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.vault), pure(txb, args.activeValidators, `vector<address>`) ], }) }
-
-export interface StakeWithValidatorArgs { suiSystemState: ObjectArg; vault: ObjectArg; validatorAddr: string | TransactionArgument; suiBalance: ObjectArg }
-
-export function stakeWithValidator( txb: TransactionBlock, args: StakeWithValidatorArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hsui_vault::stake_with_validator`, arguments: [ obj(txb, args.suiSystemState), obj(txb, args.vault), pure(txb, args.validatorAddr, `address`), obj(txb, args.suiBalance) ], }) }
 
 export interface UnstakeFromValidatorPoolsArgs { suiSystemState: ObjectArg; vault: ObjectArg; totalSuiToUnstake: bigint | TransactionArgument }
 

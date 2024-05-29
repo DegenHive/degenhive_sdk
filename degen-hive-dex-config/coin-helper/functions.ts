@@ -10,10 +10,6 @@ export interface CreateVectorArgs { a: (bigint | TransactionArgument | Transacti
 
 export function createVector( txb: TransactionBlock, args: CreateVectorArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::coin_helper::create_vector`, arguments: [ pure(txb, args.a, `0x1::option::Option<u64>`), pure(txb, args.b, `0x1::option::Option<u64>`), pure(txb, args.c, `0x1::option::Option<u64>`), pure(txb, args.d, `0x1::option::Option<u64>`), pure(txb, args.e, `0x1::option::Option<u64>`) ], }) }
 
-export interface DestroyOrTransferBalanceArgs { balance: ObjectArg; recipient: string | TransactionArgument }
-
-export function destroyOrTransferBalance( txb: TransactionBlock, typeArg: string, args: DestroyOrTransferBalanceArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::coin_helper::destroy_or_transfer_balance`, typeArguments: [typeArg], arguments: [ obj(txb, args.balance), pure(txb, args.recipient, `address`) ], }) }
-
 export function getAssetIndexAndAmount( txb: TransactionBlock, assets: Array<bigint | TransactionArgument> | TransactionArgument ) { return txb.moveCall({ target: `${PUBLISHED_AT}::coin_helper::get_asset_index_and_amount`, arguments: [ pure(txb, assets, `vector<u64>`) ], }) }
 
 export interface GetIndexAssetPrecision2poolArgs { xDecimals: number | TransactionArgument; yDecimals: number | TransactionArgument; index: bigint | TransactionArgument }

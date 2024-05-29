@@ -2,8 +2,6 @@ import {PUBLISHED_AT} from "..";
 import {GenericArg, ObjectArg, generic, obj, pure, vector} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
 
-export function init( txb: TransactionBlock, otw: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_profile::init`, arguments: [ obj(txb, otw) ], }) }
-
 export interface AcceptBidArgs { clock: ObjectArg; hiveManager: ObjectArg; vault: ObjectArg; hsuiDisperser: ObjectArg; marketplace: ObjectArg; ownerProfile: ObjectArg; bidderProfile: ObjectArg; assetVersion: bigint | TransactionArgument }
 
 export function acceptBid( txb: TransactionBlock, args: AcceptBidArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_profile::accept_bid`, arguments: [ obj(txb, args.clock), obj(txb, args.hiveManager), obj(txb, args.vault), obj(txb, args.hsuiDisperser), obj(txb, args.marketplace), obj(txb, args.ownerProfile), obj(txb, args.bidderProfile), pure(txb, args.assetVersion, `u64`) ], }) }
@@ -31,10 +29,6 @@ export function addStreamingApp( txb: TransactionBlock, args: AddStreamingAppArg
 export interface AddToProfileArgs { hiveProfile: ObjectArg; appName: string | TransactionArgument; appToAdd: GenericArg }
 
 export function addToProfile( txb: TransactionBlock, typeArg: string, args: AddToProfileArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_profile::add_to_profile`, typeArguments: [typeArg], arguments: [ obj(txb, args.hiveProfile), pure(txb, args.appName, `0x1::ascii::String`), generic(txb, `${typeArg}`, args.appToAdd) ], }) }
-
-export interface AuthorityCheckArgs { profile: ObjectArg; txExector: string | TransactionArgument }
-
-export function authorityCheck( txb: TransactionBlock, args: AuthorityCheckArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_profile::authority_check`, arguments: [ obj(txb, args.profile), pure(txb, args.txExector, `address`) ], }) }
 
 export interface BeeHiveAccessInfoArgs { profile: ObjectArg; subscriber: string | TransactionArgument }
 

@@ -20,8 +20,6 @@ export function zero( txb: TransactionBlock, ) { return txb.moveCall({ target: `
 
 export function burn( txb: TransactionBlock, hiveGems: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_gems::burn`, arguments: [ obj(txb, hiveGems) ], }) }
 
-export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_gems::init`, arguments: [ ], }) }
-
 export interface KraftHiveGemsArgs { mintCap: ObjectArg; amount: bigint | TransactionArgument }
 
 export function kraftHiveGems( txb: TransactionBlock, args: KraftHiveGemsArgs ) { return txb.moveCall({ target: `${PUBLISHED_AT}::hive_gems::kraft_hive_gems`, arguments: [ obj(txb, args.mintCap), pure(txb, args.amount, `u64`) ], }) }

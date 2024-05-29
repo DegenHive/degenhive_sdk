@@ -2,7 +2,7 @@ import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
 
-export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::config::init`, arguments: [ ], }) }
+// export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::config::init`, arguments: [ ], }) }
 
 export interface AddStableIdentifierArgs { config: ObjectArg; hiveDaoCap: ObjectArg; typeNameIdentifier: string | TransactionArgument }
 

@@ -1,7 +1,7 @@
 import {PUBLISHED_AT} from "..";
 import {TransactionBlock} from "@mysten/sui.js/transactions";
 
-export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::curves::init`, arguments: [ ], }) }
+// export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::curves::init`, arguments: [ ], }) }
 
 export function assertValidCurve( txb: TransactionBlock, typeArg: string, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::curves::assert_valid_curve`, typeArguments: [typeArg], arguments: [ ], }) }
 
