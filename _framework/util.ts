@@ -63,7 +63,7 @@ export function pure(txb: TransactionBlock, arg: PureArg, type: string) {
     return obj(txb, arg)
   }
 
-  function getBcsForType(type: string): BcsType<any> {
+  function getBcsForType(type: string): any {
     const { typeName, typeArgs } = parseTypeName(type)
     switch (typeName) {
       case 'bool':
