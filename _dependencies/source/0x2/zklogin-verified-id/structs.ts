@@ -9,7 +9,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isVerifiedID(type: string): boolean { type = compressSuiType(type); return type === "0x2::zklogin_verified_id::VerifiedID"; }
 
-export interface VerifiedIDFields { id: ToField<UID>; owner: ToField<"address">; keyClaimName: ToField<string>; keyClaimValue: ToField<string>; issuer: ToField<string>; audience: ToField<string> }
+export interface VerifiedIDFields { id: ToField<UID>; owner: ToField<"address">; keyClaimName: ToField<String>; keyClaimValue: ToField<String>; issuer: ToField<String>; audience: ToField<String> }
 
 export type VerifiedIDReified = Reified< VerifiedID, VerifiedIDFields >;
 
@@ -21,7 +21,7 @@ export class VerifiedID implements StructClass { static readonly $typeName = "0x
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly owner: ToField<"address">; readonly keyClaimName: ToField<string>; readonly keyClaimValue: ToField<string>; readonly issuer: ToField<string>; readonly audience: ToField<string>
+ readonly id: ToField<UID>; readonly owner: ToField<"address">; readonly keyClaimName: ToField<String>; readonly keyClaimValue: ToField<String>; readonly issuer: ToField<String>; readonly audience: ToField<String>
 
  private constructor(typeArgs: [], fields: VerifiedIDFields, ) { this.$fullTypeName = composeSuiType( VerifiedID.$typeName, ...typeArgs ) as "0x2::zklogin_verified_id::VerifiedID"; this.$typeArgs = typeArgs;
 

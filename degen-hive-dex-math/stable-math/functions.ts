@@ -1,6 +1,8 @@
-import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
+
+import { math } from "..";
+const PUBLISHED_AT = math.PUBLISHED_AT
 
 export interface GetCurAAndScalingFactorsArgs { clock: ObjectArg; stableConfig: ObjectArg }
 

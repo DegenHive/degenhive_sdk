@@ -1,6 +1,8 @@
-import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
+
+import { dexdao } from "..";
+const PUBLISHED_AT = dexdao.PUBLISHED_AT
 
 export interface DestroyOrTransferBalanceArgs { balance: ObjectArg; recipient: string | TransactionArgument }
 

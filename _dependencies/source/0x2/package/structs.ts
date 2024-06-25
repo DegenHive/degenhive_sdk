@@ -10,7 +10,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isPublisher(type: string): boolean { type = compressSuiType(type); return type === "0x2::package::Publisher"; }
 
-export interface PublisherFields { id: ToField<UID>; package: ToField<string>; moduleName: ToField<string> }
+export interface PublisherFields { id: ToField<UID>; package: ToField<String>; moduleName: ToField<String> }
 
 export type PublisherReified = Reified< Publisher, PublisherFields >;
 
@@ -22,7 +22,7 @@ export class Publisher implements StructClass { static readonly $typeName = "0x2
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly package: ToField<string>; readonly moduleName: ToField<string>
+ readonly id: ToField<UID>; readonly package: ToField<String>; readonly moduleName: ToField<String>
 
  private constructor(typeArgs: [], fields: PublisherFields, ) { this.$fullTypeName = composeSuiType( Publisher.$typeName, ...typeArgs ) as "0x2::package::Publisher"; this.$typeArgs = typeArgs;
 

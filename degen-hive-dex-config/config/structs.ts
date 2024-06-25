@@ -14,7 +14,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isConfig(type: string): boolean { type = compressSuiType(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::Config"; }
 
-export interface ConfigFields { id: ToField<UID>; decimalPrecisions: ToField<LinkedTable<string, "u8">>; stableIdentifiers: ToField<LinkedTable<String1, "bool">>; ammFeeCollectors: ToField<LinkedTable<String1, "address">>; weightedPoolFee: ToField<FeeInfo>; stablePoolFee: ToField<FeeInfo>; curvedPoolFee: ToField<FeeInfo>; treasuryPercent: ToField<"u64"> }
+export interface ConfigFields { id: ToField<UID>; decimalPrecisions: ToField<LinkedTable<String, "u8">>; stableIdentifiers: ToField<LinkedTable<String1, "bool">>; ammFeeCollectors: ToField<LinkedTable<String1, "address">>; weightedPoolFee: ToField<FeeInfo>; stablePoolFee: ToField<FeeInfo>; curvedPoolFee: ToField<FeeInfo>; treasuryPercent: ToField<"u64"> }
 
 export type ConfigReified = Reified< Config, ConfigFields >;
 
@@ -26,7 +26,7 @@ export class Config implements StructClass { static readonly $typeName = "0x3ba4
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly decimalPrecisions: ToField<LinkedTable<string, "u8">>; readonly stableIdentifiers: ToField<LinkedTable<String1, "bool">>; readonly ammFeeCollectors: ToField<LinkedTable<String1, "address">>; readonly weightedPoolFee: ToField<FeeInfo>; readonly stablePoolFee: ToField<FeeInfo>; readonly curvedPoolFee: ToField<FeeInfo>; readonly treasuryPercent: ToField<"u64">
+ readonly id: ToField<UID>; readonly decimalPrecisions: ToField<LinkedTable<String, "u8">>; readonly stableIdentifiers: ToField<LinkedTable<String1, "bool">>; readonly ammFeeCollectors: ToField<LinkedTable<String1, "address">>; readonly weightedPoolFee: ToField<FeeInfo>; readonly stablePoolFee: ToField<FeeInfo>; readonly curvedPoolFee: ToField<FeeInfo>; readonly treasuryPercent: ToField<"u64">
 
  private constructor(typeArgs: [], fields: ConfigFields, ) { this.$fullTypeName = composeSuiType( Config.$typeName, ...typeArgs ) as "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::Config"; this.$typeArgs = typeArgs;
 
@@ -144,7 +144,7 @@ export class BuidlersRoyaltyCollectionAbility implements StructClass { static re
 
 export function isDecimalPrecisionForCoinTypesWhitelisted(type: string): boolean { type = compressSuiType(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DecimalPrecisionForCoinTypesWhitelisted"; }
 
-export interface DecimalPrecisionForCoinTypesWhitelistedFields { coinTypes: ToField<Vector<string>>; decimalPrecisions: ToField<Vector<"u8">> }
+export interface DecimalPrecisionForCoinTypesWhitelistedFields { coinTypes: ToField<Vector<String>>; decimalPrecisions: ToField<Vector<"u8">> }
 
 export type DecimalPrecisionForCoinTypesWhitelistedReified = Reified< DecimalPrecisionForCoinTypesWhitelisted, DecimalPrecisionForCoinTypesWhitelistedFields >;
 
@@ -156,7 +156,7 @@ export class DecimalPrecisionForCoinTypesWhitelisted implements StructClass { st
 
  readonly $typeArgs: [];
 
- readonly coinTypes: ToField<Vector<string>>; readonly decimalPrecisions: ToField<Vector<"u8">>
+ readonly coinTypes: ToField<Vector<String>>; readonly decimalPrecisions: ToField<Vector<"u8">>
 
  private constructor(typeArgs: [], fields: DecimalPrecisionForCoinTypesWhitelistedFields, ) { this.$fullTypeName = composeSuiType( DecimalPrecisionForCoinTypesWhitelisted.$typeName, ...typeArgs ) as "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DecimalPrecisionForCoinTypesWhitelisted"; this.$typeArgs = typeArgs;
 
@@ -186,7 +186,7 @@ export class DecimalPrecisionForCoinTypesWhitelisted implements StructClass { st
 
  toJSONField() { return {
 
- coinTypes: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.coinTypes),decimalPrecisions: fieldToJSON<Vector<"u8">>(`vector<u8>`, this.decimalPrecisions),
+ coinTypes: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.coinTypes),decimalPrecisions: fieldToJSON<Vector<"u8">>(`vector<u8>`, this.decimalPrecisions),
 
 } }
 

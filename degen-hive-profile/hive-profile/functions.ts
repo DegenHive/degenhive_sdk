@@ -1,6 +1,8 @@
-import {PUBLISHED_AT} from "..";
 import {GenericArg, ObjectArg, generic, obj, pure, vector} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
+
+import { hiveprofile } from "..";
+const PUBLISHED_AT = hiveprofile.PUBLISHED_AT
 
 export interface AcceptBidArgs { clock: ObjectArg; hiveManager: ObjectArg; vault: ObjectArg; hsuiDisperser: ObjectArg; marketplace: ObjectArg; ownerProfile: ObjectArg; bidderProfile: ObjectArg; assetVersion: bigint | TransactionArgument }
 

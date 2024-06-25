@@ -1,6 +1,8 @@
-import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
+
+import { math } from "..";
+const PUBLISHED_AT = math.PUBLISHED_AT
 
 export function getExitFee( txb: TransactionBlock, weightedConfig: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::weighted_math::get_exit_fee`, arguments: [ obj(txb, weightedConfig) ], }) }
 

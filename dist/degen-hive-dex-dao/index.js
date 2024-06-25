@@ -14,8 +14,11 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PUBLISHED_AT = exports.PACKAGE_ID = void 0;
-exports.PACKAGE_ID = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a";
-exports.PUBLISHED_AT = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a";
+exports.dexdao = void 0;
+var dexdao;
+(function (dexdao) {
+    dexdao.PACKAGE_ID = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a";
+    dexdao.PUBLISHED_AT = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a";
+})(dexdao || (exports.dexdao = dexdao = {}));
 __exportStar(require("./dex-dao/functions"), exports);
 __exportStar(require("./router/functions"), exports);

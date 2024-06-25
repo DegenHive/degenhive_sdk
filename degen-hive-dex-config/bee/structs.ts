@@ -269,7 +269,7 @@ export class Burn implements StructClass { static readonly $typeName = "0x3ba4e7
 
 export function isBurnCondition(type: string): boolean { type = compressSuiType(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BurnCondition"; }
 
-export interface BurnConditionFields { percent: ToField<VecMap<string, "u64">> }
+export interface BurnConditionFields { percent: ToField<VecMap<String, "u64">> }
 
 export type BurnConditionReified = Reified< BurnCondition, BurnConditionFields >;
 
@@ -281,7 +281,7 @@ export class BurnCondition implements StructClass { static readonly $typeName = 
 
  readonly $typeArgs: [];
 
- readonly percent: ToField<VecMap<string, "u64">>
+ readonly percent: ToField<VecMap<String, "u64">>
 
  private constructor(typeArgs: [], fields: BurnConditionFields, ) { this.$fullTypeName = composeSuiType( BurnCondition.$typeName, ...typeArgs ) as "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BurnCondition"; this.$typeArgs = typeArgs;
 

@@ -75,7 +75,7 @@ export function isString(type: string): boolean { type = compressSuiType(type); 
 
 export interface StringFields { bytes: ToField<Vector<"u8">> }
 
-export type StringReified = Reified< string, StringFields >;
+export type StringReified = Reified< String, StringFields >;
 
 export class String implements StructClass { static readonly $typeName = "0x1::ascii::String"; static readonly $numTypeParams = 0;
 
@@ -95,7 +95,7 @@ export class String implements StructClass { static readonly $typeName = "0x1::a
 
  static get r() { return String.reified() }
 
- static phantom( ): PhantomReified<ToTypeStr<string>> { return phantom(String.reified( )); } static get p() { return String.phantom() }
+ static phantom( ): PhantomReified<ToTypeStr<String>> { return phantom(String.reified( )); } static get p() { return String.phantom() }
 
  static get bcs() { return bcs.struct("String", {
 
@@ -103,15 +103,15 @@ export class String implements StructClass { static readonly $typeName = "0x1::a
 
 }) };
 
- static fromFields( fields: Record<string, any> ): string { return String.reified( ).new( { bytes: decodeFromFields(reified.vector("u8"), fields.bytes) } ) }
+ static fromFields( fields: Record<string, any> ): String { return String.reified( ).new( { bytes: decodeFromFields(reified.vector("u8"), fields.bytes) } ) }
 
- static fromFieldsWithTypes( item: FieldsWithTypes ): string { if (!isString(item.type)) { throw new Error("not a String type");
+ static fromFieldsWithTypes( item: FieldsWithTypes ): String { if (!isString(item.type)) { throw new Error("not a String type");
 
  }
 
  return String.reified( ).new( { bytes: decodeFromFieldsWithTypes(reified.vector("u8"), item.fields.bytes) } ) }
 
- static fromBcs( data: Uint8Array ): string { return String.fromFields( String.bcs.parse(data) ) }
+ static fromBcs( data: Uint8Array ): String { return String.fromFields( String.bcs.parse(data) ) }
 
  toJSONField() { return {
 
@@ -121,15 +121,15 @@ export class String implements StructClass { static readonly $typeName = "0x1::a
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField( field: any ): string { return String.reified( ).new( { bytes: decodeFromJSONField(reified.vector("u8"), field.bytes) } ) }
+ static fromJSONField( field: any ): String { return String.reified( ).new( { bytes: decodeFromJSONField(reified.vector("u8"), field.bytes) } ) }
 
- static fromJSON( json: Record<string, any> ): string { if (json.$typeName !== String.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+ static fromJSON( json: Record<string, any> ): String { if (json.$typeName !== String.$typeName) { throw new Error("not a WithTwoGenerics json object") };
 
  return String.fromJSONField( json, ) }
 
- static fromSuiParsedData( content: SuiParsedData ): string { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isString(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a String object`); } return String.fromFieldsWithTypes( content ); }
+ static fromSuiParsedData( content: SuiParsedData ): String { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isString(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a String object`); } return String.fromFieldsWithTypes( content ); }
 
- static async fetch( client: SuiClient, id: string ): Promise<string> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching String object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isString(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a String object`); }
+ static async fetch( client: SuiClient, id: string ): Promise<String> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching String object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isString(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a String object`); }
  return String.fromBcs( fromB64(res.data.bcs.bcsBytes) ); }
 
  }

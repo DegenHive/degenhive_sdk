@@ -9,7 +9,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isVerifiedIssuer(type: string): boolean { type = compressSuiType(type); return type === "0x2::zklogin_verified_issuer::VerifiedIssuer"; }
 
-export interface VerifiedIssuerFields { id: ToField<UID>; owner: ToField<"address">; issuer: ToField<string> }
+export interface VerifiedIssuerFields { id: ToField<UID>; owner: ToField<"address">; issuer: ToField<String> }
 
 export type VerifiedIssuerReified = Reified< VerifiedIssuer, VerifiedIssuerFields >;
 
@@ -21,7 +21,7 @@ export class VerifiedIssuer implements StructClass { static readonly $typeName =
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly owner: ToField<"address">; readonly issuer: ToField<string>
+ readonly id: ToField<UID>; readonly owner: ToField<"address">; readonly issuer: ToField<String>
 
  private constructor(typeArgs: [], fields: VerifiedIssuerFields, ) { this.$fullTypeName = composeSuiType( VerifiedIssuer.$typeName, ...typeArgs ) as "0x2::zklogin_verified_issuer::VerifiedIssuer"; this.$typeArgs = typeArgs;
 

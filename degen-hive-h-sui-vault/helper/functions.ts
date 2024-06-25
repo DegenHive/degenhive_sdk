@@ -1,6 +1,8 @@
-import {PUBLISHED_AT} from "..";
 import {ObjectArg, obj, pure} from "../../_framework/util";
 import {TransactionArgument, TransactionBlock} from "@mysten/sui.js/transactions";
+
+import { hsuivault } from "..";
+const PUBLISHED_AT = hsuivault.PUBLISHED_AT
 
 export function getSuiAmount( txb: TransactionBlock, poolTokenExchangeRate: ObjectArg ) { return txb.moveCall({ target: `${PUBLISHED_AT}::helper::get_sui_amount`, arguments: [ obj(txb, poolTokenExchangeRate) ], }) }
 

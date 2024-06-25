@@ -205,7 +205,7 @@ export class AuthenticatorStateInner implements StructClass { static readonly $t
 
 export function isJWK(type: string): boolean { type = compressSuiType(type); return type === "0x2::authenticator_state::JWK"; }
 
-export interface JWKFields { kty: ToField<string>; e: ToField<string>; n: ToField<string>; alg: ToField<string> }
+export interface JWKFields { kty: ToField<String>; e: ToField<String>; n: ToField<String>; alg: ToField<String> }
 
 export type JWKReified = Reified< JWK, JWKFields >;
 
@@ -217,7 +217,7 @@ export class JWK implements StructClass { static readonly $typeName = "0x2::auth
 
  readonly $typeArgs: [];
 
- readonly kty: ToField<string>; readonly e: ToField<string>; readonly n: ToField<string>; readonly alg: ToField<string>
+ readonly kty: ToField<String>; readonly e: ToField<String>; readonly n: ToField<String>; readonly alg: ToField<String>
 
  private constructor(typeArgs: [], fields: JWKFields, ) { this.$fullTypeName = composeSuiType( JWK.$typeName, ...typeArgs ) as "0x2::authenticator_state::JWK"; this.$typeArgs = typeArgs;
 
@@ -270,7 +270,7 @@ export class JWK implements StructClass { static readonly $typeName = "0x2::auth
 
 export function isJwkId(type: string): boolean { type = compressSuiType(type); return type === "0x2::authenticator_state::JwkId"; }
 
-export interface JwkIdFields { iss: ToField<string>; kid: ToField<string> }
+export interface JwkIdFields { iss: ToField<String>; kid: ToField<String> }
 
 export type JwkIdReified = Reified< JwkId, JwkIdFields >;
 
@@ -282,7 +282,7 @@ export class JwkId implements StructClass { static readonly $typeName = "0x2::au
 
  readonly $typeArgs: [];
 
- readonly iss: ToField<string>; readonly kid: ToField<string>
+ readonly iss: ToField<String>; readonly kid: ToField<String>
 
  private constructor(typeArgs: [], fields: JwkIdFields, ) { this.$fullTypeName = composeSuiType( JwkId.$typeName, ...typeArgs ) as "0x2::authenticator_state::JwkId"; this.$typeArgs = typeArgs;
 

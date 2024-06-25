@@ -8,7 +8,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isUrl(type: string): boolean { type = compressSuiType(type); return type === "0x2::url::Url"; }
 
-export interface UrlFields { url: ToField<string> }
+export interface UrlFields { url: ToField<String> }
 
 export type UrlReified = Reified< Url, UrlFields >;
 
@@ -20,7 +20,7 @@ export class Url implements StructClass { static readonly $typeName = "0x2::url:
 
  readonly $typeArgs: [];
 
- readonly url: ToField<string>
+ readonly url: ToField<String>
 
  private constructor(typeArgs: [], fields: UrlFields, ) { this.$fullTypeName = composeSuiType( Url.$typeName, ...typeArgs ) as "0x2::url::Url"; this.$typeArgs = typeArgs;
 

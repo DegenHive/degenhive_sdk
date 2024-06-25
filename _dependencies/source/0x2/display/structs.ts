@@ -10,7 +10,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isDisplay(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x2::display::Display<"); }
 
-export interface DisplayFields<T extends PhantomTypeArgument> { id: ToField<UID>; fields: ToField<VecMap<string, string>>; version: ToField<"u16"> }
+export interface DisplayFields<T extends PhantomTypeArgument> { id: ToField<UID>; fields: ToField<VecMap<String, String>>; version: ToField<"u16"> }
 
 export type DisplayReified<T extends PhantomTypeArgument> = Reified< Display<T>, DisplayFields<T> >;
 
@@ -22,7 +22,7 @@ export class Display<T extends PhantomTypeArgument> implements StructClass { sta
 
  readonly $typeArgs: [PhantomToTypeStr<T>];
 
- readonly id: ToField<UID>; readonly fields: ToField<VecMap<string, string>>; readonly version: ToField<"u16">
+ readonly id: ToField<UID>; readonly fields: ToField<VecMap<String, String>>; readonly version: ToField<"u16">
 
  private constructor(typeArgs: [PhantomToTypeStr<T>], fields: DisplayFields<T>, ) { this.$fullTypeName = composeSuiType( Display.$typeName, ...typeArgs ) as `0x2::display::Display<${PhantomToTypeStr<T>}>`; this.$typeArgs = typeArgs;
 
@@ -140,7 +140,7 @@ export class DisplayCreated<T extends PhantomTypeArgument> implements StructClas
 
 export function isVersionUpdated(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x2::display::VersionUpdated<"); }
 
-export interface VersionUpdatedFields<T extends PhantomTypeArgument> { id: ToField<ID>; version: ToField<"u16">; fields: ToField<VecMap<string, string>> }
+export interface VersionUpdatedFields<T extends PhantomTypeArgument> { id: ToField<ID>; version: ToField<"u16">; fields: ToField<VecMap<String, String>> }
 
 export type VersionUpdatedReified<T extends PhantomTypeArgument> = Reified< VersionUpdated<T>, VersionUpdatedFields<T> >;
 
@@ -152,7 +152,7 @@ export class VersionUpdated<T extends PhantomTypeArgument> implements StructClas
 
  readonly $typeArgs: [PhantomToTypeStr<T>];
 
- readonly id: ToField<ID>; readonly version: ToField<"u16">; readonly fields: ToField<VecMap<string, string>>
+ readonly id: ToField<ID>; readonly version: ToField<"u16">; readonly fields: ToField<VecMap<String, String>>
 
  private constructor(typeArgs: [PhantomToTypeStr<T>], fields: VersionUpdatedFields<T>, ) { this.$fullTypeName = composeSuiType( VersionUpdated.$typeName, ...typeArgs ) as `0x2::display::VersionUpdated<${PhantomToTypeStr<T>}>`; this.$typeArgs = typeArgs;
 

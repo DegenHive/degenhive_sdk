@@ -264,7 +264,7 @@ export function extractType<T extends PhantomReified<PhantomTypeArgument>>(
 export function extractType<
   T extends Reified<TypeArgument, any> | PhantomReified<PhantomTypeArgument>,
 >(reified: T): string
-export function extractType(reified: Reified<TypeArgument, any> | PhantomReified<string>): string {
+export function extractType(reified: Reified<TypeArgument, any> | PhantomReified<string>): String {
   switch (reified) {
     case 'u8':
     case 'u16':

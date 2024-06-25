@@ -1,15 +1,22 @@
 {
   "name": "degenhive_sdk",
-  "version": "1.0.3",
+  "version": "1.0.31",
   "description": "Package providing helper API functions to interact with DegenHive's move modules.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "eslint": "eslint . --fix"
+    "eslint": "eslint . --fix",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mysten/bcs": "^1.0.2",
     "@mysten/sui.js": "^0.54.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "typescript": "^5.5.2"
   }
 }

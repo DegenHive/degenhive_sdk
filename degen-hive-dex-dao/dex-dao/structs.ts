@@ -1,15 +1,15 @@
 import * as reified from "../../_framework/reified";
-import {HiveProfile} from "../../_dependencies/source/0x0/hive-profile/structs";
+import { HiveProfile } from "../../degen-hive-profile/hive-profile/structs";
 import {String as String1} from "../../_dependencies/source/0x1/ascii/structs";
 import {Option} from "../../_dependencies/source/0x1/option/structs";
 import {String} from "../../_dependencies/source/0x1/string/structs";
 import {TypeName} from "../../_dependencies/source/0x1/type-name/structs";
-import {HIVE} from "../../_dependencies/source/0x114d0f5a2b73e7b158263f0faea8c1ac51dffcab3a3626f9035633f52c5f9d6c/hive/structs";
+import {HIVE} from "../../degen-hive-dex-config/dsui/structs";
 import {Balance} from "../../_dependencies/source/0x2/balance/structs";
 import {LinkedTable} from "../../_dependencies/source/0x2/linked-table/structs";
 import {UID} from "../../_dependencies/source/0x2/object/structs";
-import {DexDaoCapability} from "../../_dependencies/source/0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc/config/structs";
-import {HiveGems} from "../../_dependencies/source/0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc/hive-gems/structs";
+import { DexDaoCapability } from "../../degen-hive-dex-config/config/structs";
+import { HiveGems } from "../../degen-hive-dex-config/hive-gems/structs";
 import {PhantomReified, PhantomToTypeStr, PhantomTypeArgument, Reified, StructClass, ToField, ToPhantomTypeArgument, ToTypeStr, Vector, assertFieldsWithTypesArgsMatch, assertReifiedTypeArgsMatch, decodeFromFields, decodeFromFieldsWithTypes, decodeFromJSONField, extractType, fieldToJSON, phantom, ToTypeStr as ToPhantom} from "../../_framework/reified";
 import {FieldsWithTypes, composeSuiType, compressSuiType} from "../../_framework/util";
 import {bcs, fromB64, fromHEX, toHEX} from "@mysten/bcs";
@@ -19,7 +19,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isAddedToBeeBox(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::AddedToBeeBox"; }
 
-export interface AddedToBeeBoxFields { poolHiveAddr: ToField<"address">; profileAddr: ToField<"address">; username: ToField<string>; lpBalanceAdded: ToField<"u64">; hiveGemsEarned: ToField<"u64">; claimIndex: ToField<"u256"> }
+export interface AddedToBeeBoxFields { poolHiveAddr: ToField<"address">; profileAddr: ToField<"address">; username: ToField<String>; lpBalanceAdded: ToField<"u64">; hiveGemsEarned: ToField<"u64">; claimIndex: ToField<"u256"> }
 
 export type AddedToBeeBoxReified = Reified< AddedToBeeBox, AddedToBeeBoxFields >;
 
@@ -31,7 +31,7 @@ export class AddedToBeeBox implements StructClass { static readonly $typeName = 
 
  readonly $typeArgs: [];
 
- readonly poolHiveAddr: ToField<"address">; readonly profileAddr: ToField<"address">; readonly username: ToField<string>; readonly lpBalanceAdded: ToField<"u64">; readonly hiveGemsEarned: ToField<"u64">; readonly claimIndex: ToField<"u256">
+ readonly poolHiveAddr: ToField<"address">; readonly profileAddr: ToField<"address">; readonly username: ToField<String>; readonly lpBalanceAdded: ToField<"u64">; readonly hiveGemsEarned: ToField<"u64">; readonly claimIndex: ToField<"u256">
 
  private constructor(typeArgs: [], fields: AddedToBeeBoxFields, ) { this.$fullTypeName = composeSuiType( AddedToBeeBox.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::AddedToBeeBox"; this.$typeArgs = typeArgs;
 
@@ -279,7 +279,7 @@ export class BeeFruitKraftedForPoolHive implements StructClass { static readonly
 
 export function isDialogue(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Dialogue"; }
 
-export interface DialogueFields { buzz: ToField<string>; upvotes: ToField<LinkedTable<"address", "bool">> }
+export interface DialogueFields { buzz: ToField<String>; upvotes: ToField<LinkedTable<"address", "bool">> }
 
 export type DialogueReified = Reified< Dialogue, DialogueFields >;
 
@@ -291,7 +291,7 @@ export class Dialogue implements StructClass { static readonly $typeName = "0x6f
 
  readonly $typeArgs: [];
 
- readonly buzz: ToField<string>; readonly upvotes: ToField<LinkedTable<"address", "bool">>
+ readonly buzz: ToField<String>; readonly upvotes: ToField<LinkedTable<"address", "bool">>
 
  private constructor(typeArgs: [], fields: DialogueFields, ) { this.$fullTypeName = composeSuiType( Dialogue.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Dialogue"; this.$typeArgs = typeArgs;
 
@@ -669,7 +669,7 @@ export class GemsSetForNewHiveCycle implements StructClass { static readonly $ty
 
 export function isGovernorBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzz"; }
 
-export interface GovernorBuzzFields { poolHive: ToField<"address">; buzz: ToField<string>; genAi: ToField<Option<string>>; likes: ToField<LinkedTable<"address", "bool">>; userBuzzes: ToField<LinkedTable<"address", ToPhantom<Dialogues>>> }
+export interface GovernorBuzzFields { poolHive: ToField<"address">; buzz: ToField<String>; genAi: ToField<Option<String>>; likes: ToField<LinkedTable<"address", "bool">>; userBuzzes: ToField<LinkedTable<"address", ToPhantom<Dialogues>>> }
 
 export type GovernorBuzzReified = Reified< GovernorBuzz, GovernorBuzzFields >;
 
@@ -681,7 +681,7 @@ export class GovernorBuzz implements StructClass { static readonly $typeName = "
 
  readonly $typeArgs: [];
 
- readonly poolHive: ToField<"address">; readonly buzz: ToField<string>; readonly genAi: ToField<Option<string>>; readonly likes: ToField<LinkedTable<"address", "bool">>; readonly userBuzzes: ToField<LinkedTable<"address", ToPhantom<Dialogues>>>
+ readonly poolHive: ToField<"address">; readonly buzz: ToField<String>; readonly genAi: ToField<Option<String>>; readonly likes: ToField<LinkedTable<"address", "bool">>; readonly userBuzzes: ToField<LinkedTable<"address", ToPhantom<Dialogues>>>
 
  private constructor(typeArgs: [], fields: GovernorBuzzFields, ) { this.$fullTypeName = composeSuiType( GovernorBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzz"; this.$typeArgs = typeArgs;
 
@@ -711,7 +711,7 @@ export class GovernorBuzz implements StructClass { static readonly $typeName = "
 
  toJSONField() { return {
 
- poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<string>>(`0x1::option::Option<0x1::string::String>`, this.genAi),likes: this.likes.toJSONField(),userBuzzes: this.userBuzzes.toJSONField(),
+ poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<String>>(`0x1::option::Option<0x1::string::String>`, this.genAi),likes: this.likes.toJSONField(),userBuzzes: this.userBuzzes.toJSONField(),
 
 } }
 
@@ -734,7 +734,7 @@ export class GovernorBuzz implements StructClass { static readonly $typeName = "
 
 export function isGovernorBuzzDestroyed(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzzDestroyed"; }
 
-export interface GovernorBuzzDestroyedFields { index: ToField<"u64">; poolHive: ToField<"address">; buzz: ToField<string>; genAi: ToField<Option<string>> }
+export interface GovernorBuzzDestroyedFields { index: ToField<"u64">; poolHive: ToField<"address">; buzz: ToField<String>; genAi: ToField<Option<String>> }
 
 export type GovernorBuzzDestroyedReified = Reified< GovernorBuzzDestroyed, GovernorBuzzDestroyedFields >;
 
@@ -746,7 +746,7 @@ export class GovernorBuzzDestroyed implements StructClass { static readonly $typ
 
  readonly $typeArgs: [];
 
- readonly index: ToField<"u64">; readonly poolHive: ToField<"address">; readonly buzz: ToField<string>; readonly genAi: ToField<Option<string>>
+ readonly index: ToField<"u64">; readonly poolHive: ToField<"address">; readonly buzz: ToField<String>; readonly genAi: ToField<Option<String>>
 
  private constructor(typeArgs: [], fields: GovernorBuzzDestroyedFields, ) { this.$fullTypeName = composeSuiType( GovernorBuzzDestroyed.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzzDestroyed"; this.$typeArgs = typeArgs;
 
@@ -776,7 +776,7 @@ export class GovernorBuzzDestroyed implements StructClass { static readonly $typ
 
  toJSONField() { return {
 
- index: this.index.toString(),poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<string>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
+ index: this.index.toString(),poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<String>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
 
 } }
 
@@ -994,7 +994,7 @@ export class MoreFruitsAdded implements StructClass { static readonly $typeName 
 
 export function isNewGovernorBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewGovernorBuzz"; }
 
-export interface NewGovernorBuzzFields { count: ToField<"u64">; poolHive: ToField<"address">; buzz: ToField<string>; genAi: ToField<Option<string>> }
+export interface NewGovernorBuzzFields { count: ToField<"u64">; poolHive: ToField<"address">; buzz: ToField<String>; genAi: ToField<Option<String>> }
 
 export type NewGovernorBuzzReified = Reified< NewGovernorBuzz, NewGovernorBuzzFields >;
 
@@ -1006,7 +1006,7 @@ export class NewGovernorBuzz implements StructClass { static readonly $typeName 
 
  readonly $typeArgs: [];
 
- readonly count: ToField<"u64">; readonly poolHive: ToField<"address">; readonly buzz: ToField<string>; readonly genAi: ToField<Option<string>>
+ readonly count: ToField<"u64">; readonly poolHive: ToField<"address">; readonly buzz: ToField<String>; readonly genAi: ToField<Option<String>>
 
  private constructor(typeArgs: [], fields: NewGovernorBuzzFields, ) { this.$fullTypeName = composeSuiType( NewGovernorBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewGovernorBuzz"; this.$typeArgs = typeArgs;
 
@@ -1036,7 +1036,7 @@ export class NewGovernorBuzz implements StructClass { static readonly $typeName 
 
  toJSONField() { return {
 
- count: this.count.toString(),poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<string>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
+ count: this.count.toString(),poolHive: this.poolHive,buzz: this.buzz,genAi: fieldToJSON<Option<String>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
 
 } }
 
@@ -1059,7 +1059,7 @@ export class NewGovernorBuzz implements StructClass { static readonly $typeName 
 
 export function isNewProposalKrafted(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewProposalKrafted"; }
 
-export interface NewProposalKraftedFields { poolHiveAddr: ToField<"address">; proposalId: ToField<"u64">; proposer: ToField<"address">; title: ToField<string>; description: ToField<string>; link: ToField<string>; proposalType: ToField<"u64">; votingStartEpoch: ToField<"u64">; votingEndEpoch: ToField<"u64">; executionStartEpoch: ToField<"u64">; executionEndEpoch: ToField<"u64">; newParams: ToField<Option<Vector<"u64">>>; newWeights: ToField<Option<Vector<"u64">>>; newFeeInfo: ToField<Option<Vector<"u64">>>; fruitLife: ToField<Option<FruitLife>> }
+export interface NewProposalKraftedFields { poolHiveAddr: ToField<"address">; proposalId: ToField<"u64">; proposer: ToField<"address">; title: ToField<String>; description: ToField<String>; link: ToField<String>; proposalType: ToField<"u64">; votingStartEpoch: ToField<"u64">; votingEndEpoch: ToField<"u64">; executionStartEpoch: ToField<"u64">; executionEndEpoch: ToField<"u64">; newParams: ToField<Option<Vector<"u64">>>; newWeights: ToField<Option<Vector<"u64">>>; newFeeInfo: ToField<Option<Vector<"u64">>>; fruitLife: ToField<Option<FruitLife>> }
 
 export type NewProposalKraftedReified = Reified< NewProposalKrafted, NewProposalKraftedFields >;
 
@@ -1071,7 +1071,7 @@ export class NewProposalKrafted implements StructClass { static readonly $typeNa
 
  readonly $typeArgs: [];
 
- readonly poolHiveAddr: ToField<"address">; readonly proposalId: ToField<"u64">; readonly proposer: ToField<"address">; readonly title: ToField<string>; readonly description: ToField<string>; readonly link: ToField<string>; readonly proposalType: ToField<"u64">; readonly votingStartEpoch: ToField<"u64">; readonly votingEndEpoch: ToField<"u64">; readonly executionStartEpoch: ToField<"u64">; readonly executionEndEpoch: ToField<"u64">; readonly newParams: ToField<Option<Vector<"u64">>>; readonly newWeights: ToField<Option<Vector<"u64">>>; readonly newFeeInfo: ToField<Option<Vector<"u64">>>; readonly fruitLife: ToField<Option<FruitLife>>
+ readonly poolHiveAddr: ToField<"address">; readonly proposalId: ToField<"u64">; readonly proposer: ToField<"address">; readonly title: ToField<String>; readonly description: ToField<String>; readonly link: ToField<String>; readonly proposalType: ToField<"u64">; readonly votingStartEpoch: ToField<"u64">; readonly votingEndEpoch: ToField<"u64">; readonly executionStartEpoch: ToField<"u64">; readonly executionEndEpoch: ToField<"u64">; readonly newParams: ToField<Option<Vector<"u64">>>; readonly newWeights: ToField<Option<Vector<"u64">>>; readonly newFeeInfo: ToField<Option<Vector<"u64">>>; readonly fruitLife: ToField<Option<FruitLife>>
 
  private constructor(typeArgs: [], fields: NewProposalKraftedFields, ) { this.$fullTypeName = composeSuiType( NewProposalKrafted.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewProposalKrafted"; this.$typeArgs = typeArgs;
 
@@ -1514,7 +1514,7 @@ export class PoolsGovernorUpdated implements StructClass { static readonly $type
 
 export function isProposal(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Proposal"; }
 
-export interface ProposalFields { proposalId: ToField<"u64">; proposer: ToField<"address">; deposit: ToField<Balance<ToPhantom<HIVE>>>; title: ToField<string>; description: ToField<string>; link: ToField<string>; proposalType: ToField<"u64">; votingStartEpoch: ToField<"u64">; votingEndEpoch: ToField<"u64">; executionStartEpoch: ToField<"u64">; executionEndEpoch: ToField<"u64">; proposalStatus: ToField<"u64">; yesVotes: ToField<"u64">; noVotes: ToField<"u64">; voters: ToField<LinkedTable<"address", "bool">>; fruitLife: ToField<Option<FruitLife>>; newParams: ToField<Option<Vector<"u64">>>; newWeights: ToField<Option<Vector<"u64">>>; newFeeInfo: ToField<Option<Vector<"u64">>> }
+export interface ProposalFields { proposalId: ToField<"u64">; proposer: ToField<"address">; deposit: ToField<Balance<ToPhantom<HIVE>>>; title: ToField<String>; description: ToField<String>; link: ToField<String>; proposalType: ToField<"u64">; votingStartEpoch: ToField<"u64">; votingEndEpoch: ToField<"u64">; executionStartEpoch: ToField<"u64">; executionEndEpoch: ToField<"u64">; proposalStatus: ToField<"u64">; yesVotes: ToField<"u64">; noVotes: ToField<"u64">; voters: ToField<LinkedTable<"address", "bool">>; fruitLife: ToField<Option<FruitLife>>; newParams: ToField<Option<Vector<"u64">>>; newWeights: ToField<Option<Vector<"u64">>>; newFeeInfo: ToField<Option<Vector<"u64">>> }
 
 export type ProposalReified = Reified< Proposal, ProposalFields >;
 
@@ -1526,7 +1526,7 @@ export class Proposal implements StructClass { static readonly $typeName = "0x6f
 
  readonly $typeArgs: [];
 
- readonly proposalId: ToField<"u64">; readonly proposer: ToField<"address">; readonly deposit: ToField<Balance<ToPhantom<HIVE>>>; readonly title: ToField<string>; readonly description: ToField<string>; readonly link: ToField<string>; readonly proposalType: ToField<"u64">; readonly votingStartEpoch: ToField<"u64">; readonly votingEndEpoch: ToField<"u64">; readonly executionStartEpoch: ToField<"u64">; readonly executionEndEpoch: ToField<"u64">; readonly proposalStatus: ToField<"u64">; readonly yesVotes: ToField<"u64">; readonly noVotes: ToField<"u64">; readonly voters: ToField<LinkedTable<"address", "bool">>; readonly fruitLife: ToField<Option<FruitLife>>; readonly newParams: ToField<Option<Vector<"u64">>>; readonly newWeights: ToField<Option<Vector<"u64">>>; readonly newFeeInfo: ToField<Option<Vector<"u64">>>
+ readonly proposalId: ToField<"u64">; readonly proposer: ToField<"address">; readonly deposit: ToField<Balance<ToPhantom<HIVE>>>; readonly title: ToField<String>; readonly description: ToField<String>; readonly link: ToField<String>; readonly proposalType: ToField<"u64">; readonly votingStartEpoch: ToField<"u64">; readonly votingEndEpoch: ToField<"u64">; readonly executionStartEpoch: ToField<"u64">; readonly executionEndEpoch: ToField<"u64">; readonly proposalStatus: ToField<"u64">; readonly yesVotes: ToField<"u64">; readonly noVotes: ToField<"u64">; readonly voters: ToField<LinkedTable<"address", "bool">>; readonly fruitLife: ToField<Option<FruitLife>>; readonly newParams: ToField<Option<Vector<"u64">>>; readonly newWeights: ToField<Option<Vector<"u64">>>; readonly newFeeInfo: ToField<Option<Vector<"u64">>>
 
  private constructor(typeArgs: [], fields: ProposalFields, ) { this.$fullTypeName = composeSuiType( Proposal.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Proposal"; this.$typeArgs = typeArgs;
 
@@ -1774,7 +1774,7 @@ export class ProposalExecuted implements StructClass { static readonly $typeName
 
 export function isRipeFruitsClaimed(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::RipeFruitsClaimed<"); }
 
-export interface RipeFruitsClaimedFields<A extends PhantomTypeArgument> { fruitType: ToField<String1>; profileAddr: ToField<"address">; userName: ToField<string>; fruitGlobalClaimIndex: ToField<"u256">; earnedFruits: ToField<"u64">; poolHiveAddr: ToField<"address"> }
+export interface RipeFruitsClaimedFields<A extends PhantomTypeArgument> { fruitType: ToField<String1>; profileAddr: ToField<"address">; userName: ToField<String>; fruitGlobalClaimIndex: ToField<"u256">; earnedFruits: ToField<"u64">; poolHiveAddr: ToField<"address"> }
 
 export type RipeFruitsClaimedReified<A extends PhantomTypeArgument> = Reified< RipeFruitsClaimed<A>, RipeFruitsClaimedFields<A> >;
 
@@ -1786,7 +1786,7 @@ export class RipeFruitsClaimed<A extends PhantomTypeArgument> implements StructC
 
  readonly $typeArgs: [PhantomToTypeStr<A>];
 
- readonly fruitType: ToField<String1>; readonly profileAddr: ToField<"address">; readonly userName: ToField<string>; readonly fruitGlobalClaimIndex: ToField<"u256">; readonly earnedFruits: ToField<"u64">; readonly poolHiveAddr: ToField<"address">
+ readonly fruitType: ToField<String1>; readonly profileAddr: ToField<"address">; readonly userName: ToField<String>; readonly fruitGlobalClaimIndex: ToField<"u256">; readonly earnedFruits: ToField<"u64">; readonly poolHiveAddr: ToField<"address">
 
  private constructor(typeArgs: [PhantomToTypeStr<A>], fields: RipeFruitsClaimedFields<A>, ) { this.$fullTypeName = composeSuiType( RipeFruitsClaimed.$typeName, ...typeArgs ) as `0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::RipeFruitsClaimed<${PhantomToTypeStr<A>}>`; this.$typeArgs = typeArgs;
 
@@ -1839,7 +1839,7 @@ export class RipeFruitsClaimed<A extends PhantomTypeArgument> implements StructC
 
 export function isSystemBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::SystemBuzz"; }
 
-export interface SystemBuzzFields { buzz: ToField<string>; genAi: ToField<Option<string>> }
+export interface SystemBuzzFields { buzz: ToField<String>; genAi: ToField<Option<String>> }
 
 export type SystemBuzzReified = Reified< SystemBuzz, SystemBuzzFields >;
 
@@ -1851,7 +1851,7 @@ export class SystemBuzz implements StructClass { static readonly $typeName = "0x
 
  readonly $typeArgs: [];
 
- readonly buzz: ToField<string>; readonly genAi: ToField<Option<string>>
+ readonly buzz: ToField<String>; readonly genAi: ToField<Option<String>>
 
  private constructor(typeArgs: [], fields: SystemBuzzFields, ) { this.$fullTypeName = composeSuiType( SystemBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::SystemBuzz"; this.$typeArgs = typeArgs;
 
@@ -1881,7 +1881,7 @@ export class SystemBuzz implements StructClass { static readonly $typeName = "0x
 
  toJSONField() { return {
 
- buzz: this.buzz,genAi: fieldToJSON<Option<string>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
+ buzz: this.buzz,genAi: fieldToJSON<Option<String>>(`0x1::option::Option<0x1::string::String>`, this.genAi),
 
 } }
 
@@ -1969,7 +1969,7 @@ export class UnbondingFromBeeBox implements StructClass { static readonly $typeN
 
 export function isUnlockFromBeeBox(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UnlockFromBeeBox"; }
 
-export interface UnlockFromBeeBoxFields { poolHiveAddr: ToField<"address">; username: ToField<string>; profileAddr: ToField<"address">; stakerAddr: ToField<"address">; lpBalanceUnlocked: ToField<"u64">; unlockedEpoches: ToField<Vector<"u64">> }
+export interface UnlockFromBeeBoxFields { poolHiveAddr: ToField<"address">; username: ToField<String>; profileAddr: ToField<"address">; stakerAddr: ToField<"address">; lpBalanceUnlocked: ToField<"u64">; unlockedEpoches: ToField<Vector<"u64">> }
 
 export type UnlockFromBeeBoxReified = Reified< UnlockFromBeeBox, UnlockFromBeeBoxFields >;
 
@@ -1981,7 +1981,7 @@ export class UnlockFromBeeBox implements StructClass { static readonly $typeName
 
  readonly $typeArgs: [];
 
- readonly poolHiveAddr: ToField<"address">; readonly username: ToField<string>; readonly profileAddr: ToField<"address">; readonly stakerAddr: ToField<"address">; readonly lpBalanceUnlocked: ToField<"u64">; readonly unlockedEpoches: ToField<Vector<"u64">>
+ readonly poolHiveAddr: ToField<"address">; readonly username: ToField<String>; readonly profileAddr: ToField<"address">; readonly stakerAddr: ToField<"address">; readonly lpBalanceUnlocked: ToField<"u64">; readonly unlockedEpoches: ToField<Vector<"u64">>
 
  private constructor(typeArgs: [], fields: UnlockFromBeeBoxFields, ) { this.$fullTypeName = composeSuiType( UnlockFromBeeBox.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UnlockFromBeeBox"; this.$typeArgs = typeArgs;
 
@@ -2034,7 +2034,7 @@ export class UnlockFromBeeBox implements StructClass { static readonly $typeName
 
 export function isUserBuzzOnGovernanceBuzzDetected(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserBuzzOnGovernanceBuzzDetected"; }
 
-export interface UserBuzzOnGovernanceBuzzDetectedFields { userProfileAddr: ToField<"address">; governanceBuzzIndex: ToField<"u64">; username: ToField<string>; dialogueIndex: ToField<"u64">; userBuzz: ToField<string> }
+export interface UserBuzzOnGovernanceBuzzDetectedFields { userProfileAddr: ToField<"address">; governanceBuzzIndex: ToField<"u64">; username: ToField<String>; dialogueIndex: ToField<"u64">; userBuzz: ToField<String> }
 
 export type UserBuzzOnGovernanceBuzzDetectedReified = Reified< UserBuzzOnGovernanceBuzzDetected, UserBuzzOnGovernanceBuzzDetectedFields >;
 
@@ -2046,7 +2046,7 @@ export class UserBuzzOnGovernanceBuzzDetected implements StructClass { static re
 
  readonly $typeArgs: [];
 
- readonly userProfileAddr: ToField<"address">; readonly governanceBuzzIndex: ToField<"u64">; readonly username: ToField<string>; readonly dialogueIndex: ToField<"u64">; readonly userBuzz: ToField<string>
+ readonly userProfileAddr: ToField<"address">; readonly governanceBuzzIndex: ToField<"u64">; readonly username: ToField<String>; readonly dialogueIndex: ToField<"u64">; readonly userBuzz: ToField<String>
 
  private constructor(typeArgs: [], fields: UserBuzzOnGovernanceBuzzDetectedFields, ) { this.$fullTypeName = composeSuiType( UserBuzzOnGovernanceBuzzDetected.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserBuzzOnGovernanceBuzzDetected"; this.$typeArgs = typeArgs;
 
@@ -2099,7 +2099,7 @@ export class UserBuzzOnGovernanceBuzzDetected implements StructClass { static re
 
 export function isUserLikedGovernorBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserLikedGovernorBuzz"; }
 
-export interface UserLikedGovernorBuzzFields { userProfileAddr: ToField<"address">; username: ToField<string>; governanceBuzzIndex: ToField<"u64"> }
+export interface UserLikedGovernorBuzzFields { userProfileAddr: ToField<"address">; username: ToField<String>; governanceBuzzIndex: ToField<"u64"> }
 
 export type UserLikedGovernorBuzzReified = Reified< UserLikedGovernorBuzz, UserLikedGovernorBuzzFields >;
 
@@ -2111,7 +2111,7 @@ export class UserLikedGovernorBuzz implements StructClass { static readonly $typ
 
  readonly $typeArgs: [];
 
- readonly userProfileAddr: ToField<"address">; readonly username: ToField<string>; readonly governanceBuzzIndex: ToField<"u64">
+ readonly userProfileAddr: ToField<"address">; readonly username: ToField<String>; readonly governanceBuzzIndex: ToField<"u64">
 
  private constructor(typeArgs: [], fields: UserLikedGovernorBuzzFields, ) { this.$fullTypeName = composeSuiType( UserLikedGovernorBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserLikedGovernorBuzz"; this.$typeArgs = typeArgs;
 
@@ -2164,7 +2164,7 @@ export class UserLikedGovernorBuzz implements StructClass { static readonly $typ
 
 export function isUserUnLikedGovernorBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUnLikedGovernorBuzz"; }
 
-export interface UserUnLikedGovernorBuzzFields { userProfileAddr: ToField<"address">; username: ToField<string>; governanceBuzzIndex: ToField<"u64"> }
+export interface UserUnLikedGovernorBuzzFields { userProfileAddr: ToField<"address">; username: ToField<String>; governanceBuzzIndex: ToField<"u64"> }
 
 export type UserUnLikedGovernorBuzzReified = Reified< UserUnLikedGovernorBuzz, UserUnLikedGovernorBuzzFields >;
 
@@ -2176,7 +2176,7 @@ export class UserUnLikedGovernorBuzz implements StructClass { static readonly $t
 
  readonly $typeArgs: [];
 
- readonly userProfileAddr: ToField<"address">; readonly username: ToField<string>; readonly governanceBuzzIndex: ToField<"u64">
+ readonly userProfileAddr: ToField<"address">; readonly username: ToField<String>; readonly governanceBuzzIndex: ToField<"u64">
 
  private constructor(typeArgs: [], fields: UserUnLikedGovernorBuzzFields, ) { this.$fullTypeName = composeSuiType( UserUnLikedGovernorBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUnLikedGovernorBuzz"; this.$typeArgs = typeArgs;
 
@@ -2229,7 +2229,7 @@ export class UserUnLikedGovernorBuzz implements StructClass { static readonly $t
 
 export function isUserUpvotedGovernanceBuzz(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUpvotedGovernanceBuzz"; }
 
-export interface UserUpvotedGovernanceBuzzFields { userProfileAddr: ToField<"address">; username: ToField<string>; governanceBuzzIndex: ToField<"u64">; userBuzzByProfile: ToField<"address"> }
+export interface UserUpvotedGovernanceBuzzFields { userProfileAddr: ToField<"address">; username: ToField<String>; governanceBuzzIndex: ToField<"u64">; userBuzzByProfile: ToField<"address"> }
 
 export type UserUpvotedGovernanceBuzzReified = Reified< UserUpvotedGovernanceBuzz, UserUpvotedGovernanceBuzzFields >;
 
@@ -2241,7 +2241,7 @@ export class UserUpvotedGovernanceBuzz implements StructClass { static readonly 
 
  readonly $typeArgs: [];
 
- readonly userProfileAddr: ToField<"address">; readonly username: ToField<string>; readonly governanceBuzzIndex: ToField<"u64">; readonly userBuzzByProfile: ToField<"address">
+ readonly userProfileAddr: ToField<"address">; readonly username: ToField<String>; readonly governanceBuzzIndex: ToField<"u64">; readonly userBuzzByProfile: ToField<"address">
 
  private constructor(typeArgs: [], fields: UserUpvotedGovernanceBuzzFields, ) { this.$fullTypeName = composeSuiType( UserUpvotedGovernanceBuzz.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUpvotedGovernanceBuzz"; this.$typeArgs = typeArgs;
 
@@ -2294,7 +2294,7 @@ export class UserUpvotedGovernanceBuzz implements StructClass { static readonly 
 
 export function isVoteCasted(type: string): boolean { type = compressSuiType(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::VoteCasted"; }
 
-export interface VoteCastedFields { poolHiveAddr: ToField<"address">; proposalId: ToField<"u64">; voter: ToField<string>; voterProfile: ToField<"address">; vote: ToField<"bool">; yesVotes: ToField<"u64">; noVotes: ToField<"u64">; totalStaked: ToField<"u64"> }
+export interface VoteCastedFields { poolHiveAddr: ToField<"address">; proposalId: ToField<"u64">; voter: ToField<String>; voterProfile: ToField<"address">; vote: ToField<"bool">; yesVotes: ToField<"u64">; noVotes: ToField<"u64">; totalStaked: ToField<"u64"> }
 
 export type VoteCastedReified = Reified< VoteCasted, VoteCastedFields >;
 
@@ -2306,7 +2306,7 @@ export class VoteCasted implements StructClass { static readonly $typeName = "0x
 
  readonly $typeArgs: [];
 
- readonly poolHiveAddr: ToField<"address">; readonly proposalId: ToField<"u64">; readonly voter: ToField<string>; readonly voterProfile: ToField<"address">; readonly vote: ToField<"bool">; readonly yesVotes: ToField<"u64">; readonly noVotes: ToField<"u64">; readonly totalStaked: ToField<"u64">
+ readonly poolHiveAddr: ToField<"address">; readonly proposalId: ToField<"u64">; readonly voter: ToField<String>; readonly voterProfile: ToField<"address">; readonly vote: ToField<"bool">; readonly yesVotes: ToField<"u64">; readonly noVotes: ToField<"u64">; readonly totalStaked: ToField<"u64">
 
  private constructor(typeArgs: [], fields: VoteCastedFields, ) { this.$fullTypeName = composeSuiType( VoteCasted.$typeName, ...typeArgs ) as "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::VoteCasted"; this.$typeArgs = typeArgs;
 

@@ -79,7 +79,7 @@ export class RuleKey<T extends PhantomTypeArgument> implements StructClass { sta
 
 export function isActionRequest(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x2::token::ActionRequest<"); }
 
-export interface ActionRequestFields<T extends PhantomTypeArgument> { name: ToField<string>; amount: ToField<"u64">; sender: ToField<"address">; recipient: ToField<Option<"address">>; spentBalance: ToField<Option<Balance<T>>>; approvals: ToField<VecSet<TypeName>> }
+export interface ActionRequestFields<T extends PhantomTypeArgument> { name: ToField<String>; amount: ToField<"u64">; sender: ToField<"address">; recipient: ToField<Option<"address">>; spentBalance: ToField<Option<Balance<T>>>; approvals: ToField<VecSet<TypeName>> }
 
 export type ActionRequestReified<T extends PhantomTypeArgument> = Reified< ActionRequest<T>, ActionRequestFields<T> >;
 
@@ -91,7 +91,7 @@ export class ActionRequest<T extends PhantomTypeArgument> implements StructClass
 
  readonly $typeArgs: [PhantomToTypeStr<T>];
 
- readonly name: ToField<string>; readonly amount: ToField<"u64">; readonly sender: ToField<"address">; readonly recipient: ToField<Option<"address">>; readonly spentBalance: ToField<Option<Balance<T>>>; readonly approvals: ToField<VecSet<TypeName>>
+ readonly name: ToField<String>; readonly amount: ToField<"u64">; readonly sender: ToField<"address">; readonly recipient: ToField<Option<"address">>; readonly spentBalance: ToField<Option<Balance<T>>>; readonly approvals: ToField<VecSet<TypeName>>
 
  private constructor(typeArgs: [PhantomToTypeStr<T>], fields: ActionRequestFields<T>, ) { this.$fullTypeName = composeSuiType( ActionRequest.$typeName, ...typeArgs ) as `0x2::token::ActionRequest<${PhantomToTypeStr<T>}>`; this.$typeArgs = typeArgs;
 
@@ -209,7 +209,7 @@ export class Token<T extends PhantomTypeArgument> implements StructClass { stati
 
 export function isTokenPolicy(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x2::token::TokenPolicy<"); }
 
-export interface TokenPolicyFields<T extends PhantomTypeArgument> { id: ToField<UID>; spentBalance: ToField<Balance<T>>; rules: ToField<VecMap<string, VecSet<TypeName>>> }
+export interface TokenPolicyFields<T extends PhantomTypeArgument> { id: ToField<UID>; spentBalance: ToField<Balance<T>>; rules: ToField<VecMap<String, VecSet<TypeName>>> }
 
 export type TokenPolicyReified<T extends PhantomTypeArgument> = Reified< TokenPolicy<T>, TokenPolicyFields<T> >;
 
@@ -221,7 +221,7 @@ export class TokenPolicy<T extends PhantomTypeArgument> implements StructClass {
 
  readonly $typeArgs: [PhantomToTypeStr<T>];
 
- readonly id: ToField<UID>; readonly spentBalance: ToField<Balance<T>>; readonly rules: ToField<VecMap<string, VecSet<TypeName>>>
+ readonly id: ToField<UID>; readonly spentBalance: ToField<Balance<T>>; readonly rules: ToField<VecMap<String, VecSet<TypeName>>>
 
  private constructor(typeArgs: [PhantomToTypeStr<T>], fields: TokenPolicyFields<T>, ) { this.$fullTypeName = composeSuiType( TokenPolicy.$typeName, ...typeArgs ) as `0x2::token::TokenPolicy<${PhantomToTypeStr<T>}>`; this.$typeArgs = typeArgs;
 

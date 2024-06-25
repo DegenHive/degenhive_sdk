@@ -1,5 +1,7 @@
-import {PUBLISHED_AT} from "..";
 import {TransactionBlock} from "@mysten/sui.js/transactions";
+
+import {config} from ".."
+const PUBLISHED_AT = config.PUBLISHED_AT
 
 // export function init( txb: TransactionBlock, ) { return txb.moveCall({ target: `${PUBLISHED_AT}::curves::init`, arguments: [ ], }) }
 

@@ -7,8 +7,8 @@ import {LinkedTable} from "../../_dependencies/source/0x2/linked-table/structs";
 import {ID, UID} from "../../_dependencies/source/0x2/object/structs";
 import {Table} from "../../_dependencies/source/0x2/table/structs";
 import {Url} from "../../_dependencies/source/0x2/url/structs";
-import {DSUI} from "../../_dependencies/source/0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc/dsui/structs";
-import {HiveGems} from "../../_dependencies/source/0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc/hive-gems/structs";
+import {DSUI} from "../../degen-hive-dex-config/dsui/structs";
+import { HiveGems } from "../../degen-hive-dex-config/hive-gems/structs";
 import {PhantomReified, PhantomToTypeStr, PhantomTypeArgument, Reified, StructClass, ToField, ToPhantomTypeArgument, ToTypeStr, Vector, assertFieldsWithTypesArgsMatch, assertReifiedTypeArgsMatch, decodeFromFields, decodeFromFieldsWithTypes, decodeFromJSONField, extractType, fieldToJSON, phantom, ToTypeStr as ToPhantom} from "../../_framework/reified";
 import {FieldsWithTypes, composeSuiType, compressSuiType} from "../../_framework/util";
 import {bcs, fromB64, fromHEX, toHEX} from "@mysten/bcs";
@@ -213,7 +213,7 @@ export class AccessRecordDestroyed implements StructClass { static readonly $typ
 
 export function isAccessTypeSwitchedToNewPlan(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::AccessTypeSwitchedToNewPlan"; }
 
-export interface AccessTypeSwitchedToNewPlanFields { subscriberProfileAddr: ToField<"address">; hiveOwnerProfile: ToField<"address">; subscriberUsername: ToField<string>; hiveOwnerUsername: ToField<string>; newAccessType: ToField<"u8">; newAccessCost: ToField<"u64">; subscriptionPriceToPay: ToField<"u64">; hivePaidForSwitch: ToField<"u64"> }
+export interface AccessTypeSwitchedToNewPlanFields { subscriberProfileAddr: ToField<"address">; hiveOwnerProfile: ToField<"address">; subscriberUsername: ToField<String>; hiveOwnerUsername: ToField<String>; newAccessType: ToField<"u8">; newAccessCost: ToField<"u64">; subscriptionPriceToPay: ToField<"u64">; hivePaidForSwitch: ToField<"u64"> }
 
 export type AccessTypeSwitchedToNewPlanReified = Reified< AccessTypeSwitchedToNewPlan, AccessTypeSwitchedToNewPlanFields >;
 
@@ -225,7 +225,7 @@ export class AccessTypeSwitchedToNewPlan implements StructClass { static readonl
 
  readonly $typeArgs: [];
 
- readonly subscriberProfileAddr: ToField<"address">; readonly hiveOwnerProfile: ToField<"address">; readonly subscriberUsername: ToField<string>; readonly hiveOwnerUsername: ToField<string>; readonly newAccessType: ToField<"u8">; readonly newAccessCost: ToField<"u64">; readonly subscriptionPriceToPay: ToField<"u64">; readonly hivePaidForSwitch: ToField<"u64">
+ readonly subscriberProfileAddr: ToField<"address">; readonly hiveOwnerProfile: ToField<"address">; readonly subscriberUsername: ToField<String>; readonly hiveOwnerUsername: ToField<String>; readonly newAccessType: ToField<"u8">; readonly newAccessCost: ToField<"u64">; readonly subscriptionPriceToPay: ToField<"u64">; readonly hivePaidForSwitch: ToField<"u64">
 
  private constructor(typeArgs: [], fields: AccessTypeSwitchedToNewPlanFields, ) { this.$fullTypeName = composeSuiType( AccessTypeSwitchedToNewPlan.$typeName, ...typeArgs ) as "0x0::hive_profile::AccessTypeSwitchedToNewPlan"; this.$typeArgs = typeArgs;
 
@@ -278,7 +278,7 @@ export class AccessTypeSwitchedToNewPlan implements StructClass { static readonl
 
 export function isAddedNewUpgradeForVersion(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::AddedNewUpgradeForVersion"; }
 
-export interface AddedNewUpgradeForVersionFields { profileAddr: ToField<"address">; collectionName: ToField<string>; version: ToField<"u64">; newImgUrl: ToField<string>; upgradeTraitsList: ToField<Vector<string>>; upgradePromptsList: ToField<Vector<string>>; upgradeAccess: ToField<"u8">; upgradePrice: ToField<"u64"> }
+export interface AddedNewUpgradeForVersionFields { profileAddr: ToField<"address">; collectionName: ToField<String>; version: ToField<"u64">; newImgUrl: ToField<String>; upgradeTraitsList: ToField<Vector<String>>; upgradePromptsList: ToField<Vector<String>>; upgradeAccess: ToField<"u8">; upgradePrice: ToField<"u64"> }
 
 export type AddedNewUpgradeForVersionReified = Reified< AddedNewUpgradeForVersion, AddedNewUpgradeForVersionFields >;
 
@@ -290,7 +290,7 @@ export class AddedNewUpgradeForVersion implements StructClass { static readonly 
 
  readonly $typeArgs: [];
 
- readonly profileAddr: ToField<"address">; readonly collectionName: ToField<string>; readonly version: ToField<"u64">; readonly newImgUrl: ToField<string>; readonly upgradeTraitsList: ToField<Vector<string>>; readonly upgradePromptsList: ToField<Vector<string>>; readonly upgradeAccess: ToField<"u8">; readonly upgradePrice: ToField<"u64">
+ readonly profileAddr: ToField<"address">; readonly collectionName: ToField<String>; readonly version: ToField<"u64">; readonly newImgUrl: ToField<String>; readonly upgradeTraitsList: ToField<Vector<String>>; readonly upgradePromptsList: ToField<Vector<String>>; readonly upgradeAccess: ToField<"u8">; readonly upgradePrice: ToField<"u64">
 
  private constructor(typeArgs: [], fields: AddedNewUpgradeForVersionFields, ) { this.$fullTypeName = composeSuiType( AddedNewUpgradeForVersion.$typeName, ...typeArgs ) as "0x0::hive_profile::AddedNewUpgradeForVersion"; this.$typeArgs = typeArgs;
 
@@ -320,7 +320,7 @@ export class AddedNewUpgradeForVersion implements StructClass { static readonly 
 
  toJSONField() { return {
 
- profileAddr: this.profileAddr,collectionName: this.collectionName,version: this.version.toString(),newImgUrl: this.newImgUrl,upgradeTraitsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.upgradeTraitsList),upgradePromptsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.upgradePromptsList),upgradeAccess: this.upgradeAccess,upgradePrice: this.upgradePrice.toString(),
+ profileAddr: this.profileAddr,collectionName: this.collectionName,version: this.version.toString(),newImgUrl: this.newImgUrl,upgradeTraitsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.upgradeTraitsList),upgradePromptsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.upgradePromptsList),upgradeAccess: this.upgradeAccess,upgradePrice: this.upgradePrice.toString(),
 
 } }
 
@@ -538,7 +538,7 @@ export class AssetPowerUpdated implements StructClass { static readonly $typeNam
 
 export function isAssetUpgrade(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::AssetUpgrade"; }
 
-export interface AssetUpgradeFields { upgradePrice: ToField<"u64">; upgradeAccess: ToField<"u8">; upgradeImgUrl: ToField<Url>; upgradeTraitsList: ToField<Vector<string>>; upgradePrompts: ToField<Table<ToPhantom<string>, ToPhantom<string>>> }
+export interface AssetUpgradeFields { upgradePrice: ToField<"u64">; upgradeAccess: ToField<"u8">; upgradeImgUrl: ToField<Url>; upgradeTraitsList: ToField<Vector<String>>; upgradePrompts: ToField<Table<ToPhantom<String>, ToPhantom<String>>> }
 
 export type AssetUpgradeReified = Reified< AssetUpgrade, AssetUpgradeFields >;
 
@@ -550,7 +550,7 @@ export class AssetUpgrade implements StructClass { static readonly $typeName = "
 
  readonly $typeArgs: [];
 
- readonly upgradePrice: ToField<"u64">; readonly upgradeAccess: ToField<"u8">; readonly upgradeImgUrl: ToField<Url>; readonly upgradeTraitsList: ToField<Vector<string>>; readonly upgradePrompts: ToField<Table<ToPhantom<string>, ToPhantom<string>>>
+ readonly upgradePrice: ToField<"u64">; readonly upgradeAccess: ToField<"u8">; readonly upgradeImgUrl: ToField<Url>; readonly upgradeTraitsList: ToField<Vector<String>>; readonly upgradePrompts: ToField<Table<ToPhantom<String>, ToPhantom<String>>>
 
  private constructor(typeArgs: [], fields: AssetUpgradeFields, ) { this.$fullTypeName = composeSuiType( AssetUpgrade.$typeName, ...typeArgs ) as "0x0::hive_profile::AssetUpgrade"; this.$typeArgs = typeArgs;
 
@@ -580,7 +580,7 @@ export class AssetUpgrade implements StructClass { static readonly $typeName = "
 
  toJSONField() { return {
 
- upgradePrice: this.upgradePrice.toString(),upgradeAccess: this.upgradeAccess,upgradeImgUrl: this.upgradeImgUrl,upgradeTraitsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.upgradeTraitsList),upgradePrompts: this.upgradePrompts.toJSONField(),
+ upgradePrice: this.upgradePrice.toString(),upgradeAccess: this.upgradeAccess,upgradeImgUrl: this.upgradeImgUrl,upgradeTraitsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.upgradeTraitsList),upgradePrompts: this.upgradePrompts.toJSONField(),
 
 } }
 
@@ -1123,7 +1123,7 @@ export class BidRecord implements StructClass { static readonly $typeName = "0x0
 
 export function isBioUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::BioUpdated"; }
 
-export interface BioUpdatedFields { profileAddr: ToField<"address">; username: ToField<string>; newBio: ToField<string> }
+export interface BioUpdatedFields { profileAddr: ToField<"address">; username: ToField<String>; newBio: ToField<String> }
 
 export type BioUpdatedReified = Reified< BioUpdated, BioUpdatedFields >;
 
@@ -1135,7 +1135,7 @@ export class BioUpdated implements StructClass { static readonly $typeName = "0x
 
  readonly $typeArgs: [];
 
- readonly profileAddr: ToField<"address">; readonly username: ToField<string>; readonly newBio: ToField<string>
+ readonly profileAddr: ToField<"address">; readonly username: ToField<String>; readonly newBio: ToField<String>
 
  private constructor(typeArgs: [], fields: BioUpdatedFields, ) { this.$fullTypeName = composeSuiType( BioUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::BioUpdated"; this.$typeArgs = typeArgs;
 
@@ -1513,7 +1513,7 @@ export class ExecutedListingDestroyed implements StructClass { static readonly $
 
 export function isExitHiveOfProfile(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::ExitHiveOfProfile"; }
 
-export interface ExitHiveOfProfileFields { subscriberProfileAddr: ToField<"address">; unsubscribedFromProfileAddr: ToField<"address">; subscriberUsername: ToField<string>; unhiveOwnerUsername: ToField<string>; recordsDeleted: ToField<"bool"> }
+export interface ExitHiveOfProfileFields { subscriberProfileAddr: ToField<"address">; unsubscribedFromProfileAddr: ToField<"address">; subscriberUsername: ToField<String>; unhiveOwnerUsername: ToField<String>; recordsDeleted: ToField<"bool"> }
 
 export type ExitHiveOfProfileReified = Reified< ExitHiveOfProfile, ExitHiveOfProfileFields >;
 
@@ -1525,7 +1525,7 @@ export class ExitHiveOfProfile implements StructClass { static readonly $typeNam
 
  readonly $typeArgs: [];
 
- readonly subscriberProfileAddr: ToField<"address">; readonly unsubscribedFromProfileAddr: ToField<"address">; readonly subscriberUsername: ToField<string>; readonly unhiveOwnerUsername: ToField<string>; readonly recordsDeleted: ToField<"bool">
+ readonly subscriberProfileAddr: ToField<"address">; readonly unsubscribedFromProfileAddr: ToField<"address">; readonly subscriberUsername: ToField<String>; readonly unhiveOwnerUsername: ToField<String>; readonly recordsDeleted: ToField<"bool">
 
  private constructor(typeArgs: [], fields: ExitHiveOfProfileFields, ) { this.$fullTypeName = composeSuiType( ExitHiveOfProfile.$typeName, ...typeArgs ) as "0x0::hive_profile::ExitHiveOfProfile"; this.$typeArgs = typeArgs;
 
@@ -2098,7 +2098,7 @@ export class HiveAccessPaymentProcessed implements StructClass { static readonly
 
 export function isHiveAccessPlanUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveAccessPlanUpdated"; }
 
-export interface HiveAccessPlanUpdatedFields { profileAddr: ToField<"address">; username: ToField<string>; newWorkerAccessCost: ToField<"u64">; newDroneAccessCost: ToField<"u64">; newQueenAccessCost: ToField<"u64"> }
+export interface HiveAccessPlanUpdatedFields { profileAddr: ToField<"address">; username: ToField<String>; newWorkerAccessCost: ToField<"u64">; newDroneAccessCost: ToField<"u64">; newQueenAccessCost: ToField<"u64"> }
 
 export type HiveAccessPlanUpdatedReified = Reified< HiveAccessPlanUpdated, HiveAccessPlanUpdatedFields >;
 
@@ -2110,7 +2110,7 @@ export class HiveAccessPlanUpdated implements StructClass { static readonly $typ
 
  readonly $typeArgs: [];
 
- readonly profileAddr: ToField<"address">; readonly username: ToField<string>; readonly newWorkerAccessCost: ToField<"u64">; readonly newDroneAccessCost: ToField<"u64">; readonly newQueenAccessCost: ToField<"u64">
+ readonly profileAddr: ToField<"address">; readonly username: ToField<String>; readonly newWorkerAccessCost: ToField<"u64">; readonly newDroneAccessCost: ToField<"u64">; readonly newQueenAccessCost: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveAccessPlanUpdatedFields, ) { this.$fullTypeName = composeSuiType( HiveAccessPlanUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveAccessPlanUpdated"; this.$typeArgs = typeArgs;
 
@@ -2293,7 +2293,7 @@ export class HiveAppAccessCapability implements StructClass { static readonly $t
 
 export function isHiveAsset(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveAsset"; }
 
-export interface HiveAssetFields { id: ToField<UID>; version: ToField<"u64">; power: ToField<"u64">; creatorProfile: ToField<"address">; name: ToField<string>; imgUrl: ToField<Url>; collectionName: ToField<string>; prompts: ToField<LinkedTable<string, ToPhantom<string>>>; isBorrowed: ToField<"bool">; isStaked: ToField<"bool">; lockupDuration: ToField<"u8">; unlockTimestamp: ToField<"u64">; availableGems: ToField<HiveGems>; claimIndex: ToField<"u256">; hsuiClaimIndex: ToField<"u256">; totalHsuiClaimed: ToField<"u64">; totalGemsClaimed: ToField<"u64">; activeSkins: ToField<LinkedTable<string, ToPhantom<SkinRecord>>> }
+export interface HiveAssetFields { id: ToField<UID>; version: ToField<"u64">; power: ToField<"u64">; creatorProfile: ToField<"address">; name: ToField<String>; imgUrl: ToField<Url>; collectionName: ToField<String>; prompts: ToField<LinkedTable<String, ToPhantom<String>>>; isBorrowed: ToField<"bool">; isStaked: ToField<"bool">; lockupDuration: ToField<"u8">; unlockTimestamp: ToField<"u64">; availableGems: ToField<HiveGems>; claimIndex: ToField<"u256">; hsuiClaimIndex: ToField<"u256">; totalHsuiClaimed: ToField<"u64">; totalGemsClaimed: ToField<"u64">; activeSkins: ToField<LinkedTable<String, ToPhantom<SkinRecord>>> }
 
 export type HiveAssetReified = Reified< HiveAsset, HiveAssetFields >;
 
@@ -2305,7 +2305,7 @@ export class HiveAsset implements StructClass { static readonly $typeName = "0x0
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly version: ToField<"u64">; readonly power: ToField<"u64">; readonly creatorProfile: ToField<"address">; readonly name: ToField<string>; readonly imgUrl: ToField<Url>; readonly collectionName: ToField<string>; readonly prompts: ToField<LinkedTable<string, ToPhantom<string>>>; readonly isBorrowed: ToField<"bool">; readonly isStaked: ToField<"bool">; readonly lockupDuration: ToField<"u8">; readonly unlockTimestamp: ToField<"u64">; readonly availableGems: ToField<HiveGems>; readonly claimIndex: ToField<"u256">; readonly hsuiClaimIndex: ToField<"u256">; readonly totalHsuiClaimed: ToField<"u64">; readonly totalGemsClaimed: ToField<"u64">; readonly activeSkins: ToField<LinkedTable<string, ToPhantom<SkinRecord>>>
+ readonly id: ToField<UID>; readonly version: ToField<"u64">; readonly power: ToField<"u64">; readonly creatorProfile: ToField<"address">; readonly name: ToField<String>; readonly imgUrl: ToField<Url>; readonly collectionName: ToField<String>; readonly prompts: ToField<LinkedTable<String, ToPhantom<String>>>; readonly isBorrowed: ToField<"bool">; readonly isStaked: ToField<"bool">; readonly lockupDuration: ToField<"u8">; readonly unlockTimestamp: ToField<"u64">; readonly availableGems: ToField<HiveGems>; readonly claimIndex: ToField<"u256">; readonly hsuiClaimIndex: ToField<"u256">; readonly totalHsuiClaimed: ToField<"u64">; readonly totalGemsClaimed: ToField<"u64">; readonly activeSkins: ToField<LinkedTable<String, ToPhantom<SkinRecord>>>
 
  private constructor(typeArgs: [], fields: HiveAssetFields, ) { this.$fullTypeName = composeSuiType( HiveAsset.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveAsset"; this.$typeArgs = typeArgs;
 
@@ -2618,7 +2618,7 @@ export class HiveAssetUnstaked implements StructClass { static readonly $typeNam
 
 export function isHiveAssetUpgraded(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveAssetUpgraded"; }
 
-export interface HiveAssetUpgradedFields { version: ToField<"u64">; hiveKiosk: ToField<"address">; newImgUrl: ToField<string>; upgradePrice: ToField<"u64">; totalRoyaltyAmt: ToField<"u64">; treasuryAmt: ToField<"u64">; gemsBurnt: ToField<"u64"> }
+export interface HiveAssetUpgradedFields { version: ToField<"u64">; hiveKiosk: ToField<"address">; newImgUrl: ToField<String>; upgradePrice: ToField<"u64">; totalRoyaltyAmt: ToField<"u64">; treasuryAmt: ToField<"u64">; gemsBurnt: ToField<"u64"> }
 
 export type HiveAssetUpgradedReified = Reified< HiveAssetUpgraded, HiveAssetUpgradedFields >;
 
@@ -2630,7 +2630,7 @@ export class HiveAssetUpgraded implements StructClass { static readonly $typeNam
 
  readonly $typeArgs: [];
 
- readonly version: ToField<"u64">; readonly hiveKiosk: ToField<"address">; readonly newImgUrl: ToField<string>; readonly upgradePrice: ToField<"u64">; readonly totalRoyaltyAmt: ToField<"u64">; readonly treasuryAmt: ToField<"u64">; readonly gemsBurnt: ToField<"u64">
+ readonly version: ToField<"u64">; readonly hiveKiosk: ToField<"address">; readonly newImgUrl: ToField<String>; readonly upgradePrice: ToField<"u64">; readonly totalRoyaltyAmt: ToField<"u64">; readonly treasuryAmt: ToField<"u64">; readonly gemsBurnt: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveAssetUpgradedFields, ) { this.$fullTypeName = composeSuiType( HiveAssetUpgraded.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveAssetUpgraded"; this.$typeArgs = typeArgs;
 
@@ -2813,7 +2813,7 @@ export class HiveGemsDepositedIntoAsset implements StructClass { static readonly
 
 export function isHiveGemsPortedToSkin(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveGemsPortedToSkin"; }
 
-export interface HiveGemsPortedToSkinFields { portedByProfile: ToField<"address">; portedByUsername: ToField<String1>; version: ToField<"u64">; skinType: ToField<string>; gemsPorted: ToField<"u64"> }
+export interface HiveGemsPortedToSkinFields { portedByProfile: ToField<"address">; portedByUsername: ToField<String1>; version: ToField<"u64">; skinType: ToField<String>; gemsPorted: ToField<"u64"> }
 
 export type HiveGemsPortedToSkinReified = Reified< HiveGemsPortedToSkin, HiveGemsPortedToSkinFields >;
 
@@ -2825,7 +2825,7 @@ export class HiveGemsPortedToSkin implements StructClass { static readonly $type
 
  readonly $typeArgs: [];
 
- readonly portedByProfile: ToField<"address">; readonly portedByUsername: ToField<String1>; readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly gemsPorted: ToField<"u64">
+ readonly portedByProfile: ToField<"address">; readonly portedByUsername: ToField<String1>; readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly gemsPorted: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveGemsPortedToSkinFields, ) { this.$fullTypeName = composeSuiType( HiveGemsPortedToSkin.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveGemsPortedToSkin"; this.$typeArgs = typeArgs;
 
@@ -2943,7 +2943,7 @@ export class HiveGemsTransfered implements StructClass { static readonly $typeNa
 
 export function isHiveKiosk(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveKiosk"; }
 
-export interface HiveKioskFields { id: ToField<UID>; creatorProfile: ToField<"address">; collectionName: ToField<string>; imgUrl: ToField<Url>; traitsList: ToField<Vector<string>>; maxAssetsLimit: ToField<"u64">; kraftedAssets: ToField<"u64">; basePrice: ToField<"u64">; curveA: ToField<"u64">; promptsList: ToField<Vector<Vector<string>>>; urlList: ToField<Vector<string>>; namesList: ToField<Vector<string>>; kraftedVersionsMap: ToField<LinkedTable<"u64", "address">>; kraftAccess: ToField<"u8">; discountAccess: ToField<"u8">; discount: ToField<"u64">; availableUpgrades: ToField<LinkedTable<"u64", ToPhantom<Vector<AssetUpgrade>>>>; moduleVersion: ToField<"u64"> }
+export interface HiveKioskFields { id: ToField<UID>; creatorProfile: ToField<"address">; collectionName: ToField<String>; imgUrl: ToField<Url>; traitsList: ToField<Vector<String>>; maxAssetsLimit: ToField<"u64">; kraftedAssets: ToField<"u64">; basePrice: ToField<"u64">; curveA: ToField<"u64">; promptsList: ToField<Vector<Vector<String>>>; urlList: ToField<Vector<String>>; namesList: ToField<Vector<String>>; kraftedVersionsMap: ToField<LinkedTable<"u64", "address">>; kraftAccess: ToField<"u8">; discountAccess: ToField<"u8">; discount: ToField<"u64">; availableUpgrades: ToField<LinkedTable<"u64", ToPhantom<Vector<AssetUpgrade>>>>; moduleVersion: ToField<"u64"> }
 
 export type HiveKioskReified = Reified< HiveKiosk, HiveKioskFields >;
 
@@ -2955,7 +2955,7 @@ export class HiveKiosk implements StructClass { static readonly $typeName = "0x0
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<string>; readonly imgUrl: ToField<Url>; readonly traitsList: ToField<Vector<string>>; readonly maxAssetsLimit: ToField<"u64">; readonly kraftedAssets: ToField<"u64">; readonly basePrice: ToField<"u64">; readonly curveA: ToField<"u64">; readonly promptsList: ToField<Vector<Vector<string>>>; readonly urlList: ToField<Vector<string>>; readonly namesList: ToField<Vector<string>>; readonly kraftedVersionsMap: ToField<LinkedTable<"u64", "address">>; readonly kraftAccess: ToField<"u8">; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">; readonly availableUpgrades: ToField<LinkedTable<"u64", ToPhantom<Vector<AssetUpgrade>>>>; readonly moduleVersion: ToField<"u64">
+ readonly id: ToField<UID>; readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<String>; readonly imgUrl: ToField<Url>; readonly traitsList: ToField<Vector<String>>; readonly maxAssetsLimit: ToField<"u64">; readonly kraftedAssets: ToField<"u64">; readonly basePrice: ToField<"u64">; readonly curveA: ToField<"u64">; readonly promptsList: ToField<Vector<Vector<String>>>; readonly urlList: ToField<Vector<String>>; readonly namesList: ToField<Vector<String>>; readonly kraftedVersionsMap: ToField<LinkedTable<"u64", "address">>; readonly kraftAccess: ToField<"u8">; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">; readonly availableUpgrades: ToField<LinkedTable<"u64", ToPhantom<Vector<AssetUpgrade>>>>; readonly moduleVersion: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveKioskFields, ) { this.$fullTypeName = composeSuiType( HiveKiosk.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveKiosk"; this.$typeArgs = typeArgs;
 
@@ -2985,7 +2985,7 @@ export class HiveKiosk implements StructClass { static readonly $typeName = "0x0
 
  toJSONField() { return {
 
- id: this.id,creatorProfile: this.creatorProfile,collectionName: this.collectionName,imgUrl: this.imgUrl,traitsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.traitsList),maxAssetsLimit: this.maxAssetsLimit.toString(),kraftedAssets: this.kraftedAssets.toString(),basePrice: this.basePrice.toString(),curveA: this.curveA.toString(),promptsList: fieldToJSON<Vector<Vector<string>>>(`vector<vector<0x1::string::String>>`, this.promptsList),urlList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.urlList),namesList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.namesList),kraftedVersionsMap: this.kraftedVersionsMap.toJSONField(),kraftAccess: this.kraftAccess,discountAccess: this.discountAccess,discount: this.discount.toString(),availableUpgrades: this.availableUpgrades.toJSONField(),moduleVersion: this.moduleVersion.toString(),
+ id: this.id,creatorProfile: this.creatorProfile,collectionName: this.collectionName,imgUrl: this.imgUrl,traitsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.traitsList),maxAssetsLimit: this.maxAssetsLimit.toString(),kraftedAssets: this.kraftedAssets.toString(),basePrice: this.basePrice.toString(),curveA: this.curveA.toString(),promptsList: fieldToJSON<Vector<Vector<String>>>(`vector<vector<0x1::string::String>>`, this.promptsList),urlList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.urlList),namesList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.namesList),kraftedVersionsMap: this.kraftedVersionsMap.toJSONField(),kraftAccess: this.kraftAccess,discountAccess: this.discountAccess,discount: this.discount.toString(),availableUpgrades: this.availableUpgrades.toJSONField(),moduleVersion: this.moduleVersion.toString(),
 
 } }
 
@@ -3008,7 +3008,7 @@ export class HiveKiosk implements StructClass { static readonly $typeName = "0x0
 
 export function isHiveKioskInitialized(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveKioskInitialized"; }
 
-export interface HiveKioskInitializedFields { kioskAddr: ToField<"address">; creatorProfile: ToField<"address">; timeStream: ToField<"u64">; collectionName: ToField<string>; imgUrl: ToField<string>; maxAssetsLimit: ToField<"u64"> }
+export interface HiveKioskInitializedFields { kioskAddr: ToField<"address">; creatorProfile: ToField<"address">; timeStream: ToField<"u64">; collectionName: ToField<String>; imgUrl: ToField<String>; maxAssetsLimit: ToField<"u64"> }
 
 export type HiveKioskInitializedReified = Reified< HiveKioskInitialized, HiveKioskInitializedFields >;
 
@@ -3020,7 +3020,7 @@ export class HiveKioskInitialized implements StructClass { static readonly $type
 
  readonly $typeArgs: [];
 
- readonly kioskAddr: ToField<"address">; readonly creatorProfile: ToField<"address">; readonly timeStream: ToField<"u64">; readonly collectionName: ToField<string>; readonly imgUrl: ToField<string>; readonly maxAssetsLimit: ToField<"u64">
+ readonly kioskAddr: ToField<"address">; readonly creatorProfile: ToField<"address">; readonly timeStream: ToField<"u64">; readonly collectionName: ToField<String>; readonly imgUrl: ToField<String>; readonly maxAssetsLimit: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveKioskInitializedFields, ) { this.$fullTypeName = composeSuiType( HiveKioskInitialized.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveKioskInitialized"; this.$typeArgs = typeArgs;
 
@@ -3203,7 +3203,7 @@ export class HiveManager implements StructClass { static readonly $typeName = "0
 
 export function isHiveProfile(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveProfile"; }
 
-export interface HiveProfileFields { id: ToField<UID>; username: ToField<String1>; bio: ToField<string>; inscription: ToField<LinkedTable<"u64", ToPhantom<Inscription>>>; creationTimestamp: ToField<"u64">; owner: ToField<"address">; isComposableProfile: ToField<"bool">; beehivePlan: ToField<Table<"u8", "u64">>; subscribersList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; subscriptionsList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; availableGems: ToField<HiveGems>; availableHsui: ToField<Balance<ToPhantom<DSUI>>>; lastActiveEpoch: ToField<"u64">; entropyUsedForCurEpoch: ToField<"u64">; hiveAssets: ToField<LinkedTable<"u64", ToPhantom<HiveAsset>>>; incomingBids: ToField<LinkedTable<"u64", ToPhantom<Vector<Bid<ToPhantom<DSUI>>>>>>; borrowRecords: ToField<LinkedTable<"u64", ToPhantom<BorrowRecord>>>; listingRecords: ToField<LinkedTable<"u64", ToPhantom<ListingRecord>>>; bidRecords: ToField<LinkedTable<"u64", ToPhantom<BidRecord>>>; lendRecords: ToField<LinkedTable<"u64", ToPhantom<LendRecord>>>; installedApps: ToField<Vector<String1>>; moduleVersion: ToField<"u64"> }
+export interface HiveProfileFields { id: ToField<UID>; username: ToField<String1>; bio: ToField<String>; inscription: ToField<LinkedTable<"u64", ToPhantom<Inscription>>>; creationTimestamp: ToField<"u64">; owner: ToField<"address">; isComposableProfile: ToField<"bool">; beehivePlan: ToField<Table<"u8", "u64">>; subscribersList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; subscriptionsList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; availableGems: ToField<HiveGems>; availableHsui: ToField<Balance<ToPhantom<DSUI>>>; lastActiveEpoch: ToField<"u64">; entropyUsedForCurEpoch: ToField<"u64">; hiveAssets: ToField<LinkedTable<"u64", ToPhantom<HiveAsset>>>; incomingBids: ToField<LinkedTable<"u64", ToPhantom<Vector<Bid<ToPhantom<DSUI>>>>>>; borrowRecords: ToField<LinkedTable<"u64", ToPhantom<BorrowRecord>>>; listingRecords: ToField<LinkedTable<"u64", ToPhantom<ListingRecord>>>; bidRecords: ToField<LinkedTable<"u64", ToPhantom<BidRecord>>>; lendRecords: ToField<LinkedTable<"u64", ToPhantom<LendRecord>>>; installedApps: ToField<Vector<String1>>; moduleVersion: ToField<"u64"> }
 
 export type HiveProfileReified = Reified< HiveProfile, HiveProfileFields >;
 
@@ -3215,7 +3215,7 @@ export class HiveProfile implements StructClass { static readonly $typeName = "0
 
  readonly $typeArgs: [];
 
- readonly id: ToField<UID>; readonly username: ToField<String1>; readonly bio: ToField<string>; readonly inscription: ToField<LinkedTable<"u64", ToPhantom<Inscription>>>; readonly creationTimestamp: ToField<"u64">; readonly owner: ToField<"address">; readonly isComposableProfile: ToField<"bool">; readonly beehivePlan: ToField<Table<"u8", "u64">>; readonly subscribersList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; readonly subscriptionsList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; readonly availableGems: ToField<HiveGems>; readonly availableHsui: ToField<Balance<ToPhantom<DSUI>>>; readonly lastActiveEpoch: ToField<"u64">; readonly entropyUsedForCurEpoch: ToField<"u64">; readonly hiveAssets: ToField<LinkedTable<"u64", ToPhantom<HiveAsset>>>; readonly incomingBids: ToField<LinkedTable<"u64", ToPhantom<Vector<Bid<ToPhantom<DSUI>>>>>>; readonly borrowRecords: ToField<LinkedTable<"u64", ToPhantom<BorrowRecord>>>; readonly listingRecords: ToField<LinkedTable<"u64", ToPhantom<ListingRecord>>>; readonly bidRecords: ToField<LinkedTable<"u64", ToPhantom<BidRecord>>>; readonly lendRecords: ToField<LinkedTable<"u64", ToPhantom<LendRecord>>>; readonly installedApps: ToField<Vector<String1>>; readonly moduleVersion: ToField<"u64">
+ readonly id: ToField<UID>; readonly username: ToField<String1>; readonly bio: ToField<String>; readonly inscription: ToField<LinkedTable<"u64", ToPhantom<Inscription>>>; readonly creationTimestamp: ToField<"u64">; readonly owner: ToField<"address">; readonly isComposableProfile: ToField<"bool">; readonly beehivePlan: ToField<Table<"u8", "u64">>; readonly subscribersList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; readonly subscriptionsList: ToField<LinkedTable<"address", ToPhantom<AccessRecord>>>; readonly availableGems: ToField<HiveGems>; readonly availableHsui: ToField<Balance<ToPhantom<DSUI>>>; readonly lastActiveEpoch: ToField<"u64">; readonly entropyUsedForCurEpoch: ToField<"u64">; readonly hiveAssets: ToField<LinkedTable<"u64", ToPhantom<HiveAsset>>>; readonly incomingBids: ToField<LinkedTable<"u64", ToPhantom<Vector<Bid<ToPhantom<DSUI>>>>>>; readonly borrowRecords: ToField<LinkedTable<"u64", ToPhantom<BorrowRecord>>>; readonly listingRecords: ToField<LinkedTable<"u64", ToPhantom<ListingRecord>>>; readonly bidRecords: ToField<LinkedTable<"u64", ToPhantom<BidRecord>>>; readonly lendRecords: ToField<LinkedTable<"u64", ToPhantom<LendRecord>>>; readonly installedApps: ToField<Vector<String1>>; readonly moduleVersion: ToField<"u64">
 
  private constructor(typeArgs: [], fields: HiveProfileFields, ) { this.$fullTypeName = composeSuiType( HiveProfile.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveProfile"; this.$typeArgs = typeArgs;
 
@@ -3333,7 +3333,7 @@ export class HiveProfileDestroyed implements StructClass { static readonly $type
 
 export function isHiveProfileKrafted(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::HiveProfileKrafted"; }
 
-export interface HiveProfileKraftedFields { name: ToField<string>; bio: ToField<string>; newProfileAddr: ToField<"address">; krafter: ToField<"address">; fee: ToField<"u64">; isComposableProfile: ToField<"bool"> }
+export interface HiveProfileKraftedFields { name: ToField<String>; bio: ToField<String>; newProfileAddr: ToField<"address">; krafter: ToField<"address">; fee: ToField<"u64">; isComposableProfile: ToField<"bool"> }
 
 export type HiveProfileKraftedReified = Reified< HiveProfileKrafted, HiveProfileKraftedFields >;
 
@@ -3345,7 +3345,7 @@ export class HiveProfileKrafted implements StructClass { static readonly $typeNa
 
  readonly $typeArgs: [];
 
- readonly name: ToField<string>; readonly bio: ToField<string>; readonly newProfileAddr: ToField<"address">; readonly krafter: ToField<"address">; readonly fee: ToField<"u64">; readonly isComposableProfile: ToField<"bool">
+ readonly name: ToField<String>; readonly bio: ToField<String>; readonly newProfileAddr: ToField<"address">; readonly krafter: ToField<"address">; readonly fee: ToField<"u64">; readonly isComposableProfile: ToField<"bool">
 
  private constructor(typeArgs: [], fields: HiveProfileKraftedFields, ) { this.$fullTypeName = composeSuiType( HiveProfileKrafted.$typeName, ...typeArgs ) as "0x0::hive_profile::HiveProfileKrafted"; this.$typeArgs = typeArgs;
 
@@ -3593,7 +3593,7 @@ export class HiveTwapUpdated implements StructClass { static readonly $typeName 
 
 export function isInscription(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::Inscription"; }
 
-export interface InscriptionFields { type: ToField<string>; base64: ToField<Vector<string>> }
+export interface InscriptionFields { type: ToField<String>; base64: ToField<Vector<String>> }
 
 export type InscriptionReified = Reified< Inscription, InscriptionFields >;
 
@@ -3605,7 +3605,7 @@ export class Inscription implements StructClass { static readonly $typeName = "0
 
  readonly $typeArgs: [];
 
- readonly type: ToField<string>; readonly base64: ToField<Vector<string>>
+ readonly type: ToField<String>; readonly base64: ToField<Vector<String>>
 
  private constructor(typeArgs: [], fields: InscriptionFields, ) { this.$fullTypeName = composeSuiType( Inscription.$typeName, ...typeArgs ) as "0x0::hive_profile::Inscription"; this.$typeArgs = typeArgs;
 
@@ -3635,7 +3635,7 @@ export class Inscription implements StructClass { static readonly $typeName = "0
 
  toJSONField() { return {
 
- type: this.type,base64: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.base64),
+ type: this.type,base64: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.base64),
 
 } }
 
@@ -3658,7 +3658,7 @@ export class Inscription implements StructClass { static readonly $typeName = "0
 
 export function isInscriptionSetForProfile(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::InscriptionSetForProfile"; }
 
-export interface InscriptionSetForProfileFields { profileAddr: ToField<"address">; username: ToField<string>; type: ToField<string>; base64: ToField<Vector<string>> }
+export interface InscriptionSetForProfileFields { profileAddr: ToField<"address">; username: ToField<String>; type: ToField<String>; base64: ToField<Vector<String>> }
 
 export type InscriptionSetForProfileReified = Reified< InscriptionSetForProfile, InscriptionSetForProfileFields >;
 
@@ -3670,7 +3670,7 @@ export class InscriptionSetForProfile implements StructClass { static readonly $
 
  readonly $typeArgs: [];
 
- readonly profileAddr: ToField<"address">; readonly username: ToField<string>; readonly type: ToField<string>; readonly base64: ToField<Vector<string>>
+ readonly profileAddr: ToField<"address">; readonly username: ToField<String>; readonly type: ToField<String>; readonly base64: ToField<Vector<String>>
 
  private constructor(typeArgs: [], fields: InscriptionSetForProfileFields, ) { this.$fullTypeName = composeSuiType( InscriptionSetForProfile.$typeName, ...typeArgs ) as "0x0::hive_profile::InscriptionSetForProfile"; this.$typeArgs = typeArgs;
 
@@ -3700,7 +3700,7 @@ export class InscriptionSetForProfile implements StructClass { static readonly $
 
  toJSONField() { return {
 
- profileAddr: this.profileAddr,username: this.username,type: this.type,base64: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.base64),
+ profileAddr: this.profileAddr,username: this.username,type: this.type,base64: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.base64),
 
 } }
 
@@ -3723,7 +3723,7 @@ export class InscriptionSetForProfile implements StructClass { static readonly $
 
 export function isJoinedHiveOfProfile(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::JoinedHiveOfProfile"; }
 
-export interface JoinedHiveOfProfileFields { subscriberProfileAddr: ToField<"address">; hiveOwnerProfile: ToField<"address">; subscriberUsername: ToField<string>; hiveOwnerUsername: ToField<string>; accessType: ToField<"u8">; accessCost: ToField<"u64">; nextPaymentTimestamp: ToField<"u64"> }
+export interface JoinedHiveOfProfileFields { subscriberProfileAddr: ToField<"address">; hiveOwnerProfile: ToField<"address">; subscriberUsername: ToField<String>; hiveOwnerUsername: ToField<String>; accessType: ToField<"u8">; accessCost: ToField<"u64">; nextPaymentTimestamp: ToField<"u64"> }
 
 export type JoinedHiveOfProfileReified = Reified< JoinedHiveOfProfile, JoinedHiveOfProfileFields >;
 
@@ -3735,7 +3735,7 @@ export class JoinedHiveOfProfile implements StructClass { static readonly $typeN
 
  readonly $typeArgs: [];
 
- readonly subscriberProfileAddr: ToField<"address">; readonly hiveOwnerProfile: ToField<"address">; readonly subscriberUsername: ToField<string>; readonly hiveOwnerUsername: ToField<string>; readonly accessType: ToField<"u8">; readonly accessCost: ToField<"u64">; readonly nextPaymentTimestamp: ToField<"u64">
+ readonly subscriberProfileAddr: ToField<"address">; readonly hiveOwnerProfile: ToField<"address">; readonly subscriberUsername: ToField<String>; readonly hiveOwnerUsername: ToField<String>; readonly accessType: ToField<"u8">; readonly accessCost: ToField<"u64">; readonly nextPaymentTimestamp: ToField<"u64">
 
  private constructor(typeArgs: [], fields: JoinedHiveOfProfileFields, ) { this.$fullTypeName = composeSuiType( JoinedHiveOfProfile.$typeName, ...typeArgs ) as "0x0::hive_profile::JoinedHiveOfProfile"; this.$typeArgs = typeArgs;
 
@@ -3788,7 +3788,7 @@ export class JoinedHiveOfProfile implements StructClass { static readonly $typeN
 
 export function isKioskOwnershipTransferred(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::KioskOwnershipTransferred"; }
 
-export interface KioskOwnershipTransferredFields { collectionName: ToField<string>; creatorProfile: ToField<"address">; creatorProfileUsername: ToField<String1>; newCreatorProfile: ToField<"address">; newCreatorProfileUsername: ToField<String1>; kiosk: ToField<"address"> }
+export interface KioskOwnershipTransferredFields { collectionName: ToField<String>; creatorProfile: ToField<"address">; creatorProfileUsername: ToField<String1>; newCreatorProfile: ToField<"address">; newCreatorProfileUsername: ToField<String1>; kiosk: ToField<"address"> }
 
 export type KioskOwnershipTransferredReified = Reified< KioskOwnershipTransferred, KioskOwnershipTransferredFields >;
 
@@ -3800,7 +3800,7 @@ export class KioskOwnershipTransferred implements StructClass { static readonly 
 
  readonly $typeArgs: [];
 
- readonly collectionName: ToField<string>; readonly creatorProfile: ToField<"address">; readonly creatorProfileUsername: ToField<String1>; readonly newCreatorProfile: ToField<"address">; readonly newCreatorProfileUsername: ToField<String1>; readonly kiosk: ToField<"address">
+ readonly collectionName: ToField<String>; readonly creatorProfile: ToField<"address">; readonly creatorProfileUsername: ToField<String1>; readonly newCreatorProfile: ToField<"address">; readonly newCreatorProfileUsername: ToField<String1>; readonly kiosk: ToField<"address">
 
  private constructor(typeArgs: [], fields: KioskOwnershipTransferredFields, ) { this.$fullTypeName = composeSuiType( KioskOwnershipTransferred.$typeName, ...typeArgs ) as "0x0::hive_profile::KioskOwnershipTransferred"; this.$typeArgs = typeArgs;
 
@@ -4568,7 +4568,7 @@ export class MarketPlace<X extends PhantomTypeArgument> implements StructClass {
 
 export function isNewHiveAssetKrafted(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::NewHiveAssetKrafted"; }
 
-export interface NewHiveAssetKraftedFields { id: ToField<ID>; krafterProfileAddr: ToField<"address">; krafter: ToField<"address">; collectionName: ToField<string>; name: ToField<string>; version: ToField<"u64">; imgUrl: ToField<string>; genesisHivegems: ToField<"u64">; power: ToField<"u64">; price: ToField<"u64">; traitsList: ToField<Vector<string>>; promptsList: ToField<Vector<string>> }
+export interface NewHiveAssetKraftedFields { id: ToField<ID>; krafterProfileAddr: ToField<"address">; krafter: ToField<"address">; collectionName: ToField<String>; name: ToField<String>; version: ToField<"u64">; imgUrl: ToField<String>; genesisHivegems: ToField<"u64">; power: ToField<"u64">; price: ToField<"u64">; traitsList: ToField<Vector<String>>; promptsList: ToField<Vector<String>> }
 
 export type NewHiveAssetKraftedReified = Reified< NewHiveAssetKrafted, NewHiveAssetKraftedFields >;
 
@@ -4580,7 +4580,7 @@ export class NewHiveAssetKrafted implements StructClass { static readonly $typeN
 
  readonly $typeArgs: [];
 
- readonly id: ToField<ID>; readonly krafterProfileAddr: ToField<"address">; readonly krafter: ToField<"address">; readonly collectionName: ToField<string>; readonly name: ToField<string>; readonly version: ToField<"u64">; readonly imgUrl: ToField<string>; readonly genesisHivegems: ToField<"u64">; readonly power: ToField<"u64">; readonly price: ToField<"u64">; readonly traitsList: ToField<Vector<string>>; readonly promptsList: ToField<Vector<string>>
+ readonly id: ToField<ID>; readonly krafterProfileAddr: ToField<"address">; readonly krafter: ToField<"address">; readonly collectionName: ToField<String>; readonly name: ToField<String>; readonly version: ToField<"u64">; readonly imgUrl: ToField<String>; readonly genesisHivegems: ToField<"u64">; readonly power: ToField<"u64">; readonly price: ToField<"u64">; readonly traitsList: ToField<Vector<String>>; readonly promptsList: ToField<Vector<String>>
 
  private constructor(typeArgs: [], fields: NewHiveAssetKraftedFields, ) { this.$fullTypeName = composeSuiType( NewHiveAssetKrafted.$typeName, ...typeArgs ) as "0x0::hive_profile::NewHiveAssetKrafted"; this.$typeArgs = typeArgs;
 
@@ -4610,7 +4610,7 @@ export class NewHiveAssetKrafted implements StructClass { static readonly $typeN
 
  toJSONField() { return {
 
- id: this.id,krafterProfileAddr: this.krafterProfileAddr,krafter: this.krafter,collectionName: this.collectionName,name: this.name,version: this.version.toString(),imgUrl: this.imgUrl,genesisHivegems: this.genesisHivegems.toString(),power: this.power.toString(),price: this.price.toString(),traitsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.traitsList),promptsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.promptsList),
+ id: this.id,krafterProfileAddr: this.krafterProfileAddr,krafter: this.krafter,collectionName: this.collectionName,name: this.name,version: this.version.toString(),imgUrl: this.imgUrl,genesisHivegems: this.genesisHivegems.toString(),power: this.power.toString(),price: this.price.toString(),traitsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.traitsList),promptsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.promptsList),
 
 } }
 
@@ -4698,7 +4698,7 @@ export class NewListing implements StructClass { static readonly $typeName = "0x
 
 export function isNewSkinForAsset(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::NewSkinForAsset"; }
 
-export interface NewSkinForAssetFields { version: ToField<"u64">; skinType: ToField<string>; kraftAccess: ToField<"u8">; discount: ToField<"u64">; royaltyFeePercent: ToField<"u64"> }
+export interface NewSkinForAssetFields { version: ToField<"u64">; skinType: ToField<String>; kraftAccess: ToField<"u8">; discount: ToField<"u64">; royaltyFeePercent: ToField<"u64"> }
 
 export type NewSkinForAssetReified = Reified< NewSkinForAsset, NewSkinForAssetFields >;
 
@@ -4710,7 +4710,7 @@ export class NewSkinForAsset implements StructClass { static readonly $typeName 
 
  readonly $typeArgs: [];
 
- readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly kraftAccess: ToField<"u8">; readonly discount: ToField<"u64">; readonly royaltyFeePercent: ToField<"u64">
+ readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly kraftAccess: ToField<"u8">; readonly discount: ToField<"u64">; readonly royaltyFeePercent: ToField<"u64">
 
  private constructor(typeArgs: [], fields: NewSkinForAssetFields, ) { this.$fullTypeName = composeSuiType( NewSkinForAsset.$typeName, ...typeArgs ) as "0x0::hive_profile::NewSkinForAsset"; this.$typeArgs = typeArgs;
 
@@ -4763,7 +4763,7 @@ export class NewSkinForAsset implements StructClass { static readonly $typeName 
 
 export function isNewSkinForAssetKrafted(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::NewSkinForAssetKrafted"; }
 
-export interface NewSkinForAssetKraftedFields { kraftedByProfile: ToField<"address">; krafterUsername: ToField<String1>; ownerProfile: ToField<"address">; ownerUsername: ToField<String1>; version: ToField<"u64">; skinType: ToField<string>; actualSkinPrice: ToField<"u64">; royaltyEarnedByOwner: ToField<"u64">; skinsKraftedForTypeByAsset: ToField<"u64">; totalRoyaltyAmt: ToField<"u64">; treasuryAmt: ToField<"u64">; gemsBurnt: ToField<"u64"> }
+export interface NewSkinForAssetKraftedFields { kraftedByProfile: ToField<"address">; krafterUsername: ToField<String1>; ownerProfile: ToField<"address">; ownerUsername: ToField<String1>; version: ToField<"u64">; skinType: ToField<String>; actualSkinPrice: ToField<"u64">; royaltyEarnedByOwner: ToField<"u64">; skinsKraftedForTypeByAsset: ToField<"u64">; totalRoyaltyAmt: ToField<"u64">; treasuryAmt: ToField<"u64">; gemsBurnt: ToField<"u64"> }
 
 export type NewSkinForAssetKraftedReified = Reified< NewSkinForAssetKrafted, NewSkinForAssetKraftedFields >;
 
@@ -4775,7 +4775,7 @@ export class NewSkinForAssetKrafted implements StructClass { static readonly $ty
 
  readonly $typeArgs: [];
 
- readonly kraftedByProfile: ToField<"address">; readonly krafterUsername: ToField<String1>; readonly ownerProfile: ToField<"address">; readonly ownerUsername: ToField<String1>; readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly actualSkinPrice: ToField<"u64">; readonly royaltyEarnedByOwner: ToField<"u64">; readonly skinsKraftedForTypeByAsset: ToField<"u64">; readonly totalRoyaltyAmt: ToField<"u64">; readonly treasuryAmt: ToField<"u64">; readonly gemsBurnt: ToField<"u64">
+ readonly kraftedByProfile: ToField<"address">; readonly krafterUsername: ToField<String1>; readonly ownerProfile: ToField<"address">; readonly ownerUsername: ToField<String1>; readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly actualSkinPrice: ToField<"u64">; readonly royaltyEarnedByOwner: ToField<"u64">; readonly skinsKraftedForTypeByAsset: ToField<"u64">; readonly totalRoyaltyAmt: ToField<"u64">; readonly treasuryAmt: ToField<"u64">; readonly gemsBurnt: ToField<"u64">
 
  private constructor(typeArgs: [], fields: NewSkinForAssetKraftedFields, ) { this.$fullTypeName = composeSuiType( NewSkinForAssetKrafted.$typeName, ...typeArgs ) as "0x0::hive_profile::NewSkinForAssetKrafted"; this.$typeArgs = typeArgs;
 
@@ -4828,7 +4828,7 @@ export class NewSkinForAssetKrafted implements StructClass { static readonly $ty
 
 export function isPricingAndAccessSetInHiveKiosk(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::PricingAndAccessSetInHiveKiosk"; }
 
-export interface PricingAndAccessSetInHiveKioskFields { creatorProfile: ToField<"address">; collectionName: ToField<string>; basePrice: ToField<"u64">; curveA: ToField<"u64">; kraftAccess: ToField<"u8">; discountAccess: ToField<"u8">; discount: ToField<"u64"> }
+export interface PricingAndAccessSetInHiveKioskFields { creatorProfile: ToField<"address">; collectionName: ToField<String>; basePrice: ToField<"u64">; curveA: ToField<"u64">; kraftAccess: ToField<"u8">; discountAccess: ToField<"u8">; discount: ToField<"u64"> }
 
 export type PricingAndAccessSetInHiveKioskReified = Reified< PricingAndAccessSetInHiveKiosk, PricingAndAccessSetInHiveKioskFields >;
 
@@ -4840,7 +4840,7 @@ export class PricingAndAccessSetInHiveKiosk implements StructClass { static read
 
  readonly $typeArgs: [];
 
- readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<string>; readonly basePrice: ToField<"u64">; readonly curveA: ToField<"u64">; readonly kraftAccess: ToField<"u8">; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">
+ readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<String>; readonly basePrice: ToField<"u64">; readonly curveA: ToField<"u64">; readonly kraftAccess: ToField<"u8">; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">
 
  private constructor(typeArgs: [], fields: PricingAndAccessSetInHiveKioskFields, ) { this.$fullTypeName = composeSuiType( PricingAndAccessSetInHiveKiosk.$typeName, ...typeArgs ) as "0x0::hive_profile::PricingAndAccessSetInHiveKiosk"; this.$typeArgs = typeArgs;
 
@@ -5023,7 +5023,7 @@ export class PublicKraftConfig implements StructClass { static readonly $typeNam
 
 export function isPublicKraftInitialized(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::PublicKraftInitialized"; }
 
-export interface PublicKraftInitializedFields { collectionName: ToField<string>; creatorProfile: ToField<"address">; creatorProfileUsername: ToField<String1>; startTime: ToField<"u64">; perUserLimit: ToField<"u64"> }
+export interface PublicKraftInitializedFields { collectionName: ToField<String>; creatorProfile: ToField<"address">; creatorProfileUsername: ToField<String1>; startTime: ToField<"u64">; perUserLimit: ToField<"u64"> }
 
 export type PublicKraftInitializedReified = Reified< PublicKraftInitialized, PublicKraftInitializedFields >;
 
@@ -5035,7 +5035,7 @@ export class PublicKraftInitialized implements StructClass { static readonly $ty
 
  readonly $typeArgs: [];
 
- readonly collectionName: ToField<string>; readonly creatorProfile: ToField<"address">; readonly creatorProfileUsername: ToField<String1>; readonly startTime: ToField<"u64">; readonly perUserLimit: ToField<"u64">
+ readonly collectionName: ToField<String>; readonly creatorProfile: ToField<"address">; readonly creatorProfileUsername: ToField<String1>; readonly startTime: ToField<"u64">; readonly perUserLimit: ToField<"u64">
 
  private constructor(typeArgs: [], fields: PublicKraftInitializedFields, ) { this.$fullTypeName = composeSuiType( PublicKraftInitialized.$typeName, ...typeArgs ) as "0x0::hive_profile::PublicKraftInitialized"; this.$typeArgs = typeArgs;
 
@@ -5088,7 +5088,7 @@ export class PublicKraftInitialized implements StructClass { static readonly $ty
 
 export function isRemovedUpgradeForVersion(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::RemovedUpgradeForVersion"; }
 
-export interface RemovedUpgradeForVersionFields { creatorProfileAddr: ToField<"address">; collectionName: ToField<string>; version: ToField<"u64">; upgradeIndex: ToField<"u64"> }
+export interface RemovedUpgradeForVersionFields { creatorProfileAddr: ToField<"address">; collectionName: ToField<String>; version: ToField<"u64">; upgradeIndex: ToField<"u64"> }
 
 export type RemovedUpgradeForVersionReified = Reified< RemovedUpgradeForVersion, RemovedUpgradeForVersionFields >;
 
@@ -5100,7 +5100,7 @@ export class RemovedUpgradeForVersion implements StructClass { static readonly $
 
  readonly $typeArgs: [];
 
- readonly creatorProfileAddr: ToField<"address">; readonly collectionName: ToField<string>; readonly version: ToField<"u64">; readonly upgradeIndex: ToField<"u64">
+ readonly creatorProfileAddr: ToField<"address">; readonly collectionName: ToField<String>; readonly version: ToField<"u64">; readonly upgradeIndex: ToField<"u64">
 
  private constructor(typeArgs: [], fields: RemovedUpgradeForVersionFields, ) { this.$fullTypeName = composeSuiType( RemovedUpgradeForVersion.$typeName, ...typeArgs ) as "0x0::hive_profile::RemovedUpgradeForVersion"; this.$typeArgs = typeArgs;
 
@@ -5478,7 +5478,7 @@ export class SaleExecuted implements StructClass { static readonly $typeName = "
 
 export function isSkinAccessPermissionsUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::SkinAccessPermissionsUpdated"; }
 
-export interface SkinAccessPermissionsUpdatedFields { version: ToField<"u64">; skinType: ToField<string>; discountAccess: ToField<"u8">; discount: ToField<"u64"> }
+export interface SkinAccessPermissionsUpdatedFields { version: ToField<"u64">; skinType: ToField<String>; discountAccess: ToField<"u8">; discount: ToField<"u64"> }
 
 export type SkinAccessPermissionsUpdatedReified = Reified< SkinAccessPermissionsUpdated, SkinAccessPermissionsUpdatedFields >;
 
@@ -5490,7 +5490,7 @@ export class SkinAccessPermissionsUpdated implements StructClass { static readon
 
  readonly $typeArgs: [];
 
- readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">
+ readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly discountAccess: ToField<"u8">; readonly discount: ToField<"u64">
 
  private constructor(typeArgs: [], fields: SkinAccessPermissionsUpdatedFields, ) { this.$fullTypeName = composeSuiType( SkinAccessPermissionsUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::SkinAccessPermissionsUpdated"; this.$typeArgs = typeArgs;
 
@@ -5543,7 +5543,7 @@ export class SkinAccessPermissionsUpdated implements StructClass { static readon
 
 export function isSkinKraftPermissionsUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::SkinKraftPermissionsUpdated"; }
 
-export interface SkinKraftPermissionsUpdatedFields { version: ToField<"u64">; skinType: ToField<string>; kraftAccess: ToField<"u8"> }
+export interface SkinKraftPermissionsUpdatedFields { version: ToField<"u64">; skinType: ToField<String>; kraftAccess: ToField<"u8"> }
 
 export type SkinKraftPermissionsUpdatedReified = Reified< SkinKraftPermissionsUpdated, SkinKraftPermissionsUpdatedFields >;
 
@@ -5555,7 +5555,7 @@ export class SkinKraftPermissionsUpdated implements StructClass { static readonl
 
  readonly $typeArgs: [];
 
- readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly kraftAccess: ToField<"u8">
+ readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly kraftAccess: ToField<"u8">
 
  private constructor(typeArgs: [], fields: SkinKraftPermissionsUpdatedFields, ) { this.$fullTypeName = composeSuiType( SkinKraftPermissionsUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::SkinKraftPermissionsUpdated"; this.$typeArgs = typeArgs;
 
@@ -5673,7 +5673,7 @@ export class SkinRecord implements StructClass { static readonly $typeName = "0x
 
 export function isSkinRoyaltyCommissionUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::SkinRoyaltyCommissionUpdated"; }
 
-export interface SkinRoyaltyCommissionUpdatedFields { version: ToField<"u64">; skinType: ToField<string>; royaltyFeePercent: ToField<"u64"> }
+export interface SkinRoyaltyCommissionUpdatedFields { version: ToField<"u64">; skinType: ToField<String>; royaltyFeePercent: ToField<"u64"> }
 
 export type SkinRoyaltyCommissionUpdatedReified = Reified< SkinRoyaltyCommissionUpdated, SkinRoyaltyCommissionUpdatedFields >;
 
@@ -5685,7 +5685,7 @@ export class SkinRoyaltyCommissionUpdated implements StructClass { static readon
 
  readonly $typeArgs: [];
 
- readonly version: ToField<"u64">; readonly skinType: ToField<string>; readonly royaltyFeePercent: ToField<"u64">
+ readonly version: ToField<"u64">; readonly skinType: ToField<String>; readonly royaltyFeePercent: ToField<"u64">
 
  private constructor(typeArgs: [], fields: SkinRoyaltyCommissionUpdatedFields, ) { this.$fullTypeName = composeSuiType( SkinRoyaltyCommissionUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::SkinRoyaltyCommissionUpdated"; this.$typeArgs = typeArgs;
 
@@ -5868,7 +5868,7 @@ export class TotalActivePowerUpdated implements StructClass { static readonly $t
 
 export function isTraitsSetInHiveKiosk(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::TraitsSetInHiveKiosk"; }
 
-export interface TraitsSetInHiveKioskFields { creatorProfile: ToField<"address">; collectionName: ToField<string>; traitsList: ToField<Vector<string>> }
+export interface TraitsSetInHiveKioskFields { creatorProfile: ToField<"address">; collectionName: ToField<String>; traitsList: ToField<Vector<String>> }
 
 export type TraitsSetInHiveKioskReified = Reified< TraitsSetInHiveKiosk, TraitsSetInHiveKioskFields >;
 
@@ -5880,7 +5880,7 @@ export class TraitsSetInHiveKiosk implements StructClass { static readonly $type
 
  readonly $typeArgs: [];
 
- readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<string>; readonly traitsList: ToField<Vector<string>>
+ readonly creatorProfile: ToField<"address">; readonly collectionName: ToField<String>; readonly traitsList: ToField<Vector<String>>
 
  private constructor(typeArgs: [], fields: TraitsSetInHiveKioskFields, ) { this.$fullTypeName = composeSuiType( TraitsSetInHiveKiosk.$typeName, ...typeArgs ) as "0x0::hive_profile::TraitsSetInHiveKiosk"; this.$typeArgs = typeArgs;
 
@@ -5910,7 +5910,7 @@ export class TraitsSetInHiveKiosk implements StructClass { static readonly $type
 
  toJSONField() { return {
 
- creatorProfile: this.creatorProfile,collectionName: this.collectionName,traitsList: fieldToJSON<Vector<string>>(`vector<0x1::string::String>`, this.traitsList),
+ creatorProfile: this.creatorProfile,collectionName: this.collectionName,traitsList: fieldToJSON<Vector<String>>(`vector<0x1::string::String>`, this.traitsList),
 
 } }
 
@@ -6063,7 +6063,7 @@ export class UpdateEntropyForEpoch implements StructClass { static readonly $typ
 
 export function isUserNameUpdated(type: string): boolean { type = compressSuiType(type); return type === "0x0::hive_profile::UserNameUpdated"; }
 
-export interface UserNameUpdatedFields { profileAddr: ToField<"address">; prevUsername: ToField<string>; newUsername: ToField<string> }
+export interface UserNameUpdatedFields { profileAddr: ToField<"address">; prevUsername: ToField<String>; newUsername: ToField<String> }
 
 export type UserNameUpdatedReified = Reified< UserNameUpdated, UserNameUpdatedFields >;
 
@@ -6075,7 +6075,7 @@ export class UserNameUpdated implements StructClass { static readonly $typeName 
 
  readonly $typeArgs: [];
 
- readonly profileAddr: ToField<"address">; readonly prevUsername: ToField<string>; readonly newUsername: ToField<string>
+ readonly profileAddr: ToField<"address">; readonly prevUsername: ToField<String>; readonly newUsername: ToField<String>
 
  private constructor(typeArgs: [], fields: UserNameUpdatedFields, ) { this.$fullTypeName = composeSuiType( UserNameUpdated.$typeName, ...typeArgs ) as "0x0::hive_profile::UserNameUpdated"; this.$typeArgs = typeArgs;
 

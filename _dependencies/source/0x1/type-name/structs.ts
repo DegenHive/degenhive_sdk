@@ -8,7 +8,7 @@ import {SuiClient, SuiParsedData} from "@mysten/sui.js/client";
 
 export function isTypeName(type: string): boolean { type = compressSuiType(type); return type === "0x1::type_name::TypeName"; }
 
-export interface TypeNameFields { name: ToField<string> }
+export interface TypeNameFields { name: ToField<String> }
 
 export type TypeNameReified = Reified< TypeName, TypeNameFields >;
 
@@ -20,7 +20,7 @@ export class TypeName implements StructClass { static readonly $typeName = "0x1:
 
  readonly $typeArgs: [];
 
- readonly name: ToField<string>
+ readonly name: ToField<String>
 
  private constructor(typeArgs: [], fields: TypeNameFields, ) { this.$fullTypeName = composeSuiType( TypeName.$typeName, ...typeArgs ) as "0x1::type_name::TypeName"; this.$typeArgs = typeArgs;
 

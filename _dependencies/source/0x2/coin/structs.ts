@@ -78,7 +78,7 @@ export class Coin<T extends PhantomTypeArgument> implements StructClass { static
 
 export function isCoinMetadata(type: string): boolean { type = compressSuiType(type); return type.startsWith("0x2::coin::CoinMetadata<"); }
 
-export interface CoinMetadataFields<T extends PhantomTypeArgument> { id: ToField<UID>; decimals: ToField<"u8">; name: ToField<string>; symbol: ToField<String1>; description: ToField<string>; iconUrl: ToField<Option<Url>> }
+export interface CoinMetadataFields<T extends PhantomTypeArgument> { id: ToField<UID>; decimals: ToField<"u8">; name: ToField<String>; symbol: ToField<String1>; description: ToField<String>; iconUrl: ToField<Option<Url>> }
 
 export type CoinMetadataReified<T extends PhantomTypeArgument> = Reified< CoinMetadata<T>, CoinMetadataFields<T> >;
 
@@ -90,7 +90,7 @@ export class CoinMetadata<T extends PhantomTypeArgument> implements StructClass 
 
  readonly $typeArgs: [PhantomToTypeStr<T>];
 
- readonly id: ToField<UID>; readonly decimals: ToField<"u8">; readonly name: ToField<string>; readonly symbol: ToField<String1>; readonly description: ToField<string>; readonly iconUrl: ToField<Option<Url>>
+ readonly id: ToField<UID>; readonly decimals: ToField<"u8">; readonly name: ToField<String>; readonly symbol: ToField<String1>; readonly description: ToField<String>; readonly iconUrl: ToField<Option<Url>>
 
  private constructor(typeArgs: [PhantomToTypeStr<T>], fields: CoinMetadataFields<T>, ) { this.$fullTypeName = composeSuiType( CoinMetadata.$typeName, ...typeArgs ) as `0x2::coin::CoinMetadata<${PhantomToTypeStr<T>}>`; this.$typeArgs = typeArgs;
 
