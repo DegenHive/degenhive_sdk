@@ -2,6 +2,10 @@
 
 The DegenHive JavaScript SDK provides developers with the tools required to interact easily with the DegenHive smart contracts on the Sui Network. This SDK abstracts away the complexities of directly interacting with move modules, offering simple asynchronous methods to perform various on-chain actions such as querying contract states and executing transactions.
 
+```sh
+npm i degenhive_sdk
+```
+
 ## Usage
 
 Here is an example of how to use the SDK to get the total supply of Bee tokens on the DegenHive DEX. Several changes to the ease of use are coming. Stay tuned!
