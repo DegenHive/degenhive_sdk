@@ -6,8 +6,8 @@ The DegenHive JavaScript SDK provides developers with the tools required to inte
 
 Here is an example of how to use the SDK to get the total supply of Bee tokens on the DegenHive DEX. Several changes to the ease of use are coming. Stay tuned!
 
-```ts
-import { getTotalBeeSupply } from 'degenhive_sdk/dist/degen-hive-dex-config/bee/functions'
+```js
+import { getTotalBeeSupply } from "degenhive_sdk";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { Ed25519Keypair } from '@mysten/sui.js/keypairs/ed25519';
 import { SuiClient } from '@mysten/sui.js/client';
@@ -25,9 +25,7 @@ const signer = Ed25519Keypair.fromSecretKey(
     txb.setGasBudget(30000000);
     let txhash = result.digest;
     console.log(`Transaction hash: ${txhash}`);
-    // console.log(`Total Bee Supply: ${result}`);
-    }
-)();
+})();
 ```
 
 ## Support
