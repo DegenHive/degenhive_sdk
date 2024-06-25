@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const authenticatorState = require("./authenticator-state/structs");
 const bag = require("./bag/structs");
 const balance = require("./balance/structs");
@@ -124,4 +124,3 @@ function registerClasses(loader) {
     loader.register(zkloginVerifiedId.VerifiedID);
     loader.register(zkloginVerifiedIssuer.VerifiedIssuer);
 }
-exports.registerClasses = registerClasses;

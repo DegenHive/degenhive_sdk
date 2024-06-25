@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TokenPolicyCreated = exports.isTokenPolicyCreated = exports.TokenPolicyCap = exports.isTokenPolicyCap = exports.TokenPolicy = exports.isTokenPolicy = exports.Token = exports.isToken = exports.ActionRequest = exports.isActionRequest = exports.RuleKey = exports.isRuleKey = void 0;
+exports.TokenPolicyCreated = exports.TokenPolicyCap = exports.TokenPolicy = exports.Token = exports.ActionRequest = exports.RuleKey = void 0;
+exports.isRuleKey = isRuleKey;
+exports.isActionRequest = isActionRequest;
+exports.isToken = isToken;
+exports.isTokenPolicy = isTokenPolicy;
+exports.isTokenPolicyCap = isTokenPolicyCap;
+exports.isTokenPolicyCreated = isTokenPolicyCreated;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
@@ -13,7 +19,6 @@ const structs_7 = require("../vec-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== RuleKey =============================== */
 function isRuleKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::RuleKey<"); }
-exports.isRuleKey = isRuleKey;
 class RuleKey {
     constructor(typeArgs, fields) {
         this.$typeName = RuleKey.$typeName;
@@ -77,7 +82,6 @@ RuleKey.$typeName = "0x2::token::RuleKey";
 RuleKey.$numTypeParams = 1;
 /* ============================== ActionRequest =============================== */
 function isActionRequest(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::ActionRequest<"); }
-exports.isActionRequest = isActionRequest;
 class ActionRequest {
     constructor(typeArgs, fields) {
         this.$typeName = ActionRequest.$typeName;
@@ -151,7 +155,6 @@ ActionRequest.$typeName = "0x2::token::ActionRequest";
 ActionRequest.$numTypeParams = 1;
 /* ============================== Token =============================== */
 function isToken(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::Token<"); }
-exports.isToken = isToken;
 class Token {
     constructor(typeArgs, fields) {
         this.$typeName = Token.$typeName;
@@ -217,7 +220,6 @@ Token.$typeName = "0x2::token::Token";
 Token.$numTypeParams = 1;
 /* ============================== TokenPolicy =============================== */
 function isTokenPolicy(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::TokenPolicy<"); }
-exports.isTokenPolicy = isTokenPolicy;
 class TokenPolicy {
     constructor(typeArgs, fields) {
         this.$typeName = TokenPolicy.$typeName;
@@ -285,7 +287,6 @@ TokenPolicy.$typeName = "0x2::token::TokenPolicy";
 TokenPolicy.$numTypeParams = 1;
 /* ============================== TokenPolicyCap =============================== */
 function isTokenPolicyCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::TokenPolicyCap<"); }
-exports.isTokenPolicyCap = isTokenPolicyCap;
 class TokenPolicyCap {
     constructor(typeArgs, fields) {
         this.$typeName = TokenPolicyCap.$typeName;
@@ -351,7 +352,6 @@ TokenPolicyCap.$typeName = "0x2::token::TokenPolicyCap";
 TokenPolicyCap.$numTypeParams = 1;
 /* ============================== TokenPolicyCreated =============================== */
 function isTokenPolicyCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::token::TokenPolicyCreated<"); }
-exports.isTokenPolicyCreated = isTokenPolicyCreated;
 class TokenPolicyCreated {
     constructor(typeArgs, fields) {
         this.$typeName = TokenPolicyCreated.$typeName;

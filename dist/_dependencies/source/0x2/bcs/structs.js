@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BCS = exports.isBCS = void 0;
+exports.BCS = void 0;
+exports.isBCS = isBCS;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== BCS =============================== */
 function isBCS(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bcs::BCS"; }
-exports.isBCS = isBCS;
 class BCS {
     constructor(typeArgs, fields) {
         this.$typeName = BCS.$typeName;

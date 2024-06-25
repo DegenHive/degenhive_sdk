@@ -1,6 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorPoolRewardsUpdated = exports.isValidatorPoolRewardsUpdated = exports.ValidatorPoolDestroyed = exports.isValidatorPoolDestroyed = exports.ValidatorPool = exports.isValidatorPool = exports.ValidatorListUpdated = exports.isValidatorListUpdated = exports.UserUnstakedInstantly = exports.isUserUnstakedInstantly = exports.UserUnstakeRequest = exports.isUserUnstakeRequest = exports.UserClaimedSui = exports.isUserClaimedSui = exports.UnstakingRequestsProcessed = exports.isUnstakingRequestsProcessed = exports.UnstakeRequest = exports.isUnstakeRequest = exports.TotalRewardsUpdated = exports.isTotalRewardsUpdated = exports.StakeWithSelectedValidatorRequestProcessed = exports.isStakeWithSelectedValidatorRequestProcessed = exports.StakeSuiRequestsProcessed = exports.isStakeSuiRequestsProcessed = exports.StakeSuiRequest = exports.isStakeSuiRequest = exports.StakeOperationProcessed = exports.isStakeOperationProcessed = exports.RequestsForEpochDestroyed = exports.isRequestsForEpochDestroyed = exports.RequestsForEpoch = exports.isRequestsForEpoch = exports.HiveSuiFeeStructureUpdated = exports.isHiveSuiFeeStructureUpdated = exports.HSuiVault = exports.isHSuiVault = exports.EmergencyPauseUpdate = exports.isEmergencyPauseUpdate = exports.ConfigParams = exports.isConfigParams = void 0;
+exports.ValidatorPoolRewardsUpdated = exports.ValidatorPoolDestroyed = exports.ValidatorPool = exports.ValidatorListUpdated = exports.UserUnstakedInstantly = exports.UserUnstakeRequest = exports.UserClaimedSui = exports.UnstakingRequestsProcessed = exports.UnstakeRequest = exports.TotalRewardsUpdated = exports.StakeWithSelectedValidatorRequestProcessed = exports.StakeSuiRequestsProcessed = exports.StakeSuiRequest = exports.StakeOperationProcessed = exports.RequestsForEpochDestroyed = exports.RequestsForEpoch = exports.HiveSuiFeeStructureUpdated = exports.HSuiVault = exports.EmergencyPauseUpdate = exports.ConfigParams = void 0;
+exports.isConfigParams = isConfigParams;
+exports.isEmergencyPauseUpdate = isEmergencyPauseUpdate;
+exports.isHSuiVault = isHSuiVault;
+exports.isHiveSuiFeeStructureUpdated = isHiveSuiFeeStructureUpdated;
+exports.isRequestsForEpoch = isRequestsForEpoch;
+exports.isRequestsForEpochDestroyed = isRequestsForEpochDestroyed;
+exports.isStakeOperationProcessed = isStakeOperationProcessed;
+exports.isStakeSuiRequest = isStakeSuiRequest;
+exports.isStakeSuiRequestsProcessed = isStakeSuiRequestsProcessed;
+exports.isStakeWithSelectedValidatorRequestProcessed = isStakeWithSelectedValidatorRequestProcessed;
+exports.isTotalRewardsUpdated = isTotalRewardsUpdated;
+exports.isUnstakeRequest = isUnstakeRequest;
+exports.isUnstakingRequestsProcessed = isUnstakingRequestsProcessed;
+exports.isUserClaimedSui = isUserClaimedSui;
+exports.isUserUnstakeRequest = isUserUnstakeRequest;
+exports.isUserUnstakedInstantly = isUserUnstakedInstantly;
+exports.isValidatorListUpdated = isValidatorListUpdated;
+exports.isValidatorPool = isValidatorPool;
+exports.isValidatorPoolDestroyed = isValidatorPoolDestroyed;
+exports.isValidatorPoolRewardsUpdated = isValidatorPoolRewardsUpdated;
 const reified = require("../../_framework/reified");
 const structs_1 = require("../../_dependencies/source/0x2/balance/structs");
 const structs_2 = require("../../_dependencies/source/0x2/coin/structs");
@@ -14,7 +34,6 @@ const structs_7 = require("../../degen-hive-dex-config/dsui/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ConfigParams =============================== */
 function isConfigParams(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::ConfigParams"; }
-exports.isConfigParams = isConfigParams;
 class ConfigParams {
     constructor(typeArgs, fields) {
         this.$typeName = ConfigParams.$typeName;
@@ -84,7 +103,6 @@ ConfigParams.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a0
 ConfigParams.$numTypeParams = 0;
 /* ============================== EmergencyPauseUpdate =============================== */
 function isEmergencyPauseUpdate(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::EmergencyPauseUpdate"; }
-exports.isEmergencyPauseUpdate = isEmergencyPauseUpdate;
 class EmergencyPauseUpdate {
     constructor(typeArgs, fields) {
         this.$typeName = EmergencyPauseUpdate.$typeName;
@@ -146,7 +164,6 @@ EmergencyPauseUpdate.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b
 EmergencyPauseUpdate.$numTypeParams = 0;
 /* ============================== HSuiVault =============================== */
 function isHSuiVault(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::HSuiVault"; }
-exports.isHSuiVault = isHSuiVault;
 class HSuiVault {
     constructor(typeArgs, fields) {
         this.$typeName = HSuiVault.$typeName;
@@ -242,7 +259,6 @@ HSuiVault.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040f
 HSuiVault.$numTypeParams = 0;
 /* ============================== HiveSuiFeeStructureUpdated =============================== */
 function isHiveSuiFeeStructureUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::HiveSuiFeeStructureUpdated"; }
-exports.isHiveSuiFeeStructureUpdated = isHiveSuiFeeStructureUpdated;
 class HiveSuiFeeStructureUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = HiveSuiFeeStructureUpdated.$typeName;
@@ -308,7 +324,6 @@ HiveSuiFeeStructureUpdated.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c
 HiveSuiFeeStructureUpdated.$numTypeParams = 0;
 /* ============================== RequestsForEpoch =============================== */
 function isRequestsForEpoch(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::RequestsForEpoch"; }
-exports.isRequestsForEpoch = isRequestsForEpoch;
 class RequestsForEpoch {
     constructor(typeArgs, fields) {
         this.$typeName = RequestsForEpoch.$typeName;
@@ -372,7 +387,6 @@ RequestsForEpoch.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a
 RequestsForEpoch.$numTypeParams = 0;
 /* ============================== RequestsForEpochDestroyed =============================== */
 function isRequestsForEpochDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::RequestsForEpochDestroyed"; }
-exports.isRequestsForEpochDestroyed = isRequestsForEpochDestroyed;
 class RequestsForEpochDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = RequestsForEpochDestroyed.$typeName;
@@ -434,7 +448,6 @@ RequestsForEpochDestroyed.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c5
 RequestsForEpochDestroyed.$numTypeParams = 0;
 /* ============================== StakeOperationProcessed =============================== */
 function isStakeOperationProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::StakeOperationProcessed"; }
-exports.isStakeOperationProcessed = isStakeOperationProcessed;
 class StakeOperationProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = StakeOperationProcessed.$typeName;
@@ -500,7 +513,6 @@ StakeOperationProcessed.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d
 StakeOperationProcessed.$numTypeParams = 0;
 /* ============================== StakeSuiRequest =============================== */
 function isStakeSuiRequest(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::StakeSuiRequest"; }
-exports.isStakeSuiRequest = isStakeSuiRequest;
 class StakeSuiRequest {
     constructor(typeArgs, fields) {
         this.$typeName = StakeSuiRequest.$typeName;
@@ -570,7 +582,6 @@ StakeSuiRequest.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a7
 StakeSuiRequest.$numTypeParams = 0;
 /* ============================== StakeSuiRequestsProcessed =============================== */
 function isStakeSuiRequestsProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::StakeSuiRequestsProcessed"; }
-exports.isStakeSuiRequestsProcessed = isStakeSuiRequestsProcessed;
 class StakeSuiRequestsProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = StakeSuiRequestsProcessed.$typeName;
@@ -640,7 +651,6 @@ StakeSuiRequestsProcessed.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c5
 StakeSuiRequestsProcessed.$numTypeParams = 0;
 /* ============================== StakeWithSelectedValidatorRequestProcessed =============================== */
 function isStakeWithSelectedValidatorRequestProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::StakeWithSelectedValidatorRequestProcessed"; }
-exports.isStakeWithSelectedValidatorRequestProcessed = isStakeWithSelectedValidatorRequestProcessed;
 class StakeWithSelectedValidatorRequestProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = StakeWithSelectedValidatorRequestProcessed.$typeName;
@@ -706,7 +716,6 @@ StakeWithSelectedValidatorRequestProcessed.$typeName = "0x59aad7787932fa7f35a5bb
 StakeWithSelectedValidatorRequestProcessed.$numTypeParams = 0;
 /* ============================== TotalRewardsUpdated =============================== */
 function isTotalRewardsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::TotalRewardsUpdated"; }
-exports.isTotalRewardsUpdated = isTotalRewardsUpdated;
 class TotalRewardsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = TotalRewardsUpdated.$typeName;
@@ -786,7 +795,6 @@ TotalRewardsUpdated.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2
 TotalRewardsUpdated.$numTypeParams = 0;
 /* ============================== UnstakeRequest =============================== */
 function isUnstakeRequest(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::UnstakeRequest"; }
-exports.isUnstakeRequest = isUnstakeRequest;
 class UnstakeRequest {
     constructor(typeArgs, fields) {
         this.$typeName = UnstakeRequest.$typeName;
@@ -854,7 +862,6 @@ UnstakeRequest.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71
 UnstakeRequest.$numTypeParams = 0;
 /* ============================== UnstakingRequestsProcessed =============================== */
 function isUnstakingRequestsProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::UnstakingRequestsProcessed"; }
-exports.isUnstakingRequestsProcessed = isUnstakingRequestsProcessed;
 class UnstakingRequestsProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = UnstakingRequestsProcessed.$typeName;
@@ -920,7 +927,6 @@ UnstakingRequestsProcessed.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c
 UnstakingRequestsProcessed.$numTypeParams = 0;
 /* ============================== UserClaimedSui =============================== */
 function isUserClaimedSui(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::UserClaimedSui"; }
-exports.isUserClaimedSui = isUserClaimedSui;
 class UserClaimedSui {
     constructor(typeArgs, fields) {
         this.$typeName = UserClaimedSui.$typeName;
@@ -990,7 +996,6 @@ UserClaimedSui.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71
 UserClaimedSui.$numTypeParams = 0;
 /* ============================== UserUnstakeRequest =============================== */
 function isUserUnstakeRequest(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::UserUnstakeRequest"; }
-exports.isUserUnstakeRequest = isUserUnstakeRequest;
 class UserUnstakeRequest {
     constructor(typeArgs, fields) {
         this.$typeName = UserUnstakeRequest.$typeName;
@@ -1062,7 +1067,6 @@ UserUnstakeRequest.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a
 UserUnstakeRequest.$numTypeParams = 0;
 /* ============================== UserUnstakedInstantly =============================== */
 function isUserUnstakedInstantly(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::UserUnstakedInstantly"; }
-exports.isUserUnstakedInstantly = isUserUnstakedInstantly;
 class UserUnstakedInstantly {
     constructor(typeArgs, fields) {
         this.$typeName = UserUnstakedInstantly.$typeName;
@@ -1136,7 +1140,6 @@ UserUnstakedInstantly.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53
 UserUnstakedInstantly.$numTypeParams = 0;
 /* ============================== ValidatorListUpdated =============================== */
 function isValidatorListUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::ValidatorListUpdated"; }
-exports.isValidatorListUpdated = isValidatorListUpdated;
 class ValidatorListUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorListUpdated.$typeName;
@@ -1200,7 +1203,6 @@ ValidatorListUpdated.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b
 ValidatorListUpdated.$numTypeParams = 0;
 /* ============================== ValidatorPool =============================== */
 function isValidatorPool(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::ValidatorPool"; }
-exports.isValidatorPool = isValidatorPool;
 class ValidatorPool {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorPool.$typeName;
@@ -1266,7 +1268,6 @@ ValidatorPool.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a
 ValidatorPool.$numTypeParams = 0;
 /* ============================== ValidatorPoolDestroyed =============================== */
 function isValidatorPoolDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::ValidatorPoolDestroyed"; }
-exports.isValidatorPoolDestroyed = isValidatorPoolDestroyed;
 class ValidatorPoolDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorPoolDestroyed.$typeName;
@@ -1330,7 +1331,6 @@ ValidatorPoolDestroyed.$typeName = "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d5
 ValidatorPoolDestroyed.$numTypeParams = 0;
 /* ============================== ValidatorPoolRewardsUpdated =============================== */
 function isValidatorPoolRewardsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x59aad7787932fa7f35a5bbac5be5d8ba44910c56d53b2a7a71a040ffa43ac1ad::hsui_vault::ValidatorPoolRewardsUpdated"; }
-exports.isValidatorPoolRewardsUpdated = isValidatorPoolRewardsUpdated;
 class ValidatorPoolRewardsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorPoolRewardsUpdated.$typeName;

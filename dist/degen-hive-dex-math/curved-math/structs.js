@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CurvedPoolConfig = exports.isCurvedPoolConfig = void 0;
+exports.CurvedPoolConfig = void 0;
+exports.isCurvedPoolConfig = isCurvedPoolConfig;
 const reified = require("../../_framework/reified");
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== CurvedPoolConfig =============================== */
 function isCurvedPoolConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x8dedf746c2648f520827d9a31604b86269afd0a4273b37b296742202ccfc306f::curved_math::CurvedPoolConfig"; }
-exports.isCurvedPoolConfig = isCurvedPoolConfig;
 class CurvedPoolConfig {
     constructor(typeArgs, fields) {
         this.$typeName = CurvedPoolConfig.$typeName;

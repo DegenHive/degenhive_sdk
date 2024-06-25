@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StakeSubsidy = exports.isStakeSubsidy = void 0;
+exports.StakeSubsidy = void 0;
+exports.isStakeSubsidy = isStakeSubsidy;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -10,7 +11,6 @@ const structs_3 = require("../../0x2/sui/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StakeSubsidy =============================== */
 function isStakeSubsidy(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::stake_subsidy::StakeSubsidy"; }
-exports.isStakeSubsidy = isStakeSubsidy;
 class StakeSubsidy {
     constructor(typeArgs, fields) {
         this.$typeName = StakeSubsidy.$typeName;

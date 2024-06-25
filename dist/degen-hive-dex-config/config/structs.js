@@ -1,6 +1,26 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TwoAmmFeeClaimCapability = exports.isTwoAmmFeeClaimCapability = exports.TreasuryResourcesDistributed = exports.isTreasuryResourcesDistributed = exports.TreasuryPercentUpdated = exports.isTreasuryPercentUpdated = exports.Treasury = exports.isTreasury = exports.ThreeAmmFeeClaimCapability = exports.isThreeAmmFeeClaimCapability = exports.StableIdentifierRemoved = exports.isStableIdentifierRemoved = exports.StableIdentifierAdded = exports.isStableIdentifierAdded = exports.NewFeeCollectorKrafted = exports.isNewFeeCollectorKrafted = exports.HiveEntryCap = exports.isHiveEntryCap = exports.HiveDaoCapability = exports.isHiveDaoCapability = exports.FeeInfo = exports.isFeeInfo = exports.FeeExtractedForCoin = exports.isFeeExtractedForCoin = exports.FeeCollector = exports.isFeeCollector = exports.FeeCollectedForCoin = exports.isFeeCollectedForCoin = exports.DexDaoCapability = exports.isDexDaoCapability = exports.DegenHiveDeployerCap = exports.isDegenHiveDeployerCap = exports.DefaultFeeSet = exports.isDefaultFeeSet = exports.DecimalPrecisionForCoinTypesWhitelisted = exports.isDecimalPrecisionForCoinTypesWhitelisted = exports.BuidlersRoyaltyCollectionAbility = exports.isBuidlersRoyaltyCollectionAbility = exports.Config = exports.isConfig = void 0;
+exports.TwoAmmFeeClaimCapability = exports.TreasuryResourcesDistributed = exports.TreasuryPercentUpdated = exports.Treasury = exports.ThreeAmmFeeClaimCapability = exports.StableIdentifierRemoved = exports.StableIdentifierAdded = exports.NewFeeCollectorKrafted = exports.HiveEntryCap = exports.HiveDaoCapability = exports.FeeInfo = exports.FeeExtractedForCoin = exports.FeeCollector = exports.FeeCollectedForCoin = exports.DexDaoCapability = exports.DegenHiveDeployerCap = exports.DefaultFeeSet = exports.DecimalPrecisionForCoinTypesWhitelisted = exports.BuidlersRoyaltyCollectionAbility = exports.Config = void 0;
+exports.isConfig = isConfig;
+exports.isBuidlersRoyaltyCollectionAbility = isBuidlersRoyaltyCollectionAbility;
+exports.isDecimalPrecisionForCoinTypesWhitelisted = isDecimalPrecisionForCoinTypesWhitelisted;
+exports.isDefaultFeeSet = isDefaultFeeSet;
+exports.isDegenHiveDeployerCap = isDegenHiveDeployerCap;
+exports.isDexDaoCapability = isDexDaoCapability;
+exports.isFeeCollectedForCoin = isFeeCollectedForCoin;
+exports.isFeeCollector = isFeeCollector;
+exports.isFeeExtractedForCoin = isFeeExtractedForCoin;
+exports.isFeeInfo = isFeeInfo;
+exports.isHiveDaoCapability = isHiveDaoCapability;
+exports.isHiveEntryCap = isHiveEntryCap;
+exports.isNewFeeCollectorKrafted = isNewFeeCollectorKrafted;
+exports.isStableIdentifierAdded = isStableIdentifierAdded;
+exports.isStableIdentifierRemoved = isStableIdentifierRemoved;
+exports.isThreeAmmFeeClaimCapability = isThreeAmmFeeClaimCapability;
+exports.isTreasury = isTreasury;
+exports.isTreasuryPercentUpdated = isTreasuryPercentUpdated;
+exports.isTreasuryResourcesDistributed = isTreasuryResourcesDistributed;
+exports.isTwoAmmFeeClaimCapability = isTwoAmmFeeClaimCapability;
 const reified = require("../../_framework/reified");
 const structs_1 = require("../../_dependencies/source/0x1/ascii/structs");
 const structs_2 = require("../../_dependencies/source/0x1/string/structs");
@@ -13,7 +33,6 @@ const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Config =============================== */
 function isConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::Config"; }
-exports.isConfig = isConfig;
 class Config {
     constructor(typeArgs, fields) {
         this.$typeName = Config.$typeName;
@@ -89,7 +108,6 @@ Config.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677d
 Config.$numTypeParams = 0;
 /* ============================== BuidlersRoyaltyCollectionAbility =============================== */
 function isBuidlersRoyaltyCollectionAbility(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::BuidlersRoyaltyCollectionAbility"; }
-exports.isBuidlersRoyaltyCollectionAbility = isBuidlersRoyaltyCollectionAbility;
 class BuidlersRoyaltyCollectionAbility {
     constructor(typeArgs, fields) {
         this.$typeName = BuidlersRoyaltyCollectionAbility.$typeName;
@@ -151,7 +169,6 @@ BuidlersRoyaltyCollectionAbility.$typeName = "0x3ba4e7a050d6e5a787359a260802c083
 BuidlersRoyaltyCollectionAbility.$numTypeParams = 0;
 /* ============================== DecimalPrecisionForCoinTypesWhitelisted =============================== */
 function isDecimalPrecisionForCoinTypesWhitelisted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DecimalPrecisionForCoinTypesWhitelisted"; }
-exports.isDecimalPrecisionForCoinTypesWhitelisted = isDecimalPrecisionForCoinTypesWhitelisted;
 class DecimalPrecisionForCoinTypesWhitelisted {
     constructor(typeArgs, fields) {
         this.$typeName = DecimalPrecisionForCoinTypesWhitelisted.$typeName;
@@ -215,7 +232,6 @@ DecimalPrecisionForCoinTypesWhitelisted.$typeName = "0x3ba4e7a050d6e5a787359a260
 DecimalPrecisionForCoinTypesWhitelisted.$numTypeParams = 0;
 /* ============================== DefaultFeeSet =============================== */
 function isDefaultFeeSet(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DefaultFeeSet"; }
-exports.isDefaultFeeSet = isDefaultFeeSet;
 class DefaultFeeSet {
     constructor(typeArgs, fields) {
         this.$typeName = DefaultFeeSet.$typeName;
@@ -281,7 +297,6 @@ DefaultFeeSet.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad1968
 DefaultFeeSet.$numTypeParams = 0;
 /* ============================== DegenHiveDeployerCap =============================== */
 function isDegenHiveDeployerCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DegenHiveDeployerCap"; }
-exports.isDegenHiveDeployerCap = isDegenHiveDeployerCap;
 class DegenHiveDeployerCap {
     constructor(typeArgs, fields) {
         this.$typeName = DegenHiveDeployerCap.$typeName;
@@ -347,7 +362,6 @@ DegenHiveDeployerCap.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3
 DegenHiveDeployerCap.$numTypeParams = 0;
 /* ============================== DexDaoCapability =============================== */
 function isDexDaoCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::DexDaoCapability"; }
-exports.isDexDaoCapability = isDexDaoCapability;
 class DexDaoCapability {
     constructor(typeArgs, fields) {
         this.$typeName = DexDaoCapability.$typeName;
@@ -409,7 +423,6 @@ DexDaoCapability.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad1
 DexDaoCapability.$numTypeParams = 0;
 /* ============================== FeeCollectedForCoin =============================== */
 function isFeeCollectedForCoin(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::FeeCollectedForCoin"; }
-exports.isFeeCollectedForCoin = isFeeCollectedForCoin;
 class FeeCollectedForCoin {
     constructor(typeArgs, fields) {
         this.$typeName = FeeCollectedForCoin.$typeName;
@@ -473,7 +486,6 @@ FeeCollectedForCoin.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3f
 FeeCollectedForCoin.$numTypeParams = 0;
 /* ============================== FeeCollector =============================== */
 function isFeeCollector(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::FeeCollector<"); }
-exports.isFeeCollector = isFeeCollector;
 class FeeCollector {
     constructor(typeArgs, fields) {
         this.$typeName = FeeCollector.$typeName;
@@ -539,7 +551,6 @@ FeeCollector.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682
 FeeCollector.$numTypeParams = 1;
 /* ============================== FeeExtractedForCoin =============================== */
 function isFeeExtractedForCoin(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::FeeExtractedForCoin"; }
-exports.isFeeExtractedForCoin = isFeeExtractedForCoin;
 class FeeExtractedForCoin {
     constructor(typeArgs, fields) {
         this.$typeName = FeeExtractedForCoin.$typeName;
@@ -603,7 +614,6 @@ FeeExtractedForCoin.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3f
 FeeExtractedForCoin.$numTypeParams = 0;
 /* ============================== FeeInfo =============================== */
 function isFeeInfo(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::FeeInfo"; }
-exports.isFeeInfo = isFeeInfo;
 class FeeInfo {
     constructor(typeArgs, fields) {
         this.$typeName = FeeInfo.$typeName;
@@ -667,7 +677,6 @@ FeeInfo.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677
 FeeInfo.$numTypeParams = 0;
 /* ============================== HiveDaoCapability =============================== */
 function isHiveDaoCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::HiveDaoCapability"; }
-exports.isHiveDaoCapability = isHiveDaoCapability;
 class HiveDaoCapability {
     constructor(typeArgs, fields) {
         this.$typeName = HiveDaoCapability.$typeName;
@@ -729,7 +738,6 @@ HiveDaoCapability.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad
 HiveDaoCapability.$numTypeParams = 0;
 /* ============================== HiveEntryCap =============================== */
 function isHiveEntryCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::HiveEntryCap"; }
-exports.isHiveEntryCap = isHiveEntryCap;
 class HiveEntryCap {
     constructor(typeArgs, fields) {
         this.$typeName = HiveEntryCap.$typeName;
@@ -791,7 +799,6 @@ HiveEntryCap.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682
 HiveEntryCap.$numTypeParams = 0;
 /* ============================== NewFeeCollectorKrafted =============================== */
 function isNewFeeCollectorKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::NewFeeCollectorKrafted"; }
-exports.isNewFeeCollectorKrafted = isNewFeeCollectorKrafted;
 class NewFeeCollectorKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = NewFeeCollectorKrafted.$typeName;
@@ -855,7 +862,6 @@ NewFeeCollectorKrafted.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69b
 NewFeeCollectorKrafted.$numTypeParams = 0;
 /* ============================== StableIdentifierAdded =============================== */
 function isStableIdentifierAdded(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::StableIdentifierAdded"; }
-exports.isStableIdentifierAdded = isStableIdentifierAdded;
 class StableIdentifierAdded {
     constructor(typeArgs, fields) {
         this.$typeName = StableIdentifierAdded.$typeName;
@@ -917,7 +923,6 @@ StableIdentifierAdded.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be
 StableIdentifierAdded.$numTypeParams = 0;
 /* ============================== StableIdentifierRemoved =============================== */
 function isStableIdentifierRemoved(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::StableIdentifierRemoved"; }
-exports.isStableIdentifierRemoved = isStableIdentifierRemoved;
 class StableIdentifierRemoved {
     constructor(typeArgs, fields) {
         this.$typeName = StableIdentifierRemoved.$typeName;
@@ -979,7 +984,6 @@ StableIdentifierRemoved.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69
 StableIdentifierRemoved.$numTypeParams = 0;
 /* ============================== ThreeAmmFeeClaimCapability =============================== */
 function isThreeAmmFeeClaimCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::ThreeAmmFeeClaimCapability"; }
-exports.isThreeAmmFeeClaimCapability = isThreeAmmFeeClaimCapability;
 class ThreeAmmFeeClaimCapability {
     constructor(typeArgs, fields) {
         this.$typeName = ThreeAmmFeeClaimCapability.$typeName;
@@ -1041,7 +1045,6 @@ ThreeAmmFeeClaimCapability.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bd
 ThreeAmmFeeClaimCapability.$numTypeParams = 0;
 /* ============================== Treasury =============================== */
 function isTreasury(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::Treasury<"); }
-exports.isTreasury = isTreasury;
 class Treasury {
     constructor(typeArgs, fields) {
         this.$typeName = Treasury.$typeName;
@@ -1107,7 +1110,6 @@ Treasury.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a567
 Treasury.$numTypeParams = 1;
 /* ============================== TreasuryPercentUpdated =============================== */
 function isTreasuryPercentUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::TreasuryPercentUpdated"; }
-exports.isTreasuryPercentUpdated = isTreasuryPercentUpdated;
 class TreasuryPercentUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = TreasuryPercentUpdated.$typeName;
@@ -1169,7 +1171,6 @@ TreasuryPercentUpdated.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69b
 TreasuryPercentUpdated.$numTypeParams = 0;
 /* ============================== TreasuryResourcesDistributed =============================== */
 function isTreasuryResourcesDistributed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::TreasuryResourcesDistributed"; }
-exports.isTreasuryResourcesDistributed = isTreasuryResourcesDistributed;
 class TreasuryResourcesDistributed {
     constructor(typeArgs, fields) {
         this.$typeName = TreasuryResourcesDistributed.$typeName;
@@ -1233,7 +1234,6 @@ TreasuryResourcesDistributed.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05
 TreasuryResourcesDistributed.$numTypeParams = 0;
 /* ============================== TwoAmmFeeClaimCapability =============================== */
 function isTwoAmmFeeClaimCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::config::TwoAmmFeeClaimCapability"; }
-exports.isTwoAmmFeeClaimCapability = isTwoAmmFeeClaimCapability;
 class TwoAmmFeeClaimCapability {
     constructor(typeArgs, fields) {
         this.$typeName = TwoAmmFeeClaimCapability.$typeName;

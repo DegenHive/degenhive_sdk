@@ -1,13 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HiveGemsBurnt = exports.isHiveGemsBurnt = exports.HiveGems = exports.isHiveGems = exports.HiveGemKraftCap = exports.isHiveGemKraftCap = void 0;
+exports.HiveGemsBurnt = exports.HiveGems = exports.HiveGemKraftCap = void 0;
+exports.isHiveGemKraftCap = isHiveGemKraftCap;
+exports.isHiveGems = isHiveGems;
+exports.isHiveGemsBurnt = isHiveGemsBurnt;
 const structs_1 = require("../../_dependencies/source/0x2/object/structs");
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== HiveGemKraftCap =============================== */
 function isHiveGemKraftCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::hive_gems::HiveGemKraftCap"; }
-exports.isHiveGemKraftCap = isHiveGemKraftCap;
 class HiveGemKraftCap {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGemKraftCap.$typeName;
@@ -71,7 +73,6 @@ HiveGemKraftCap.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19
 HiveGemKraftCap.$numTypeParams = 0;
 /* ============================== HiveGems =============================== */
 function isHiveGems(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::hive_gems::HiveGems"; }
-exports.isHiveGems = isHiveGems;
 class HiveGems {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGems.$typeName;
@@ -133,7 +134,6 @@ HiveGems.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a567
 HiveGems.$numTypeParams = 0;
 /* ============================== HiveGemsBurnt =============================== */
 function isHiveGemsBurnt(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::hive_gems::HiveGemsBurnt"; }
-exports.isHiveGemsBurnt = isHiveGemsBurnt;
 class HiveGemsBurnt {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGemsBurnt.$typeName;

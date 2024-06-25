@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const hsuiVault = require("./hsui-vault/structs");
 function registerClasses(loader) {
     loader.register(hsuiVault.ConfigParams);
@@ -24,4 +24,3 @@ function registerClasses(loader) {
     loader.register(hsuiVault.ValidatorPoolDestroyed);
     loader.register(hsuiVault.ValidatorPoolRewardsUpdated);
 }
-exports.registerClasses = registerClasses;

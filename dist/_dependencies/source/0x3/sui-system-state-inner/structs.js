@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SystemParametersV2 = exports.isSystemParametersV2 = exports.SystemParameters = exports.isSystemParameters = exports.SystemEpochInfoEvent = exports.isSystemEpochInfoEvent = exports.SuiSystemStateInnerV2 = exports.isSuiSystemStateInnerV2 = exports.SuiSystemStateInner = exports.isSuiSystemStateInner = void 0;
+exports.SystemParametersV2 = exports.SystemParameters = exports.SystemEpochInfoEvent = exports.SuiSystemStateInnerV2 = exports.SuiSystemStateInner = void 0;
+exports.isSuiSystemStateInner = isSuiSystemStateInner;
+exports.isSuiSystemStateInnerV2 = isSuiSystemStateInnerV2;
+exports.isSystemEpochInfoEvent = isSystemEpochInfoEvent;
+exports.isSystemParameters = isSystemParameters;
+exports.isSystemParametersV2 = isSystemParametersV2;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -15,7 +20,6 @@ const structs_8 = require("../validator-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== SuiSystemStateInner =============================== */
 function isSuiSystemStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SuiSystemStateInner"; }
-exports.isSuiSystemStateInner = isSuiSystemStateInner;
 class SuiSystemStateInner {
     constructor(typeArgs, fields) {
         this.$typeName = SuiSystemStateInner.$typeName;
@@ -107,7 +111,6 @@ SuiSystemStateInner.$typeName = "0x3::sui_system_state_inner::SuiSystemStateInne
 SuiSystemStateInner.$numTypeParams = 0;
 /* ============================== SuiSystemStateInnerV2 =============================== */
 function isSuiSystemStateInnerV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SuiSystemStateInnerV2"; }
-exports.isSuiSystemStateInnerV2 = isSuiSystemStateInnerV2;
 class SuiSystemStateInnerV2 {
     constructor(typeArgs, fields) {
         this.$typeName = SuiSystemStateInnerV2.$typeName;
@@ -199,7 +202,6 @@ SuiSystemStateInnerV2.$typeName = "0x3::sui_system_state_inner::SuiSystemStateIn
 SuiSystemStateInnerV2.$numTypeParams = 0;
 /* ============================== SystemEpochInfoEvent =============================== */
 function isSystemEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemEpochInfoEvent"; }
-exports.isSystemEpochInfoEvent = isSystemEpochInfoEvent;
 class SystemEpochInfoEvent {
     constructor(typeArgs, fields) {
         this.$typeName = SystemEpochInfoEvent.$typeName;
@@ -283,7 +285,6 @@ SystemEpochInfoEvent.$typeName = "0x3::sui_system_state_inner::SystemEpochInfoEv
 SystemEpochInfoEvent.$numTypeParams = 0;
 /* ============================== SystemParameters =============================== */
 function isSystemParameters(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemParameters"; }
-exports.isSystemParameters = isSystemParameters;
 class SystemParameters {
     constructor(typeArgs, fields) {
         this.$typeName = SystemParameters.$typeName;
@@ -359,7 +360,6 @@ SystemParameters.$typeName = "0x3::sui_system_state_inner::SystemParameters";
 SystemParameters.$numTypeParams = 0;
 /* ============================== SystemParametersV2 =============================== */
 function isSystemParametersV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemParametersV2"; }
-exports.isSystemParametersV2 = isSystemParametersV2;
 class SystemParametersV2 {
     constructor(typeArgs, fields) {
         this.$typeName = SystemParametersV2.$typeName;

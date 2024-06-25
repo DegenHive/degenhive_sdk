@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Supply = exports.isSupply = exports.Balance = exports.isBalance = void 0;
+exports.Supply = exports.Balance = void 0;
+exports.isBalance = isBalance;
+exports.isSupply = isSupply;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Balance =============================== */
 function isBalance(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::balance::Balance<"); }
-exports.isBalance = isBalance;
 class Balance {
     constructor(typeArgs, fields) {
         this.$typeName = Balance.$typeName;
@@ -70,7 +71,6 @@ Balance.$typeName = "0x2::balance::Balance";
 Balance.$numTypeParams = 1;
 /* ============================== Supply =============================== */
 function isSupply(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::balance::Supply<"); }
-exports.isSupply = isSupply;
 class Supply {
     constructor(typeArgs, fields) {
         this.$typeName = Supply.$typeName;

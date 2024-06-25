@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Clock = exports.isClock = void 0;
+exports.Clock = void 0;
+exports.isClock = isClock;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Clock =============================== */
 function isClock(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::clock::Clock"; }
-exports.isClock = isClock;
 class Clock {
     constructor(typeArgs, fields) {
         this.$typeName = Clock.$typeName;

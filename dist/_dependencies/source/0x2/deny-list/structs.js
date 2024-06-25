@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PerTypeList = exports.isPerTypeList = exports.DenyList = exports.isDenyList = void 0;
+exports.PerTypeList = exports.DenyList = void 0;
+exports.isDenyList = isDenyList;
+exports.isPerTypeList = isPerTypeList;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -11,7 +13,6 @@ const structs_4 = require("../vec-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== DenyList =============================== */
 function isDenyList(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::deny_list::DenyList"; }
-exports.isDenyList = isDenyList;
 class DenyList {
     constructor(typeArgs, fields) {
         this.$typeName = DenyList.$typeName;
@@ -75,7 +76,6 @@ DenyList.$typeName = "0x2::deny_list::DenyList";
 DenyList.$numTypeParams = 0;
 /* ============================== PerTypeList =============================== */
 function isPerTypeList(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::deny_list::PerTypeList"; }
-exports.isPerTypeList = isPerTypeList;
 class PerTypeList {
     constructor(typeArgs, fields) {
         this.$typeName = PerTypeList.$typeName;

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StablePoolConfig = exports.isStablePoolConfig = void 0;
+exports.StablePoolConfig = void 0;
+exports.isStablePoolConfig = isStablePoolConfig;
 const reified = require("../../_framework/reified");
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StablePoolConfig =============================== */
 function isStablePoolConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x8dedf746c2648f520827d9a31604b86269afd0a4273b37b296742202ccfc306f::stable_math::StablePoolConfig"; }
-exports.isStablePoolConfig = isStablePoolConfig;
 class StablePoolConfig {
     constructor(typeArgs, fields) {
         this.$typeName = StablePoolConfig.$typeName;

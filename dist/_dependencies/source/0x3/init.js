@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const genesis = require("./genesis/structs");
 const stakeSubsidy = require("./stake-subsidy/structs");
 const stakingPool = require("./staking-pool/structs");
@@ -43,4 +43,3 @@ function registerClasses(loader) {
     loader.register(genesis.TokenAllocation);
     loader.register(genesis.TokenDistributionSchedule);
 }
-exports.registerClasses = registerClasses;

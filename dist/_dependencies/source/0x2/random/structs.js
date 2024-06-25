@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RandomInner = exports.isRandomInner = exports.Random = exports.isRandom = void 0;
+exports.RandomInner = exports.Random = void 0;
+exports.isRandom = isRandom;
+exports.isRandomInner = isRandomInner;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -9,7 +11,6 @@ const structs_2 = require("../versioned/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Random =============================== */
 function isRandom(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::random::Random"; }
-exports.isRandom = isRandom;
 class Random {
     constructor(typeArgs, fields) {
         this.$typeName = Random.$typeName;
@@ -73,7 +74,6 @@ Random.$typeName = "0x2::random::Random";
 Random.$numTypeParams = 0;
 /* ============================== RandomInner =============================== */
 function isRandomInner(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::random::RandomInner"; }
-exports.isRandomInner = isRandomInner;
 class RandomInner {
     constructor(typeArgs, fields) {
         this.$typeName = RandomInner.$typeName;

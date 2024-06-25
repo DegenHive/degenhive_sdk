@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StorageFund = exports.isStorageFund = void 0;
+exports.StorageFund = void 0;
+exports.isStorageFund = isStorageFund;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -9,7 +10,6 @@ const structs_2 = require("../../0x2/sui/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StorageFund =============================== */
 function isStorageFund(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::storage_fund::StorageFund"; }
-exports.isStorageFund = isStorageFund;
 class StorageFund {
     constructor(typeArgs, fields) {
         this.$typeName = StorageFund.$typeName;

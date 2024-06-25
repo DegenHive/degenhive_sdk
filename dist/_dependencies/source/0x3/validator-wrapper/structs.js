@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorWrapper = exports.isValidatorWrapper = void 0;
+exports.ValidatorWrapper = void 0;
+exports.isValidatorWrapper = isValidatorWrapper;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/versioned/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ValidatorWrapper =============================== */
 function isValidatorWrapper(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_wrapper::ValidatorWrapper"; }
-exports.isValidatorWrapper = isValidatorWrapper;
 class ValidatorWrapper {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorWrapper.$typeName;

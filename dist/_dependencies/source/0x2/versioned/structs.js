@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Versioned = exports.isVersioned = exports.VersionChangeCap = exports.isVersionChangeCap = void 0;
+exports.Versioned = exports.VersionChangeCap = void 0;
+exports.isVersionChangeCap = isVersionChangeCap;
+exports.isVersioned = isVersioned;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VersionChangeCap =============================== */
 function isVersionChangeCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::versioned::VersionChangeCap"; }
-exports.isVersionChangeCap = isVersionChangeCap;
 class VersionChangeCap {
     constructor(typeArgs, fields) {
         this.$typeName = VersionChangeCap.$typeName;
@@ -71,7 +72,6 @@ VersionChangeCap.$typeName = "0x2::versioned::VersionChangeCap";
 VersionChangeCap.$numTypeParams = 0;
 /* ============================== Versioned =============================== */
 function isVersioned(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::versioned::Versioned"; }
-exports.isVersioned = isVersioned;
 class Versioned {
     constructor(typeArgs, fields) {
         this.$typeName = Versioned.$typeName;

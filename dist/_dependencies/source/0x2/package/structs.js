@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UpgradeTicket = exports.isUpgradeTicket = exports.UpgradeReceipt = exports.isUpgradeReceipt = exports.UpgradeCap = exports.isUpgradeCap = exports.Publisher = exports.isPublisher = void 0;
+exports.UpgradeTicket = exports.UpgradeReceipt = exports.UpgradeCap = exports.Publisher = void 0;
+exports.isPublisher = isPublisher;
+exports.isUpgradeCap = isUpgradeCap;
+exports.isUpgradeReceipt = isUpgradeReceipt;
+exports.isUpgradeTicket = isUpgradeTicket;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -9,7 +13,6 @@ const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Publisher =============================== */
 function isPublisher(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::Publisher"; }
-exports.isPublisher = isPublisher;
 class Publisher {
     constructor(typeArgs, fields) {
         this.$typeName = Publisher.$typeName;
@@ -75,7 +78,6 @@ Publisher.$typeName = "0x2::package::Publisher";
 Publisher.$numTypeParams = 0;
 /* ============================== UpgradeCap =============================== */
 function isUpgradeCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeCap"; }
-exports.isUpgradeCap = isUpgradeCap;
 class UpgradeCap {
     constructor(typeArgs, fields) {
         this.$typeName = UpgradeCap.$typeName;
@@ -143,7 +145,6 @@ UpgradeCap.$typeName = "0x2::package::UpgradeCap";
 UpgradeCap.$numTypeParams = 0;
 /* ============================== UpgradeReceipt =============================== */
 function isUpgradeReceipt(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeReceipt"; }
-exports.isUpgradeReceipt = isUpgradeReceipt;
 class UpgradeReceipt {
     constructor(typeArgs, fields) {
         this.$typeName = UpgradeReceipt.$typeName;
@@ -207,7 +208,6 @@ UpgradeReceipt.$typeName = "0x2::package::UpgradeReceipt";
 UpgradeReceipt.$numTypeParams = 0;
 /* ============================== UpgradeTicket =============================== */
 function isUpgradeTicket(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeTicket"; }
-exports.isUpgradeTicket = isUpgradeTicket;
 class UpgradeTicket {
     constructor(typeArgs, fields) {
         this.$typeName = UpgradeTicket.$typeName;

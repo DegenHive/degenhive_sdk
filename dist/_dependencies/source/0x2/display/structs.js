@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VersionUpdated = exports.isVersionUpdated = exports.DisplayCreated = exports.isDisplayCreated = exports.Display = exports.isDisplay = void 0;
+exports.VersionUpdated = exports.DisplayCreated = exports.Display = void 0;
+exports.isDisplay = isDisplay;
+exports.isDisplayCreated = isDisplayCreated;
+exports.isVersionUpdated = isVersionUpdated;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
@@ -9,7 +12,6 @@ const structs_3 = require("../vec-map/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Display =============================== */
 function isDisplay(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::Display<"); }
-exports.isDisplay = isDisplay;
 class Display {
     constructor(typeArgs, fields) {
         this.$typeName = Display.$typeName;
@@ -77,7 +79,6 @@ Display.$typeName = "0x2::display::Display";
 Display.$numTypeParams = 1;
 /* ============================== DisplayCreated =============================== */
 function isDisplayCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::DisplayCreated<"); }
-exports.isDisplayCreated = isDisplayCreated;
 class DisplayCreated {
     constructor(typeArgs, fields) {
         this.$typeName = DisplayCreated.$typeName;
@@ -141,7 +142,6 @@ DisplayCreated.$typeName = "0x2::display::DisplayCreated";
 DisplayCreated.$numTypeParams = 1;
 /* ============================== VersionUpdated =============================== */
 function isVersionUpdated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::VersionUpdated<"); }
-exports.isVersionUpdated = isVersionUpdated;
 class VersionUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = VersionUpdated.$typeName;

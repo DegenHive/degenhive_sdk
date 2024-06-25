@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VerifiedID = exports.isVerifiedID = void 0;
+exports.VerifiedID = void 0;
+exports.isVerifiedID = isVerifiedID;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
@@ -8,7 +9,6 @@ const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VerifiedID =============================== */
 function isVerifiedID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::zklogin_verified_id::VerifiedID"; }
-exports.isVerifiedID = isVerifiedID;
 class VerifiedID {
     constructor(typeArgs, fields) {
         this.$typeName = VerifiedID.$typeName;

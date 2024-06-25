@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorOperationCap = exports.isValidatorOperationCap = exports.UnverifiedValidatorOperationCap = exports.isUnverifiedValidatorOperationCap = void 0;
+exports.ValidatorOperationCap = exports.UnverifiedValidatorOperationCap = void 0;
+exports.isUnverifiedValidatorOperationCap = isUnverifiedValidatorOperationCap;
+exports.isValidatorOperationCap = isValidatorOperationCap;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== UnverifiedValidatorOperationCap =============================== */
 function isUnverifiedValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_cap::UnverifiedValidatorOperationCap"; }
-exports.isUnverifiedValidatorOperationCap = isUnverifiedValidatorOperationCap;
 class UnverifiedValidatorOperationCap {
     constructor(typeArgs, fields) {
         this.$typeName = UnverifiedValidatorOperationCap.$typeName;
@@ -71,7 +72,6 @@ UnverifiedValidatorOperationCap.$typeName = "0x3::validator_cap::UnverifiedValid
 UnverifiedValidatorOperationCap.$numTypeParams = 0;
 /* ============================== ValidatorOperationCap =============================== */
 function isValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_cap::ValidatorOperationCap"; }
-exports.isValidatorOperationCap = isValidatorOperationCap;
 class ValidatorOperationCap {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorOperationCap.$typeName;

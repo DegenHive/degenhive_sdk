@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SUI = exports.isSUI = void 0;
+exports.SUI = void 0;
+exports.isSUI = isSUI;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== SUI =============================== */
 function isSUI(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::sui::SUI"; }
-exports.isSUI = isSUI;
 class SUI {
     constructor(typeArgs, fields) {
         this.$typeName = SUI.$typeName;

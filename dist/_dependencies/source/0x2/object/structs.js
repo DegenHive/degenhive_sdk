@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UID = exports.isUID = exports.ID = exports.isID = void 0;
+exports.UID = exports.ID = void 0;
+exports.isID = isID;
+exports.isUID = isUID;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ID =============================== */
 function isID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::object::ID"; }
-exports.isID = isID;
 class ID {
     constructor(typeArgs, fields) {
         this.$typeName = ID.$typeName;
@@ -68,7 +69,6 @@ ID.$typeName = "0x2::object::ID";
 ID.$numTypeParams = 0;
 /* ============================== UID =============================== */
 function isUID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::object::UID"; }
-exports.isUID = isUID;
 class UID {
     constructor(typeArgs, fields) {
         this.$typeName = UID.$typeName;

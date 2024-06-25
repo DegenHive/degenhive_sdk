@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObjectBag = exports.isObjectBag = void 0;
+exports.ObjectBag = void 0;
+exports.isObjectBag = isObjectBag;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ObjectBag =============================== */
 function isObjectBag(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::object_bag::ObjectBag"; }
-exports.isObjectBag = isObjectBag;
 class ObjectBag {
     constructor(typeArgs, fields) {
         this.$typeName = ObjectBag.$typeName;

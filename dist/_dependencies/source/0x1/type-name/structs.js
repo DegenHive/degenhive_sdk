@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TypeName = exports.isTypeName = void 0;
+exports.TypeName = void 0;
+exports.isTypeName = isTypeName;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../ascii/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== TypeName =============================== */
 function isTypeName(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::type_name::TypeName"; }
-exports.isTypeName = isTypeName;
 class TypeName {
     constructor(typeArgs, fields) {
         this.$typeName = TypeName.$typeName;

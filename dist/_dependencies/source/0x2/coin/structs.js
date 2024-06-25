@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TreasuryCap = exports.isTreasuryCap = exports.RegulatedCoinMetadata = exports.isRegulatedCoinMetadata = exports.DenyCap = exports.isDenyCap = exports.CurrencyCreated = exports.isCurrencyCreated = exports.CoinMetadata = exports.isCoinMetadata = exports.Coin = exports.isCoin = void 0;
+exports.TreasuryCap = exports.RegulatedCoinMetadata = exports.DenyCap = exports.CurrencyCreated = exports.CoinMetadata = exports.Coin = void 0;
+exports.isCoin = isCoin;
+exports.isCoinMetadata = isCoinMetadata;
+exports.isCurrencyCreated = isCurrencyCreated;
+exports.isDenyCap = isDenyCap;
+exports.isRegulatedCoinMetadata = isRegulatedCoinMetadata;
+exports.isTreasuryCap = isTreasuryCap;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/ascii/structs");
@@ -12,7 +18,6 @@ const structs_6 = require("../url/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Coin =============================== */
 function isCoin(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::Coin<"); }
-exports.isCoin = isCoin;
 class Coin {
     constructor(typeArgs, fields) {
         this.$typeName = Coin.$typeName;
@@ -78,7 +83,6 @@ Coin.$typeName = "0x2::coin::Coin";
 Coin.$numTypeParams = 1;
 /* ============================== CoinMetadata =============================== */
 function isCoinMetadata(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::CoinMetadata<"); }
-exports.isCoinMetadata = isCoinMetadata;
 class CoinMetadata {
     constructor(typeArgs, fields) {
         this.$typeName = CoinMetadata.$typeName;
@@ -152,7 +156,6 @@ CoinMetadata.$typeName = "0x2::coin::CoinMetadata";
 CoinMetadata.$numTypeParams = 1;
 /* ============================== CurrencyCreated =============================== */
 function isCurrencyCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::CurrencyCreated<"); }
-exports.isCurrencyCreated = isCurrencyCreated;
 class CurrencyCreated {
     constructor(typeArgs, fields) {
         this.$typeName = CurrencyCreated.$typeName;
@@ -216,7 +219,6 @@ CurrencyCreated.$typeName = "0x2::coin::CurrencyCreated";
 CurrencyCreated.$numTypeParams = 1;
 /* ============================== DenyCap =============================== */
 function isDenyCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::DenyCap<"); }
-exports.isDenyCap = isDenyCap;
 class DenyCap {
     constructor(typeArgs, fields) {
         this.$typeName = DenyCap.$typeName;
@@ -280,7 +282,6 @@ DenyCap.$typeName = "0x2::coin::DenyCap";
 DenyCap.$numTypeParams = 1;
 /* ============================== RegulatedCoinMetadata =============================== */
 function isRegulatedCoinMetadata(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::RegulatedCoinMetadata<"); }
-exports.isRegulatedCoinMetadata = isRegulatedCoinMetadata;
 class RegulatedCoinMetadata {
     constructor(typeArgs, fields) {
         this.$typeName = RegulatedCoinMetadata.$typeName;
@@ -348,7 +349,6 @@ RegulatedCoinMetadata.$typeName = "0x2::coin::RegulatedCoinMetadata";
 RegulatedCoinMetadata.$numTypeParams = 1;
 /* ============================== TreasuryCap =============================== */
 function isTreasuryCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::coin::TreasuryCap<"); }
-exports.isTreasuryCap = isTreasuryCap;
 class TreasuryCap {
     constructor(typeArgs, fields) {
         this.$typeName = TreasuryCap.$typeName;

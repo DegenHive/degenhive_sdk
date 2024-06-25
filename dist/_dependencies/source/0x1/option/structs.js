@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Option = exports.isOption = void 0;
+exports.Option = void 0;
+exports.isOption = isOption;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Option =============================== */
 function isOption(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x1::option::Option<"); }
-exports.isOption = isOption;
 class Option {
     ;
     constructor(typeArgs, fields) {

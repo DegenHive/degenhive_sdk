@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Node = exports.isNode = exports.LinkedTable = exports.isLinkedTable = void 0;
+exports.Node = exports.LinkedTable = void 0;
+exports.isLinkedTable = isLinkedTable;
+exports.isNode = isNode;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
@@ -8,7 +10,6 @@ const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== LinkedTable =============================== */
 function isLinkedTable(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::linked_table::LinkedTable<"); }
-exports.isLinkedTable = isLinkedTable;
 class LinkedTable {
     constructor(typeArgs, fields) {
         this.$typeName = LinkedTable.$typeName;
@@ -78,7 +79,6 @@ LinkedTable.$typeName = "0x2::linked_table::LinkedTable";
 LinkedTable.$numTypeParams = 2;
 /* ============================== Node =============================== */
 function isNode(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::linked_table::Node<"); }
-exports.isNode = isNode;
 class Node {
     constructor(typeArgs, fields) {
         this.$typeName = Node.$typeName;

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FixedPoint32 = exports.isFixedPoint32 = void 0;
+exports.FixedPoint32 = void 0;
+exports.isFixedPoint32 = isFixedPoint32;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== FixedPoint32 =============================== */
 function isFixedPoint32(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::fixed_point32::FixedPoint32"; }
-exports.isFixedPoint32 = isFixedPoint32;
 class FixedPoint32 {
     constructor(typeArgs, fields) {
         this.$typeName = FixedPoint32.$typeName;

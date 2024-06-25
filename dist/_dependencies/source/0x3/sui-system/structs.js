@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SuiSystemState = exports.isSuiSystemState = void 0;
+exports.SuiSystemState = void 0;
+exports.isSuiSystemState = isSuiSystemState;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== SuiSystemState =============================== */
 function isSuiSystemState(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system::SuiSystemState"; }
-exports.isSuiSystemState = isSuiSystemState;
 class SuiSystemState {
     constructor(typeArgs, fields) {
         this.$typeName = SuiSystemState.$typeName;

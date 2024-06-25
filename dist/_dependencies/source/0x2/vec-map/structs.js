@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VecMap = exports.isVecMap = exports.Entry = exports.isEntry = void 0;
+exports.VecMap = exports.Entry = void 0;
+exports.isEntry = isEntry;
+exports.isVecMap = isVecMap;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Entry =============================== */
 function isEntry(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::vec_map::Entry<"); }
-exports.isEntry = isEntry;
 class Entry {
     constructor(typeArgs, fields) {
         this.$typeName = Entry.$typeName;
@@ -73,7 +74,6 @@ Entry.$typeName = "0x2::vec_map::Entry";
 Entry.$numTypeParams = 2;
 /* ============================== VecMap =============================== */
 function isVecMap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::vec_map::VecMap<"); }
-exports.isVecMap = isVecMap;
 class VecMap {
     constructor(typeArgs, fields) {
         this.$typeName = VecMap.$typeName;

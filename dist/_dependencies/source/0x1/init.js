@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const ascii = require("./ascii/structs");
 const bitVector = require("./bit-vector/structs");
 const fixedPoint32 = require("./fixed-point32/structs");
@@ -16,4 +16,3 @@ function registerClasses(loader) {
     loader.register(string.String);
     loader.register(typeName.TypeName);
 }
-exports.registerClasses = registerClasses;

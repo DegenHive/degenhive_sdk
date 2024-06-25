@@ -1,7 +1,43 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProposalDeleted = exports.isProposalDeleted = exports.Proposal = exports.isProposal = exports.PoolsGovernorUpdated = exports.isPoolsGovernorUpdated = exports.PoolsGovernor = exports.isPoolsGovernor = exports.PoolHiveNecatarPointsUpdated = exports.isPoolHiveNecatarPointsUpdated = exports.PoolHiveKrafted = exports.isPoolHiveKrafted = exports.PoolHive = exports.isPoolHive = exports.PoolGovernorBuzzes = exports.isPoolGovernorBuzzes = exports.NewProposalKrafted = exports.isNewProposalKrafted = exports.NewGovernorBuzz = exports.isNewGovernorBuzz = exports.MoreFruitsAdded = exports.isMoreFruitsAdded = exports.LpBeeBox = exports.isLpBeeBox = exports.KraftedGemsForPoolHive = exports.isKraftedGemsForPoolHive = exports.GovernorBuzzDestroyed = exports.isGovernorBuzzDestroyed = exports.GovernorBuzz = exports.isGovernorBuzz = exports.GemsSetForNewHiveCycle = exports.isGemsSetForNewHiveCycle = exports.GemsSchedule = exports.isGemsSchedule = exports.GemsPerEpochUpdated = exports.isGemsPerEpochUpdated = exports.FruitLife = exports.isFruitLife = exports.Dialogues = exports.isDialogues = exports.Dialogue = exports.isDialogue = exports.BeeFruitKraftedForPoolHive = exports.isBeeFruitKraftedForPoolHive = exports.BeeFruitDestroyed = exports.isBeeFruitDestroyed = exports.BeeFruit = exports.isBeeFruit = exports.AddedToBeeBox = exports.isAddedToBeeBox = void 0;
-exports.VoteConfig = exports.isVoteConfig = exports.VoteCasted = exports.isVoteCasted = exports.UserUpvotedGovernanceBuzz = exports.isUserUpvotedGovernanceBuzz = exports.UserUnLikedGovernorBuzz = exports.isUserUnLikedGovernorBuzz = exports.UserLikedGovernorBuzz = exports.isUserLikedGovernorBuzz = exports.UserBuzzOnGovernanceBuzzDetected = exports.isUserBuzzOnGovernanceBuzzDetected = exports.UnlockFromBeeBox = exports.isUnlockFromBeeBox = exports.UnbondingFromBeeBox = exports.isUnbondingFromBeeBox = exports.SystemBuzz = exports.isSystemBuzz = exports.RipeFruitsClaimed = exports.isRipeFruitsClaimed = exports.ProposalExecuted = exports.isProposalExecuted = exports.ProposalEvaluated = exports.isProposalEvaluated = void 0;
+exports.VoteConfig = exports.VoteCasted = exports.UserUpvotedGovernanceBuzz = exports.UserUnLikedGovernorBuzz = exports.UserLikedGovernorBuzz = exports.UserBuzzOnGovernanceBuzzDetected = exports.UnlockFromBeeBox = exports.UnbondingFromBeeBox = exports.SystemBuzz = exports.RipeFruitsClaimed = exports.ProposalExecuted = exports.ProposalEvaluated = exports.ProposalDeleted = exports.Proposal = exports.PoolsGovernorUpdated = exports.PoolsGovernor = exports.PoolHiveNecatarPointsUpdated = exports.PoolHiveKrafted = exports.PoolHive = exports.PoolGovernorBuzzes = exports.NewProposalKrafted = exports.NewGovernorBuzz = exports.MoreFruitsAdded = exports.LpBeeBox = exports.KraftedGemsForPoolHive = exports.GovernorBuzzDestroyed = exports.GovernorBuzz = exports.GemsSetForNewHiveCycle = exports.GemsSchedule = exports.GemsPerEpochUpdated = exports.FruitLife = exports.Dialogues = exports.Dialogue = exports.BeeFruitKraftedForPoolHive = exports.BeeFruitDestroyed = exports.BeeFruit = exports.AddedToBeeBox = void 0;
+exports.isAddedToBeeBox = isAddedToBeeBox;
+exports.isBeeFruit = isBeeFruit;
+exports.isBeeFruitDestroyed = isBeeFruitDestroyed;
+exports.isBeeFruitKraftedForPoolHive = isBeeFruitKraftedForPoolHive;
+exports.isDialogue = isDialogue;
+exports.isDialogues = isDialogues;
+exports.isFruitLife = isFruitLife;
+exports.isGemsPerEpochUpdated = isGemsPerEpochUpdated;
+exports.isGemsSchedule = isGemsSchedule;
+exports.isGemsSetForNewHiveCycle = isGemsSetForNewHiveCycle;
+exports.isGovernorBuzz = isGovernorBuzz;
+exports.isGovernorBuzzDestroyed = isGovernorBuzzDestroyed;
+exports.isKraftedGemsForPoolHive = isKraftedGemsForPoolHive;
+exports.isLpBeeBox = isLpBeeBox;
+exports.isMoreFruitsAdded = isMoreFruitsAdded;
+exports.isNewGovernorBuzz = isNewGovernorBuzz;
+exports.isNewProposalKrafted = isNewProposalKrafted;
+exports.isPoolGovernorBuzzes = isPoolGovernorBuzzes;
+exports.isPoolHive = isPoolHive;
+exports.isPoolHiveKrafted = isPoolHiveKrafted;
+exports.isPoolHiveNecatarPointsUpdated = isPoolHiveNecatarPointsUpdated;
+exports.isPoolsGovernor = isPoolsGovernor;
+exports.isPoolsGovernorUpdated = isPoolsGovernorUpdated;
+exports.isProposal = isProposal;
+exports.isProposalDeleted = isProposalDeleted;
+exports.isProposalEvaluated = isProposalEvaluated;
+exports.isProposalExecuted = isProposalExecuted;
+exports.isRipeFruitsClaimed = isRipeFruitsClaimed;
+exports.isSystemBuzz = isSystemBuzz;
+exports.isUnbondingFromBeeBox = isUnbondingFromBeeBox;
+exports.isUnlockFromBeeBox = isUnlockFromBeeBox;
+exports.isUserBuzzOnGovernanceBuzzDetected = isUserBuzzOnGovernanceBuzzDetected;
+exports.isUserLikedGovernorBuzz = isUserLikedGovernorBuzz;
+exports.isUserUnLikedGovernorBuzz = isUserUnLikedGovernorBuzz;
+exports.isUserUpvotedGovernanceBuzz = isUserUpvotedGovernanceBuzz;
+exports.isVoteCasted = isVoteCasted;
+exports.isVoteConfig = isVoteConfig;
 const reified = require("../../_framework/reified");
 const structs_1 = require("../../degen-hive-profile/hive-profile/structs");
 const structs_2 = require("../../_dependencies/source/0x1/ascii/structs");
@@ -19,7 +55,6 @@ const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== AddedToBeeBox =============================== */
 function isAddedToBeeBox(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::AddedToBeeBox"; }
-exports.isAddedToBeeBox = isAddedToBeeBox;
 class AddedToBeeBox {
     constructor(typeArgs, fields) {
         this.$typeName = AddedToBeeBox.$typeName;
@@ -91,7 +126,6 @@ AddedToBeeBox.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de
 AddedToBeeBox.$numTypeParams = 0;
 /* ============================== BeeFruit =============================== */
 function isBeeFruit(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::BeeFruit<"); }
-exports.isBeeFruit = isBeeFruit;
 class BeeFruit {
     constructor(typeArgs, fields) {
         this.$typeName = BeeFruit.$typeName;
@@ -169,7 +203,6 @@ BeeFruit.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923
 BeeFruit.$numTypeParams = 1;
 /* ============================== BeeFruitDestroyed =============================== */
 function isBeeFruitDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::BeeFruitDestroyed"; }
-exports.isBeeFruitDestroyed = isBeeFruitDestroyed;
 class BeeFruitDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = BeeFruitDestroyed.$typeName;
@@ -235,7 +268,6 @@ BeeFruitDestroyed.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f88
 BeeFruitDestroyed.$numTypeParams = 0;
 /* ============================== BeeFruitKraftedForPoolHive =============================== */
 function isBeeFruitKraftedForPoolHive(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::BeeFruitKraftedForPoolHive"; }
-exports.isBeeFruitKraftedForPoolHive = isBeeFruitKraftedForPoolHive;
 class BeeFruitKraftedForPoolHive {
     constructor(typeArgs, fields) {
         this.$typeName = BeeFruitKraftedForPoolHive.$typeName;
@@ -301,7 +333,6 @@ BeeFruitKraftedForPoolHive.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d
 BeeFruitKraftedForPoolHive.$numTypeParams = 0;
 /* ============================== Dialogue =============================== */
 function isDialogue(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Dialogue"; }
-exports.isDialogue = isDialogue;
 class Dialogue {
     constructor(typeArgs, fields) {
         this.$typeName = Dialogue.$typeName;
@@ -365,7 +396,6 @@ Dialogue.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923
 Dialogue.$numTypeParams = 0;
 /* ============================== Dialogues =============================== */
 function isDialogues(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Dialogues"; }
-exports.isDialogues = isDialogues;
 class Dialogues {
     constructor(typeArgs, fields) {
         this.$typeName = Dialogues.$typeName;
@@ -427,7 +457,6 @@ Dialogues.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de6092
 Dialogues.$numTypeParams = 0;
 /* ============================== FruitLife =============================== */
 function isFruitLife(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::FruitLife"; }
-exports.isFruitLife = isFruitLife;
 class FruitLife {
     constructor(typeArgs, fields) {
         this.$typeName = FruitLife.$typeName;
@@ -493,7 +522,6 @@ FruitLife.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de6092
 FruitLife.$numTypeParams = 0;
 /* ============================== GemsPerEpochUpdated =============================== */
 function isGemsPerEpochUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GemsPerEpochUpdated"; }
-exports.isGemsPerEpochUpdated = isGemsPerEpochUpdated;
 class GemsPerEpochUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = GemsPerEpochUpdated.$typeName;
@@ -555,7 +583,6 @@ GemsPerEpochUpdated.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f
 GemsPerEpochUpdated.$numTypeParams = 0;
 /* ============================== GemsSchedule =============================== */
 function isGemsSchedule(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GemsSchedule"; }
-exports.isGemsSchedule = isGemsSchedule;
 class GemsSchedule {
     constructor(typeArgs, fields) {
         this.$typeName = GemsSchedule.$typeName;
@@ -621,7 +648,6 @@ GemsSchedule.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de6
 GemsSchedule.$numTypeParams = 0;
 /* ============================== GemsSetForNewHiveCycle =============================== */
 function isGemsSetForNewHiveCycle(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GemsSetForNewHiveCycle"; }
-exports.isGemsSetForNewHiveCycle = isGemsSetForNewHiveCycle;
 class GemsSetForNewHiveCycle {
     constructor(typeArgs, fields) {
         this.$typeName = GemsSetForNewHiveCycle.$typeName;
@@ -689,7 +715,6 @@ GemsSetForNewHiveCycle.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d3671
 GemsSetForNewHiveCycle.$numTypeParams = 0;
 /* ============================== GovernorBuzz =============================== */
 function isGovernorBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzz"; }
-exports.isGovernorBuzz = isGovernorBuzz;
 class GovernorBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = GovernorBuzz.$typeName;
@@ -759,7 +784,6 @@ GovernorBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de6
 GovernorBuzz.$numTypeParams = 0;
 /* ============================== GovernorBuzzDestroyed =============================== */
 function isGovernorBuzzDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::GovernorBuzzDestroyed"; }
-exports.isGovernorBuzzDestroyed = isGovernorBuzzDestroyed;
 class GovernorBuzzDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = GovernorBuzzDestroyed.$typeName;
@@ -827,7 +851,6 @@ GovernorBuzzDestroyed.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d36710
 GovernorBuzzDestroyed.$numTypeParams = 0;
 /* ============================== KraftedGemsForPoolHive =============================== */
 function isKraftedGemsForPoolHive(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::KraftedGemsForPoolHive"; }
-exports.isKraftedGemsForPoolHive = isKraftedGemsForPoolHive;
 class KraftedGemsForPoolHive {
     constructor(typeArgs, fields) {
         this.$typeName = KraftedGemsForPoolHive.$typeName;
@@ -899,7 +922,6 @@ KraftedGemsForPoolHive.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d3671
 KraftedGemsForPoolHive.$numTypeParams = 0;
 /* ============================== LpBeeBox =============================== */
 function isLpBeeBox(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::LpBeeBox<"); }
-exports.isLpBeeBox = isLpBeeBox;
 class LpBeeBox {
     constructor(typeArgs, fields) {
         this.$typeName = LpBeeBox.$typeName;
@@ -973,7 +995,6 @@ LpBeeBox.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923
 LpBeeBox.$numTypeParams = 1;
 /* ============================== MoreFruitsAdded =============================== */
 function isMoreFruitsAdded(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::MoreFruitsAdded"; }
-exports.isMoreFruitsAdded = isMoreFruitsAdded;
 class MoreFruitsAdded {
     constructor(typeArgs, fields) {
         this.$typeName = MoreFruitsAdded.$typeName;
@@ -1045,7 +1066,6 @@ MoreFruitsAdded.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824
 MoreFruitsAdded.$numTypeParams = 0;
 /* ============================== NewGovernorBuzz =============================== */
 function isNewGovernorBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewGovernorBuzz"; }
-exports.isNewGovernorBuzz = isNewGovernorBuzz;
 class NewGovernorBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = NewGovernorBuzz.$typeName;
@@ -1113,7 +1133,6 @@ NewGovernorBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824
 NewGovernorBuzz.$numTypeParams = 0;
 /* ============================== NewProposalKrafted =============================== */
 function isNewProposalKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::NewProposalKrafted"; }
-exports.isNewProposalKrafted = isNewProposalKrafted;
 class NewProposalKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = NewProposalKrafted.$typeName;
@@ -1203,7 +1222,6 @@ NewProposalKrafted.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8
 NewProposalKrafted.$numTypeParams = 0;
 /* ============================== PoolGovernorBuzzes =============================== */
 function isPoolGovernorBuzzes(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolGovernorBuzzes"; }
-exports.isPoolGovernorBuzzes = isPoolGovernorBuzzes;
 class PoolGovernorBuzzes {
     constructor(typeArgs, fields) {
         this.$typeName = PoolGovernorBuzzes.$typeName;
@@ -1269,7 +1287,6 @@ PoolGovernorBuzzes.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8
 PoolGovernorBuzzes.$numTypeParams = 0;
 /* ============================== PoolHive =============================== */
 function isPoolHive(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolHive<"); }
-exports.isPoolHive = isPoolHive;
 class PoolHive {
     constructor(typeArgs, fields) {
         this.$typeName = PoolHive.$typeName;
@@ -1353,7 +1370,6 @@ PoolHive.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923
 PoolHive.$numTypeParams = 1;
 /* ============================== PoolHiveKrafted =============================== */
 function isPoolHiveKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolHiveKrafted"; }
-exports.isPoolHiveKrafted = isPoolHiveKrafted;
 class PoolHiveKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = PoolHiveKrafted.$typeName;
@@ -1421,7 +1437,6 @@ PoolHiveKrafted.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824
 PoolHiveKrafted.$numTypeParams = 0;
 /* ============================== PoolHiveNecatarPointsUpdated =============================== */
 function isPoolHiveNecatarPointsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolHiveNecatarPointsUpdated"; }
-exports.isPoolHiveNecatarPointsUpdated = isPoolHiveNecatarPointsUpdated;
 class PoolHiveNecatarPointsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = PoolHiveNecatarPointsUpdated.$typeName;
@@ -1487,7 +1502,6 @@ PoolHiveNecatarPointsUpdated.$typeName = "0x6f845274929daac791f66dbde3f7369b5e65
 PoolHiveNecatarPointsUpdated.$numTypeParams = 0;
 /* ============================== PoolsGovernor =============================== */
 function isPoolsGovernor(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolsGovernor"; }
-exports.isPoolsGovernor = isPoolsGovernor;
 class PoolsGovernor {
     constructor(typeArgs, fields) {
         this.$typeName = PoolsGovernor.$typeName;
@@ -1575,7 +1589,6 @@ PoolsGovernor.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de
 PoolsGovernor.$numTypeParams = 0;
 /* ============================== PoolsGovernorUpdated =============================== */
 function isPoolsGovernorUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::PoolsGovernorUpdated"; }
-exports.isPoolsGovernorUpdated = isPoolsGovernorUpdated;
 class PoolsGovernorUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = PoolsGovernorUpdated.$typeName;
@@ -1651,7 +1664,6 @@ PoolsGovernorUpdated.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104
 PoolsGovernorUpdated.$numTypeParams = 0;
 /* ============================== Proposal =============================== */
 function isProposal(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::Proposal"; }
-exports.isProposal = isProposal;
 class Proposal {
     constructor(typeArgs, fields) {
         this.$typeName = Proposal.$typeName;
@@ -1749,7 +1761,6 @@ Proposal.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923
 Proposal.$numTypeParams = 0;
 /* ============================== ProposalDeleted =============================== */
 function isProposalDeleted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::ProposalDeleted"; }
-exports.isProposalDeleted = isProposalDeleted;
 class ProposalDeleted {
     constructor(typeArgs, fields) {
         this.$typeName = ProposalDeleted.$typeName;
@@ -1817,7 +1828,6 @@ ProposalDeleted.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824
 ProposalDeleted.$numTypeParams = 0;
 /* ============================== ProposalEvaluated =============================== */
 function isProposalEvaluated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::ProposalEvaluated"; }
-exports.isProposalEvaluated = isProposalEvaluated;
 class ProposalEvaluated {
     constructor(typeArgs, fields) {
         this.$typeName = ProposalEvaluated.$typeName;
@@ -1893,7 +1903,6 @@ ProposalEvaluated.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f88
 ProposalEvaluated.$numTypeParams = 0;
 /* ============================== ProposalExecuted =============================== */
 function isProposalExecuted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::ProposalExecuted"; }
-exports.isProposalExecuted = isProposalExecuted;
 class ProposalExecuted {
     constructor(typeArgs, fields) {
         this.$typeName = ProposalExecuted.$typeName;
@@ -1959,7 +1968,6 @@ ProposalExecuted.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f882
 ProposalExecuted.$numTypeParams = 0;
 /* ============================== RipeFruitsClaimed =============================== */
 function isRipeFruitsClaimed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::RipeFruitsClaimed<"); }
-exports.isRipeFruitsClaimed = isRipeFruitsClaimed;
 class RipeFruitsClaimed {
     constructor(typeArgs, fields) {
         this.$typeName = RipeFruitsClaimed.$typeName;
@@ -2033,7 +2041,6 @@ RipeFruitsClaimed.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f88
 RipeFruitsClaimed.$numTypeParams = 1;
 /* ============================== SystemBuzz =============================== */
 function isSystemBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::SystemBuzz"; }
-exports.isSystemBuzz = isSystemBuzz;
 class SystemBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = SystemBuzz.$typeName;
@@ -2097,7 +2104,6 @@ SystemBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de609
 SystemBuzz.$numTypeParams = 0;
 /* ============================== UnbondingFromBeeBox =============================== */
 function isUnbondingFromBeeBox(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UnbondingFromBeeBox"; }
-exports.isUnbondingFromBeeBox = isUnbondingFromBeeBox;
 class UnbondingFromBeeBox {
     constructor(typeArgs, fields) {
         this.$typeName = UnbondingFromBeeBox.$typeName;
@@ -2169,7 +2175,6 @@ UnbondingFromBeeBox.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f
 UnbondingFromBeeBox.$numTypeParams = 0;
 /* ============================== UnlockFromBeeBox =============================== */
 function isUnlockFromBeeBox(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UnlockFromBeeBox"; }
-exports.isUnlockFromBeeBox = isUnlockFromBeeBox;
 class UnlockFromBeeBox {
     constructor(typeArgs, fields) {
         this.$typeName = UnlockFromBeeBox.$typeName;
@@ -2241,7 +2246,6 @@ UnlockFromBeeBox.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f882
 UnlockFromBeeBox.$numTypeParams = 0;
 /* ============================== UserBuzzOnGovernanceBuzzDetected =============================== */
 function isUserBuzzOnGovernanceBuzzDetected(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserBuzzOnGovernanceBuzzDetected"; }
-exports.isUserBuzzOnGovernanceBuzzDetected = isUserBuzzOnGovernanceBuzzDetected;
 class UserBuzzOnGovernanceBuzzDetected {
     constructor(typeArgs, fields) {
         this.$typeName = UserBuzzOnGovernanceBuzzDetected.$typeName;
@@ -2311,7 +2315,6 @@ UserBuzzOnGovernanceBuzzDetected.$typeName = "0x6f845274929daac791f66dbde3f7369b
 UserBuzzOnGovernanceBuzzDetected.$numTypeParams = 0;
 /* ============================== UserLikedGovernorBuzz =============================== */
 function isUserLikedGovernorBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserLikedGovernorBuzz"; }
-exports.isUserLikedGovernorBuzz = isUserLikedGovernorBuzz;
 class UserLikedGovernorBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = UserLikedGovernorBuzz.$typeName;
@@ -2377,7 +2380,6 @@ UserLikedGovernorBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d36710
 UserLikedGovernorBuzz.$numTypeParams = 0;
 /* ============================== UserUnLikedGovernorBuzz =============================== */
 function isUserUnLikedGovernorBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUnLikedGovernorBuzz"; }
-exports.isUserUnLikedGovernorBuzz = isUserUnLikedGovernorBuzz;
 class UserUnLikedGovernorBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = UserUnLikedGovernorBuzz.$typeName;
@@ -2443,7 +2445,6 @@ UserUnLikedGovernorBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367
 UserUnLikedGovernorBuzz.$numTypeParams = 0;
 /* ============================== UserUpvotedGovernanceBuzz =============================== */
 function isUserUpvotedGovernanceBuzz(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::UserUpvotedGovernanceBuzz"; }
-exports.isUserUpvotedGovernanceBuzz = isUserUpvotedGovernanceBuzz;
 class UserUpvotedGovernanceBuzz {
     constructor(typeArgs, fields) {
         this.$typeName = UserUpvotedGovernanceBuzz.$typeName;
@@ -2511,7 +2512,6 @@ UserUpvotedGovernanceBuzz.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d3
 UserUpvotedGovernanceBuzz.$numTypeParams = 0;
 /* ============================== VoteCasted =============================== */
 function isVoteCasted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::VoteCasted"; }
-exports.isVoteCasted = isVoteCasted;
 class VoteCasted {
     constructor(typeArgs, fields) {
         this.$typeName = VoteCasted.$typeName;
@@ -2587,7 +2587,6 @@ VoteCasted.$typeName = "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de609
 VoteCasted.$numTypeParams = 0;
 /* ============================== VoteConfig =============================== */
 function isVoteConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x6f845274929daac791f66dbde3f7369b5e652d367104f8824de60923d862847a::dex_dao::VoteConfig"; }
-exports.isVoteConfig = isVoteConfig;
 class VoteConfig {
     constructor(typeArgs, fields) {
         this.$typeName = VoteConfig.$typeName;

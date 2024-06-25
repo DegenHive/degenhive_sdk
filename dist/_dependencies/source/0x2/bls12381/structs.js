@@ -1,12 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Scalar = exports.isScalar = exports.GT = exports.isGT = exports.G2 = exports.isG2 = exports.G1 = exports.isG1 = void 0;
+exports.Scalar = exports.GT = exports.G2 = exports.G1 = void 0;
+exports.isG1 = isG1;
+exports.isG2 = isG2;
+exports.isGT = isGT;
+exports.isScalar = isScalar;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== G1 =============================== */
 function isG1(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bls12381::G1"; }
-exports.isG1 = isG1;
 class G1 {
     constructor(typeArgs, fields) {
         this.$typeName = G1.$typeName;
@@ -68,7 +71,6 @@ G1.$typeName = "0x2::bls12381::G1";
 G1.$numTypeParams = 0;
 /* ============================== G2 =============================== */
 function isG2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bls12381::G2"; }
-exports.isG2 = isG2;
 class G2 {
     constructor(typeArgs, fields) {
         this.$typeName = G2.$typeName;
@@ -130,7 +132,6 @@ G2.$typeName = "0x2::bls12381::G2";
 G2.$numTypeParams = 0;
 /* ============================== GT =============================== */
 function isGT(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bls12381::GT"; }
-exports.isGT = isGT;
 class GT {
     constructor(typeArgs, fields) {
         this.$typeName = GT.$typeName;
@@ -192,7 +193,6 @@ GT.$typeName = "0x2::bls12381::GT";
 GT.$numTypeParams = 0;
 /* ============================== Scalar =============================== */
 function isScalar(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bls12381::Scalar"; }
-exports.isScalar = isScalar;
 class Scalar {
     constructor(typeArgs, fields) {
         this.$typeName = Scalar.$typeName;

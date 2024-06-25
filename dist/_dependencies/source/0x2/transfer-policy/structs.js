@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransferRequest = exports.isTransferRequest = exports.TransferPolicyDestroyed = exports.isTransferPolicyDestroyed = exports.TransferPolicyCreated = exports.isTransferPolicyCreated = exports.TransferPolicyCap = exports.isTransferPolicyCap = exports.TransferPolicy = exports.isTransferPolicy = exports.RuleKey = exports.isRuleKey = void 0;
+exports.TransferRequest = exports.TransferPolicyDestroyed = exports.TransferPolicyCreated = exports.TransferPolicyCap = exports.TransferPolicy = exports.RuleKey = void 0;
+exports.isRuleKey = isRuleKey;
+exports.isTransferPolicy = isTransferPolicy;
+exports.isTransferPolicyCap = isTransferPolicyCap;
+exports.isTransferPolicyCreated = isTransferPolicyCreated;
+exports.isTransferPolicyDestroyed = isTransferPolicyDestroyed;
+exports.isTransferRequest = isTransferRequest;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -12,7 +18,6 @@ const structs_5 = require("../vec-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== RuleKey =============================== */
 function isRuleKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::RuleKey<"); }
-exports.isRuleKey = isRuleKey;
 class RuleKey {
     constructor(typeArgs, fields) {
         this.$typeName = RuleKey.$typeName;
@@ -76,7 +81,6 @@ RuleKey.$typeName = "0x2::transfer_policy::RuleKey";
 RuleKey.$numTypeParams = 1;
 /* ============================== TransferPolicy =============================== */
 function isTransferPolicy(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicy<"); }
-exports.isTransferPolicy = isTransferPolicy;
 class TransferPolicy {
     constructor(typeArgs, fields) {
         this.$typeName = TransferPolicy.$typeName;
@@ -144,7 +148,6 @@ TransferPolicy.$typeName = "0x2::transfer_policy::TransferPolicy";
 TransferPolicy.$numTypeParams = 1;
 /* ============================== TransferPolicyCap =============================== */
 function isTransferPolicyCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyCap<"); }
-exports.isTransferPolicyCap = isTransferPolicyCap;
 class TransferPolicyCap {
     constructor(typeArgs, fields) {
         this.$typeName = TransferPolicyCap.$typeName;
@@ -210,7 +213,6 @@ TransferPolicyCap.$typeName = "0x2::transfer_policy::TransferPolicyCap";
 TransferPolicyCap.$numTypeParams = 1;
 /* ============================== TransferPolicyCreated =============================== */
 function isTransferPolicyCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyCreated<"); }
-exports.isTransferPolicyCreated = isTransferPolicyCreated;
 class TransferPolicyCreated {
     constructor(typeArgs, fields) {
         this.$typeName = TransferPolicyCreated.$typeName;
@@ -274,7 +276,6 @@ TransferPolicyCreated.$typeName = "0x2::transfer_policy::TransferPolicyCreated";
 TransferPolicyCreated.$numTypeParams = 1;
 /* ============================== TransferPolicyDestroyed =============================== */
 function isTransferPolicyDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyDestroyed<"); }
-exports.isTransferPolicyDestroyed = isTransferPolicyDestroyed;
 class TransferPolicyDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = TransferPolicyDestroyed.$typeName;
@@ -338,7 +339,6 @@ TransferPolicyDestroyed.$typeName = "0x2::transfer_policy::TransferPolicyDestroy
 TransferPolicyDestroyed.$numTypeParams = 1;
 /* ============================== TransferRequest =============================== */
 function isTransferRequest(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferRequest<"); }
-exports.isTransferRequest = isTransferRequest;
 class TransferRequest {
     constructor(typeArgs, fields) {
         this.$typeName = TransferRequest.$typeName;

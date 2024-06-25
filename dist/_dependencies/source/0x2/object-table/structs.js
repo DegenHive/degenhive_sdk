@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ObjectTable = exports.isObjectTable = void 0;
+exports.ObjectTable = void 0;
+exports.isObjectTable = isObjectTable;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ObjectTable =============================== */
 function isObjectTable(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::object_table::ObjectTable<"); }
-exports.isObjectTable = isObjectTable;
 class ObjectTable {
     constructor(typeArgs, fields) {
         this.$typeName = ObjectTable.$typeName;

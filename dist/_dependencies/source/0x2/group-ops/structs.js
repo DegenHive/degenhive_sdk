@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Element = exports.isElement = void 0;
+exports.Element = void 0;
+exports.isElement = isElement;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Element =============================== */
 function isElement(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::group_ops::Element<"); }
-exports.isElement = isElement;
 class Element {
     constructor(typeArgs, fields) {
         this.$typeName = Element.$typeName;

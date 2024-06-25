@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Receiving = exports.isReceiving = void 0;
+exports.Receiving = void 0;
+exports.isReceiving = isReceiving;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Receiving =============================== */
 function isReceiving(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer::Receiving<"); }
-exports.isReceiving = isReceiving;
 class Receiving {
     constructor(typeArgs, fields) {
         this.$typeName = Receiving.$typeName;

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VecSet = exports.isVecSet = void 0;
+exports.VecSet = void 0;
+exports.isVecSet = isVecSet;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VecSet =============================== */
 function isVecSet(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::vec_set::VecSet<"); }
-exports.isVecSet = isVecSet;
 class VecSet {
     constructor(typeArgs, fields) {
         this.$typeName = VecSet.$typeName;

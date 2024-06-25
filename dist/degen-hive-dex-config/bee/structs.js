@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BurnCondition = exports.isBurnCondition = exports.Burn = exports.isBurn = exports.BeesUnwrappedToCoin = exports.isBeesUnwrappedToCoin = exports.BeesTransferred = exports.isBeesTransferred = exports.BEE = exports.isBEE = void 0;
+exports.BurnCondition = exports.Burn = exports.BeesUnwrappedToCoin = exports.BeesTransferred = exports.BEE = void 0;
+exports.isBEE = isBEE;
+exports.isBeesTransferred = isBeesTransferred;
+exports.isBeesUnwrappedToCoin = isBeesUnwrappedToCoin;
+exports.isBurn = isBurn;
+exports.isBurnCondition = isBurnCondition;
 const structs_1 = require("../../_dependencies/source/0x1/string/structs");
 const structs_2 = require("../../_dependencies/source/0x2/vec-map/structs");
 const reified_1 = require("../../_framework/reified");
@@ -8,7 +13,6 @@ const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== BEE =============================== */
 function isBEE(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BEE"; }
-exports.isBEE = isBEE;
 class BEE {
     constructor(typeArgs, fields) {
         this.$typeName = BEE.$typeName;
@@ -70,7 +74,6 @@ BEE.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3f
 BEE.$numTypeParams = 0;
 /* ============================== BeesTransferred =============================== */
 function isBeesTransferred(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BeesTransferred"; }
-exports.isBeesTransferred = isBeesTransferred;
 class BeesTransferred {
     constructor(typeArgs, fields) {
         this.$typeName = BeesTransferred.$typeName;
@@ -136,7 +139,6 @@ BeesTransferred.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19
 BeesTransferred.$numTypeParams = 0;
 /* ============================== BeesUnwrappedToCoin =============================== */
 function isBeesUnwrappedToCoin(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BeesUnwrappedToCoin"; }
-exports.isBeesUnwrappedToCoin = isBeesUnwrappedToCoin;
 class BeesUnwrappedToCoin {
     constructor(typeArgs, fields) {
         this.$typeName = BeesUnwrappedToCoin.$typeName;
@@ -200,7 +202,6 @@ BeesUnwrappedToCoin.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3f
 BeesUnwrappedToCoin.$numTypeParams = 0;
 /* ============================== Burn =============================== */
 function isBurn(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::Burn"; }
-exports.isBurn = isBurn;
 class Burn {
     constructor(typeArgs, fields) {
         this.$typeName = Burn.$typeName;
@@ -262,7 +263,6 @@ Burn.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3
 Burn.$numTypeParams = 0;
 /* ============================== BurnCondition =============================== */
 function isBurnCondition(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::bee::BurnCondition"; }
-exports.isBurnCondition = isBurnCondition;
 class BurnCondition {
     constructor(typeArgs, fields) {
         this.$typeName = BurnCondition.$typeName;

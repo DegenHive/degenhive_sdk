@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Field = exports.isField = void 0;
+exports.Field = void 0;
+exports.isField = isField;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Field =============================== */
 function isField(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::dynamic_field::Field<"); }
-exports.isField = isField;
 class Field {
     constructor(typeArgs, fields) {
         this.$typeName = Field.$typeName;

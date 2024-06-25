@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TableVec = exports.isTableVec = void 0;
+exports.TableVec = void 0;
+exports.isTableVec = isTableVec;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -8,7 +9,6 @@ const structs_1 = require("../table/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== TableVec =============================== */
 function isTableVec(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::table_vec::TableVec<"); }
-exports.isTableVec = isTableVec;
 class TableVec {
     constructor(typeArgs, fields) {
         this.$typeName = TableVec.$typeName;

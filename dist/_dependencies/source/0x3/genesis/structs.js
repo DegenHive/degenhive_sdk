@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TokenDistributionSchedule = exports.isTokenDistributionSchedule = exports.TokenAllocation = exports.isTokenAllocation = exports.GenesisValidatorMetadata = exports.isGenesisValidatorMetadata = exports.GenesisChainParameters = exports.isGenesisChainParameters = void 0;
+exports.TokenDistributionSchedule = exports.TokenAllocation = exports.GenesisValidatorMetadata = exports.GenesisChainParameters = void 0;
+exports.isGenesisChainParameters = isGenesisChainParameters;
+exports.isGenesisValidatorMetadata = isGenesisValidatorMetadata;
+exports.isTokenAllocation = isTokenAllocation;
+exports.isTokenDistributionSchedule = isTokenDistributionSchedule;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -8,7 +12,6 @@ const structs_1 = require("../../0x1/option/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== GenesisChainParameters =============================== */
 function isGenesisChainParameters(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::GenesisChainParameters"; }
-exports.isGenesisChainParameters = isGenesisChainParameters;
 class GenesisChainParameters {
     constructor(typeArgs, fields) {
         this.$typeName = GenesisChainParameters.$typeName;
@@ -92,7 +95,6 @@ GenesisChainParameters.$typeName = "0x3::genesis::GenesisChainParameters";
 GenesisChainParameters.$numTypeParams = 0;
 /* ============================== GenesisValidatorMetadata =============================== */
 function isGenesisValidatorMetadata(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::GenesisValidatorMetadata"; }
-exports.isGenesisValidatorMetadata = isGenesisValidatorMetadata;
 class GenesisValidatorMetadata {
     constructor(typeArgs, fields) {
         this.$typeName = GenesisValidatorMetadata.$typeName;
@@ -182,7 +184,6 @@ GenesisValidatorMetadata.$typeName = "0x3::genesis::GenesisValidatorMetadata";
 GenesisValidatorMetadata.$numTypeParams = 0;
 /* ============================== TokenAllocation =============================== */
 function isTokenAllocation(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::TokenAllocation"; }
-exports.isTokenAllocation = isTokenAllocation;
 class TokenAllocation {
     constructor(typeArgs, fields) {
         this.$typeName = TokenAllocation.$typeName;
@@ -248,7 +249,6 @@ TokenAllocation.$typeName = "0x3::genesis::TokenAllocation";
 TokenAllocation.$numTypeParams = 0;
 /* ============================== TokenDistributionSchedule =============================== */
 function isTokenDistributionSchedule(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::TokenDistributionSchedule"; }
-exports.isTokenDistributionSchedule = isTokenDistributionSchedule;
 class TokenDistributionSchedule {
     constructor(typeArgs, fields) {
         this.$typeName = TokenDistributionSchedule.$typeName;

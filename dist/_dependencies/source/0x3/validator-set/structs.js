@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorSet = exports.isValidatorSet = exports.ValidatorLeaveEvent = exports.isValidatorLeaveEvent = exports.ValidatorJoinEvent = exports.isValidatorJoinEvent = exports.ValidatorEpochInfoEventV2 = exports.isValidatorEpochInfoEventV2 = exports.ValidatorEpochInfoEvent = exports.isValidatorEpochInfoEvent = void 0;
+exports.ValidatorSet = exports.ValidatorLeaveEvent = exports.ValidatorJoinEvent = exports.ValidatorEpochInfoEventV2 = exports.ValidatorEpochInfoEvent = void 0;
+exports.isValidatorEpochInfoEvent = isValidatorEpochInfoEvent;
+exports.isValidatorEpochInfoEventV2 = isValidatorEpochInfoEventV2;
+exports.isValidatorJoinEvent = isValidatorJoinEvent;
+exports.isValidatorLeaveEvent = isValidatorLeaveEvent;
+exports.isValidatorSet = isValidatorSet;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -15,7 +20,6 @@ const structs_8 = require("../validator/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ValidatorEpochInfoEvent =============================== */
 function isValidatorEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorEpochInfoEvent"; }
-exports.isValidatorEpochInfoEvent = isValidatorEpochInfoEvent;
 class ValidatorEpochInfoEvent {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorEpochInfoEvent.$typeName;
@@ -95,7 +99,6 @@ ValidatorEpochInfoEvent.$typeName = "0x3::validator_set::ValidatorEpochInfoEvent
 ValidatorEpochInfoEvent.$numTypeParams = 0;
 /* ============================== ValidatorEpochInfoEventV2 =============================== */
 function isValidatorEpochInfoEventV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorEpochInfoEventV2"; }
-exports.isValidatorEpochInfoEventV2 = isValidatorEpochInfoEventV2;
 class ValidatorEpochInfoEventV2 {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorEpochInfoEventV2.$typeName;
@@ -177,7 +180,6 @@ ValidatorEpochInfoEventV2.$typeName = "0x3::validator_set::ValidatorEpochInfoEve
 ValidatorEpochInfoEventV2.$numTypeParams = 0;
 /* ============================== ValidatorJoinEvent =============================== */
 function isValidatorJoinEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorJoinEvent"; }
-exports.isValidatorJoinEvent = isValidatorJoinEvent;
 class ValidatorJoinEvent {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorJoinEvent.$typeName;
@@ -243,7 +245,6 @@ ValidatorJoinEvent.$typeName = "0x3::validator_set::ValidatorJoinEvent";
 ValidatorJoinEvent.$numTypeParams = 0;
 /* ============================== ValidatorLeaveEvent =============================== */
 function isValidatorLeaveEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorLeaveEvent"; }
-exports.isValidatorLeaveEvent = isValidatorLeaveEvent;
 class ValidatorLeaveEvent {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorLeaveEvent.$typeName;
@@ -311,7 +312,6 @@ ValidatorLeaveEvent.$typeName = "0x3::validator_set::ValidatorLeaveEvent";
 ValidatorLeaveEvent.$numTypeParams = 0;
 /* ============================== ValidatorSet =============================== */
 function isValidatorSet(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorSet"; }
-exports.isValidatorSet = isValidatorSet;
 class ValidatorSet {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorSet.$typeName;

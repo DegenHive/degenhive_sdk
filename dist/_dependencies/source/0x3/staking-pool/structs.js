@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.StakingPool = exports.isStakingPool = exports.StakedSui = exports.isStakedSui = exports.PoolTokenExchangeRate = exports.isPoolTokenExchangeRate = void 0;
+exports.StakingPool = exports.StakedSui = exports.PoolTokenExchangeRate = void 0;
+exports.isPoolTokenExchangeRate = isPoolTokenExchangeRate;
+exports.isStakedSui = isStakedSui;
+exports.isStakingPool = isStakingPool;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -13,7 +16,6 @@ const structs_6 = require("../../0x2/table/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== PoolTokenExchangeRate =============================== */
 function isPoolTokenExchangeRate(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::staking_pool::PoolTokenExchangeRate"; }
-exports.isPoolTokenExchangeRate = isPoolTokenExchangeRate;
 class PoolTokenExchangeRate {
     constructor(typeArgs, fields) {
         this.$typeName = PoolTokenExchangeRate.$typeName;
@@ -77,7 +79,6 @@ PoolTokenExchangeRate.$typeName = "0x3::staking_pool::PoolTokenExchangeRate";
 PoolTokenExchangeRate.$numTypeParams = 0;
 /* ============================== StakedSui =============================== */
 function isStakedSui(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::staking_pool::StakedSui"; }
-exports.isStakedSui = isStakedSui;
 class StakedSui {
     constructor(typeArgs, fields) {
         this.$typeName = StakedSui.$typeName;
@@ -145,7 +146,6 @@ StakedSui.$typeName = "0x3::staking_pool::StakedSui";
 StakedSui.$numTypeParams = 0;
 /* ============================== StakingPool =============================== */
 function isStakingPool(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::staking_pool::StakingPool"; }
-exports.isStakingPool = isStakingPool;
 class StakingPool {
     constructor(typeArgs, fields) {
         this.$typeName = StakingPool.$typeName;

@@ -1,6 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.JwkId = exports.isJwkId = exports.JWK = exports.isJWK = exports.AuthenticatorStateInner = exports.isAuthenticatorStateInner = exports.AuthenticatorState = exports.isAuthenticatorState = exports.ActiveJwk = exports.isActiveJwk = void 0;
+exports.JwkId = exports.JWK = exports.AuthenticatorStateInner = exports.AuthenticatorState = exports.ActiveJwk = void 0;
+exports.isActiveJwk = isActiveJwk;
+exports.isAuthenticatorState = isAuthenticatorState;
+exports.isAuthenticatorStateInner = isAuthenticatorStateInner;
+exports.isJWK = isJWK;
+exports.isJwkId = isJwkId;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -9,7 +14,6 @@ const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ActiveJwk =============================== */
 function isActiveJwk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::ActiveJwk"; }
-exports.isActiveJwk = isActiveJwk;
 class ActiveJwk {
     constructor(typeArgs, fields) {
         this.$typeName = ActiveJwk.$typeName;
@@ -75,7 +79,6 @@ ActiveJwk.$typeName = "0x2::authenticator_state::ActiveJwk";
 ActiveJwk.$numTypeParams = 0;
 /* ============================== AuthenticatorState =============================== */
 function isAuthenticatorState(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::AuthenticatorState"; }
-exports.isAuthenticatorState = isAuthenticatorState;
 class AuthenticatorState {
     constructor(typeArgs, fields) {
         this.$typeName = AuthenticatorState.$typeName;
@@ -139,7 +142,6 @@ AuthenticatorState.$typeName = "0x2::authenticator_state::AuthenticatorState";
 AuthenticatorState.$numTypeParams = 0;
 /* ============================== AuthenticatorStateInner =============================== */
 function isAuthenticatorStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::AuthenticatorStateInner"; }
-exports.isAuthenticatorStateInner = isAuthenticatorStateInner;
 class AuthenticatorStateInner {
     constructor(typeArgs, fields) {
         this.$typeName = AuthenticatorStateInner.$typeName;
@@ -203,7 +205,6 @@ AuthenticatorStateInner.$typeName = "0x2::authenticator_state::AuthenticatorStat
 AuthenticatorStateInner.$numTypeParams = 0;
 /* ============================== JWK =============================== */
 function isJWK(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::JWK"; }
-exports.isJWK = isJWK;
 class JWK {
     constructor(typeArgs, fields) {
         this.$typeName = JWK.$typeName;
@@ -271,7 +272,6 @@ JWK.$typeName = "0x2::authenticator_state::JWK";
 JWK.$numTypeParams = 0;
 /* ============================== JwkId =============================== */
 function isJwkId(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::JwkId"; }
-exports.isJwkId = isJwkId;
 class JwkId {
     constructor(typeArgs, fields) {
         this.$typeName = JwkId.$typeName;

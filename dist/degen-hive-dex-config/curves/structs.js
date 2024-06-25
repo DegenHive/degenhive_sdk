@@ -1,12 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Weighted = exports.isWeighted = exports.Stable = exports.isStable = exports.Curved = exports.isCurved = void 0;
+exports.Weighted = exports.Stable = exports.Curved = void 0;
+exports.isCurved = isCurved;
+exports.isStable = isStable;
+exports.isWeighted = isWeighted;
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Curved =============================== */
 function isCurved(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::curves::Curved"; }
-exports.isCurved = isCurved;
 class Curved {
     constructor(typeArgs, fields) {
         this.$typeName = Curved.$typeName;
@@ -68,7 +70,6 @@ Curved.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677d
 Curved.$numTypeParams = 0;
 /* ============================== Stable =============================== */
 function isStable(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::curves::Stable"; }
-exports.isStable = isStable;
 class Stable {
     constructor(typeArgs, fields) {
         this.$typeName = Stable.$typeName;
@@ -130,7 +131,6 @@ Stable.$typeName = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677d
 Stable.$numTypeParams = 0;
 /* ============================== Weighted =============================== */
 function isWeighted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::curves::Weighted"; }
-exports.isWeighted = isWeighted;
 class Weighted {
     constructor(typeArgs, fields) {
         this.$typeName = Weighted.$typeName;

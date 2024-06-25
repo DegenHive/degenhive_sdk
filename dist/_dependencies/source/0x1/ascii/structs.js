@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.String = exports.isString = exports.Char = exports.isChar = void 0;
+exports.String = exports.Char = void 0;
+exports.isChar = isChar;
+exports.isString = isString;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Char =============================== */
 function isChar(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::ascii::Char"; }
-exports.isChar = isChar;
 class Char {
     constructor(typeArgs, fields) {
         this.$typeName = Char.$typeName;
@@ -69,7 +70,6 @@ Char.$typeName = "0x1::ascii::Char";
 Char.$numTypeParams = 0;
 /* ============================== String =============================== */
 function isString(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::ascii::String"; }
-exports.isString = isString;
 class String {
     constructor(typeArgs, fields) {
         this.$typeName = String.$typeName;

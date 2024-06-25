@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ExtensionKey = exports.isExtensionKey = exports.Extension = exports.isExtension = void 0;
+exports.ExtensionKey = exports.Extension = void 0;
+exports.isExtension = isExtension;
+exports.isExtensionKey = isExtensionKey;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../bag/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Extension =============================== */
 function isExtension(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk_extension::Extension"; }
-exports.isExtension = isExtension;
 class Extension {
     constructor(typeArgs, fields) {
         this.$typeName = Extension.$typeName;
@@ -73,7 +74,6 @@ Extension.$typeName = "0x2::kiosk_extension::Extension";
 Extension.$numTypeParams = 0;
 /* ============================== ExtensionKey =============================== */
 function isExtensionKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk_extension::ExtensionKey<"); }
-exports.isExtensionKey = isExtensionKey;
 class ExtensionKey {
     constructor(typeArgs, fields) {
         this.$typeName = ExtensionKey.$typeName;

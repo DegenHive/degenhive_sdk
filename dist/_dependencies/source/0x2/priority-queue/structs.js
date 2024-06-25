@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PriorityQueue = exports.isPriorityQueue = exports.Entry = exports.isEntry = void 0;
+exports.PriorityQueue = exports.Entry = void 0;
+exports.isEntry = isEntry;
+exports.isPriorityQueue = isPriorityQueue;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Entry =============================== */
 function isEntry(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::priority_queue::Entry<"); }
-exports.isEntry = isEntry;
 class Entry {
     constructor(typeArgs, fields) {
         this.$typeName = Entry.$typeName;
@@ -76,7 +77,6 @@ Entry.$typeName = "0x2::priority_queue::Entry";
 Entry.$numTypeParams = 1;
 /* ============================== PriorityQueue =============================== */
 function isPriorityQueue(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::priority_queue::PriorityQueue<"); }
-exports.isPriorityQueue = isPriorityQueue;
 class PriorityQueue {
     constructor(typeArgs, fields) {
         this.$typeName = PriorityQueue.$typeName;

@@ -1,6 +1,6 @@
 {
   "name": "degenhive_sdk",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "Package providing helper API functions to interact with DegenHive's move modules.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

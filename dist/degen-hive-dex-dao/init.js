@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const dexDao = require("./dex-dao/structs");
 function registerClasses(loader) {
     loader.register(dexDao.AddedToBeeBox);
@@ -41,4 +41,3 @@ function registerClasses(loader) {
     loader.register(dexDao.VoteCasted);
     loader.register(dexDao.VoteConfig);
 }
-exports.registerClasses = registerClasses;

@@ -1,13 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PublicProofInputs = exports.isPublicProofInputs = exports.ProofPoints = exports.isProofPoints = exports.PreparedVerifyingKey = exports.isPreparedVerifyingKey = exports.Curve = exports.isCurve = void 0;
+exports.PublicProofInputs = exports.ProofPoints = exports.PreparedVerifyingKey = exports.Curve = void 0;
+exports.isCurve = isCurve;
+exports.isPreparedVerifyingKey = isPreparedVerifyingKey;
+exports.isProofPoints = isProofPoints;
+exports.isPublicProofInputs = isPublicProofInputs;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Curve =============================== */
 function isCurve(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::groth16::Curve"; }
-exports.isCurve = isCurve;
 class Curve {
     constructor(typeArgs, fields) {
         this.$typeName = Curve.$typeName;
@@ -69,7 +72,6 @@ Curve.$typeName = "0x2::groth16::Curve";
 Curve.$numTypeParams = 0;
 /* ============================== PreparedVerifyingKey =============================== */
 function isPreparedVerifyingKey(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::groth16::PreparedVerifyingKey"; }
-exports.isPreparedVerifyingKey = isPreparedVerifyingKey;
 class PreparedVerifyingKey {
     constructor(typeArgs, fields) {
         this.$typeName = PreparedVerifyingKey.$typeName;
@@ -137,7 +139,6 @@ PreparedVerifyingKey.$typeName = "0x2::groth16::PreparedVerifyingKey";
 PreparedVerifyingKey.$numTypeParams = 0;
 /* ============================== ProofPoints =============================== */
 function isProofPoints(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::groth16::ProofPoints"; }
-exports.isProofPoints = isProofPoints;
 class ProofPoints {
     constructor(typeArgs, fields) {
         this.$typeName = ProofPoints.$typeName;
@@ -199,7 +200,6 @@ ProofPoints.$typeName = "0x2::groth16::ProofPoints";
 ProofPoints.$numTypeParams = 0;
 /* ============================== PublicProofInputs =============================== */
 function isPublicProofInputs(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::groth16::PublicProofInputs"; }
-exports.isPublicProofInputs = isPublicProofInputs;
 class PublicProofInputs {
     constructor(typeArgs, fields) {
         this.$typeName = PublicProofInputs.$typeName;

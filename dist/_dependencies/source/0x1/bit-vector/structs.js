@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BitVector = exports.isBitVector = void 0;
+exports.BitVector = void 0;
+exports.isBitVector = isBitVector;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== BitVector =============================== */
 function isBitVector(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::bit_vector::BitVector"; }
-exports.isBitVector = isBitVector;
 class BitVector {
     constructor(typeArgs, fields) {
         this.$typeName = BitVector.$typeName;

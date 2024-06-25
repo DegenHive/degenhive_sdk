@@ -1,9 +1,101 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GemAddedToProfile = exports.isGemAddedToProfile = exports.ExitHiveOfProfile = exports.isExitHiveOfProfile = exports.ExecutedListingDestroyed = exports.isExecutedListingDestroyed = exports.ExecutedListing = exports.isExecutedListing = exports.DepositHSuiForProfile = exports.isDepositHSuiForProfile = exports.DegenHiveYieldHarvested = exports.isDegenHiveYieldHarvested = exports.BorrowRecord = exports.isBorrowRecord = exports.BioUpdated = exports.isBioUpdated = exports.BidRecord = exports.isBidRecord = exports.BidPlaced = exports.isBidPlaced = exports.BidModified = exports.isBidModified = exports.BidMarkedInvalid = exports.isBidMarkedInvalid = exports.BidExpired = exports.isBidExpired = exports.BidDestroyed = exports.isBidDestroyed = exports.BidCanceled = exports.isBidCanceled = exports.Bid = exports.isBid = exports.AssetUpgrade = exports.isAssetUpgrade = exports.AssetPowerUpdated = exports.isAssetPowerUpdated = exports.AppInstalledByProfile = exports.isAppInstalledByProfile = exports.AppAddedToHiveStore = exports.isAppAddedToHiveStore = exports.AddedNewUpgradeForVersion = exports.isAddedNewUpgradeForVersion = exports.AccessTypeSwitchedToNewPlan = exports.isAccessTypeSwitchedToNewPlan = exports.AccessRecordDestroyed = exports.isAccessRecordDestroyed = exports.AccessRecord = exports.isAccessRecord = exports.ConfigParams = exports.isConfigParams = void 0;
-exports.HiveProfile = exports.isHiveProfile = exports.HiveManager = exports.isHiveManager = exports.HiveKioskTransferredToProfile = exports.isHiveKioskTransferredToProfile = exports.HiveKioskInitialized = exports.isHiveKioskInitialized = exports.HiveKiosk = exports.isHiveKiosk = exports.HiveGemsTransfered = exports.isHiveGemsTransfered = exports.HiveGemsPortedToSkin = exports.isHiveGemsPortedToSkin = exports.HiveGemsDepositedIntoAsset = exports.isHiveGemsDepositedIntoAsset = exports.HiveDisperser = exports.isHiveDisperser = exports.HiveAssetUpgraded = exports.isHiveAssetUpgraded = exports.HiveAssetUnstaked = exports.isHiveAssetUnstaked = exports.HiveAssetTransfered = exports.isHiveAssetTransfered = exports.HiveAssetStaked = exports.isHiveAssetStaked = exports.HiveAssetBorrowed = exports.isHiveAssetBorrowed = exports.HiveAsset = exports.isHiveAsset = exports.HiveAppAccessCapability = exports.isHiveAppAccessCapability = exports.HiveAddedForHarvest = exports.isHiveAddedForHarvest = exports.HiveAccessPlanUpdated = exports.isHiveAccessPlanUpdated = exports.HiveAccessPaymentProcessed = exports.isHiveAccessPaymentProcessed = exports.HighestBidListingUnsold = exports.isHighestBidListingUnsold = exports.HarvestRewardsForAsset = exports.isHarvestRewardsForAsset = exports.HSuiDisperser = exports.isHSuiDisperser = exports.HSuiAddedForHarvest = exports.isHSuiAddedForHarvest = exports.HIVE_PROFILE = exports.isHIVE_PROFILE = exports.GemWithdrawnFromProfile = exports.isGemWithdrawnFromProfile = void 0;
-exports.PricingAndAccessSetInHiveKiosk = exports.isPricingAndAccessSetInHiveKiosk = exports.NewSkinForAssetKrafted = exports.isNewSkinForAssetKrafted = exports.NewSkinForAsset = exports.isNewSkinForAsset = exports.NewListing = exports.isNewListing = exports.NewHiveAssetKrafted = exports.isNewHiveAssetKrafted = exports.MarketPlace = exports.isMarketPlace = exports.ManagerAppAccessCapability = exports.isManagerAppAccessCapability = exports.ListingUpdated = exports.isListingUpdated = exports.ListingRecord = exports.isListingRecord = exports.ListingExpired = exports.isListingExpired = exports.ListingDestroyed = exports.isListingDestroyed = exports.ListingCanceled = exports.isListingCanceled = exports.Listing = exports.isListing = exports.LendRecord = exports.isLendRecord = exports.KraftYieldHarvested = exports.isKraftYieldHarvested = exports.KraftRoyaltyUpdated = exports.isKraftRoyaltyUpdated = exports.KioskOwnershipTransferred = exports.isKioskOwnershipTransferred = exports.JoinedHiveOfProfile = exports.isJoinedHiveOfProfile = exports.InscriptionSetForProfile = exports.isInscriptionSetForProfile = exports.Inscription = exports.isInscription = exports.HiveTwapUpdated = exports.isHiveTwapUpdated = exports.HiveTwapInfo = exports.isHiveTwapInfo = exports.HiveProfileMappingStore = exports.isHiveProfileMappingStore = exports.HiveProfileKrafted = exports.isHiveProfileKrafted = exports.HiveProfileDestroyed = exports.isHiveProfileDestroyed = void 0;
-exports.UserNameUpdated = exports.isUserNameUpdated = exports.UpdateEntropyForEpoch = exports.isUpdateEntropyForEpoch = exports.TwapUpdateCap = exports.isTwapUpdateCap = exports.TraitsSetInHiveKiosk = exports.isTraitsSetInHiveKiosk = exports.TotalActivePowerUpdated = exports.isTotalActivePowerUpdated = exports.SubscriptionRoyalty = exports.isSubscriptionRoyalty = exports.SkinRoyaltyCommissionUpdated = exports.isSkinRoyaltyCommissionUpdated = exports.SkinRecord = exports.isSkinRecord = exports.SkinKraftPermissionsUpdated = exports.isSkinKraftPermissionsUpdated = exports.SkinAccessPermissionsUpdated = exports.isSkinAccessPermissionsUpdated = exports.SaleExecuted = exports.isSaleExecuted = exports.RoyaltyProcessed = exports.isRoyaltyProcessed = exports.RoyaltyCollectedForCreator = exports.isRoyaltyCollectedForCreator = exports.Royalty = exports.isRoyalty = exports.ReturnBorrowedHiveAsset = exports.isReturnBorrowedHiveAsset = exports.RemovedUpgradeForVersion = exports.isRemovedUpgradeForVersion = exports.PublicKraftInitialized = exports.isPublicKraftInitialized = exports.PublicKraftConfig = exports.isPublicKraftConfig = exports.ProfileConfigParamsUpdated = exports.isProfileConfigParamsUpdated = void 0;
+exports.HiveProfile = exports.HiveManager = exports.HiveKioskTransferredToProfile = exports.HiveKioskInitialized = exports.HiveKiosk = exports.HiveGemsTransfered = exports.HiveGemsPortedToSkin = exports.HiveGemsDepositedIntoAsset = exports.HiveDisperser = exports.HiveAssetUpgraded = exports.HiveAssetUnstaked = exports.HiveAssetTransfered = exports.HiveAssetStaked = exports.HiveAssetBorrowed = exports.HiveAsset = exports.HiveAppAccessCapability = exports.HiveAddedForHarvest = exports.HiveAccessPlanUpdated = exports.HiveAccessPaymentProcessed = exports.HighestBidListingUnsold = exports.HarvestRewardsForAsset = exports.HSuiDisperser = exports.HSuiAddedForHarvest = exports.HIVE_PROFILE = exports.GemWithdrawnFromProfile = exports.GemAddedToProfile = exports.ExitHiveOfProfile = exports.ExecutedListingDestroyed = exports.ExecutedListing = exports.DepositHSuiForProfile = exports.DegenHiveYieldHarvested = exports.BorrowRecord = exports.BioUpdated = exports.BidRecord = exports.BidPlaced = exports.BidModified = exports.BidMarkedInvalid = exports.BidExpired = exports.BidDestroyed = exports.BidCanceled = exports.Bid = exports.AssetUpgrade = exports.AssetPowerUpdated = exports.AppInstalledByProfile = exports.AppAddedToHiveStore = exports.AddedNewUpgradeForVersion = exports.AccessTypeSwitchedToNewPlan = exports.AccessRecordDestroyed = exports.AccessRecord = exports.ConfigParams = void 0;
+exports.UserNameUpdated = exports.UpdateEntropyForEpoch = exports.TwapUpdateCap = exports.TraitsSetInHiveKiosk = exports.TotalActivePowerUpdated = exports.SubscriptionRoyalty = exports.SkinRoyaltyCommissionUpdated = exports.SkinRecord = exports.SkinKraftPermissionsUpdated = exports.SkinAccessPermissionsUpdated = exports.SaleExecuted = exports.RoyaltyProcessed = exports.RoyaltyCollectedForCreator = exports.Royalty = exports.ReturnBorrowedHiveAsset = exports.RemovedUpgradeForVersion = exports.PublicKraftInitialized = exports.PublicKraftConfig = exports.ProfileConfigParamsUpdated = exports.PricingAndAccessSetInHiveKiosk = exports.NewSkinForAssetKrafted = exports.NewSkinForAsset = exports.NewListing = exports.NewHiveAssetKrafted = exports.MarketPlace = exports.ManagerAppAccessCapability = exports.ListingUpdated = exports.ListingRecord = exports.ListingExpired = exports.ListingDestroyed = exports.ListingCanceled = exports.Listing = exports.LendRecord = exports.KraftYieldHarvested = exports.KraftRoyaltyUpdated = exports.KioskOwnershipTransferred = exports.JoinedHiveOfProfile = exports.InscriptionSetForProfile = exports.Inscription = exports.HiveTwapUpdated = exports.HiveTwapInfo = exports.HiveProfileMappingStore = exports.HiveProfileKrafted = exports.HiveProfileDestroyed = void 0;
+exports.isConfigParams = isConfigParams;
+exports.isAccessRecord = isAccessRecord;
+exports.isAccessRecordDestroyed = isAccessRecordDestroyed;
+exports.isAccessTypeSwitchedToNewPlan = isAccessTypeSwitchedToNewPlan;
+exports.isAddedNewUpgradeForVersion = isAddedNewUpgradeForVersion;
+exports.isAppAddedToHiveStore = isAppAddedToHiveStore;
+exports.isAppInstalledByProfile = isAppInstalledByProfile;
+exports.isAssetPowerUpdated = isAssetPowerUpdated;
+exports.isAssetUpgrade = isAssetUpgrade;
+exports.isBid = isBid;
+exports.isBidCanceled = isBidCanceled;
+exports.isBidDestroyed = isBidDestroyed;
+exports.isBidExpired = isBidExpired;
+exports.isBidMarkedInvalid = isBidMarkedInvalid;
+exports.isBidModified = isBidModified;
+exports.isBidPlaced = isBidPlaced;
+exports.isBidRecord = isBidRecord;
+exports.isBioUpdated = isBioUpdated;
+exports.isBorrowRecord = isBorrowRecord;
+exports.isDegenHiveYieldHarvested = isDegenHiveYieldHarvested;
+exports.isDepositHSuiForProfile = isDepositHSuiForProfile;
+exports.isExecutedListing = isExecutedListing;
+exports.isExecutedListingDestroyed = isExecutedListingDestroyed;
+exports.isExitHiveOfProfile = isExitHiveOfProfile;
+exports.isGemAddedToProfile = isGemAddedToProfile;
+exports.isGemWithdrawnFromProfile = isGemWithdrawnFromProfile;
+exports.isHIVE_PROFILE = isHIVE_PROFILE;
+exports.isHSuiAddedForHarvest = isHSuiAddedForHarvest;
+exports.isHSuiDisperser = isHSuiDisperser;
+exports.isHarvestRewardsForAsset = isHarvestRewardsForAsset;
+exports.isHighestBidListingUnsold = isHighestBidListingUnsold;
+exports.isHiveAccessPaymentProcessed = isHiveAccessPaymentProcessed;
+exports.isHiveAccessPlanUpdated = isHiveAccessPlanUpdated;
+exports.isHiveAddedForHarvest = isHiveAddedForHarvest;
+exports.isHiveAppAccessCapability = isHiveAppAccessCapability;
+exports.isHiveAsset = isHiveAsset;
+exports.isHiveAssetBorrowed = isHiveAssetBorrowed;
+exports.isHiveAssetStaked = isHiveAssetStaked;
+exports.isHiveAssetTransfered = isHiveAssetTransfered;
+exports.isHiveAssetUnstaked = isHiveAssetUnstaked;
+exports.isHiveAssetUpgraded = isHiveAssetUpgraded;
+exports.isHiveDisperser = isHiveDisperser;
+exports.isHiveGemsDepositedIntoAsset = isHiveGemsDepositedIntoAsset;
+exports.isHiveGemsPortedToSkin = isHiveGemsPortedToSkin;
+exports.isHiveGemsTransfered = isHiveGemsTransfered;
+exports.isHiveKiosk = isHiveKiosk;
+exports.isHiveKioskInitialized = isHiveKioskInitialized;
+exports.isHiveKioskTransferredToProfile = isHiveKioskTransferredToProfile;
+exports.isHiveManager = isHiveManager;
+exports.isHiveProfile = isHiveProfile;
+exports.isHiveProfileDestroyed = isHiveProfileDestroyed;
+exports.isHiveProfileKrafted = isHiveProfileKrafted;
+exports.isHiveProfileMappingStore = isHiveProfileMappingStore;
+exports.isHiveTwapInfo = isHiveTwapInfo;
+exports.isHiveTwapUpdated = isHiveTwapUpdated;
+exports.isInscription = isInscription;
+exports.isInscriptionSetForProfile = isInscriptionSetForProfile;
+exports.isJoinedHiveOfProfile = isJoinedHiveOfProfile;
+exports.isKioskOwnershipTransferred = isKioskOwnershipTransferred;
+exports.isKraftRoyaltyUpdated = isKraftRoyaltyUpdated;
+exports.isKraftYieldHarvested = isKraftYieldHarvested;
+exports.isLendRecord = isLendRecord;
+exports.isListing = isListing;
+exports.isListingCanceled = isListingCanceled;
+exports.isListingDestroyed = isListingDestroyed;
+exports.isListingExpired = isListingExpired;
+exports.isListingRecord = isListingRecord;
+exports.isListingUpdated = isListingUpdated;
+exports.isManagerAppAccessCapability = isManagerAppAccessCapability;
+exports.isMarketPlace = isMarketPlace;
+exports.isNewHiveAssetKrafted = isNewHiveAssetKrafted;
+exports.isNewListing = isNewListing;
+exports.isNewSkinForAsset = isNewSkinForAsset;
+exports.isNewSkinForAssetKrafted = isNewSkinForAssetKrafted;
+exports.isPricingAndAccessSetInHiveKiosk = isPricingAndAccessSetInHiveKiosk;
+exports.isProfileConfigParamsUpdated = isProfileConfigParamsUpdated;
+exports.isPublicKraftConfig = isPublicKraftConfig;
+exports.isPublicKraftInitialized = isPublicKraftInitialized;
+exports.isRemovedUpgradeForVersion = isRemovedUpgradeForVersion;
+exports.isReturnBorrowedHiveAsset = isReturnBorrowedHiveAsset;
+exports.isRoyalty = isRoyalty;
+exports.isRoyaltyCollectedForCreator = isRoyaltyCollectedForCreator;
+exports.isRoyaltyProcessed = isRoyaltyProcessed;
+exports.isSaleExecuted = isSaleExecuted;
+exports.isSkinAccessPermissionsUpdated = isSkinAccessPermissionsUpdated;
+exports.isSkinKraftPermissionsUpdated = isSkinKraftPermissionsUpdated;
+exports.isSkinRecord = isSkinRecord;
+exports.isSkinRoyaltyCommissionUpdated = isSkinRoyaltyCommissionUpdated;
+exports.isSubscriptionRoyalty = isSubscriptionRoyalty;
+exports.isTotalActivePowerUpdated = isTotalActivePowerUpdated;
+exports.isTraitsSetInHiveKiosk = isTraitsSetInHiveKiosk;
+exports.isTwapUpdateCap = isTwapUpdateCap;
+exports.isUpdateEntropyForEpoch = isUpdateEntropyForEpoch;
+exports.isUserNameUpdated = isUserNameUpdated;
 const reified = require("../../_framework/reified");
 const structs_1 = require("../../_dependencies/source/0x1/ascii/structs");
 const structs_2 = require("../../_dependencies/source/0x1/option/structs");
@@ -20,7 +112,6 @@ const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ConfigParams =============================== */
 function isConfigParams(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ConfigParams"; }
-exports.isConfigParams = isConfigParams;
 class ConfigParams {
     constructor(typeArgs, fields) {
         this.$typeName = ConfigParams.$typeName;
@@ -92,7 +183,6 @@ ConfigParams.$typeName = "0x0::hive_profile::ConfigParams";
 ConfigParams.$numTypeParams = 0;
 /* ============================== AccessRecord =============================== */
 function isAccessRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AccessRecord"; }
-exports.isAccessRecord = isAccessRecord;
 class AccessRecord {
     constructor(typeArgs, fields) {
         this.$typeName = AccessRecord.$typeName;
@@ -170,7 +260,6 @@ AccessRecord.$typeName = "0x0::hive_profile::AccessRecord";
 AccessRecord.$numTypeParams = 0;
 /* ============================== AccessRecordDestroyed =============================== */
 function isAccessRecordDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AccessRecordDestroyed"; }
-exports.isAccessRecordDestroyed = isAccessRecordDestroyed;
 class AccessRecordDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = AccessRecordDestroyed.$typeName;
@@ -238,7 +327,6 @@ AccessRecordDestroyed.$typeName = "0x0::hive_profile::AccessRecordDestroyed";
 AccessRecordDestroyed.$numTypeParams = 0;
 /* ============================== AccessTypeSwitchedToNewPlan =============================== */
 function isAccessTypeSwitchedToNewPlan(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AccessTypeSwitchedToNewPlan"; }
-exports.isAccessTypeSwitchedToNewPlan = isAccessTypeSwitchedToNewPlan;
 class AccessTypeSwitchedToNewPlan {
     constructor(typeArgs, fields) {
         this.$typeName = AccessTypeSwitchedToNewPlan.$typeName;
@@ -314,7 +402,6 @@ AccessTypeSwitchedToNewPlan.$typeName = "0x0::hive_profile::AccessTypeSwitchedTo
 AccessTypeSwitchedToNewPlan.$numTypeParams = 0;
 /* ============================== AddedNewUpgradeForVersion =============================== */
 function isAddedNewUpgradeForVersion(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AddedNewUpgradeForVersion"; }
-exports.isAddedNewUpgradeForVersion = isAddedNewUpgradeForVersion;
 class AddedNewUpgradeForVersion {
     constructor(typeArgs, fields) {
         this.$typeName = AddedNewUpgradeForVersion.$typeName;
@@ -390,7 +477,6 @@ AddedNewUpgradeForVersion.$typeName = "0x0::hive_profile::AddedNewUpgradeForVers
 AddedNewUpgradeForVersion.$numTypeParams = 0;
 /* ============================== AppAddedToHiveStore =============================== */
 function isAppAddedToHiveStore(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AppAddedToHiveStore"; }
-exports.isAppAddedToHiveStore = isAppAddedToHiveStore;
 class AppAddedToHiveStore {
     constructor(typeArgs, fields) {
         this.$typeName = AppAddedToHiveStore.$typeName;
@@ -460,7 +546,6 @@ AppAddedToHiveStore.$typeName = "0x0::hive_profile::AppAddedToHiveStore";
 AppAddedToHiveStore.$numTypeParams = 0;
 /* ============================== AppInstalledByProfile =============================== */
 function isAppInstalledByProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AppInstalledByProfile"; }
-exports.isAppInstalledByProfile = isAppInstalledByProfile;
 class AppInstalledByProfile {
     constructor(typeArgs, fields) {
         this.$typeName = AppInstalledByProfile.$typeName;
@@ -526,7 +611,6 @@ AppInstalledByProfile.$typeName = "0x0::hive_profile::AppInstalledByProfile";
 AppInstalledByProfile.$numTypeParams = 0;
 /* ============================== AssetPowerUpdated =============================== */
 function isAssetPowerUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AssetPowerUpdated"; }
-exports.isAssetPowerUpdated = isAssetPowerUpdated;
 class AssetPowerUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = AssetPowerUpdated.$typeName;
@@ -592,7 +676,6 @@ AssetPowerUpdated.$typeName = "0x0::hive_profile::AssetPowerUpdated";
 AssetPowerUpdated.$numTypeParams = 0;
 /* ============================== AssetUpgrade =============================== */
 function isAssetUpgrade(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::AssetUpgrade"; }
-exports.isAssetUpgrade = isAssetUpgrade;
 class AssetUpgrade {
     constructor(typeArgs, fields) {
         this.$typeName = AssetUpgrade.$typeName;
@@ -662,7 +745,6 @@ AssetUpgrade.$typeName = "0x0::hive_profile::AssetUpgrade";
 AssetUpgrade.$numTypeParams = 0;
 /* ============================== Bid =============================== */
 function isBid(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x0::hive_profile::Bid<"); }
-exports.isBid = isBid;
 class Bid {
     constructor(typeArgs, fields) {
         this.$typeName = Bid.$typeName;
@@ -736,7 +818,6 @@ Bid.$typeName = "0x0::hive_profile::Bid";
 Bid.$numTypeParams = 1;
 /* ============================== BidCanceled =============================== */
 function isBidCanceled(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidCanceled"; }
-exports.isBidCanceled = isBidCanceled;
 class BidCanceled {
     constructor(typeArgs, fields) {
         this.$typeName = BidCanceled.$typeName;
@@ -800,7 +881,6 @@ BidCanceled.$typeName = "0x0::hive_profile::BidCanceled";
 BidCanceled.$numTypeParams = 0;
 /* ============================== BidDestroyed =============================== */
 function isBidDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidDestroyed"; }
-exports.isBidDestroyed = isBidDestroyed;
 class BidDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = BidDestroyed.$typeName;
@@ -864,7 +944,6 @@ BidDestroyed.$typeName = "0x0::hive_profile::BidDestroyed";
 BidDestroyed.$numTypeParams = 0;
 /* ============================== BidExpired =============================== */
 function isBidExpired(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidExpired"; }
-exports.isBidExpired = isBidExpired;
 class BidExpired {
     constructor(typeArgs, fields) {
         this.$typeName = BidExpired.$typeName;
@@ -928,7 +1007,6 @@ BidExpired.$typeName = "0x0::hive_profile::BidExpired";
 BidExpired.$numTypeParams = 0;
 /* ============================== BidMarkedInvalid =============================== */
 function isBidMarkedInvalid(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidMarkedInvalid"; }
-exports.isBidMarkedInvalid = isBidMarkedInvalid;
 class BidMarkedInvalid {
     constructor(typeArgs, fields) {
         this.$typeName = BidMarkedInvalid.$typeName;
@@ -992,7 +1070,6 @@ BidMarkedInvalid.$typeName = "0x0::hive_profile::BidMarkedInvalid";
 BidMarkedInvalid.$numTypeParams = 0;
 /* ============================== BidModified =============================== */
 function isBidModified(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidModified"; }
-exports.isBidModified = isBidModified;
 class BidModified {
     constructor(typeArgs, fields) {
         this.$typeName = BidModified.$typeName;
@@ -1060,7 +1137,6 @@ BidModified.$typeName = "0x0::hive_profile::BidModified";
 BidModified.$numTypeParams = 0;
 /* ============================== BidPlaced =============================== */
 function isBidPlaced(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidPlaced"; }
-exports.isBidPlaced = isBidPlaced;
 class BidPlaced {
     constructor(typeArgs, fields) {
         this.$typeName = BidPlaced.$typeName;
@@ -1132,7 +1208,6 @@ BidPlaced.$typeName = "0x0::hive_profile::BidPlaced";
 BidPlaced.$numTypeParams = 0;
 /* ============================== BidRecord =============================== */
 function isBidRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BidRecord"; }
-exports.isBidRecord = isBidRecord;
 class BidRecord {
     constructor(typeArgs, fields) {
         this.$typeName = BidRecord.$typeName;
@@ -1200,7 +1275,6 @@ BidRecord.$typeName = "0x0::hive_profile::BidRecord";
 BidRecord.$numTypeParams = 0;
 /* ============================== BioUpdated =============================== */
 function isBioUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BioUpdated"; }
-exports.isBioUpdated = isBioUpdated;
 class BioUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = BioUpdated.$typeName;
@@ -1266,7 +1340,6 @@ BioUpdated.$typeName = "0x0::hive_profile::BioUpdated";
 BioUpdated.$numTypeParams = 0;
 /* ============================== BorrowRecord =============================== */
 function isBorrowRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::BorrowRecord"; }
-exports.isBorrowRecord = isBorrowRecord;
 class BorrowRecord {
     constructor(typeArgs, fields) {
         this.$typeName = BorrowRecord.$typeName;
@@ -1336,7 +1409,6 @@ BorrowRecord.$typeName = "0x0::hive_profile::BorrowRecord";
 BorrowRecord.$numTypeParams = 0;
 /* ============================== DegenHiveYieldHarvested =============================== */
 function isDegenHiveYieldHarvested(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::DegenHiveYieldHarvested"; }
-exports.isDegenHiveYieldHarvested = isDegenHiveYieldHarvested;
 class DegenHiveYieldHarvested {
     constructor(typeArgs, fields) {
         this.$typeName = DegenHiveYieldHarvested.$typeName;
@@ -1404,7 +1476,6 @@ DegenHiveYieldHarvested.$typeName = "0x0::hive_profile::DegenHiveYieldHarvested"
 DegenHiveYieldHarvested.$numTypeParams = 0;
 /* ============================== DepositHSuiForProfile =============================== */
 function isDepositHSuiForProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::DepositHSuiForProfile"; }
-exports.isDepositHSuiForProfile = isDepositHSuiForProfile;
 class DepositHSuiForProfile {
     constructor(typeArgs, fields) {
         this.$typeName = DepositHSuiForProfile.$typeName;
@@ -1470,7 +1541,6 @@ DepositHSuiForProfile.$typeName = "0x0::hive_profile::DepositHSuiForProfile";
 DepositHSuiForProfile.$numTypeParams = 0;
 /* ============================== ExecutedListing =============================== */
 function isExecutedListing(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x0::hive_profile::ExecutedListing<"); }
-exports.isExecutedListing = isExecutedListing;
 class ExecutedListing {
     constructor(typeArgs, fields) {
         this.$typeName = ExecutedListing.$typeName;
@@ -1552,7 +1622,6 @@ ExecutedListing.$typeName = "0x0::hive_profile::ExecutedListing";
 ExecutedListing.$numTypeParams = 1;
 /* ============================== ExecutedListingDestroyed =============================== */
 function isExecutedListingDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ExecutedListingDestroyed"; }
-exports.isExecutedListingDestroyed = isExecutedListingDestroyed;
 class ExecutedListingDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = ExecutedListingDestroyed.$typeName;
@@ -1620,7 +1689,6 @@ ExecutedListingDestroyed.$typeName = "0x0::hive_profile::ExecutedListingDestroye
 ExecutedListingDestroyed.$numTypeParams = 0;
 /* ============================== ExitHiveOfProfile =============================== */
 function isExitHiveOfProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ExitHiveOfProfile"; }
-exports.isExitHiveOfProfile = isExitHiveOfProfile;
 class ExitHiveOfProfile {
     constructor(typeArgs, fields) {
         this.$typeName = ExitHiveOfProfile.$typeName;
@@ -1690,7 +1758,6 @@ ExitHiveOfProfile.$typeName = "0x0::hive_profile::ExitHiveOfProfile";
 ExitHiveOfProfile.$numTypeParams = 0;
 /* ============================== GemAddedToProfile =============================== */
 function isGemAddedToProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::GemAddedToProfile"; }
-exports.isGemAddedToProfile = isGemAddedToProfile;
 class GemAddedToProfile {
     constructor(typeArgs, fields) {
         this.$typeName = GemAddedToProfile.$typeName;
@@ -1756,7 +1823,6 @@ GemAddedToProfile.$typeName = "0x0::hive_profile::GemAddedToProfile";
 GemAddedToProfile.$numTypeParams = 0;
 /* ============================== GemWithdrawnFromProfile =============================== */
 function isGemWithdrawnFromProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::GemWithdrawnFromProfile"; }
-exports.isGemWithdrawnFromProfile = isGemWithdrawnFromProfile;
 class GemWithdrawnFromProfile {
     constructor(typeArgs, fields) {
         this.$typeName = GemWithdrawnFromProfile.$typeName;
@@ -1822,7 +1888,6 @@ GemWithdrawnFromProfile.$typeName = "0x0::hive_profile::GemWithdrawnFromProfile"
 GemWithdrawnFromProfile.$numTypeParams = 0;
 /* ============================== HIVE_PROFILE =============================== */
 function isHIVE_PROFILE(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HIVE_PROFILE"; }
-exports.isHIVE_PROFILE = isHIVE_PROFILE;
 class HIVE_PROFILE {
     constructor(typeArgs, fields) {
         this.$typeName = HIVE_PROFILE.$typeName;
@@ -1884,7 +1949,6 @@ HIVE_PROFILE.$typeName = "0x0::hive_profile::HIVE_PROFILE";
 HIVE_PROFILE.$numTypeParams = 0;
 /* ============================== HSuiAddedForHarvest =============================== */
 function isHSuiAddedForHarvest(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HSuiAddedForHarvest"; }
-exports.isHSuiAddedForHarvest = isHSuiAddedForHarvest;
 class HSuiAddedForHarvest {
     constructor(typeArgs, fields) {
         this.$typeName = HSuiAddedForHarvest.$typeName;
@@ -1946,7 +2010,6 @@ HSuiAddedForHarvest.$typeName = "0x0::hive_profile::HSuiAddedForHarvest";
 HSuiAddedForHarvest.$numTypeParams = 0;
 /* ============================== HSuiDisperser =============================== */
 function isHSuiDisperser(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x0::hive_profile::HSuiDisperser<"); }
-exports.isHSuiDisperser = isHSuiDisperser;
 class HSuiDisperser {
     constructor(typeArgs, fields) {
         this.$typeName = HSuiDisperser.$typeName;
@@ -2018,7 +2081,6 @@ HSuiDisperser.$typeName = "0x0::hive_profile::HSuiDisperser";
 HSuiDisperser.$numTypeParams = 1;
 /* ============================== HarvestRewardsForAsset =============================== */
 function isHarvestRewardsForAsset(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HarvestRewardsForAsset"; }
-exports.isHarvestRewardsForAsset = isHarvestRewardsForAsset;
 class HarvestRewardsForAsset {
     constructor(typeArgs, fields) {
         this.$typeName = HarvestRewardsForAsset.$typeName;
@@ -2084,7 +2146,6 @@ HarvestRewardsForAsset.$typeName = "0x0::hive_profile::HarvestRewardsForAsset";
 HarvestRewardsForAsset.$numTypeParams = 0;
 /* ============================== HighestBidListingUnsold =============================== */
 function isHighestBidListingUnsold(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HighestBidListingUnsold"; }
-exports.isHighestBidListingUnsold = isHighestBidListingUnsold;
 class HighestBidListingUnsold {
     constructor(typeArgs, fields) {
         this.$typeName = HighestBidListingUnsold.$typeName;
@@ -2148,7 +2209,6 @@ HighestBidListingUnsold.$typeName = "0x0::hive_profile::HighestBidListingUnsold"
 HighestBidListingUnsold.$numTypeParams = 0;
 /* ============================== HiveAccessPaymentProcessed =============================== */
 function isHiveAccessPaymentProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAccessPaymentProcessed"; }
-exports.isHiveAccessPaymentProcessed = isHiveAccessPaymentProcessed;
 class HiveAccessPaymentProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAccessPaymentProcessed.$typeName;
@@ -2226,7 +2286,6 @@ HiveAccessPaymentProcessed.$typeName = "0x0::hive_profile::HiveAccessPaymentProc
 HiveAccessPaymentProcessed.$numTypeParams = 0;
 /* ============================== HiveAccessPlanUpdated =============================== */
 function isHiveAccessPlanUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAccessPlanUpdated"; }
-exports.isHiveAccessPlanUpdated = isHiveAccessPlanUpdated;
 class HiveAccessPlanUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAccessPlanUpdated.$typeName;
@@ -2296,7 +2355,6 @@ HiveAccessPlanUpdated.$typeName = "0x0::hive_profile::HiveAccessPlanUpdated";
 HiveAccessPlanUpdated.$numTypeParams = 0;
 /* ============================== HiveAddedForHarvest =============================== */
 function isHiveAddedForHarvest(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAddedForHarvest"; }
-exports.isHiveAddedForHarvest = isHiveAddedForHarvest;
 class HiveAddedForHarvest {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAddedForHarvest.$typeName;
@@ -2358,7 +2416,6 @@ HiveAddedForHarvest.$typeName = "0x0::hive_profile::HiveAddedForHarvest";
 HiveAddedForHarvest.$numTypeParams = 0;
 /* ============================== HiveAppAccessCapability =============================== */
 function isHiveAppAccessCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAppAccessCapability"; }
-exports.isHiveAppAccessCapability = isHiveAppAccessCapability;
 class HiveAppAccessCapability {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAppAccessCapability.$typeName;
@@ -2428,7 +2485,6 @@ HiveAppAccessCapability.$typeName = "0x0::hive_profile::HiveAppAccessCapability"
 HiveAppAccessCapability.$numTypeParams = 0;
 /* ============================== HiveAsset =============================== */
 function isHiveAsset(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAsset"; }
-exports.isHiveAsset = isHiveAsset;
 class HiveAsset {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAsset.$typeName;
@@ -2524,7 +2580,6 @@ HiveAsset.$typeName = "0x0::hive_profile::HiveAsset";
 HiveAsset.$numTypeParams = 0;
 /* ============================== HiveAssetBorrowed =============================== */
 function isHiveAssetBorrowed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAssetBorrowed"; }
-exports.isHiveAssetBorrowed = isHiveAssetBorrowed;
 class HiveAssetBorrowed {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAssetBorrowed.$typeName;
@@ -2598,7 +2653,6 @@ HiveAssetBorrowed.$typeName = "0x0::hive_profile::HiveAssetBorrowed";
 HiveAssetBorrowed.$numTypeParams = 0;
 /* ============================== HiveAssetStaked =============================== */
 function isHiveAssetStaked(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAssetStaked"; }
-exports.isHiveAssetStaked = isHiveAssetStaked;
 class HiveAssetStaked {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAssetStaked.$typeName;
@@ -2670,7 +2724,6 @@ HiveAssetStaked.$typeName = "0x0::hive_profile::HiveAssetStaked";
 HiveAssetStaked.$numTypeParams = 0;
 /* ============================== HiveAssetTransfered =============================== */
 function isHiveAssetTransfered(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAssetTransfered"; }
-exports.isHiveAssetTransfered = isHiveAssetTransfered;
 class HiveAssetTransfered {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAssetTransfered.$typeName;
@@ -2736,7 +2789,6 @@ HiveAssetTransfered.$typeName = "0x0::hive_profile::HiveAssetTransfered";
 HiveAssetTransfered.$numTypeParams = 0;
 /* ============================== HiveAssetUnstaked =============================== */
 function isHiveAssetUnstaked(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAssetUnstaked"; }
-exports.isHiveAssetUnstaked = isHiveAssetUnstaked;
 class HiveAssetUnstaked {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAssetUnstaked.$typeName;
@@ -2800,7 +2852,6 @@ HiveAssetUnstaked.$typeName = "0x0::hive_profile::HiveAssetUnstaked";
 HiveAssetUnstaked.$numTypeParams = 0;
 /* ============================== HiveAssetUpgraded =============================== */
 function isHiveAssetUpgraded(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveAssetUpgraded"; }
-exports.isHiveAssetUpgraded = isHiveAssetUpgraded;
 class HiveAssetUpgraded {
     constructor(typeArgs, fields) {
         this.$typeName = HiveAssetUpgraded.$typeName;
@@ -2874,7 +2925,6 @@ HiveAssetUpgraded.$typeName = "0x0::hive_profile::HiveAssetUpgraded";
 HiveAssetUpgraded.$numTypeParams = 0;
 /* ============================== HiveDisperser =============================== */
 function isHiveDisperser(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveDisperser"; }
-exports.isHiveDisperser = isHiveDisperser;
 class HiveDisperser {
     constructor(typeArgs, fields) {
         this.$typeName = HiveDisperser.$typeName;
@@ -2944,7 +2994,6 @@ HiveDisperser.$typeName = "0x0::hive_profile::HiveDisperser";
 HiveDisperser.$numTypeParams = 0;
 /* ============================== HiveGemsDepositedIntoAsset =============================== */
 function isHiveGemsDepositedIntoAsset(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveGemsDepositedIntoAsset"; }
-exports.isHiveGemsDepositedIntoAsset = isHiveGemsDepositedIntoAsset;
 class HiveGemsDepositedIntoAsset {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGemsDepositedIntoAsset.$typeName;
@@ -3010,7 +3059,6 @@ HiveGemsDepositedIntoAsset.$typeName = "0x0::hive_profile::HiveGemsDepositedInto
 HiveGemsDepositedIntoAsset.$numTypeParams = 0;
 /* ============================== HiveGemsPortedToSkin =============================== */
 function isHiveGemsPortedToSkin(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveGemsPortedToSkin"; }
-exports.isHiveGemsPortedToSkin = isHiveGemsPortedToSkin;
 class HiveGemsPortedToSkin {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGemsPortedToSkin.$typeName;
@@ -3080,7 +3128,6 @@ HiveGemsPortedToSkin.$typeName = "0x0::hive_profile::HiveGemsPortedToSkin";
 HiveGemsPortedToSkin.$numTypeParams = 0;
 /* ============================== HiveGemsTransfered =============================== */
 function isHiveGemsTransfered(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveGemsTransfered"; }
-exports.isHiveGemsTransfered = isHiveGemsTransfered;
 class HiveGemsTransfered {
     constructor(typeArgs, fields) {
         this.$typeName = HiveGemsTransfered.$typeName;
@@ -3150,7 +3197,6 @@ HiveGemsTransfered.$typeName = "0x0::hive_profile::HiveGemsTransfered";
 HiveGemsTransfered.$numTypeParams = 0;
 /* ============================== HiveKiosk =============================== */
 function isHiveKiosk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveKiosk"; }
-exports.isHiveKiosk = isHiveKiosk;
 class HiveKiosk {
     constructor(typeArgs, fields) {
         this.$typeName = HiveKiosk.$typeName;
@@ -3246,7 +3292,6 @@ HiveKiosk.$typeName = "0x0::hive_profile::HiveKiosk";
 HiveKiosk.$numTypeParams = 0;
 /* ============================== HiveKioskInitialized =============================== */
 function isHiveKioskInitialized(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveKioskInitialized"; }
-exports.isHiveKioskInitialized = isHiveKioskInitialized;
 class HiveKioskInitialized {
     constructor(typeArgs, fields) {
         this.$typeName = HiveKioskInitialized.$typeName;
@@ -3318,7 +3363,6 @@ HiveKioskInitialized.$typeName = "0x0::hive_profile::HiveKioskInitialized";
 HiveKioskInitialized.$numTypeParams = 0;
 /* ============================== HiveKioskTransferredToProfile =============================== */
 function isHiveKioskTransferredToProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveKioskTransferredToProfile"; }
-exports.isHiveKioskTransferredToProfile = isHiveKioskTransferredToProfile;
 class HiveKioskTransferredToProfile {
     constructor(typeArgs, fields) {
         this.$typeName = HiveKioskTransferredToProfile.$typeName;
@@ -3386,7 +3430,6 @@ HiveKioskTransferredToProfile.$typeName = "0x0::hive_profile::HiveKioskTransferr
 HiveKioskTransferredToProfile.$numTypeParams = 0;
 /* ============================== HiveManager =============================== */
 function isHiveManager(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveManager"; }
-exports.isHiveManager = isHiveManager;
 class HiveManager {
     constructor(typeArgs, fields) {
         this.$typeName = HiveManager.$typeName;
@@ -3480,7 +3523,6 @@ HiveManager.$typeName = "0x0::hive_profile::HiveManager";
 HiveManager.$numTypeParams = 0;
 /* ============================== HiveProfile =============================== */
 function isHiveProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveProfile"; }
-exports.isHiveProfile = isHiveProfile;
 class HiveProfile {
     constructor(typeArgs, fields) {
         this.$typeName = HiveProfile.$typeName;
@@ -3584,7 +3626,6 @@ HiveProfile.$typeName = "0x0::hive_profile::HiveProfile";
 HiveProfile.$numTypeParams = 0;
 /* ============================== HiveProfileDestroyed =============================== */
 function isHiveProfileDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveProfileDestroyed"; }
-exports.isHiveProfileDestroyed = isHiveProfileDestroyed;
 class HiveProfileDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = HiveProfileDestroyed.$typeName;
@@ -3650,7 +3691,6 @@ HiveProfileDestroyed.$typeName = "0x0::hive_profile::HiveProfileDestroyed";
 HiveProfileDestroyed.$numTypeParams = 0;
 /* ============================== HiveProfileKrafted =============================== */
 function isHiveProfileKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveProfileKrafted"; }
-exports.isHiveProfileKrafted = isHiveProfileKrafted;
 class HiveProfileKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = HiveProfileKrafted.$typeName;
@@ -3722,7 +3762,6 @@ HiveProfileKrafted.$typeName = "0x0::hive_profile::HiveProfileKrafted";
 HiveProfileKrafted.$numTypeParams = 0;
 /* ============================== HiveProfileMappingStore =============================== */
 function isHiveProfileMappingStore(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveProfileMappingStore"; }
-exports.isHiveProfileMappingStore = isHiveProfileMappingStore;
 class HiveProfileMappingStore {
     constructor(typeArgs, fields) {
         this.$typeName = HiveProfileMappingStore.$typeName;
@@ -3800,7 +3839,6 @@ HiveProfileMappingStore.$typeName = "0x0::hive_profile::HiveProfileMappingStore"
 HiveProfileMappingStore.$numTypeParams = 0;
 /* ============================== HiveTwapInfo =============================== */
 function isHiveTwapInfo(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveTwapInfo"; }
-exports.isHiveTwapInfo = isHiveTwapInfo;
 class HiveTwapInfo {
     constructor(typeArgs, fields) {
         this.$typeName = HiveTwapInfo.$typeName;
@@ -3868,7 +3906,6 @@ HiveTwapInfo.$typeName = "0x0::hive_profile::HiveTwapInfo";
 HiveTwapInfo.$numTypeParams = 0;
 /* ============================== HiveTwapUpdated =============================== */
 function isHiveTwapUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::HiveTwapUpdated"; }
-exports.isHiveTwapUpdated = isHiveTwapUpdated;
 class HiveTwapUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = HiveTwapUpdated.$typeName;
@@ -3936,7 +3973,6 @@ HiveTwapUpdated.$typeName = "0x0::hive_profile::HiveTwapUpdated";
 HiveTwapUpdated.$numTypeParams = 0;
 /* ============================== Inscription =============================== */
 function isInscription(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::Inscription"; }
-exports.isInscription = isInscription;
 class Inscription {
     constructor(typeArgs, fields) {
         this.$typeName = Inscription.$typeName;
@@ -4000,7 +4036,6 @@ Inscription.$typeName = "0x0::hive_profile::Inscription";
 Inscription.$numTypeParams = 0;
 /* ============================== InscriptionSetForProfile =============================== */
 function isInscriptionSetForProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::InscriptionSetForProfile"; }
-exports.isInscriptionSetForProfile = isInscriptionSetForProfile;
 class InscriptionSetForProfile {
     constructor(typeArgs, fields) {
         this.$typeName = InscriptionSetForProfile.$typeName;
@@ -4068,7 +4103,6 @@ InscriptionSetForProfile.$typeName = "0x0::hive_profile::InscriptionSetForProfil
 InscriptionSetForProfile.$numTypeParams = 0;
 /* ============================== JoinedHiveOfProfile =============================== */
 function isJoinedHiveOfProfile(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::JoinedHiveOfProfile"; }
-exports.isJoinedHiveOfProfile = isJoinedHiveOfProfile;
 class JoinedHiveOfProfile {
     constructor(typeArgs, fields) {
         this.$typeName = JoinedHiveOfProfile.$typeName;
@@ -4142,7 +4176,6 @@ JoinedHiveOfProfile.$typeName = "0x0::hive_profile::JoinedHiveOfProfile";
 JoinedHiveOfProfile.$numTypeParams = 0;
 /* ============================== KioskOwnershipTransferred =============================== */
 function isKioskOwnershipTransferred(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::KioskOwnershipTransferred"; }
-exports.isKioskOwnershipTransferred = isKioskOwnershipTransferred;
 class KioskOwnershipTransferred {
     constructor(typeArgs, fields) {
         this.$typeName = KioskOwnershipTransferred.$typeName;
@@ -4214,7 +4247,6 @@ KioskOwnershipTransferred.$typeName = "0x0::hive_profile::KioskOwnershipTransfer
 KioskOwnershipTransferred.$numTypeParams = 0;
 /* ============================== KraftRoyaltyUpdated =============================== */
 function isKraftRoyaltyUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::KraftRoyaltyUpdated"; }
-exports.isKraftRoyaltyUpdated = isKraftRoyaltyUpdated;
 class KraftRoyaltyUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = KraftRoyaltyUpdated.$typeName;
@@ -4290,7 +4322,6 @@ KraftRoyaltyUpdated.$typeName = "0x0::hive_profile::KraftRoyaltyUpdated";
 KraftRoyaltyUpdated.$numTypeParams = 0;
 /* ============================== KraftYieldHarvested =============================== */
 function isKraftYieldHarvested(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::KraftYieldHarvested"; }
-exports.isKraftYieldHarvested = isKraftYieldHarvested;
 class KraftYieldHarvested {
     constructor(typeArgs, fields) {
         this.$typeName = KraftYieldHarvested.$typeName;
@@ -4354,7 +4385,6 @@ KraftYieldHarvested.$typeName = "0x0::hive_profile::KraftYieldHarvested";
 KraftYieldHarvested.$numTypeParams = 0;
 /* ============================== LendRecord =============================== */
 function isLendRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::LendRecord"; }
-exports.isLendRecord = isLendRecord;
 class LendRecord {
     constructor(typeArgs, fields) {
         this.$typeName = LendRecord.$typeName;
@@ -4426,7 +4456,6 @@ LendRecord.$typeName = "0x0::hive_profile::LendRecord";
 LendRecord.$numTypeParams = 0;
 /* ============================== Listing =============================== */
 function isListing(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::Listing"; }
-exports.isListing = isListing;
 class Listing {
     constructor(typeArgs, fields) {
         this.$typeName = Listing.$typeName;
@@ -4510,7 +4539,6 @@ Listing.$typeName = "0x0::hive_profile::Listing";
 Listing.$numTypeParams = 0;
 /* ============================== ListingCanceled =============================== */
 function isListingCanceled(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ListingCanceled"; }
-exports.isListingCanceled = isListingCanceled;
 class ListingCanceled {
     constructor(typeArgs, fields) {
         this.$typeName = ListingCanceled.$typeName;
@@ -4574,7 +4602,6 @@ ListingCanceled.$typeName = "0x0::hive_profile::ListingCanceled";
 ListingCanceled.$numTypeParams = 0;
 /* ============================== ListingDestroyed =============================== */
 function isListingDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ListingDestroyed"; }
-exports.isListingDestroyed = isListingDestroyed;
 class ListingDestroyed {
     constructor(typeArgs, fields) {
         this.$typeName = ListingDestroyed.$typeName;
@@ -4638,7 +4665,6 @@ ListingDestroyed.$typeName = "0x0::hive_profile::ListingDestroyed";
 ListingDestroyed.$numTypeParams = 0;
 /* ============================== ListingExpired =============================== */
 function isListingExpired(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ListingExpired"; }
-exports.isListingExpired = isListingExpired;
 class ListingExpired {
     constructor(typeArgs, fields) {
         this.$typeName = ListingExpired.$typeName;
@@ -4702,7 +4728,6 @@ ListingExpired.$typeName = "0x0::hive_profile::ListingExpired";
 ListingExpired.$numTypeParams = 0;
 /* ============================== ListingRecord =============================== */
 function isListingRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ListingRecord"; }
-exports.isListingRecord = isListingRecord;
 class ListingRecord {
     constructor(typeArgs, fields) {
         this.$typeName = ListingRecord.$typeName;
@@ -4784,7 +4809,6 @@ ListingRecord.$typeName = "0x0::hive_profile::ListingRecord";
 ListingRecord.$numTypeParams = 0;
 /* ============================== ListingUpdated =============================== */
 function isListingUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ListingUpdated"; }
-exports.isListingUpdated = isListingUpdated;
 class ListingUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = ListingUpdated.$typeName;
@@ -4856,7 +4880,6 @@ ListingUpdated.$typeName = "0x0::hive_profile::ListingUpdated";
 ListingUpdated.$numTypeParams = 0;
 /* ============================== ManagerAppAccessCapability =============================== */
 function isManagerAppAccessCapability(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ManagerAppAccessCapability"; }
-exports.isManagerAppAccessCapability = isManagerAppAccessCapability;
 class ManagerAppAccessCapability {
     constructor(typeArgs, fields) {
         this.$typeName = ManagerAppAccessCapability.$typeName;
@@ -4920,7 +4943,6 @@ ManagerAppAccessCapability.$typeName = "0x0::hive_profile::ManagerAppAccessCapab
 ManagerAppAccessCapability.$numTypeParams = 0;
 /* ============================== MarketPlace =============================== */
 function isMarketPlace(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x0::hive_profile::MarketPlace<"); }
-exports.isMarketPlace = isMarketPlace;
 class MarketPlace {
     constructor(typeArgs, fields) {
         this.$typeName = MarketPlace.$typeName;
@@ -4992,7 +5014,6 @@ MarketPlace.$typeName = "0x0::hive_profile::MarketPlace";
 MarketPlace.$numTypeParams = 1;
 /* ============================== NewHiveAssetKrafted =============================== */
 function isNewHiveAssetKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::NewHiveAssetKrafted"; }
-exports.isNewHiveAssetKrafted = isNewHiveAssetKrafted;
 class NewHiveAssetKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = NewHiveAssetKrafted.$typeName;
@@ -5076,7 +5097,6 @@ NewHiveAssetKrafted.$typeName = "0x0::hive_profile::NewHiveAssetKrafted";
 NewHiveAssetKrafted.$numTypeParams = 0;
 /* ============================== NewListing =============================== */
 function isNewListing(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::NewListing"; }
-exports.isNewListing = isNewListing;
 class NewListing {
     constructor(typeArgs, fields) {
         this.$typeName = NewListing.$typeName;
@@ -5160,7 +5180,6 @@ NewListing.$typeName = "0x0::hive_profile::NewListing";
 NewListing.$numTypeParams = 0;
 /* ============================== NewSkinForAsset =============================== */
 function isNewSkinForAsset(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::NewSkinForAsset"; }
-exports.isNewSkinForAsset = isNewSkinForAsset;
 class NewSkinForAsset {
     constructor(typeArgs, fields) {
         this.$typeName = NewSkinForAsset.$typeName;
@@ -5230,7 +5249,6 @@ NewSkinForAsset.$typeName = "0x0::hive_profile::NewSkinForAsset";
 NewSkinForAsset.$numTypeParams = 0;
 /* ============================== NewSkinForAssetKrafted =============================== */
 function isNewSkinForAssetKrafted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::NewSkinForAssetKrafted"; }
-exports.isNewSkinForAssetKrafted = isNewSkinForAssetKrafted;
 class NewSkinForAssetKrafted {
     constructor(typeArgs, fields) {
         this.$typeName = NewSkinForAssetKrafted.$typeName;
@@ -5314,7 +5332,6 @@ NewSkinForAssetKrafted.$typeName = "0x0::hive_profile::NewSkinForAssetKrafted";
 NewSkinForAssetKrafted.$numTypeParams = 0;
 /* ============================== PricingAndAccessSetInHiveKiosk =============================== */
 function isPricingAndAccessSetInHiveKiosk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::PricingAndAccessSetInHiveKiosk"; }
-exports.isPricingAndAccessSetInHiveKiosk = isPricingAndAccessSetInHiveKiosk;
 class PricingAndAccessSetInHiveKiosk {
     constructor(typeArgs, fields) {
         this.$typeName = PricingAndAccessSetInHiveKiosk.$typeName;
@@ -5388,7 +5405,6 @@ PricingAndAccessSetInHiveKiosk.$typeName = "0x0::hive_profile::PricingAndAccessS
 PricingAndAccessSetInHiveKiosk.$numTypeParams = 0;
 /* ============================== ProfileConfigParamsUpdated =============================== */
 function isProfileConfigParamsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ProfileConfigParamsUpdated"; }
-exports.isProfileConfigParamsUpdated = isProfileConfigParamsUpdated;
 class ProfileConfigParamsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = ProfileConfigParamsUpdated.$typeName;
@@ -5460,7 +5476,6 @@ ProfileConfigParamsUpdated.$typeName = "0x0::hive_profile::ProfileConfigParamsUp
 ProfileConfigParamsUpdated.$numTypeParams = 0;
 /* ============================== PublicKraftConfig =============================== */
 function isPublicKraftConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::PublicKraftConfig"; }
-exports.isPublicKraftConfig = isPublicKraftConfig;
 class PublicKraftConfig {
     constructor(typeArgs, fields) {
         this.$typeName = PublicKraftConfig.$typeName;
@@ -5530,7 +5545,6 @@ PublicKraftConfig.$typeName = "0x0::hive_profile::PublicKraftConfig";
 PublicKraftConfig.$numTypeParams = 0;
 /* ============================== PublicKraftInitialized =============================== */
 function isPublicKraftInitialized(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::PublicKraftInitialized"; }
-exports.isPublicKraftInitialized = isPublicKraftInitialized;
 class PublicKraftInitialized {
     constructor(typeArgs, fields) {
         this.$typeName = PublicKraftInitialized.$typeName;
@@ -5600,7 +5614,6 @@ PublicKraftInitialized.$typeName = "0x0::hive_profile::PublicKraftInitialized";
 PublicKraftInitialized.$numTypeParams = 0;
 /* ============================== RemovedUpgradeForVersion =============================== */
 function isRemovedUpgradeForVersion(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::RemovedUpgradeForVersion"; }
-exports.isRemovedUpgradeForVersion = isRemovedUpgradeForVersion;
 class RemovedUpgradeForVersion {
     constructor(typeArgs, fields) {
         this.$typeName = RemovedUpgradeForVersion.$typeName;
@@ -5668,7 +5681,6 @@ RemovedUpgradeForVersion.$typeName = "0x0::hive_profile::RemovedUpgradeForVersio
 RemovedUpgradeForVersion.$numTypeParams = 0;
 /* ============================== ReturnBorrowedHiveAsset =============================== */
 function isReturnBorrowedHiveAsset(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::ReturnBorrowedHiveAsset"; }
-exports.isReturnBorrowedHiveAsset = isReturnBorrowedHiveAsset;
 class ReturnBorrowedHiveAsset {
     constructor(typeArgs, fields) {
         this.$typeName = ReturnBorrowedHiveAsset.$typeName;
@@ -5734,7 +5746,6 @@ ReturnBorrowedHiveAsset.$typeName = "0x0::hive_profile::ReturnBorrowedHiveAsset"
 ReturnBorrowedHiveAsset.$numTypeParams = 0;
 /* ============================== Royalty =============================== */
 function isRoyalty(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::Royalty"; }
-exports.isRoyalty = isRoyalty;
 class Royalty {
     constructor(typeArgs, fields) {
         this.$typeName = Royalty.$typeName;
@@ -5802,7 +5813,6 @@ Royalty.$typeName = "0x0::hive_profile::Royalty";
 Royalty.$numTypeParams = 0;
 /* ============================== RoyaltyCollectedForCreator =============================== */
 function isRoyaltyCollectedForCreator(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::RoyaltyCollectedForCreator"; }
-exports.isRoyaltyCollectedForCreator = isRoyaltyCollectedForCreator;
 class RoyaltyCollectedForCreator {
     constructor(typeArgs, fields) {
         this.$typeName = RoyaltyCollectedForCreator.$typeName;
@@ -5868,7 +5878,6 @@ RoyaltyCollectedForCreator.$typeName = "0x0::hive_profile::RoyaltyCollectedForCr
 RoyaltyCollectedForCreator.$numTypeParams = 0;
 /* ============================== RoyaltyProcessed =============================== */
 function isRoyaltyProcessed(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::RoyaltyProcessed"; }
-exports.isRoyaltyProcessed = isRoyaltyProcessed;
 class RoyaltyProcessed {
     constructor(typeArgs, fields) {
         this.$typeName = RoyaltyProcessed.$typeName;
@@ -5936,7 +5945,6 @@ RoyaltyProcessed.$typeName = "0x0::hive_profile::RoyaltyProcessed";
 RoyaltyProcessed.$numTypeParams = 0;
 /* ============================== SaleExecuted =============================== */
 function isSaleExecuted(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SaleExecuted"; }
-exports.isSaleExecuted = isSaleExecuted;
 class SaleExecuted {
     constructor(typeArgs, fields) {
         this.$typeName = SaleExecuted.$typeName;
@@ -6014,7 +6022,6 @@ SaleExecuted.$typeName = "0x0::hive_profile::SaleExecuted";
 SaleExecuted.$numTypeParams = 0;
 /* ============================== SkinAccessPermissionsUpdated =============================== */
 function isSkinAccessPermissionsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SkinAccessPermissionsUpdated"; }
-exports.isSkinAccessPermissionsUpdated = isSkinAccessPermissionsUpdated;
 class SkinAccessPermissionsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = SkinAccessPermissionsUpdated.$typeName;
@@ -6082,7 +6089,6 @@ SkinAccessPermissionsUpdated.$typeName = "0x0::hive_profile::SkinAccessPermissio
 SkinAccessPermissionsUpdated.$numTypeParams = 0;
 /* ============================== SkinKraftPermissionsUpdated =============================== */
 function isSkinKraftPermissionsUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SkinKraftPermissionsUpdated"; }
-exports.isSkinKraftPermissionsUpdated = isSkinKraftPermissionsUpdated;
 class SkinKraftPermissionsUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = SkinKraftPermissionsUpdated.$typeName;
@@ -6148,7 +6154,6 @@ SkinKraftPermissionsUpdated.$typeName = "0x0::hive_profile::SkinKraftPermissions
 SkinKraftPermissionsUpdated.$numTypeParams = 0;
 /* ============================== SkinRecord =============================== */
 function isSkinRecord(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SkinRecord"; }
-exports.isSkinRecord = isSkinRecord;
 class SkinRecord {
     constructor(typeArgs, fields) {
         this.$typeName = SkinRecord.$typeName;
@@ -6220,7 +6225,6 @@ SkinRecord.$typeName = "0x0::hive_profile::SkinRecord";
 SkinRecord.$numTypeParams = 0;
 /* ============================== SkinRoyaltyCommissionUpdated =============================== */
 function isSkinRoyaltyCommissionUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SkinRoyaltyCommissionUpdated"; }
-exports.isSkinRoyaltyCommissionUpdated = isSkinRoyaltyCommissionUpdated;
 class SkinRoyaltyCommissionUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = SkinRoyaltyCommissionUpdated.$typeName;
@@ -6286,7 +6290,6 @@ SkinRoyaltyCommissionUpdated.$typeName = "0x0::hive_profile::SkinRoyaltyCommissi
 SkinRoyaltyCommissionUpdated.$numTypeParams = 0;
 /* ============================== SubscriptionRoyalty =============================== */
 function isSubscriptionRoyalty(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::SubscriptionRoyalty"; }
-exports.isSubscriptionRoyalty = isSubscriptionRoyalty;
 class SubscriptionRoyalty {
     constructor(typeArgs, fields) {
         this.$typeName = SubscriptionRoyalty.$typeName;
@@ -6354,7 +6357,6 @@ SubscriptionRoyalty.$typeName = "0x0::hive_profile::SubscriptionRoyalty";
 SubscriptionRoyalty.$numTypeParams = 0;
 /* ============================== TotalActivePowerUpdated =============================== */
 function isTotalActivePowerUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::TotalActivePowerUpdated"; }
-exports.isTotalActivePowerUpdated = isTotalActivePowerUpdated;
 class TotalActivePowerUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = TotalActivePowerUpdated.$typeName;
@@ -6418,7 +6420,6 @@ TotalActivePowerUpdated.$typeName = "0x0::hive_profile::TotalActivePowerUpdated"
 TotalActivePowerUpdated.$numTypeParams = 0;
 /* ============================== TraitsSetInHiveKiosk =============================== */
 function isTraitsSetInHiveKiosk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::TraitsSetInHiveKiosk"; }
-exports.isTraitsSetInHiveKiosk = isTraitsSetInHiveKiosk;
 class TraitsSetInHiveKiosk {
     constructor(typeArgs, fields) {
         this.$typeName = TraitsSetInHiveKiosk.$typeName;
@@ -6484,7 +6485,6 @@ TraitsSetInHiveKiosk.$typeName = "0x0::hive_profile::TraitsSetInHiveKiosk";
 TraitsSetInHiveKiosk.$numTypeParams = 0;
 /* ============================== TwapUpdateCap =============================== */
 function isTwapUpdateCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::TwapUpdateCap"; }
-exports.isTwapUpdateCap = isTwapUpdateCap;
 class TwapUpdateCap {
     constructor(typeArgs, fields) {
         this.$typeName = TwapUpdateCap.$typeName;
@@ -6546,7 +6546,6 @@ TwapUpdateCap.$typeName = "0x0::hive_profile::TwapUpdateCap";
 TwapUpdateCap.$numTypeParams = 0;
 /* ============================== UpdateEntropyForEpoch =============================== */
 function isUpdateEntropyForEpoch(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::UpdateEntropyForEpoch"; }
-exports.isUpdateEntropyForEpoch = isUpdateEntropyForEpoch;
 class UpdateEntropyForEpoch {
     constructor(typeArgs, fields) {
         this.$typeName = UpdateEntropyForEpoch.$typeName;
@@ -6622,7 +6621,6 @@ UpdateEntropyForEpoch.$typeName = "0x0::hive_profile::UpdateEntropyForEpoch";
 UpdateEntropyForEpoch.$numTypeParams = 0;
 /* ============================== UserNameUpdated =============================== */
 function isUserNameUpdated(type) { type = (0, util_1.compressSuiType)(type); return type === "0x0::hive_profile::UserNameUpdated"; }
-exports.isUserNameUpdated = isUserNameUpdated;
 class UserNameUpdated {
     constructor(typeArgs, fields) {
         this.$typeName = UserNameUpdated.$typeName;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const hiveProfile = require("./hive-profile/structs");
 function registerClasses(loader) {
     loader.register(hiveProfile.ConfigParams);
@@ -98,4 +98,3 @@ function registerClasses(loader) {
     loader.register(hiveProfile.UpdateEntropyForEpoch);
     loader.register(hiveProfile.UserNameUpdated);
 }
-exports.registerClasses = registerClasses;

@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Wrapper = exports.isWrapper = void 0;
+exports.Wrapper = void 0;
+exports.isWrapper = isWrapper;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Wrapper =============================== */
 function isWrapper(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::dynamic_object_field::Wrapper<"); }
-exports.isWrapper = isWrapper;
 class Wrapper {
     constructor(typeArgs, fields) {
         this.$typeName = Wrapper.$typeName;

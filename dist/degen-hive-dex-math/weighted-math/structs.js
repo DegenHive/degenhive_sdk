@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WeightedConfig = exports.isWeightedConfig = void 0;
+exports.WeightedConfig = void 0;
+exports.isWeightedConfig = isWeightedConfig;
 const reified = require("../../_framework/reified");
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== WeightedConfig =============================== */
 function isWeightedConfig(type) { type = (0, util_1.compressSuiType)(type); return type === "0x8dedf746c2648f520827d9a31604b86269afd0a4273b37b296742202ccfc306f::weighted_math::WeightedConfig"; }
-exports.isWeightedConfig = isWeightedConfig;
 class WeightedConfig {
     constructor(typeArgs, fields) {
         this.$typeName = WeightedConfig.$typeName;

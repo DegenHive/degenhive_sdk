@@ -1,12 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.VotingPowerInfoV2 = exports.isVotingPowerInfoV2 = exports.VotingPowerInfo = exports.isVotingPowerInfo = void 0;
+exports.VotingPowerInfoV2 = exports.VotingPowerInfo = void 0;
+exports.isVotingPowerInfo = isVotingPowerInfo;
+exports.isVotingPowerInfoV2 = isVotingPowerInfoV2;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VotingPowerInfo =============================== */
 function isVotingPowerInfo(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::voting_power::VotingPowerInfo"; }
-exports.isVotingPowerInfo = isVotingPowerInfo;
 class VotingPowerInfo {
     constructor(typeArgs, fields) {
         this.$typeName = VotingPowerInfo.$typeName;
@@ -70,7 +71,6 @@ VotingPowerInfo.$typeName = "0x3::voting_power::VotingPowerInfo";
 VotingPowerInfo.$numTypeParams = 0;
 /* ============================== VotingPowerInfoV2 =============================== */
 function isVotingPowerInfoV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::voting_power::VotingPowerInfoV2"; }
-exports.isVotingPowerInfoV2 = isVotingPowerInfoV2;
 class VotingPowerInfoV2 {
     constructor(typeArgs, fields) {
         this.$typeName = VotingPowerInfoV2.$typeName;

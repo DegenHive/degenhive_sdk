@@ -1,6 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ValidatorMetadata = exports.isValidatorMetadata = exports.Validator = exports.isValidator = exports.UnstakingRequestEvent = exports.isUnstakingRequestEvent = exports.StakingRequestEvent = exports.isStakingRequestEvent = void 0;
+exports.ValidatorMetadata = exports.Validator = exports.UnstakingRequestEvent = exports.StakingRequestEvent = void 0;
+exports.isStakingRequestEvent = isStakingRequestEvent;
+exports.isUnstakingRequestEvent = isUnstakingRequestEvent;
+exports.isValidator = isValidator;
+exports.isValidatorMetadata = isValidatorMetadata;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
@@ -13,7 +17,6 @@ const structs_6 = require("../staking-pool/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StakingRequestEvent =============================== */
 function isStakingRequestEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator::StakingRequestEvent"; }
-exports.isStakingRequestEvent = isStakingRequestEvent;
 class StakingRequestEvent {
     constructor(typeArgs, fields) {
         this.$typeName = StakingRequestEvent.$typeName;
@@ -83,7 +86,6 @@ StakingRequestEvent.$typeName = "0x3::validator::StakingRequestEvent";
 StakingRequestEvent.$numTypeParams = 0;
 /* ============================== UnstakingRequestEvent =============================== */
 function isUnstakingRequestEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator::UnstakingRequestEvent"; }
-exports.isUnstakingRequestEvent = isUnstakingRequestEvent;
 class UnstakingRequestEvent {
     constructor(typeArgs, fields) {
         this.$typeName = UnstakingRequestEvent.$typeName;
@@ -157,7 +159,6 @@ UnstakingRequestEvent.$typeName = "0x3::validator::UnstakingRequestEvent";
 UnstakingRequestEvent.$numTypeParams = 0;
 /* ============================== Validator =============================== */
 function isValidator(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator::Validator"; }
-exports.isValidator = isValidator;
 class Validator {
     constructor(typeArgs, fields) {
         this.$typeName = Validator.$typeName;
@@ -237,7 +238,6 @@ Validator.$typeName = "0x3::validator::Validator";
 Validator.$numTypeParams = 0;
 /* ============================== ValidatorMetadata =============================== */
 function isValidatorMetadata(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator::ValidatorMetadata"; }
-exports.isValidatorMetadata = isValidatorMetadata;
 class ValidatorMetadata {
     constructor(typeArgs, fields) {
         this.$typeName = ValidatorMetadata.$typeName;

@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Referent = exports.isReferent = exports.Borrow = exports.isBorrow = void 0;
+exports.Referent = exports.Borrow = void 0;
+exports.isBorrow = isBorrow;
+exports.isReferent = isReferent;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
@@ -8,7 +10,6 @@ const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Borrow =============================== */
 function isBorrow(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::borrow::Borrow"; }
-exports.isBorrow = isBorrow;
 class Borrow {
     constructor(typeArgs, fields) {
         this.$typeName = Borrow.$typeName;
@@ -72,7 +73,6 @@ Borrow.$typeName = "0x2::borrow::Borrow";
 Borrow.$numTypeParams = 0;
 /* ============================== Referent =============================== */
 function isReferent(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::borrow::Referent<"); }
-exports.isReferent = isReferent;
 class Referent {
     constructor(typeArgs, fields) {
         this.$typeName = Referent.$typeName;

@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TxContext = exports.isTxContext = void 0;
+exports.TxContext = void 0;
+exports.isTxContext = isTxContext;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== TxContext =============================== */
 function isTxContext(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::tx_context::TxContext"; }
-exports.isTxContext = isTxContext;
 class TxContext {
     constructor(typeArgs, fields) {
         this.$typeName = TxContext.$typeName;

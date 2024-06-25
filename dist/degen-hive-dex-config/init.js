@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerClasses = void 0;
+exports.registerClasses = registerClasses;
 const bee = require("./bee/structs");
 const config = require("./config/structs");
 const curves = require("./curves/structs");
@@ -40,4 +40,3 @@ function registerClasses(loader) {
     loader.register(hiveGems.HiveGems);
     loader.register(hiveGems.HiveGemsBurnt);
 }
-exports.registerClasses = registerClasses;

@@ -1,6 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.decodeFromJSONField = exports.fieldToJSON = exports.assertFieldsWithTypesArgsMatch = exports.assertReifiedTypeArgsMatch = exports.decodeFromFieldsWithTypes = exports.decodeFromFields = exports.extractType = exports.toBcs = exports.vector = exports.phantom = exports.Vector = void 0;
+exports.Vector = void 0;
+exports.phantom = phantom;
+exports.vector = vector;
+exports.toBcs = toBcs;
+exports.extractType = extractType;
+exports.decodeFromFields = decodeFromFields;
+exports.decodeFromFieldsWithTypes = decodeFromFieldsWithTypes;
+exports.assertReifiedTypeArgsMatch = assertReifiedTypeArgsMatch;
+exports.assertFieldsWithTypesArgsMatch = assertFieldsWithTypesArgsMatch;
+exports.fieldToJSON = fieldToJSON;
+exports.decodeFromJSONField = decodeFromJSONField;
 const bcs_1 = require("@mysten/bcs");
 const util_1 = require("./util");
 class Vector {
@@ -28,7 +38,6 @@ function phantom(type) {
         };
     }
 }
-exports.phantom = phantom;
 function vector(T) {
     const fullTypeName = `vector<${extractType(T)}>`;
     return {
@@ -44,7 +53,6 @@ function vector(T) {
         kind: 'VectorClassReified',
     };
 }
-exports.vector = vector;
 const Address = bcs_1.bcs.bytes(32).transform({
     input: (val) => (0, bcs_1.fromHEX)(val),
     output: val => (0, bcs_1.toHEX)(val),
@@ -71,7 +79,6 @@ function toBcs(arg) {
             return arg.bcs;
     }
 }
-exports.toBcs = toBcs;
 function extractType(reified) {
     switch (reified) {
         case 'u8':
@@ -94,7 +101,6 @@ function extractType(reified) {
     }
     throw new Error('unreachable');
 }
-exports.extractType = extractType;
 function decodeFromFields(reified, field) {
     switch (reified) {
         case 'bool':
@@ -132,7 +138,6 @@ function decodeFromFields(reified, field) {
             return reified.fromFields(field);
     }
 }
-exports.decodeFromFields = decodeFromFields;
 function decodeFromFieldsWithTypes(reified, item) {
     switch (reified) {
         case 'bool':
@@ -170,7 +175,6 @@ function decodeFromFieldsWithTypes(reified, item) {
             return reified.fromFieldsWithTypes(item);
     }
 }
-exports.decodeFromFieldsWithTypes = decodeFromFieldsWithTypes;
 function assertReifiedTypeArgsMatch(fullType, typeArgs, reifiedTypeArgs) {
     if (reifiedTypeArgs.length !== typeArgs.length) {
         throw new Error(`provided item has mismatching number of type argments ${fullType} (expected ${reifiedTypeArgs.length}, got ${typeArgs.length}))`);
@@ -181,12 +185,10 @@ function assertReifiedTypeArgsMatch(fullType, typeArgs, reifiedTypeArgs) {
         }
     }
 }
-exports.assertReifiedTypeArgsMatch = assertReifiedTypeArgsMatch;
 function assertFieldsWithTypesArgsMatch(item, reifiedTypeArgs) {
     const { typeArgs: itemTypeArgs } = (0, util_1.parseTypeName)(item.type);
     assertReifiedTypeArgsMatch(item.type, itemTypeArgs, reifiedTypeArgs);
 }
-exports.assertFieldsWithTypesArgsMatch = assertFieldsWithTypesArgsMatch;
 function fieldToJSON(type, field) {
     const { typeName, typeArgs } = (0, util_1.parseTypeName)(type);
     switch (typeName) {
@@ -222,7 +224,6 @@ function fieldToJSON(type, field) {
             return field.toJSONField();
     }
 }
-exports.fieldToJSON = fieldToJSON;
 function decodeFromJSONField(typeArg, field) {
     switch (typeArg) {
         case 'bool':
@@ -257,4 +258,3 @@ function decodeFromJSONField(typeArg, field) {
             return typeArg.fromJSONField(field);
     }
 }
-exports.decodeFromJSONField = decodeFromJSONField;

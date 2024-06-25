@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HIVE = exports.DSUI = exports.isHIVE = exports.isDSUI = void 0;
+exports.HIVE = exports.DSUI = void 0;
+exports.isDSUI = isDSUI;
+exports.isHIVE = isHIVE;
 const reified_1 = require("../../_framework/reified");
 const util_1 = require("../../_framework/util");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== DSUI =============================== */
 function isDSUI(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc::dsui::DSUI"; }
-exports.isDSUI = isDSUI;
 function isHIVE(type) { type = (0, util_1.compressSuiType)(type); return type === "0x114d0f5a2b73e7b158263f0faea8c1ac51dffcab3a3626f9035633f52c5f9d6c::hive::HIVE"; }
-exports.isHIVE = isHIVE;
 class DSUI {
     constructor(typeArgs, fields) {
         this.$typeName = DSUI.$typeName;
