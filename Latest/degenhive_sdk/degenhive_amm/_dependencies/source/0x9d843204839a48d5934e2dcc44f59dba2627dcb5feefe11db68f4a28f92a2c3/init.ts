@@ -1,0 +1,33 @@
+import * as hive from "./hive/structs";
+import {StructClassLoader} from "../../../_framework/loader";
+
+export function registerClasses(loader: StructClassLoader) { loader.register(hive.BidUpdatedByUser);
+loader.register(hive.BurnHive);
+loader.register(hive.BuzzChoosenForStream);
+loader.register(hive.CurrentStreamersInfo);
+loader.register(hive.EngagementScores);
+loader.register(hive.HIVE);
+loader.register(hive.HistoricalRecord);
+loader.register(hive.HiveBuzz);
+loader.register(hive.HiveBuzzForAStreamBuzzKrafted);
+loader.register(hive.HiveVault);
+loader.register(hive.KraftHive);
+loader.register(hive.LeadingBidsInfo);
+loader.register(hive.LeadingBidsUpdated);
+loader.register(hive.NewStreamBuzzKrafted);
+loader.register(hive.NewStreamInitiated);
+loader.register(hive.NewStreamerForStream);
+loader.register(hive.NewStreamerNotFound);
+loader.register(hive.ProfileScore);
+loader.register(hive.StreamBuzz);
+loader.register(hive.StreamBuzzesConfigUpdated);
+loader.register(hive.StreamDeleted);
+loader.register(hive.StreamPointsFinalizedForProfile);
+loader.register(hive.StreamerBuzzes);
+loader.register(hive.StreamerConfig);
+loader.register(hive.StreamerInfo);
+loader.register(hive.StreamerNotFoundForStream);
+loader.register(hive.UserBidExpired);
+loader.register(hive.UserLikedStreamBuzz);
+loader.register(hive.UserUpvotedHiveBuzz);
+ }
