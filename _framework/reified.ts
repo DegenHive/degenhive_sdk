@@ -7,6 +7,7 @@ export interface StructClass {
   $typeName: string
   $fullTypeName: string
   $typeArgs: string[]
+  $isPhantom?: readonly boolean[]
   toJSONField(): Record<string, any>
   toJSON(): Record<string, any>
 }
@@ -14,15 +15,14 @@ export interface StructClass {
 export interface VectorClass {
   $fullTypeName: string
   toJSONField(): any[]
-
+  $isPhantom?: readonly [false]
   readonly vec: any
-
   readonly kind: 'VectorClass'
 }
 
 export class Vector<T extends TypeArgument> implements VectorClass {
   readonly $fullTypeName: `vector<${ToTypeStr<T>}>`
-
+  $isPhantom?: readonly [false]
   readonly vec: Array<ToField<T>>
   constructor(fullTypeName: string, vec: Array<ToField<T>>) {
     this.$fullTypeName = fullTypeName as `vector<${ToTypeStr<T>}>`
@@ -32,7 +32,7 @@ export class Vector<T extends TypeArgument> implements VectorClass {
   toJSONField(): Array<ToJSON<T>> {
     return null as any
   }
-
+  __VectorClass: true
   readonly kind = 'VectorClass'
 }
 
@@ -45,6 +45,7 @@ export interface StructClassReified<T extends StructClass, Fields> {
   typeArgs: T['$typeArgs'] // e.g., ['0x2::sui:SUI']
   reifiedTypeArgs: Array<Reified<TypeArgument, any> | PhantomReified<PhantomTypeArgument>>
   bcs: BcsType<any>
+  isPhantom?: T['$isPhantom'] // e.g., [true, false]
   fromFields(fields: Record<string, any>): T
   fromFieldsWithTypes(item: FieldsWithTypes): T
   fromBcs(data: Uint8Array): T
@@ -56,8 +57,9 @@ export interface StructClassReified<T extends StructClass, Fields> {
   kind: 'StructClassReified'
 }
 
-export interface VectorClassReified<T extends VectorClass> {
+export interface VectorClassReified<T extends VectorClass, Elements> {
   fullTypeName: ToTypeStr<T>
+  isPhantom?: readonly [false]
   bcs: BcsType<any>
   fromFields(fields: any[]): T
   fromFieldsWithTypes(item: FieldsWithTypes): T
@@ -70,16 +72,16 @@ export type Reified<T extends TypeArgument, Fields> = T extends Primitive
   : T extends StructClass
   ? StructClassReified<T, Fields>
   : T extends VectorClass
-  ? VectorClassReified<T>
+  ? VectorClassReified<T, Fields>
   : never
 
 export type ToTypeArgument<
-  T extends Primitive | StructClassReified<StructClass, any> | VectorClassReified<VectorClass>,
+  T extends Primitive | StructClassReified<StructClass, any> | VectorClassReified<VectorClass, any>,
 > = T extends Primitive
   ? T
   : T extends StructClassReified<infer U, any>
   ? U
-  : T extends VectorClassReified<infer U>
+  : T extends VectorClassReified<infer U, any>
   ? U
   : never
 
@@ -125,7 +127,7 @@ export type PhantomToTypeStr<T extends PhantomTypeArgument> = T extends PhantomT
 
 export function vector<T extends Reified<TypeArgument, any>>(
   T: T
-): VectorClassReified<Vector<ToTypeArgument<T>>> {
+): VectorClassReified<Vector<ToTypeArgument<T>>, any> {
   const fullTypeName = `vector<${extractType(T)}>` as `vector<${ToTypeStr<ToTypeArgument<T>>}>`
 
   return {
@@ -180,9 +182,9 @@ export type ToJSON<T extends TypeArgument> = T extends 'bool'
   : T extends { $typeName: '0x2::url::Url' }
   ? string
   : T extends {
-      $typeName: '0x1::option::Option'
-      __inner: infer U extends TypeArgument
-    }
+    $typeName: '0x1::option::Option'
+    __inner: infer U extends TypeArgument
+  }
   ? ToJSON<U> | null
   : T extends VectorClass
   ? ReturnType<T['toJSONField']>
@@ -217,9 +219,9 @@ export type ToField<T extends TypeArgument> = T extends 'bool'
   : T extends { $typeName: '0x2::url::Url' }
   ? string
   : T extends {
-      $typeName: '0x1::option::Option'
-      __inner: infer U extends TypeArgument
-    }
+    $typeName: '0x1::option::Option'
+    __inner: infer U extends TypeArgument
+  }
   ? ToField<U> | null
   : T extends VectorClass
   ? T['vec']
