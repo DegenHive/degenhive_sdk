@@ -1,11 +1,4 @@
-/degen-hive-amm
-/_dependencies
-/_framework
-/degen-hive-dex-config
-/degen-hive-dex-dao
-/degen-hive-dex-math
-/degen-hive-h-sui-vault
-/degen-hive-profile
+
 /node_modules
 .env
 /Latest

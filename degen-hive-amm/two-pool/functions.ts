@@ -39,12 +39,12 @@ export function swap(
     });
 }
 
-export function init(tx: TransactionBlock) {
-    return tx.moveCall({
-        target: `${PUBLISHED_AT}::two_pool::init`,
-        arguments: [],
-    });
-}
+// export function init(tx: TransactionBlock) {
+//     return tx.moveCall({
+//         target: `${PUBLISHED_AT}::two_pool::init`,
+//         arguments: [],
+//     });
+// }
 
 export interface UpdateWeightedConfigArgs {
     pool: TransactionObjectInput;
