@@ -1,7 +1,7 @@
 export namespace twopool {
-    export const PACKAGE_ID = "0x77855360f1230d599de98e888baeeb842ff9413103da31d09665bcf7dbc05bed";
-    export const PUBLISHED_AT = "0x22d82cfe023a1c651f8b1018775efc7c678781dbd72ec94df34028c472db8d9d";
-    export const PKG_V1 = "0x77855360f1230d599de98e888baeeb842ff9413103da31d09665bcf7dbc05bed";
+    export const PACKAGE_ID = "0x6ddce619b9240f6a9f824f35cbe1ddb16a293f372811ce1cabf8f2bae1c2dd02";
+    export const PUBLISHED_AT = "0x6ddce619b9240f6a9f824f35cbe1ddb16a293f372811ce1cabf8f2bae1c2dd02";
+    export const PKG_V1 = "0x6ddce619b9240f6a9f824f35cbe1ddb16a293f372811ce1cabf8f2bae1c2dd02";
 }
 export * from './two-pool/functions';
 export * from './bee-trade/functions';

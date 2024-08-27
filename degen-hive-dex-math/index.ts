@@ -1,8 +1,8 @@
 export namespace math {
     export const PACKAGE_ID =
-        "0x8dedf746c2648f520827d9a31604b86269afd0a4273b37b296742202ccfc306f";
+        "0x58e5326222054b56d735184fe84442b5c0f27fa65cb25ab6f49e3dd98091d543";
     export const PUBLISHED_AT =
-        "0x8dedf746c2648f520827d9a31604b86269afd0a4273b37b296742202ccfc306f";
+        "0x58e5326222054b56d735184fe84442b5c0f27fa65cb25ab6f49e3dd98091d543";
 }
 export * from "./curved-math/functions";
 export * from "./stable-math/functions";

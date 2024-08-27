@@ -1,5 +1,5 @@
 export namespace config {
-    const PACKAGE_ID = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc"; export const PUBLISHED_AT = "0x3ba4e7a050d6e5a787359a260802c0835b05bdf69be3fad19682a5677de3fdc";
+    const PACKAGE_ID = "0x58e5326222054b56d735184fe84442b5c0f27fa65cb25ab6f49e3dd98091d543"; export const PUBLISHED_AT = "0x58e5326222054b56d735184fe84442b5c0f27fa65cb25ab6f49e3dd98091d543";
 }
 export * from './bee/functions';
 export * from './coin-helper/functions';
