@@ -6,13 +6,13 @@ export interface AddLiquidityComputationArgs { clock: TransactionObjectInput; po
 
 export function addLiquidityComputation( tx: Transaction, args: AddLiquidityComputationArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::add_liquidity_computation`, arguments: [ obj(tx, args.clock), obj(tx, args.poolConfig), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.providedTokens, `vector<u256>`), pure(tx, args.lpSupply, `u256`) ], }) }
 
-export interface ComputeAskAmountArgs { clock: TransactionObjectInput; poolConfig: TransactionObjectInput; offeredAssetIndex: bigint | TransactionArgument; askAssetIndex: bigint | TransactionArgument; providedAmount: bigint | TransactionArgument; existingLiquidity: Array<bigint | TransactionArgument> | TransactionArgument; lpSupply: bigint | TransactionArgument }
+export interface AssertNewConfigParamsArgs { newMidFee: bigint | TransactionArgument; newOutFee: bigint | TransactionArgument; newFeeGamma: bigint | TransactionArgument; newMaHalfTime: bigint | TransactionArgument; newAllowedExtraProfit: bigint | TransactionArgument; newAdjustmentStep: bigint | TransactionArgument }
 
-export function computeAskAmount( tx: Transaction, args: ComputeAskAmountArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::compute_ask_amount`, arguments: [ obj(tx, args.clock), obj(tx, args.poolConfig), pure(tx, args.offeredAssetIndex, `u64`), pure(tx, args.askAssetIndex, `u64`), pure(tx, args.providedAmount, `u256`), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.lpSupply, `u256`) ], }) }
+export function assertNewConfigParams( tx: Transaction, args: AssertNewConfigParamsArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::assert_new_config_params`, arguments: [ pure(tx, args.newMidFee, `u64`), pure(tx, args.newOutFee, `u64`), pure(tx, args.newFeeGamma, `u64`), pure(tx, args.newMaHalfTime, `u64`), pure(tx, args.newAllowedExtraProfit, `u64`), pure(tx, args.newAdjustmentStep, `u64`) ], }) }
 
-export interface ComputeOfferAmountArgs { clock: TransactionObjectInput; poolConfig: TransactionObjectInput; offeredAssetIndex: bigint | TransactionArgument; askAssetIndex: bigint | TransactionArgument; askAmount: bigint | TransactionArgument; existingLiquidity: Array<bigint | TransactionArgument> | TransactionArgument; lpSupply: bigint | TransactionArgument }
+export interface CalcGeometricMeanArgs { xUnsorted: Array<bigint | TransactionArgument> | TransactionArgument; sort: boolean | TransactionArgument }
 
-export function computeOfferAmount( tx: Transaction, args: ComputeOfferAmountArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::compute_offer_amount`, arguments: [ obj(tx, args.clock), obj(tx, args.poolConfig), pure(tx, args.offeredAssetIndex, `u64`), pure(tx, args.askAssetIndex, `u64`), pure(tx, args.askAmount, `u256`), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.lpSupply, `u256`) ], }) }
+export function calcGeometricMean( tx: Transaction, args: CalcGeometricMeanArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::calc_geometric_mean`, arguments: [ pure(tx, args.xUnsorted, `vector<u256>`), pure(tx, args.sort, `bool`) ], }) }
 
 export interface CalculateFeeChargedArgs { initXp: bigint | TransactionArgument; updatedXp: bigint | TransactionArgument; initD: bigint | TransactionArgument; updatedD: bigint | TransactionArgument; priceScale: bigint | TransactionArgument; fee: bigint | TransactionArgument }
 
@@ -22,13 +22,13 @@ export interface FeeArgs { xp: Array<bigint | TransactionArgument> | Transaction
 
 export function fee( tx: Transaction, args: FeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::fee`, arguments: [ pure(tx, args.xp, `vector<u256>`), pure(tx, args.midFee, `u64`), pure(tx, args.outFee, `u64`), pure(tx, args.feeGamma, `u256`) ], }) }
 
-export interface AssertNewConfigParamsArgs { newMidFee: bigint | TransactionArgument; newOutFee: bigint | TransactionArgument; newFeeGamma: bigint | TransactionArgument; newMaHalfTime: bigint | TransactionArgument; newAllowedExtraProfit: bigint | TransactionArgument; newAdjustmentStep: bigint | TransactionArgument }
+export interface ComputeAskAmountArgs { clock: TransactionObjectInput; poolConfig: TransactionObjectInput; offeredAssetIndex: bigint | TransactionArgument; askAssetIndex: bigint | TransactionArgument; providedAmount: bigint | TransactionArgument; existingLiquidity: Array<bigint | TransactionArgument> | TransactionArgument; lpSupply: bigint | TransactionArgument }
 
-export function assertNewConfigParams( tx: Transaction, args: AssertNewConfigParamsArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::assert_new_config_params`, arguments: [ pure(tx, args.newMidFee, `u64`), pure(tx, args.newOutFee, `u64`), pure(tx, args.newFeeGamma, `u64`), pure(tx, args.newMaHalfTime, `u64`), pure(tx, args.newAllowedExtraProfit, `u64`), pure(tx, args.newAdjustmentStep, `u64`) ], }) }
+export function computeAskAmount( tx: Transaction, args: ComputeAskAmountArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::compute_ask_amount`, arguments: [ obj(tx, args.clock), obj(tx, args.poolConfig), pure(tx, args.offeredAssetIndex, `u64`), pure(tx, args.askAssetIndex, `u64`), pure(tx, args.providedAmount, `u256`), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.lpSupply, `u256`) ], }) }
 
-export interface CalcGeometricMeanArgs { xUnsorted: Array<bigint | TransactionArgument> | TransactionArgument; sort: boolean | TransactionArgument }
+export interface ComputeOfferAmountArgs { clock: TransactionObjectInput; poolConfig: TransactionObjectInput; offeredAssetIndex: bigint | TransactionArgument; askAssetIndex: bigint | TransactionArgument; askAmount: bigint | TransactionArgument; existingLiquidity: Array<bigint | TransactionArgument> | TransactionArgument; lpSupply: bigint | TransactionArgument }
 
-export function calcGeometricMean( tx: Transaction, args: CalcGeometricMeanArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::calc_geometric_mean`, arguments: [ pure(tx, args.xUnsorted, `vector<u256>`), pure(tx, args.sort, `bool`) ], }) }
+export function computeOfferAmount( tx: Transaction, args: ComputeOfferAmountArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::curved_math::compute_offer_amount`, arguments: [ obj(tx, args.clock), obj(tx, args.poolConfig), pure(tx, args.offeredAssetIndex, `u64`), pure(tx, args.askAssetIndex, `u64`), pure(tx, args.askAmount, `u256`), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.lpSupply, `u256`) ], }) }
 
 export interface EmaRecorderArgs { poolConfig: TransactionObjectInput; tPrev: bigint | TransactionArgument; curTimestamp: bigint | TransactionArgument; lastPrices: Array<bigint | TransactionArgument> | TransactionArgument; nCoins: bigint | TransactionArgument }
 

@@ -2,10 +2,6 @@ import {PUBLISHED_AT} from "..";
 import {obj, pure} from "../../_framework/util";
 import {Transaction, TransactionArgument, TransactionObjectInput} from "@mysten/sui/transactions";
 
-export interface DestroyOrTransferBalanceArgs { balance: TransactionObjectInput; recipient: string | TransactionArgument }
-
-export function destroyOrTransferBalance( tx: Transaction, typeArg: string, args: DestroyOrTransferBalanceArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::entry_script::destroy_or_transfer_balance`, typeArguments: [typeArg], arguments: [ obj(tx, args.balance), pure(tx, args.recipient, `address`) ], }) }
-
 export interface ClaimUnstakedSuiArgs { vault: TransactionObjectInput; unstakeRequest: TransactionObjectInput }
 
 export function claimUnstakedSui( tx: Transaction, args: ClaimUnstakedSuiArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::entry_script::claim_unstaked_sui`, arguments: [ obj(tx, args.vault), obj(tx, args.unstakeRequest) ], }) }

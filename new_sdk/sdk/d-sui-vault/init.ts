@@ -14,12 +14,10 @@ loader.register(dsuiVault.StakeSuiRequestsProcessed);
 loader.register(dsuiVault.StakeWithSelectedValidatorRequestProcessed);
 loader.register(dsuiVault.TotalRewardsUpdated);
 loader.register(dsuiVault.UnstakeRequest);
-loader.register(dsuiVault.UnstakingRequestsProcessed);
 loader.register(dsuiVault.UserClaimedSui);
 loader.register(dsuiVault.UserUnstakeRequest);
 loader.register(dsuiVault.UserUnstakedInstantly);
 loader.register(dsuiVault.ValidatorListUpdated);
 loader.register(dsuiVault.ValidatorPool);
 loader.register(dsuiVault.ValidatorPoolDestroyed);
-loader.register(dsuiVault.ValidatorPoolRewardsUpdated);
  }

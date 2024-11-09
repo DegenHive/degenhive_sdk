@@ -44,6 +44,10 @@ export interface AddStoreToBeeArgs { masterKey: TransactionObjectInput; mystical
 
 export function addStoreToBee( tx: Transaction, typeArg: string, args: AddStoreToBeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::add_store_to_bee`, typeArguments: [typeArg], arguments: [ obj(tx, args.masterKey), obj(tx, args.mysticalBee), pure(tx, args.appAddr, `address`), generic(tx, `${typeArg}`, args.appToAdd) ], }) }
 
+export interface AddToAdminFeeArgs { beesManager: TransactionObjectInput; suiToAdd: TransactionObjectInput }
+
+export function addToAdminFee( tx: Transaction, args: AddToAdminFeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::add_to_admin_fee`, arguments: [ obj(tx, args.beesManager), obj(tx, args.suiToAdd) ], }) }
+
 export interface AdjustCapabilityValueArgs { value: bigint | TransactionArgument; increasePct: bigint | TransactionArgument; maxValue: bigint | TransactionArgument }
 
 export function adjustCapabilityValue( tx: Transaction, args: AdjustCapabilityValueArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::adjust_capability_value`, arguments: [ pure(tx, args.value, `u64`), pure(tx, args.increasePct, `u64`), pure(tx, args.maxValue, `u64`) ], }) }
@@ -235,6 +239,10 @@ export function destroyListingRecord( tx: Transaction, listingRecord: Transactio
 export interface DoesDappNameExistArgs { profileIdStore: TransactionObjectInput; dappName: string | TransactionArgument }
 
 export function doesDappNameExist( tx: Transaction, args: DoesDappNameExistArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::does_dapp_name_exist`, arguments: [ obj(tx, args.profileIdStore), pure(tx, args.dappName, `${String.$typeName}`) ], }) }
+
+export interface DoesTrainerOwnsBeeArgs { dragonTrainer: TransactionObjectInput; beeVersion: bigint | TransactionArgument }
+
+export function doesTrainerOwnsBee( tx: Transaction, args: DoesTrainerOwnsBeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::does_trainer_owns_bee`, arguments: [ obj(tx, args.dragonTrainer), pure(tx, args.beeVersion, `u64`) ], }) }
 
 export interface DragonFoodClaimGovYieldArgs { dragonFoodCap: TransactionObjectInput; yieldFarm: TransactionObjectInput; dragonBee: TransactionObjectInput }
 
@@ -736,6 +744,10 @@ export interface KraftDragonTrainerAndReturnSuiArgs { clock: TransactionObjectIn
 
 export function kraftDragonTrainerAndReturnSui( tx: Transaction, args: KraftDragonTrainerAndReturnSuiArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::kraft_dragon_trainer_and_return_sui`, arguments: [ obj(tx, args.clock), obj(tx, args.dragonTrainerStore), obj(tx, args.beesManager), obj(tx, args.hiveGraph), obj(tx, args.feeCollector), obj(tx, args.suiCoin), pure(tx, args.name, `${String1.$typeName}`) ], }) }
 
+export interface LaunchMemePoolViaBeeArgs { clock: TransactionObjectInput; memeCap: TransactionObjectInput; beesManager: TransactionObjectInput; dragonTrainer: TransactionObjectInput; beeVersion: bigint | TransactionArgument; memeIdentifier: string | TransactionArgument }
+
+export function launchMemePoolViaBee( tx: Transaction, args: LaunchMemePoolViaBeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::launch_meme_pool_via_bee`, arguments: [ obj(tx, args.clock), obj(tx, args.memeCap), obj(tx, args.beesManager), obj(tx, args.dragonTrainer), pure(tx, args.beeVersion, `u64`), pure(tx, args.memeIdentifier, `${String.$typeName}`) ], }) }
+
 export interface LayDragonEggArgs { generation: bigint | TransactionArgument; honeyDeposit: bigint | TransactionArgument; birthTime: bigint | TransactionArgument; birtherTrainer: string | TransactionArgument; queenVersion: bigint | TransactionArgument; queenId: (string | TransactionArgument | TransactionArgument | null); stingerId: (string | TransactionArgument | TransactionArgument | null); beeGene: bigint | TransactionArgument; eggImg: TransactionObjectInput; ownedBy: string | TransactionArgument; beesManager: TransactionObjectInput; price: bigint | TransactionArgument }
 
 export function layDragonEgg( tx: Transaction, args: LayDragonEggArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::lay_dragon_egg`, arguments: [ pure(tx, args.generation, `u64`), pure(tx, args.honeyDeposit, `u64`), pure(tx, args.birthTime, `u64`), pure(tx, args.birtherTrainer, `address`), pure(tx, args.queenVersion, `u64`), pure(tx, args.queenId, `${Option.$typeName}<address>`), pure(tx, args.stingerId, `${Option.$typeName}<address>`), pure(tx, args.beeGene, `u256`), obj(tx, args.eggImg), pure(tx, args.ownedBy, `address`), obj(tx, args.beesManager), pure(tx, args.price, `u64`) ], }) }
@@ -846,7 +858,7 @@ export function setupHiddenWorld( tx: Transaction, args: SetupHiddenWorldArgs ) 
 
 export interface StoreExistsForBeeArgs { mysticalBee: TransactionObjectInput; appName: string | TransactionArgument }
 
-export function storeExistsForBee( tx: Transaction, args: StoreExistsForBeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::store_exists_for_bee`, arguments: [ obj(tx, args.mysticalBee), pure(tx, args.appName, `${String1.$typeName}`) ], }) }
+export function storeExistsForBee( tx: Transaction, args: StoreExistsForBeeArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_trainer::store_exists_for_bee`, arguments: [ obj(tx, args.mysticalBee), pure(tx, args.appName, `${String.$typeName}`) ], }) }
 
 export interface SwitchTradingEnabledArgs { cap: TransactionObjectInput; yieldFarm: TransactionObjectInput; tradingEnabled: boolean | TransactionArgument }
 

@@ -115,6 +115,10 @@ export interface ClaimVotingRewardsTwoPoolDragonSchoolArgs { clock: TransactionO
 
 export function claimVotingRewardsTwoPoolDragonSchool( tx: Transaction, typeArgs: [string, string, string], args: ClaimVotingRewardsTwoPoolDragonSchoolArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::claim_voting_rewards_two_pool_dragon_school`, typeArguments: typeArgs, arguments: [ obj(tx, args.clock), obj(tx, args.dragonFood), obj(tx, args.yieldFarm), obj(tx, args.yieldFlow), obj(tx, args.poolHive), obj(tx, args.dragonSchool) ], }) }
 
+export interface ClaimVotingRewardsTwoPoolWithBurnTaxArgs { clock: TransactionObjectInput; dragonFood: TransactionObjectInput; treasuryCap: TransactionObjectInput; yieldFarm: TransactionObjectInput; yieldFlow: TransactionObjectInput; poolHive: TransactionObjectInput; dragonTrainer: TransactionObjectInput }
+
+export function claimVotingRewardsTwoPoolWithBurnTax( tx: Transaction, typeArgs: [string, string, string], args: ClaimVotingRewardsTwoPoolWithBurnTaxArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::claim_voting_rewards_two_pool_with_burn_tax`, typeArguments: typeArgs, arguments: [ obj(tx, args.clock), obj(tx, args.dragonFood), obj(tx, args.treasuryCap), obj(tx, args.yieldFarm), obj(tx, args.yieldFlow), obj(tx, args.poolHive), obj(tx, args.dragonTrainer) ], }) }
+
 export interface ComputeBribeForUserArgs { bribe: TransactionObjectInput; emissionsCycle: bigint | TransactionArgument; userBeeEnergy: bigint | TransactionArgument; userBeeHealth: bigint | TransactionArgument; activeHiveEnergy: bigint | TransactionArgument; activeHoneyHealth: bigint | TransactionArgument }
 
 export function computeBribeForUser( tx: Transaction, typeArg: string, args: ComputeBribeForUserArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::compute_bribe_for_user`, typeArguments: [typeArg], arguments: [ obj(tx, args.bribe), pure(tx, args.emissionsCycle, `u64`), pure(tx, args.userBeeEnergy, `u256`), pure(tx, args.userBeeHealth, `u256`), pure(tx, args.activeHiveEnergy, `u256`), pure(tx, args.activeHoneyHealth, `u256`) ], }) }
@@ -215,6 +219,8 @@ export interface GetLockedDragonBeeInfoArgs { poolHive: TransactionObjectInput; 
 
 export function getLockedDragonBeeInfo( tx: Transaction, typeArg: string, args: GetLockedDragonBeeInfoArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::get_locked_dragon_bee_info`, typeArguments: [typeArg], arguments: [ obj(tx, args.poolHive), pure(tx, args.dragonTrainer, `address`) ], }) }
 
+export function getOngoingCycle( tx: Transaction, dragonFood: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::get_ongoing_cycle`, arguments: [ obj(tx, dragonFood) ], }) }
+
 export function getPoolHive( tx: Transaction, typeArg: string, poolHive: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::get_pool_hive`, typeArguments: [typeArg], arguments: [ obj(tx, poolHive) ], }) }
 
 export function getPoolHiveAddr( tx: Transaction, typeArg: string, dragonFood: TransactionObjectInput ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::get_pool_hive_addr`, typeArguments: [typeArg], arguments: [ obj(tx, dragonFood) ], }) }
@@ -269,9 +275,9 @@ export interface InternalClaimVotingRewardsThreePoolArgs { dragonFood: Transacti
 
 export function internalClaimVotingRewardsThreePool( tx: Transaction, typeArgs: [string, string, string, string], args: InternalClaimVotingRewardsThreePoolArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::internal_claim_voting_rewards_three_pool`, typeArguments: typeArgs, arguments: [ obj(tx, args.dragonFood), obj(tx, args.yieldFarm), obj(tx, args.yieldFlow), obj(tx, args.poolHive), pure(tx, args.trainerAddr, `address`) ], }) }
 
-export interface InternalClaimVotingRewardsTwoPoolArgs { dragonFood: TransactionObjectInput; yieldFarm: TransactionObjectInput; yieldFlow: TransactionObjectInput; poolHive: TransactionObjectInput; trainerAddr: string | TransactionArgument }
+export interface InternalClaimVotingRewardsTwoPoolArgs { dragonFood: TransactionObjectInput; yieldFarm: TransactionObjectInput; yieldFlow: TransactionObjectInput; poolHive: TransactionObjectInput; trainerAddr: string | TransactionArgument; isBribeTokenClaim: boolean | TransactionArgument }
 
-export function internalClaimVotingRewardsTwoPool( tx: Transaction, typeArgs: [string, string, string], args: InternalClaimVotingRewardsTwoPoolArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::internal_claim_voting_rewards_two_pool`, typeArguments: typeArgs, arguments: [ obj(tx, args.dragonFood), obj(tx, args.yieldFarm), obj(tx, args.yieldFlow), obj(tx, args.poolHive), pure(tx, args.trainerAddr, `address`) ], }) }
+export function internalClaimVotingRewardsTwoPool( tx: Transaction, typeArgs: [string, string, string], args: InternalClaimVotingRewardsTwoPoolArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::internal_claim_voting_rewards_two_pool`, typeArguments: typeArgs, arguments: [ obj(tx, args.dragonFood), obj(tx, args.yieldFarm), obj(tx, args.yieldFlow), obj(tx, args.poolHive), pure(tx, args.trainerAddr, `address`), pure(tx, args.isBribeTokenClaim, `bool`) ], }) }
 
 export interface InternalDepositNoFruitsArgs { dragonFood: TransactionObjectInput; poolHive: TransactionObjectInput; dragonDen: TransactionObjectInput; lpBalance: TransactionObjectInput; trainerAddr: string | TransactionArgument; username: string | TransactionArgument }
 
@@ -344,6 +350,10 @@ export function lockLpTokensForSchool( tx: Transaction, typeArg: string, args: L
 export interface LockLpTokensForTrainerArgs { cap: TransactionObjectInput; dragonFood: TransactionObjectInput; poolHive: TransactionObjectInput; dragonTrainer: TransactionObjectInput }
 
 export function lockLpTokensForTrainer( tx: Transaction, typeArg: string, args: LockLpTokensForTrainerArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::lock_lp_tokens_for_trainer`, typeArguments: [typeArg], arguments: [ obj(tx, args.cap), obj(tx, args.dragonFood), obj(tx, args.poolHive), obj(tx, args.dragonTrainer) ], }) }
+
+export interface MarkBribeAsMemeTokenArgs { memeCap: TransactionObjectInput; poolHive: TransactionObjectInput }
+
+export function markBribeAsMemeToken( tx: Transaction, typeArgs: [string, string], args: MarkBribeAsMemeTokenArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::dragon_food::mark_bribe_as_meme_token`, typeArguments: typeArgs, arguments: [ obj(tx, args.memeCap), obj(tx, args.poolHive) ], }) }
 
 export interface QueryAccessDragonDenArgs { poolHive: TransactionObjectInput; dragonTrainer: string | TransactionArgument }
 

@@ -11,3 +11,4 @@ QueenMaker = { local = "../degenhive/queen_maker" }
 TwoCoinAmm = { local = "../degenhive/two_pool" }
 ThreeCoinAmm = { local = "../degenhive/three_pool" }
 DragonFood = { local = "../degenhive/dragon_food" }
+MemePad = { local = "../degenhive/meme_launchpad/memepad" }

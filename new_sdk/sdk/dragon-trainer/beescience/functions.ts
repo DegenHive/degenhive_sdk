@@ -2,21 +2,13 @@ import {PUBLISHED_AT} from "..";
 import {pure} from "../../_framework/util";
 import {Transaction, TransactionArgument} from "@mysten/sui/transactions";
 
-export interface CalculatePowArgs { baseNumerator: bigint | TransactionArgument; baseDenominator: bigint | TransactionArgument; expNumerator: bigint | TransactionArgument; expDenominator: bigint | TransactionArgument }
-
-export function calculatePow( tx: Transaction, args: CalculatePowArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::calculate_pow`, arguments: [ pure(tx, args.baseNumerator, `u128`), pure(tx, args.baseDenominator, `u128`), pure(tx, args.expNumerator, `u128`), pure(tx, args.expDenominator, `u128`) ], }) }
-
-export interface PowApproxArgs { x: bigint | TransactionArgument; expNumerator: bigint | TransactionArgument; expDenominator: bigint | TransactionArgument }
-
-export function powApprox( tx: Transaction, args: PowApproxArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::pow_approx`, arguments: [ pure(tx, args.x, `u128`), pure(tx, args.expNumerator, `u128`), pure(tx, args.expDenominator, `u128`) ], }) }
-
-export interface SubSignArgs { a: bigint | TransactionArgument; b: bigint | TransactionArgument }
-
-export function subSign( tx: Transaction, args: SubSignArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::sub_sign`, arguments: [ pure(tx, args.a, `u256`), pure(tx, args.b, `u256`) ], }) }
-
 export interface BreedBeesArgs { parent1Genes: bigint | TransactionArgument; parent2Genes: bigint | TransactionArgument; appearanceRandom: bigint | TransactionArgument; capabilityRandom: bigint | TransactionArgument }
 
 export function breedBees( tx: Transaction, args: BreedBeesArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::breed_bees`, arguments: [ pure(tx, args.parent1Genes, `u256`), pure(tx, args.parent2Genes, `u256`), pure(tx, args.appearanceRandom, `u256`), pure(tx, args.capabilityRandom, `u256`) ], }) }
+
+export interface CalculatePowArgs { baseNumerator: bigint | TransactionArgument; baseDenominator: bigint | TransactionArgument; expNumerator: bigint | TransactionArgument; expDenominator: bigint | TransactionArgument }
+
+export function calculatePow( tx: Transaction, args: CalculatePowArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::calculate_pow`, arguments: [ pure(tx, args.baseNumerator, `u128`), pure(tx, args.baseDenominator, `u128`), pure(tx, args.expNumerator, `u128`), pure(tx, args.expDenominator, `u128`) ], }) }
 
 export interface ComputeGenePriceArgs { basePrice: bigint | TransactionArgument; curveA: bigint | TransactionArgument; eggsIncubated: bigint | TransactionArgument }
 
@@ -84,6 +76,10 @@ export interface MutateTraitArgs { baseTrait: number | TransactionArgument; rand
 
 export function mutateTrait( tx: Transaction, args: MutateTraitArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::mutate_trait`, arguments: [ pure(tx, args.baseTrait, `u8`), pure(tx, args.rand, `u8`) ], }) }
 
+export interface PowApproxArgs { x: bigint | TransactionArgument; expNumerator: bigint | TransactionArgument; expDenominator: bigint | TransactionArgument }
+
+export function powApprox( tx: Transaction, args: PowApproxArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::pow_approx`, arguments: [ pure(tx, args.x, `u128`), pure(tx, args.expNumerator, `u128`), pure(tx, args.expDenominator, `u128`) ], }) }
+
 export interface PowApproxFracArgs { base: bigint | TransactionArgument; exp: bigint | TransactionArgument; pPrecision: bigint | TransactionArgument }
 
 export function powApproxFrac( tx: Transaction, args: PowApproxFracArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::pow_approx_frac`, arguments: [ pure(tx, args.base, `u256`), pure(tx, args.exp, `u128`), pure(tx, args.pPrecision, `u64`) ], }) }
@@ -91,6 +87,10 @@ export function powApproxFrac( tx: Transaction, args: PowApproxFracArgs ) { retu
 export interface SliceNumberArgs { input: bigint | TransactionArgument; nbits: number | TransactionArgument; offset: number | TransactionArgument }
 
 export function sliceNumber( tx: Transaction, args: SliceNumberArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::slice_number`, arguments: [ pure(tx, args.input, `u256`), pure(tx, args.nbits, `u8`), pure(tx, args.offset, `u8`) ], }) }
+
+export interface SubSignArgs { a: bigint | TransactionArgument; b: bigint | TransactionArgument }
+
+export function subSign( tx: Transaction, args: SubSignArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::beescience::sub_sign`, arguments: [ pure(tx, args.a, `u256`), pure(tx, args.b, `u256`) ], }) }
 
 export interface SynergyBoostArgs { trait1: number | TransactionArgument; trait2: number | TransactionArgument; rand: number | TransactionArgument }
 

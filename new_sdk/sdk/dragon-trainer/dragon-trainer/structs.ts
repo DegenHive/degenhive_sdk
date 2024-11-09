@@ -6206,6 +6206,142 @@ export class MasterKeyReplenished implements StructClass { __StructClass = true 
 
  }
 
+/* ============================== MemeCoinLaunchedViaBee =============================== */
+
+export function isMemeCoinLaunchedViaBee(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_trainer::MemeCoinLaunchedViaBee`; }
+
+export interface MemeCoinLaunchedViaBeeFields { memeIdentifier: ToField<String>; beeVersion: ToField<"u64">; cooldownStage: ToField<"u64">; cooldownTillTs: ToField<"u64"> }
+
+export type MemeCoinLaunchedViaBeeReified = Reified< MemeCoinLaunchedViaBee, MemeCoinLaunchedViaBeeFields >;
+
+export class MemeCoinLaunchedViaBee implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V1}::dragon_trainer::MemeCoinLaunchedViaBee`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = MemeCoinLaunchedViaBee.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_trainer::MemeCoinLaunchedViaBee`; readonly $typeArgs: []; readonly $isPhantom = MemeCoinLaunchedViaBee.$isPhantom;
+
+ readonly memeIdentifier: ToField<String>; readonly beeVersion: ToField<"u64">; readonly cooldownStage: ToField<"u64">; readonly cooldownTillTs: ToField<"u64">
+
+ private constructor(typeArgs: [], fields: MemeCoinLaunchedViaBeeFields, ) { this.$fullTypeName = composeSuiType( MemeCoinLaunchedViaBee.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_trainer::MemeCoinLaunchedViaBee`; this.$typeArgs = typeArgs;
+
+ this.memeIdentifier = fields.memeIdentifier;; this.beeVersion = fields.beeVersion;; this.cooldownStage = fields.cooldownStage;; this.cooldownTillTs = fields.cooldownTillTs; }
+
+ static reified( ): MemeCoinLaunchedViaBeeReified { return { typeName: MemeCoinLaunchedViaBee.$typeName, fullTypeName: composeSuiType( MemeCoinLaunchedViaBee.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_trainer::MemeCoinLaunchedViaBee`, typeArgs: [ ] as [], isPhantom: MemeCoinLaunchedViaBee.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => MemeCoinLaunchedViaBee.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => MemeCoinLaunchedViaBee.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => MemeCoinLaunchedViaBee.fromBcs( data, ), bcs: MemeCoinLaunchedViaBee.bcs, fromJSONField: (field: any) => MemeCoinLaunchedViaBee.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => MemeCoinLaunchedViaBee.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => MemeCoinLaunchedViaBee.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => MemeCoinLaunchedViaBee.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => MemeCoinLaunchedViaBee.fetch( client, id, ), new: ( fields: MemeCoinLaunchedViaBeeFields, ) => { return new MemeCoinLaunchedViaBee( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return MemeCoinLaunchedViaBee.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<MemeCoinLaunchedViaBee>> { return phantom(MemeCoinLaunchedViaBee.reified( )); } static get p() { return MemeCoinLaunchedViaBee.phantom() }
+
+ static get bcs() { return bcs.struct("MemeCoinLaunchedViaBee", {
+
+ meme_identifier: String.bcs, bee_version: bcs.u64(), cooldown_stage: bcs.u64(), cooldown_till_ts: bcs.u64()
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): MemeCoinLaunchedViaBee { return MemeCoinLaunchedViaBee.reified( ).new( { memeIdentifier: decodeFromFields(String.reified(), fields.meme_identifier), beeVersion: decodeFromFields("u64", fields.bee_version), cooldownStage: decodeFromFields("u64", fields.cooldown_stage), cooldownTillTs: decodeFromFields("u64", fields.cooldown_till_ts) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): MemeCoinLaunchedViaBee { if (!isMemeCoinLaunchedViaBee(item.type)) { throw new Error("not a MemeCoinLaunchedViaBee type");
+
+ }
+
+ return MemeCoinLaunchedViaBee.reified( ).new( { memeIdentifier: decodeFromFieldsWithTypes(String.reified(), item.fields.meme_identifier), beeVersion: decodeFromFieldsWithTypes("u64", item.fields.bee_version), cooldownStage: decodeFromFieldsWithTypes("u64", item.fields.cooldown_stage), cooldownTillTs: decodeFromFieldsWithTypes("u64", item.fields.cooldown_till_ts) } ) }
+
+ static fromBcs( data: Uint8Array ): MemeCoinLaunchedViaBee { return MemeCoinLaunchedViaBee.fromFields( MemeCoinLaunchedViaBee.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ memeIdentifier: this.memeIdentifier,beeVersion: this.beeVersion.toString(),cooldownStage: this.cooldownStage.toString(),cooldownTillTs: this.cooldownTillTs.toString(),
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): MemeCoinLaunchedViaBee { return MemeCoinLaunchedViaBee.reified( ).new( { memeIdentifier: decodeFromJSONField(String.reified(), field.memeIdentifier), beeVersion: decodeFromJSONField("u64", field.beeVersion), cooldownStage: decodeFromJSONField("u64", field.cooldownStage), cooldownTillTs: decodeFromJSONField("u64", field.cooldownTillTs) } ) }
+
+ static fromJSON( json: Record<string, any> ): MemeCoinLaunchedViaBee { if (json.$typeName !== MemeCoinLaunchedViaBee.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return MemeCoinLaunchedViaBee.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): MemeCoinLaunchedViaBee { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isMemeCoinLaunchedViaBee(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a MemeCoinLaunchedViaBee object`); } return MemeCoinLaunchedViaBee.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): MemeCoinLaunchedViaBee { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isMemeCoinLaunchedViaBee(data.bcs.type)) { throw new Error(`object at is not a MemeCoinLaunchedViaBee object`); }
+
+ return MemeCoinLaunchedViaBee.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return MemeCoinLaunchedViaBee.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<MemeCoinLaunchedViaBee> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching MemeCoinLaunchedViaBee object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isMemeCoinLaunchedViaBee(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a MemeCoinLaunchedViaBee object`); }
+
+ return MemeCoinLaunchedViaBee.fromSuiObjectData( res.data ); }
+
+ }
+
+/* ============================== MemepadCapability =============================== */
+
+export function isMemepadCapability(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_trainer::MemepadCapability`; }
+
+export interface MemepadCapabilityFields { id: ToField<UID> }
+
+export type MemepadCapabilityReified = Reified< MemepadCapability, MemepadCapabilityFields >;
+
+export class MemepadCapability implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V1}::dragon_trainer::MemepadCapability`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = MemepadCapability.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_trainer::MemepadCapability`; readonly $typeArgs: []; readonly $isPhantom = MemepadCapability.$isPhantom;
+
+ readonly id: ToField<UID>
+
+ private constructor(typeArgs: [], fields: MemepadCapabilityFields, ) { this.$fullTypeName = composeSuiType( MemepadCapability.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_trainer::MemepadCapability`; this.$typeArgs = typeArgs;
+
+ this.id = fields.id; }
+
+ static reified( ): MemepadCapabilityReified { return { typeName: MemepadCapability.$typeName, fullTypeName: composeSuiType( MemepadCapability.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_trainer::MemepadCapability`, typeArgs: [ ] as [], isPhantom: MemepadCapability.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => MemepadCapability.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => MemepadCapability.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => MemepadCapability.fromBcs( data, ), bcs: MemepadCapability.bcs, fromJSONField: (field: any) => MemepadCapability.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => MemepadCapability.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => MemepadCapability.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => MemepadCapability.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => MemepadCapability.fetch( client, id, ), new: ( fields: MemepadCapabilityFields, ) => { return new MemepadCapability( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return MemepadCapability.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<MemepadCapability>> { return phantom(MemepadCapability.reified( )); } static get p() { return MemepadCapability.phantom() }
+
+ static get bcs() { return bcs.struct("MemepadCapability", {
+
+ id: UID.bcs
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): MemepadCapability { return MemepadCapability.reified( ).new( { id: decodeFromFields(UID.reified(), fields.id) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): MemepadCapability { if (!isMemepadCapability(item.type)) { throw new Error("not a MemepadCapability type");
+
+ }
+
+ return MemepadCapability.reified( ).new( { id: decodeFromFieldsWithTypes(UID.reified(), item.fields.id) } ) }
+
+ static fromBcs( data: Uint8Array ): MemepadCapability { return MemepadCapability.fromFields( MemepadCapability.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ id: this.id,
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): MemepadCapability { return MemepadCapability.reified( ).new( { id: decodeFromJSONField(UID.reified(), field.id) } ) }
+
+ static fromJSON( json: Record<string, any> ): MemepadCapability { if (json.$typeName !== MemepadCapability.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return MemepadCapability.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): MemepadCapability { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isMemepadCapability(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a MemepadCapability object`); } return MemepadCapability.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): MemepadCapability { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isMemepadCapability(data.bcs.type)) { throw new Error(`object at is not a MemepadCapability object`); }
+
+ return MemepadCapability.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return MemepadCapability.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<MemepadCapability> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching MemepadCapability object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isMemepadCapability(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a MemepadCapability object`); }
+
+ return MemepadCapability.fromSuiObjectData( res.data ); }
+
+ }
+
 /* ============================== MysticalBee =============================== */
 
 export function isMysticalBee(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_trainer::MysticalBee`; }
@@ -6482,7 +6618,7 @@ export class NectarStore implements StructClass { __StructClass = true as const;
 
 export function isNewEggIncubated(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_trainer::NewEggIncubated`; }
 
-export interface NewEggIncubatedFields { childVersion: ToField<"u64">; incubatedAt: ToField<"u64">; childGeneration: ToField<"u64">; queenId: ToField<"address">; queenVersion: ToField<"u64">; stingerBeeId: ToField<"address">; stingerVersion: ToField<"u64">; queenGene: ToField<"u256">; stingerGene: ToField<"u256">; childGene: ToField<"u256">; totalBreedingCost: ToField<"u64">; platformFees: ToField<"u64">; govYieldAmt: ToField<"u64">; treasuryFees: ToField<"u64">; stingerCooldownStage: ToField<"u8">; stingerCooldownTill: ToField<"u64"> }
+export interface NewEggIncubatedFields { childVersion: ToField<"u64">; incubatedAt: ToField<"u64">; childGeneration: ToField<"u64">; queenId: ToField<"address">; queenVersion: ToField<"u64">; stingerBeeId: ToField<"address">; stingerVersion: ToField<"u64">; queenGene: ToField<"u256">; stingerGene: ToField<"u256">; childGene: ToField<"u256">; hiveEnergyForEgg: ToField<"u64">; honeyHealthForEgg: ToField<"u64">; totalBreedingCost: ToField<"u64">; platformFees: ToField<"u64">; govYieldAmt: ToField<"u64">; treasuryFees: ToField<"u64">; stingerCooldownStage: ToField<"u8">; stingerCooldownTill: ToField<"u64"> }
 
 export type NewEggIncubatedReified = Reified< NewEggIncubated, NewEggIncubatedFields >;
 
@@ -6492,11 +6628,11 @@ export class NewEggIncubated implements StructClass { __StructClass = true as co
 
  readonly $typeName = NewEggIncubated.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_trainer::NewEggIncubated`; readonly $typeArgs: []; readonly $isPhantom = NewEggIncubated.$isPhantom;
 
- readonly childVersion: ToField<"u64">; readonly incubatedAt: ToField<"u64">; readonly childGeneration: ToField<"u64">; readonly queenId: ToField<"address">; readonly queenVersion: ToField<"u64">; readonly stingerBeeId: ToField<"address">; readonly stingerVersion: ToField<"u64">; readonly queenGene: ToField<"u256">; readonly stingerGene: ToField<"u256">; readonly childGene: ToField<"u256">; readonly totalBreedingCost: ToField<"u64">; readonly platformFees: ToField<"u64">; readonly govYieldAmt: ToField<"u64">; readonly treasuryFees: ToField<"u64">; readonly stingerCooldownStage: ToField<"u8">; readonly stingerCooldownTill: ToField<"u64">
+ readonly childVersion: ToField<"u64">; readonly incubatedAt: ToField<"u64">; readonly childGeneration: ToField<"u64">; readonly queenId: ToField<"address">; readonly queenVersion: ToField<"u64">; readonly stingerBeeId: ToField<"address">; readonly stingerVersion: ToField<"u64">; readonly queenGene: ToField<"u256">; readonly stingerGene: ToField<"u256">; readonly childGene: ToField<"u256">; readonly hiveEnergyForEgg: ToField<"u64">; readonly honeyHealthForEgg: ToField<"u64">; readonly totalBreedingCost: ToField<"u64">; readonly platformFees: ToField<"u64">; readonly govYieldAmt: ToField<"u64">; readonly treasuryFees: ToField<"u64">; readonly stingerCooldownStage: ToField<"u8">; readonly stingerCooldownTill: ToField<"u64">
 
  private constructor(typeArgs: [], fields: NewEggIncubatedFields, ) { this.$fullTypeName = composeSuiType( NewEggIncubated.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_trainer::NewEggIncubated`; this.$typeArgs = typeArgs;
 
- this.childVersion = fields.childVersion;; this.incubatedAt = fields.incubatedAt;; this.childGeneration = fields.childGeneration;; this.queenId = fields.queenId;; this.queenVersion = fields.queenVersion;; this.stingerBeeId = fields.stingerBeeId;; this.stingerVersion = fields.stingerVersion;; this.queenGene = fields.queenGene;; this.stingerGene = fields.stingerGene;; this.childGene = fields.childGene;; this.totalBreedingCost = fields.totalBreedingCost;; this.platformFees = fields.platformFees;; this.govYieldAmt = fields.govYieldAmt;; this.treasuryFees = fields.treasuryFees;; this.stingerCooldownStage = fields.stingerCooldownStage;; this.stingerCooldownTill = fields.stingerCooldownTill; }
+ this.childVersion = fields.childVersion;; this.incubatedAt = fields.incubatedAt;; this.childGeneration = fields.childGeneration;; this.queenId = fields.queenId;; this.queenVersion = fields.queenVersion;; this.stingerBeeId = fields.stingerBeeId;; this.stingerVersion = fields.stingerVersion;; this.queenGene = fields.queenGene;; this.stingerGene = fields.stingerGene;; this.childGene = fields.childGene;; this.hiveEnergyForEgg = fields.hiveEnergyForEgg;; this.honeyHealthForEgg = fields.honeyHealthForEgg;; this.totalBreedingCost = fields.totalBreedingCost;; this.platformFees = fields.platformFees;; this.govYieldAmt = fields.govYieldAmt;; this.treasuryFees = fields.treasuryFees;; this.stingerCooldownStage = fields.stingerCooldownStage;; this.stingerCooldownTill = fields.stingerCooldownTill; }
 
  static reified( ): NewEggIncubatedReified { return { typeName: NewEggIncubated.$typeName, fullTypeName: composeSuiType( NewEggIncubated.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_trainer::NewEggIncubated`, typeArgs: [ ] as [], isPhantom: NewEggIncubated.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => NewEggIncubated.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => NewEggIncubated.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => NewEggIncubated.fromBcs( data, ), bcs: NewEggIncubated.bcs, fromJSONField: (field: any) => NewEggIncubated.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => NewEggIncubated.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => NewEggIncubated.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => NewEggIncubated.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => NewEggIncubated.fetch( client, id, ), new: ( fields: NewEggIncubatedFields, ) => { return new NewEggIncubated( [], fields ) }, kind: "StructClassReified", } }
 
@@ -6506,29 +6642,29 @@ export class NewEggIncubated implements StructClass { __StructClass = true as co
 
  static get bcs() { return bcs.struct("NewEggIncubated", {
 
- child_version: bcs.u64(), incubated_at: bcs.u64(), child_generation: bcs.u64(), queenId: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), queen_version: bcs.u64(), stingerBeeId: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), stinger_version: bcs.u64(), queen_gene: bcs.u256(), stinger_gene: bcs.u256(), child_gene: bcs.u256(), total_breeding_cost: bcs.u64(), platform_fees: bcs.u64(), gov_yield_amt: bcs.u64(), treasury_fees: bcs.u64(), stinger_cooldown_stage: bcs.u8(), stinger_cooldown_till: bcs.u64()
+ child_version: bcs.u64(), incubated_at: bcs.u64(), child_generation: bcs.u64(), queenId: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), queen_version: bcs.u64(), stingerBeeId: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), stinger_version: bcs.u64(), queen_gene: bcs.u256(), stinger_gene: bcs.u256(), child_gene: bcs.u256(), hive_energy_for_egg: bcs.u64(), honey_health_for_egg: bcs.u64(), total_breeding_cost: bcs.u64(), platform_fees: bcs.u64(), gov_yield_amt: bcs.u64(), treasury_fees: bcs.u64(), stinger_cooldown_stage: bcs.u8(), stinger_cooldown_till: bcs.u64()
 
 }) };
 
- static fromFields( fields: Record<string, any> ): NewEggIncubated { return NewEggIncubated.reified( ).new( { childVersion: decodeFromFields("u64", fields.child_version), incubatedAt: decodeFromFields("u64", fields.incubated_at), childGeneration: decodeFromFields("u64", fields.child_generation), queenId: decodeFromFields("address", fields.queenId), queenVersion: decodeFromFields("u64", fields.queen_version), stingerBeeId: decodeFromFields("address", fields.stingerBeeId), stingerVersion: decodeFromFields("u64", fields.stinger_version), queenGene: decodeFromFields("u256", fields.queen_gene), stingerGene: decodeFromFields("u256", fields.stinger_gene), childGene: decodeFromFields("u256", fields.child_gene), totalBreedingCost: decodeFromFields("u64", fields.total_breeding_cost), platformFees: decodeFromFields("u64", fields.platform_fees), govYieldAmt: decodeFromFields("u64", fields.gov_yield_amt), treasuryFees: decodeFromFields("u64", fields.treasury_fees), stingerCooldownStage: decodeFromFields("u8", fields.stinger_cooldown_stage), stingerCooldownTill: decodeFromFields("u64", fields.stinger_cooldown_till) } ) }
+ static fromFields( fields: Record<string, any> ): NewEggIncubated { return NewEggIncubated.reified( ).new( { childVersion: decodeFromFields("u64", fields.child_version), incubatedAt: decodeFromFields("u64", fields.incubated_at), childGeneration: decodeFromFields("u64", fields.child_generation), queenId: decodeFromFields("address", fields.queenId), queenVersion: decodeFromFields("u64", fields.queen_version), stingerBeeId: decodeFromFields("address", fields.stingerBeeId), stingerVersion: decodeFromFields("u64", fields.stinger_version), queenGene: decodeFromFields("u256", fields.queen_gene), stingerGene: decodeFromFields("u256", fields.stinger_gene), childGene: decodeFromFields("u256", fields.child_gene), hiveEnergyForEgg: decodeFromFields("u64", fields.hive_energy_for_egg), honeyHealthForEgg: decodeFromFields("u64", fields.honey_health_for_egg), totalBreedingCost: decodeFromFields("u64", fields.total_breeding_cost), platformFees: decodeFromFields("u64", fields.platform_fees), govYieldAmt: decodeFromFields("u64", fields.gov_yield_amt), treasuryFees: decodeFromFields("u64", fields.treasury_fees), stingerCooldownStage: decodeFromFields("u8", fields.stinger_cooldown_stage), stingerCooldownTill: decodeFromFields("u64", fields.stinger_cooldown_till) } ) }
 
  static fromFieldsWithTypes( item: FieldsWithTypes ): NewEggIncubated { if (!isNewEggIncubated(item.type)) { throw new Error("not a NewEggIncubated type");
 
  }
 
- return NewEggIncubated.reified( ).new( { childVersion: decodeFromFieldsWithTypes("u64", item.fields.child_version), incubatedAt: decodeFromFieldsWithTypes("u64", item.fields.incubated_at), childGeneration: decodeFromFieldsWithTypes("u64", item.fields.child_generation), queenId: decodeFromFieldsWithTypes("address", item.fields.queenId), queenVersion: decodeFromFieldsWithTypes("u64", item.fields.queen_version), stingerBeeId: decodeFromFieldsWithTypes("address", item.fields.stingerBeeId), stingerVersion: decodeFromFieldsWithTypes("u64", item.fields.stinger_version), queenGene: decodeFromFieldsWithTypes("u256", item.fields.queen_gene), stingerGene: decodeFromFieldsWithTypes("u256", item.fields.stinger_gene), childGene: decodeFromFieldsWithTypes("u256", item.fields.child_gene), totalBreedingCost: decodeFromFieldsWithTypes("u64", item.fields.total_breeding_cost), platformFees: decodeFromFieldsWithTypes("u64", item.fields.platform_fees), govYieldAmt: decodeFromFieldsWithTypes("u64", item.fields.gov_yield_amt), treasuryFees: decodeFromFieldsWithTypes("u64", item.fields.treasury_fees), stingerCooldownStage: decodeFromFieldsWithTypes("u8", item.fields.stinger_cooldown_stage), stingerCooldownTill: decodeFromFieldsWithTypes("u64", item.fields.stinger_cooldown_till) } ) }
+ return NewEggIncubated.reified( ).new( { childVersion: decodeFromFieldsWithTypes("u64", item.fields.child_version), incubatedAt: decodeFromFieldsWithTypes("u64", item.fields.incubated_at), childGeneration: decodeFromFieldsWithTypes("u64", item.fields.child_generation), queenId: decodeFromFieldsWithTypes("address", item.fields.queenId), queenVersion: decodeFromFieldsWithTypes("u64", item.fields.queen_version), stingerBeeId: decodeFromFieldsWithTypes("address", item.fields.stingerBeeId), stingerVersion: decodeFromFieldsWithTypes("u64", item.fields.stinger_version), queenGene: decodeFromFieldsWithTypes("u256", item.fields.queen_gene), stingerGene: decodeFromFieldsWithTypes("u256", item.fields.stinger_gene), childGene: decodeFromFieldsWithTypes("u256", item.fields.child_gene), hiveEnergyForEgg: decodeFromFieldsWithTypes("u64", item.fields.hive_energy_for_egg), honeyHealthForEgg: decodeFromFieldsWithTypes("u64", item.fields.honey_health_for_egg), totalBreedingCost: decodeFromFieldsWithTypes("u64", item.fields.total_breeding_cost), platformFees: decodeFromFieldsWithTypes("u64", item.fields.platform_fees), govYieldAmt: decodeFromFieldsWithTypes("u64", item.fields.gov_yield_amt), treasuryFees: decodeFromFieldsWithTypes("u64", item.fields.treasury_fees), stingerCooldownStage: decodeFromFieldsWithTypes("u8", item.fields.stinger_cooldown_stage), stingerCooldownTill: decodeFromFieldsWithTypes("u64", item.fields.stinger_cooldown_till) } ) }
 
  static fromBcs( data: Uint8Array ): NewEggIncubated { return NewEggIncubated.fromFields( NewEggIncubated.bcs.parse(data) ) }
 
  toJSONField() { return {
 
- childVersion: this.childVersion.toString(),incubatedAt: this.incubatedAt.toString(),childGeneration: this.childGeneration.toString(),queenId: this.queenId,queenVersion: this.queenVersion.toString(),stingerBeeId: this.stingerBeeId,stingerVersion: this.stingerVersion.toString(),queenGene: this.queenGene.toString(),stingerGene: this.stingerGene.toString(),childGene: this.childGene.toString(),totalBreedingCost: this.totalBreedingCost.toString(),platformFees: this.platformFees.toString(),govYieldAmt: this.govYieldAmt.toString(),treasuryFees: this.treasuryFees.toString(),stingerCooldownStage: this.stingerCooldownStage,stingerCooldownTill: this.stingerCooldownTill.toString(),
+ childVersion: this.childVersion.toString(),incubatedAt: this.incubatedAt.toString(),childGeneration: this.childGeneration.toString(),queenId: this.queenId,queenVersion: this.queenVersion.toString(),stingerBeeId: this.stingerBeeId,stingerVersion: this.stingerVersion.toString(),queenGene: this.queenGene.toString(),stingerGene: this.stingerGene.toString(),childGene: this.childGene.toString(),hiveEnergyForEgg: this.hiveEnergyForEgg.toString(),honeyHealthForEgg: this.honeyHealthForEgg.toString(),totalBreedingCost: this.totalBreedingCost.toString(),platformFees: this.platformFees.toString(),govYieldAmt: this.govYieldAmt.toString(),treasuryFees: this.treasuryFees.toString(),stingerCooldownStage: this.stingerCooldownStage,stingerCooldownTill: this.stingerCooldownTill.toString(),
 
 } }
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField( field: any ): NewEggIncubated { return NewEggIncubated.reified( ).new( { childVersion: decodeFromJSONField("u64", field.childVersion), incubatedAt: decodeFromJSONField("u64", field.incubatedAt), childGeneration: decodeFromJSONField("u64", field.childGeneration), queenId: decodeFromJSONField("address", field.queenId), queenVersion: decodeFromJSONField("u64", field.queenVersion), stingerBeeId: decodeFromJSONField("address", field.stingerBeeId), stingerVersion: decodeFromJSONField("u64", field.stingerVersion), queenGene: decodeFromJSONField("u256", field.queenGene), stingerGene: decodeFromJSONField("u256", field.stingerGene), childGene: decodeFromJSONField("u256", field.childGene), totalBreedingCost: decodeFromJSONField("u64", field.totalBreedingCost), platformFees: decodeFromJSONField("u64", field.platformFees), govYieldAmt: decodeFromJSONField("u64", field.govYieldAmt), treasuryFees: decodeFromJSONField("u64", field.treasuryFees), stingerCooldownStage: decodeFromJSONField("u8", field.stingerCooldownStage), stingerCooldownTill: decodeFromJSONField("u64", field.stingerCooldownTill) } ) }
+ static fromJSONField( field: any ): NewEggIncubated { return NewEggIncubated.reified( ).new( { childVersion: decodeFromJSONField("u64", field.childVersion), incubatedAt: decodeFromJSONField("u64", field.incubatedAt), childGeneration: decodeFromJSONField("u64", field.childGeneration), queenId: decodeFromJSONField("address", field.queenId), queenVersion: decodeFromJSONField("u64", field.queenVersion), stingerBeeId: decodeFromJSONField("address", field.stingerBeeId), stingerVersion: decodeFromJSONField("u64", field.stingerVersion), queenGene: decodeFromJSONField("u256", field.queenGene), stingerGene: decodeFromJSONField("u256", field.stingerGene), childGene: decodeFromJSONField("u256", field.childGene), hiveEnergyForEgg: decodeFromJSONField("u64", field.hiveEnergyForEgg), honeyHealthForEgg: decodeFromJSONField("u64", field.honeyHealthForEgg), totalBreedingCost: decodeFromJSONField("u64", field.totalBreedingCost), platformFees: decodeFromJSONField("u64", field.platformFees), govYieldAmt: decodeFromJSONField("u64", field.govYieldAmt), treasuryFees: decodeFromJSONField("u64", field.treasuryFees), stingerCooldownStage: decodeFromJSONField("u8", field.stingerCooldownStage), stingerCooldownTill: decodeFromJSONField("u64", field.stingerCooldownTill) } ) }
 
  static fromJSON( json: Record<string, any> ): NewEggIncubated { if (json.$typeName !== NewEggIncubated.$typeName) { throw new Error("not a WithTwoGenerics json object") };
 
@@ -8039,6 +8175,74 @@ export class TwapUpdateCap implements StructClass { __StructClass = true as cons
  static async fetch( client: SuiClient, id: string ): Promise<TwapUpdateCap> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching TwapUpdateCap object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isTwapUpdateCap(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a TwapUpdateCap object`); }
 
  return TwapUpdateCap.fromSuiObjectData( res.data ); }
+
+ }
+
+/* ============================== UpdatedStingerBeesEnergyHealth =============================== */
+
+export function isUpdatedStingerBeesEnergyHealth(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_trainer::UpdatedStingerBeesEnergyHealth`; }
+
+export interface UpdatedStingerBeesEnergyHealthFields { stingerVersion: ToField<"u64">; hiveEnergy: ToField<"u64">; honeyHealth: ToField<"u64"> }
+
+export type UpdatedStingerBeesEnergyHealthReified = Reified< UpdatedStingerBeesEnergyHealth, UpdatedStingerBeesEnergyHealthFields >;
+
+export class UpdatedStingerBeesEnergyHealth implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V1}::dragon_trainer::UpdatedStingerBeesEnergyHealth`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = UpdatedStingerBeesEnergyHealth.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_trainer::UpdatedStingerBeesEnergyHealth`; readonly $typeArgs: []; readonly $isPhantom = UpdatedStingerBeesEnergyHealth.$isPhantom;
+
+ readonly stingerVersion: ToField<"u64">; readonly hiveEnergy: ToField<"u64">; readonly honeyHealth: ToField<"u64">
+
+ private constructor(typeArgs: [], fields: UpdatedStingerBeesEnergyHealthFields, ) { this.$fullTypeName = composeSuiType( UpdatedStingerBeesEnergyHealth.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_trainer::UpdatedStingerBeesEnergyHealth`; this.$typeArgs = typeArgs;
+
+ this.stingerVersion = fields.stingerVersion;; this.hiveEnergy = fields.hiveEnergy;; this.honeyHealth = fields.honeyHealth; }
+
+ static reified( ): UpdatedStingerBeesEnergyHealthReified { return { typeName: UpdatedStingerBeesEnergyHealth.$typeName, fullTypeName: composeSuiType( UpdatedStingerBeesEnergyHealth.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_trainer::UpdatedStingerBeesEnergyHealth`, typeArgs: [ ] as [], isPhantom: UpdatedStingerBeesEnergyHealth.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => UpdatedStingerBeesEnergyHealth.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => UpdatedStingerBeesEnergyHealth.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => UpdatedStingerBeesEnergyHealth.fromBcs( data, ), bcs: UpdatedStingerBeesEnergyHealth.bcs, fromJSONField: (field: any) => UpdatedStingerBeesEnergyHealth.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => UpdatedStingerBeesEnergyHealth.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => UpdatedStingerBeesEnergyHealth.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => UpdatedStingerBeesEnergyHealth.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => UpdatedStingerBeesEnergyHealth.fetch( client, id, ), new: ( fields: UpdatedStingerBeesEnergyHealthFields, ) => { return new UpdatedStingerBeesEnergyHealth( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return UpdatedStingerBeesEnergyHealth.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<UpdatedStingerBeesEnergyHealth>> { return phantom(UpdatedStingerBeesEnergyHealth.reified( )); } static get p() { return UpdatedStingerBeesEnergyHealth.phantom() }
+
+ static get bcs() { return bcs.struct("UpdatedStingerBeesEnergyHealth", {
+
+ stinger_version: bcs.u64(), hive_energy: bcs.u64(), honey_health: bcs.u64()
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): UpdatedStingerBeesEnergyHealth { return UpdatedStingerBeesEnergyHealth.reified( ).new( { stingerVersion: decodeFromFields("u64", fields.stinger_version), hiveEnergy: decodeFromFields("u64", fields.hive_energy), honeyHealth: decodeFromFields("u64", fields.honey_health) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): UpdatedStingerBeesEnergyHealth { if (!isUpdatedStingerBeesEnergyHealth(item.type)) { throw new Error("not a UpdatedStingerBeesEnergyHealth type");
+
+ }
+
+ return UpdatedStingerBeesEnergyHealth.reified( ).new( { stingerVersion: decodeFromFieldsWithTypes("u64", item.fields.stinger_version), hiveEnergy: decodeFromFieldsWithTypes("u64", item.fields.hive_energy), honeyHealth: decodeFromFieldsWithTypes("u64", item.fields.honey_health) } ) }
+
+ static fromBcs( data: Uint8Array ): UpdatedStingerBeesEnergyHealth { return UpdatedStingerBeesEnergyHealth.fromFields( UpdatedStingerBeesEnergyHealth.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ stingerVersion: this.stingerVersion.toString(),hiveEnergy: this.hiveEnergy.toString(),honeyHealth: this.honeyHealth.toString(),
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): UpdatedStingerBeesEnergyHealth { return UpdatedStingerBeesEnergyHealth.reified( ).new( { stingerVersion: decodeFromJSONField("u64", field.stingerVersion), hiveEnergy: decodeFromJSONField("u64", field.hiveEnergy), honeyHealth: decodeFromJSONField("u64", field.honeyHealth) } ) }
+
+ static fromJSON( json: Record<string, any> ): UpdatedStingerBeesEnergyHealth { if (json.$typeName !== UpdatedStingerBeesEnergyHealth.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return UpdatedStingerBeesEnergyHealth.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): UpdatedStingerBeesEnergyHealth { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isUpdatedStingerBeesEnergyHealth(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a UpdatedStingerBeesEnergyHealth object`); } return UpdatedStingerBeesEnergyHealth.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): UpdatedStingerBeesEnergyHealth { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isUpdatedStingerBeesEnergyHealth(data.bcs.type)) { throw new Error(`object at is not a UpdatedStingerBeesEnergyHealth object`); }
+
+ return UpdatedStingerBeesEnergyHealth.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return UpdatedStingerBeesEnergyHealth.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<UpdatedStingerBeesEnergyHealth> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching UpdatedStingerBeesEnergyHealth object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isUpdatedStingerBeesEnergyHealth(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a UpdatedStingerBeesEnergyHealth object`); }
+
+ return UpdatedStingerBeesEnergyHealth.fromSuiObjectData( res.data ); }
 
  }
 

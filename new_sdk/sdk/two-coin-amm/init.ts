@@ -3,8 +3,7 @@ import * as oracle from "./oracle/structs";
 import * as twoPool from "./two-pool/structs";
 import {StructClassLoader} from "../_framework/loader";
 
-export function registerClasses(loader: StructClassLoader) { loader.register(twoPool.BurnTokensCapability);
-loader.register(twoPool.CumPriceUpdatedEvent);
+export function registerClasses(loader: StructClassLoader) { loader.register(twoPool.CumPriceUpdatedEvent);
 loader.register(twoPool.CurvedConfigUpdatedAmp);
 loader.register(twoPool.CurvedConfigUpdatedParams);
 loader.register(twoPool.FlashLoanExecuted);

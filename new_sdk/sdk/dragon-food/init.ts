@@ -6,6 +6,7 @@ loader.register(dragonFood.AddedToDragonDen);
 loader.register(dragonFood.BribeAddedForEmissions);
 loader.register(dragonFood.BribeClaimedByTrainerThreePool);
 loader.register(dragonFood.BribeClaimedByTrainerTwoPool);
+loader.register(dragonFood.BribeMarkedAsToken);
 loader.register(dragonFood.Bribes);
 loader.register(dragonFood.DragonBeeWithdrawalRequested);
 loader.register(dragonFood.DragonDen);

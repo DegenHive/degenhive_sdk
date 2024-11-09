@@ -12,6 +12,210 @@ import {bcs} from "@mysten/sui/bcs";
 import {SuiClient, SuiObjectData, SuiParsedData} from "@mysten/sui/client";
 import {fromB64} from "@mysten/sui/utils";
 
+/* ============================== FungibleStakedSui =============================== */
+
+export function isFungibleStakedSui(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V17}::staking_pool::FungibleStakedSui`; }
+
+export interface FungibleStakedSuiFields { id: ToField<UID>; poolId: ToField<ID>; value: ToField<"u64"> }
+
+export type FungibleStakedSuiReified = Reified< FungibleStakedSui, FungibleStakedSuiFields >;
+
+export class FungibleStakedSui implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V17}::staking_pool::FungibleStakedSui`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = FungibleStakedSui.$typeName; readonly $fullTypeName: `${typeof PKG_V17}::staking_pool::FungibleStakedSui`; readonly $typeArgs: []; readonly $isPhantom = FungibleStakedSui.$isPhantom;
+
+ readonly id: ToField<UID>; readonly poolId: ToField<ID>; readonly value: ToField<"u64">
+
+ private constructor(typeArgs: [], fields: FungibleStakedSuiFields, ) { this.$fullTypeName = composeSuiType( FungibleStakedSui.$typeName, ...typeArgs ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSui`; this.$typeArgs = typeArgs;
+
+ this.id = fields.id;; this.poolId = fields.poolId;; this.value = fields.value; }
+
+ static reified( ): FungibleStakedSuiReified { return { typeName: FungibleStakedSui.$typeName, fullTypeName: composeSuiType( FungibleStakedSui.$typeName, ...[] ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSui`, typeArgs: [ ] as [], isPhantom: FungibleStakedSui.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => FungibleStakedSui.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => FungibleStakedSui.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => FungibleStakedSui.fromBcs( data, ), bcs: FungibleStakedSui.bcs, fromJSONField: (field: any) => FungibleStakedSui.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => FungibleStakedSui.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => FungibleStakedSui.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => FungibleStakedSui.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => FungibleStakedSui.fetch( client, id, ), new: ( fields: FungibleStakedSuiFields, ) => { return new FungibleStakedSui( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return FungibleStakedSui.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<FungibleStakedSui>> { return phantom(FungibleStakedSui.reified( )); } static get p() { return FungibleStakedSui.phantom() }
+
+ static get bcs() { return bcs.struct("FungibleStakedSui", {
+
+ id: UID.bcs, pool_id: ID.bcs, value: bcs.u64()
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): FungibleStakedSui { return FungibleStakedSui.reified( ).new( { id: decodeFromFields(UID.reified(), fields.id), poolId: decodeFromFields(ID.reified(), fields.pool_id), value: decodeFromFields("u64", fields.value) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): FungibleStakedSui { if (!isFungibleStakedSui(item.type)) { throw new Error("not a FungibleStakedSui type");
+
+ }
+
+ return FungibleStakedSui.reified( ).new( { id: decodeFromFieldsWithTypes(UID.reified(), item.fields.id), poolId: decodeFromFieldsWithTypes(ID.reified(), item.fields.pool_id), value: decodeFromFieldsWithTypes("u64", item.fields.value) } ) }
+
+ static fromBcs( data: Uint8Array ): FungibleStakedSui { return FungibleStakedSui.fromFields( FungibleStakedSui.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ id: this.id,poolId: this.poolId,value: this.value.toString(),
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): FungibleStakedSui { return FungibleStakedSui.reified( ).new( { id: decodeFromJSONField(UID.reified(), field.id), poolId: decodeFromJSONField(ID.reified(), field.poolId), value: decodeFromJSONField("u64", field.value) } ) }
+
+ static fromJSON( json: Record<string, any> ): FungibleStakedSui { if (json.$typeName !== FungibleStakedSui.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return FungibleStakedSui.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): FungibleStakedSui { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isFungibleStakedSui(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a FungibleStakedSui object`); } return FungibleStakedSui.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): FungibleStakedSui { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isFungibleStakedSui(data.bcs.type)) { throw new Error(`object at is not a FungibleStakedSui object`); }
+
+ return FungibleStakedSui.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return FungibleStakedSui.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<FungibleStakedSui> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching FungibleStakedSui object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isFungibleStakedSui(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a FungibleStakedSui object`); }
+
+ return FungibleStakedSui.fromSuiObjectData( res.data ); }
+
+ }
+
+/* ============================== FungibleStakedSuiData =============================== */
+
+export function isFungibleStakedSuiData(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V17}::staking_pool::FungibleStakedSuiData`; }
+
+export interface FungibleStakedSuiDataFields { id: ToField<UID>; totalSupply: ToField<"u64">; principal: ToField<Balance<ToPhantom<SUI>>> }
+
+export type FungibleStakedSuiDataReified = Reified< FungibleStakedSuiData, FungibleStakedSuiDataFields >;
+
+export class FungibleStakedSuiData implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V17}::staking_pool::FungibleStakedSuiData`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = FungibleStakedSuiData.$typeName; readonly $fullTypeName: `${typeof PKG_V17}::staking_pool::FungibleStakedSuiData`; readonly $typeArgs: []; readonly $isPhantom = FungibleStakedSuiData.$isPhantom;
+
+ readonly id: ToField<UID>; readonly totalSupply: ToField<"u64">; readonly principal: ToField<Balance<ToPhantom<SUI>>>
+
+ private constructor(typeArgs: [], fields: FungibleStakedSuiDataFields, ) { this.$fullTypeName = composeSuiType( FungibleStakedSuiData.$typeName, ...typeArgs ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSuiData`; this.$typeArgs = typeArgs;
+
+ this.id = fields.id;; this.totalSupply = fields.totalSupply;; this.principal = fields.principal; }
+
+ static reified( ): FungibleStakedSuiDataReified { return { typeName: FungibleStakedSuiData.$typeName, fullTypeName: composeSuiType( FungibleStakedSuiData.$typeName, ...[] ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSuiData`, typeArgs: [ ] as [], isPhantom: FungibleStakedSuiData.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => FungibleStakedSuiData.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => FungibleStakedSuiData.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => FungibleStakedSuiData.fromBcs( data, ), bcs: FungibleStakedSuiData.bcs, fromJSONField: (field: any) => FungibleStakedSuiData.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => FungibleStakedSuiData.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => FungibleStakedSuiData.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => FungibleStakedSuiData.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => FungibleStakedSuiData.fetch( client, id, ), new: ( fields: FungibleStakedSuiDataFields, ) => { return new FungibleStakedSuiData( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return FungibleStakedSuiData.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<FungibleStakedSuiData>> { return phantom(FungibleStakedSuiData.reified( )); } static get p() { return FungibleStakedSuiData.phantom() }
+
+ static get bcs() { return bcs.struct("FungibleStakedSuiData", {
+
+ id: UID.bcs, total_supply: bcs.u64(), principal: Balance.bcs
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): FungibleStakedSuiData { return FungibleStakedSuiData.reified( ).new( { id: decodeFromFields(UID.reified(), fields.id), totalSupply: decodeFromFields("u64", fields.total_supply), principal: decodeFromFields(Balance.reified(reified.phantom(SUI.reified())), fields.principal) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): FungibleStakedSuiData { if (!isFungibleStakedSuiData(item.type)) { throw new Error("not a FungibleStakedSuiData type");
+
+ }
+
+ return FungibleStakedSuiData.reified( ).new( { id: decodeFromFieldsWithTypes(UID.reified(), item.fields.id), totalSupply: decodeFromFieldsWithTypes("u64", item.fields.total_supply), principal: decodeFromFieldsWithTypes(Balance.reified(reified.phantom(SUI.reified())), item.fields.principal) } ) }
+
+ static fromBcs( data: Uint8Array ): FungibleStakedSuiData { return FungibleStakedSuiData.fromFields( FungibleStakedSuiData.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ id: this.id,totalSupply: this.totalSupply.toString(),principal: this.principal.toJSONField(),
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): FungibleStakedSuiData { return FungibleStakedSuiData.reified( ).new( { id: decodeFromJSONField(UID.reified(), field.id), totalSupply: decodeFromJSONField("u64", field.totalSupply), principal: decodeFromJSONField(Balance.reified(reified.phantom(SUI.reified())), field.principal) } ) }
+
+ static fromJSON( json: Record<string, any> ): FungibleStakedSuiData { if (json.$typeName !== FungibleStakedSuiData.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return FungibleStakedSuiData.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): FungibleStakedSuiData { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isFungibleStakedSuiData(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a FungibleStakedSuiData object`); } return FungibleStakedSuiData.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): FungibleStakedSuiData { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isFungibleStakedSuiData(data.bcs.type)) { throw new Error(`object at is not a FungibleStakedSuiData object`); }
+
+ return FungibleStakedSuiData.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return FungibleStakedSuiData.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<FungibleStakedSuiData> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching FungibleStakedSuiData object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isFungibleStakedSuiData(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a FungibleStakedSuiData object`); }
+
+ return FungibleStakedSuiData.fromSuiObjectData( res.data ); }
+
+ }
+
+/* ============================== FungibleStakedSuiDataKey =============================== */
+
+export function isFungibleStakedSuiDataKey(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V17}::staking_pool::FungibleStakedSuiDataKey`; }
+
+export interface FungibleStakedSuiDataKeyFields { dummyField: ToField<"bool"> }
+
+export type FungibleStakedSuiDataKeyReified = Reified< FungibleStakedSuiDataKey, FungibleStakedSuiDataKeyFields >;
+
+export class FungibleStakedSuiDataKey implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V17}::staking_pool::FungibleStakedSuiDataKey`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = FungibleStakedSuiDataKey.$typeName; readonly $fullTypeName: `${typeof PKG_V17}::staking_pool::FungibleStakedSuiDataKey`; readonly $typeArgs: []; readonly $isPhantom = FungibleStakedSuiDataKey.$isPhantom;
+
+ readonly dummyField: ToField<"bool">
+
+ private constructor(typeArgs: [], fields: FungibleStakedSuiDataKeyFields, ) { this.$fullTypeName = composeSuiType( FungibleStakedSuiDataKey.$typeName, ...typeArgs ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSuiDataKey`; this.$typeArgs = typeArgs;
+
+ this.dummyField = fields.dummyField; }
+
+ static reified( ): FungibleStakedSuiDataKeyReified { return { typeName: FungibleStakedSuiDataKey.$typeName, fullTypeName: composeSuiType( FungibleStakedSuiDataKey.$typeName, ...[] ) as `${typeof PKG_V17}::staking_pool::FungibleStakedSuiDataKey`, typeArgs: [ ] as [], isPhantom: FungibleStakedSuiDataKey.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => FungibleStakedSuiDataKey.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => FungibleStakedSuiDataKey.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => FungibleStakedSuiDataKey.fromBcs( data, ), bcs: FungibleStakedSuiDataKey.bcs, fromJSONField: (field: any) => FungibleStakedSuiDataKey.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => FungibleStakedSuiDataKey.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => FungibleStakedSuiDataKey.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => FungibleStakedSuiDataKey.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => FungibleStakedSuiDataKey.fetch( client, id, ), new: ( fields: FungibleStakedSuiDataKeyFields, ) => { return new FungibleStakedSuiDataKey( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return FungibleStakedSuiDataKey.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<FungibleStakedSuiDataKey>> { return phantom(FungibleStakedSuiDataKey.reified( )); } static get p() { return FungibleStakedSuiDataKey.phantom() }
+
+ static get bcs() { return bcs.struct("FungibleStakedSuiDataKey", {
+
+ dummy_field: bcs.bool()
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): FungibleStakedSuiDataKey { return FungibleStakedSuiDataKey.reified( ).new( { dummyField: decodeFromFields("bool", fields.dummy_field) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): FungibleStakedSuiDataKey { if (!isFungibleStakedSuiDataKey(item.type)) { throw new Error("not a FungibleStakedSuiDataKey type");
+
+ }
+
+ return FungibleStakedSuiDataKey.reified( ).new( { dummyField: decodeFromFieldsWithTypes("bool", item.fields.dummy_field) } ) }
+
+ static fromBcs( data: Uint8Array ): FungibleStakedSuiDataKey { return FungibleStakedSuiDataKey.fromFields( FungibleStakedSuiDataKey.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ dummyField: this.dummyField,
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): FungibleStakedSuiDataKey { return FungibleStakedSuiDataKey.reified( ).new( { dummyField: decodeFromJSONField("bool", field.dummyField) } ) }
+
+ static fromJSON( json: Record<string, any> ): FungibleStakedSuiDataKey { if (json.$typeName !== FungibleStakedSuiDataKey.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return FungibleStakedSuiDataKey.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): FungibleStakedSuiDataKey { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isFungibleStakedSuiDataKey(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a FungibleStakedSuiDataKey object`); } return FungibleStakedSuiDataKey.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): FungibleStakedSuiDataKey { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isFungibleStakedSuiDataKey(data.bcs.type)) { throw new Error(`object at is not a FungibleStakedSuiDataKey object`); }
+
+ return FungibleStakedSuiDataKey.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return FungibleStakedSuiDataKey.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<FungibleStakedSuiDataKey> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching FungibleStakedSuiDataKey object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isFungibleStakedSuiDataKey(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a FungibleStakedSuiDataKey object`); }
+
+ return FungibleStakedSuiDataKey.fromSuiObjectData( res.data ); }
+
+ }
+
 /* ============================== PoolTokenExchangeRate =============================== */
 
 export function isPoolTokenExchangeRate(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V17}::staking_pool::PoolTokenExchangeRate`; }

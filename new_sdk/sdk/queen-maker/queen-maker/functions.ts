@@ -2,7 +2,7 @@ import {PUBLISHED_AT} from "..";
 import {Option} from "../../_dependencies/source/0x1/option/structs";
 import {String} from "../../_dependencies/source/0x1/string/structs";
 import {obj, pure} from "../../_framework/util";
-import {TransactionBlock as Transaction, TransactionArgument, TransactionObjectInput} from "@mysten/sui.js/transactions";
+import {Transaction, TransactionArgument, TransactionObjectInput} from "@mysten/sui/transactions";
 
 export function init( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::queen_maker::init`, arguments: [ ], }) }
 

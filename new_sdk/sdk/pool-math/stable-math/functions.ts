@@ -6,6 +6,10 @@ export interface AddLiquidityComputationArgs { amp: bigint | TransactionArgument
 
 export function addLiquidityComputation( tx: Transaction, args: AddLiquidityComputationArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::stable_math::add_liquidity_computation`, arguments: [ pure(tx, args.amp, `u64`), pure(tx, args.existingLiquidity, `vector<u256>`), pure(tx, args.providedTokens, `vector<u256>`), pure(tx, args.totalFeeBps, `u64`), pure(tx, args.lpSupply, `u256`) ], }) }
 
+export interface CalculateFeeChargedArgs { initReserveSize: bigint | TransactionArgument; updatedReserveSize: bigint | TransactionArgument; initD: bigint | TransactionArgument; updatedD: bigint | TransactionArgument; fee: bigint | TransactionArgument }
+
+export function calculateFeeCharged( tx: Transaction, args: CalculateFeeChargedArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::stable_math::calculate_fee_charged`, arguments: [ pure(tx, args.initReserveSize, `u256`), pure(tx, args.updatedReserveSize, `u256`), pure(tx, args.initD, `u256`), pure(tx, args.updatedD, `u256`), pure(tx, args.fee, `u64`) ], }) }
+
 export interface ComputeAskAmountArgs { amp: bigint | TransactionArgument; offerAssetIndex: bigint | TransactionArgument; offerAmount: bigint | TransactionArgument; askAssetIndex: bigint | TransactionArgument; pools: Array<bigint | TransactionArgument> | TransactionArgument }
 
 export function computeAskAmount( tx: Transaction, args: ComputeAskAmountArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::stable_math::compute_ask_amount`, arguments: [ pure(tx, args.amp, `u64`), pure(tx, args.offerAssetIndex, `u64`), pure(tx, args.offerAmount, `u256`), pure(tx, args.askAssetIndex, `u64`), pure(tx, args.pools, `vector<u256>`) ], }) }
@@ -21,10 +25,6 @@ export function imbalancedLiquidityWithdraw( tx: Transaction, args: ImbalancedLi
 export interface CalcYArgs { fromAssetIndex: bigint | TransactionArgument; toAssetIndex: bigint | TransactionArgument; newOfferPoolBalance: bigint | TransactionArgument; pools: Array<bigint | TransactionArgument> | TransactionArgument; amp: bigint | TransactionArgument }
 
 export function calcY( tx: Transaction, args: CalcYArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::stable_math::calc_y`, arguments: [ pure(tx, args.fromAssetIndex, `u64`), pure(tx, args.toAssetIndex, `u64`), pure(tx, args.newOfferPoolBalance, `u256`), pure(tx, args.pools, `vector<u256>`), pure(tx, args.amp, `u64`) ], }) }
-
-export interface CalculateFeeChargedArgs { initReserveSize: bigint | TransactionArgument; updatedReserveSize: bigint | TransactionArgument; initD: bigint | TransactionArgument; updatedD: bigint | TransactionArgument; fee: bigint | TransactionArgument }
-
-export function calculateFeeCharged( tx: Transaction, args: CalculateFeeChargedArgs ) { return tx.moveCall({ target: `${PUBLISHED_AT}::stable_math::calculate_fee_charged`, arguments: [ pure(tx, args.initReserveSize, `u256`), pure(tx, args.updatedReserveSize, `u256`), pure(tx, args.initD, `u256`), pure(tx, args.updatedD, `u256`), pure(tx, args.fee, `u64`) ], }) }
 
 export interface ComputeCurrentAmpArgs { clock: TransactionObjectInput; initAmp: bigint | TransactionArgument; initAmpTime: bigint | TransactionArgument; nextAmp: bigint | TransactionArgument; nextAmpTime: bigint | TransactionArgument }
 

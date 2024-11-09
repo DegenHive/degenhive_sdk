@@ -21,20 +21,6 @@ export function initVoterIncentivesPct( tx: Transaction, ) { return tx.moveCall(
 
 export function lsdExchangeRatePrecision( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_exchange_rate_precision`, arguments: [ ], }) }
 
-export function lsdInitDelayEpoches( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_init_delay_epoches`, arguments: [ ], }) }
-
-export function lsdInitProtocolFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_init_protocol_fee_percent`, arguments: [ ], }) }
-
-export function lsdInitServiceFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_init_service_fee_percent`, arguments: [ ], }) }
-
-export function lsdInitTreasuryFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_init_treasury_fee_percent`, arguments: [ ], }) }
-
-export function lsdMaxProtocolFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_max_protocol_fee_percent`, arguments: [ ], }) }
-
-export function lsdMaxServiceFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_max_service_fee_percent`, arguments: [ ], }) }
-
-export function lsdMaxTreasuryFeePercent( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::lsd_max_treasury_fee_percent`, arguments: [ ], }) }
-
 export function maxHiveFee( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::max_hive_fee`, arguments: [ ], }) }
 
 export function maxHoneyBuybackPct( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::max_honey_buyback_pct`, arguments: [ ], }) }
@@ -48,8 +34,6 @@ export function maxTrainerNameLength( tx: Transaction, ) { return tx.moveCall({ 
 export function maxTreasuryFee( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::max_treasury_fee`, arguments: [ ], }) }
 
 export function maxWeightedExitFee( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::max_weighted_exit_fee`, arguments: [ ], }) }
-
-export function maxWhitelistedValidatorsAllowed( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::max_whitelisted_validators_allowed`, arguments: [ ], }) }
 
 export function minHiveFee( tx: Transaction, ) { return tx.moveCall({ target: `${PUBLISHED_AT}::constants::min_hive_fee`, arguments: [ ], }) }
 

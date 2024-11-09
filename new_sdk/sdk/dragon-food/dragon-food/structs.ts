@@ -158,7 +158,7 @@ export class AddedToDragonDen implements StructClass { __StructClass = true as c
 
 export function isBribeAddedForEmissions(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_food::BribeAddedForEmissions`; }
 
-export interface BribeAddedForEmissionsFields { coinType: ToField<String>; bribeForHiveEmisions: ToField<"u64">; bribeForHoneyEmisions: ToField<"u64">; forCycle: ToField<"u64"> }
+export interface BribeAddedForEmissionsFields { poolHiveAddr: ToField<"address">; coinType: ToField<String>; bribeForHiveEmisions: ToField<"u64">; bribeForHoneyEmisions: ToField<"u64">; forCycle: ToField<"u64"> }
 
 export type BribeAddedForEmissionsReified = Reified< BribeAddedForEmissions, BribeAddedForEmissionsFields >;
 
@@ -168,11 +168,11 @@ export class BribeAddedForEmissions implements StructClass { __StructClass = tru
 
  readonly $typeName = BribeAddedForEmissions.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_food::BribeAddedForEmissions`; readonly $typeArgs: []; readonly $isPhantom = BribeAddedForEmissions.$isPhantom;
 
- readonly coinType: ToField<String>; readonly bribeForHiveEmisions: ToField<"u64">; readonly bribeForHoneyEmisions: ToField<"u64">; readonly forCycle: ToField<"u64">
+ readonly poolHiveAddr: ToField<"address">; readonly coinType: ToField<String>; readonly bribeForHiveEmisions: ToField<"u64">; readonly bribeForHoneyEmisions: ToField<"u64">; readonly forCycle: ToField<"u64">
 
  private constructor(typeArgs: [], fields: BribeAddedForEmissionsFields, ) { this.$fullTypeName = composeSuiType( BribeAddedForEmissions.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_food::BribeAddedForEmissions`; this.$typeArgs = typeArgs;
 
- this.coinType = fields.coinType;; this.bribeForHiveEmisions = fields.bribeForHiveEmisions;; this.bribeForHoneyEmisions = fields.bribeForHoneyEmisions;; this.forCycle = fields.forCycle; }
+ this.poolHiveAddr = fields.poolHiveAddr;; this.coinType = fields.coinType;; this.bribeForHiveEmisions = fields.bribeForHiveEmisions;; this.bribeForHoneyEmisions = fields.bribeForHoneyEmisions;; this.forCycle = fields.forCycle; }
 
  static reified( ): BribeAddedForEmissionsReified { return { typeName: BribeAddedForEmissions.$typeName, fullTypeName: composeSuiType( BribeAddedForEmissions.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_food::BribeAddedForEmissions`, typeArgs: [ ] as [], isPhantom: BribeAddedForEmissions.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => BribeAddedForEmissions.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => BribeAddedForEmissions.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => BribeAddedForEmissions.fromBcs( data, ), bcs: BribeAddedForEmissions.bcs, fromJSONField: (field: any) => BribeAddedForEmissions.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => BribeAddedForEmissions.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => BribeAddedForEmissions.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => BribeAddedForEmissions.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => BribeAddedForEmissions.fetch( client, id, ), new: ( fields: BribeAddedForEmissionsFields, ) => { return new BribeAddedForEmissions( [], fields ) }, kind: "StructClassReified", } }
 
@@ -182,29 +182,29 @@ export class BribeAddedForEmissions implements StructClass { __StructClass = tru
 
  static get bcs() { return bcs.struct("BribeAddedForEmissions", {
 
- coin_type: String.bcs, bribe_for_hive_emisions: bcs.u64(), bribe_for_honey_emisions: bcs.u64(), for_cycle: bcs.u64()
+ pool_hive_addr: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), coin_type: String.bcs, bribe_for_hive_emisions: bcs.u64(), bribe_for_honey_emisions: bcs.u64(), for_cycle: bcs.u64()
 
 }) };
 
- static fromFields( fields: Record<string, any> ): BribeAddedForEmissions { return BribeAddedForEmissions.reified( ).new( { coinType: decodeFromFields(String.reified(), fields.coin_type), bribeForHiveEmisions: decodeFromFields("u64", fields.bribe_for_hive_emisions), bribeForHoneyEmisions: decodeFromFields("u64", fields.bribe_for_honey_emisions), forCycle: decodeFromFields("u64", fields.for_cycle) } ) }
+ static fromFields( fields: Record<string, any> ): BribeAddedForEmissions { return BribeAddedForEmissions.reified( ).new( { poolHiveAddr: decodeFromFields("address", fields.pool_hive_addr), coinType: decodeFromFields(String.reified(), fields.coin_type), bribeForHiveEmisions: decodeFromFields("u64", fields.bribe_for_hive_emisions), bribeForHoneyEmisions: decodeFromFields("u64", fields.bribe_for_honey_emisions), forCycle: decodeFromFields("u64", fields.for_cycle) } ) }
 
  static fromFieldsWithTypes( item: FieldsWithTypes ): BribeAddedForEmissions { if (!isBribeAddedForEmissions(item.type)) { throw new Error("not a BribeAddedForEmissions type");
 
  }
 
- return BribeAddedForEmissions.reified( ).new( { coinType: decodeFromFieldsWithTypes(String.reified(), item.fields.coin_type), bribeForHiveEmisions: decodeFromFieldsWithTypes("u64", item.fields.bribe_for_hive_emisions), bribeForHoneyEmisions: decodeFromFieldsWithTypes("u64", item.fields.bribe_for_honey_emisions), forCycle: decodeFromFieldsWithTypes("u64", item.fields.for_cycle) } ) }
+ return BribeAddedForEmissions.reified( ).new( { poolHiveAddr: decodeFromFieldsWithTypes("address", item.fields.pool_hive_addr), coinType: decodeFromFieldsWithTypes(String.reified(), item.fields.coin_type), bribeForHiveEmisions: decodeFromFieldsWithTypes("u64", item.fields.bribe_for_hive_emisions), bribeForHoneyEmisions: decodeFromFieldsWithTypes("u64", item.fields.bribe_for_honey_emisions), forCycle: decodeFromFieldsWithTypes("u64", item.fields.for_cycle) } ) }
 
  static fromBcs( data: Uint8Array ): BribeAddedForEmissions { return BribeAddedForEmissions.fromFields( BribeAddedForEmissions.bcs.parse(data) ) }
 
  toJSONField() { return {
 
- coinType: this.coinType,bribeForHiveEmisions: this.bribeForHiveEmisions.toString(),bribeForHoneyEmisions: this.bribeForHoneyEmisions.toString(),forCycle: this.forCycle.toString(),
+ poolHiveAddr: this.poolHiveAddr,coinType: this.coinType,bribeForHiveEmisions: this.bribeForHiveEmisions.toString(),bribeForHoneyEmisions: this.bribeForHoneyEmisions.toString(),forCycle: this.forCycle.toString(),
 
 } }
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField( field: any ): BribeAddedForEmissions { return BribeAddedForEmissions.reified( ).new( { coinType: decodeFromJSONField(String.reified(), field.coinType), bribeForHiveEmisions: decodeFromJSONField("u64", field.bribeForHiveEmisions), bribeForHoneyEmisions: decodeFromJSONField("u64", field.bribeForHoneyEmisions), forCycle: decodeFromJSONField("u64", field.forCycle) } ) }
+ static fromJSONField( field: any ): BribeAddedForEmissions { return BribeAddedForEmissions.reified( ).new( { poolHiveAddr: decodeFromJSONField("address", field.poolHiveAddr), coinType: decodeFromJSONField(String.reified(), field.coinType), bribeForHiveEmisions: decodeFromJSONField("u64", field.bribeForHiveEmisions), bribeForHoneyEmisions: decodeFromJSONField("u64", field.bribeForHoneyEmisions), forCycle: decodeFromJSONField("u64", field.forCycle) } ) }
 
  static fromJSON( json: Record<string, any> ): BribeAddedForEmissions { if (json.$typeName !== BribeAddedForEmissions.$typeName) { throw new Error("not a WithTwoGenerics json object") };
 
@@ -355,6 +355,74 @@ export class BribeClaimedByTrainerTwoPool implements StructClass { __StructClass
  static async fetch( client: SuiClient, id: string ): Promise<BribeClaimedByTrainerTwoPool> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching BribeClaimedByTrainerTwoPool object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isBribeClaimedByTrainerTwoPool(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a BribeClaimedByTrainerTwoPool object`); }
 
  return BribeClaimedByTrainerTwoPool.fromSuiObjectData( res.data ); }
+
+ }
+
+/* ============================== BribeMarkedAsToken =============================== */
+
+export function isBribeMarkedAsToken(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_food::BribeMarkedAsToken`; }
+
+export interface BribeMarkedAsTokenFields { poolHiveAddr: ToField<"address">; coinType: ToField<String> }
+
+export type BribeMarkedAsTokenReified = Reified< BribeMarkedAsToken, BribeMarkedAsTokenFields >;
+
+export class BribeMarkedAsToken implements StructClass { __StructClass = true as const;
+
+ static readonly $typeName = `${PKG_V1}::dragon_food::BribeMarkedAsToken`; static readonly $numTypeParams = 0; static readonly $isPhantom = [] as const;
+
+ readonly $typeName = BribeMarkedAsToken.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_food::BribeMarkedAsToken`; readonly $typeArgs: []; readonly $isPhantom = BribeMarkedAsToken.$isPhantom;
+
+ readonly poolHiveAddr: ToField<"address">; readonly coinType: ToField<String>
+
+ private constructor(typeArgs: [], fields: BribeMarkedAsTokenFields, ) { this.$fullTypeName = composeSuiType( BribeMarkedAsToken.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_food::BribeMarkedAsToken`; this.$typeArgs = typeArgs;
+
+ this.poolHiveAddr = fields.poolHiveAddr;; this.coinType = fields.coinType; }
+
+ static reified( ): BribeMarkedAsTokenReified { return { typeName: BribeMarkedAsToken.$typeName, fullTypeName: composeSuiType( BribeMarkedAsToken.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_food::BribeMarkedAsToken`, typeArgs: [ ] as [], isPhantom: BribeMarkedAsToken.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => BribeMarkedAsToken.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => BribeMarkedAsToken.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => BribeMarkedAsToken.fromBcs( data, ), bcs: BribeMarkedAsToken.bcs, fromJSONField: (field: any) => BribeMarkedAsToken.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => BribeMarkedAsToken.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => BribeMarkedAsToken.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => BribeMarkedAsToken.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => BribeMarkedAsToken.fetch( client, id, ), new: ( fields: BribeMarkedAsTokenFields, ) => { return new BribeMarkedAsToken( [], fields ) }, kind: "StructClassReified", } }
+
+ static get r() { return BribeMarkedAsToken.reified() }
+
+ static phantom( ): PhantomReified<ToTypeStr<BribeMarkedAsToken>> { return phantom(BribeMarkedAsToken.reified( )); } static get p() { return BribeMarkedAsToken.phantom() }
+
+ static get bcs() { return bcs.struct("BribeMarkedAsToken", {
+
+ pool_hive_addr: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), coin_type: String.bcs
+
+}) };
+
+ static fromFields( fields: Record<string, any> ): BribeMarkedAsToken { return BribeMarkedAsToken.reified( ).new( { poolHiveAddr: decodeFromFields("address", fields.pool_hive_addr), coinType: decodeFromFields(String.reified(), fields.coin_type) } ) }
+
+ static fromFieldsWithTypes( item: FieldsWithTypes ): BribeMarkedAsToken { if (!isBribeMarkedAsToken(item.type)) { throw new Error("not a BribeMarkedAsToken type");
+
+ }
+
+ return BribeMarkedAsToken.reified( ).new( { poolHiveAddr: decodeFromFieldsWithTypes("address", item.fields.pool_hive_addr), coinType: decodeFromFieldsWithTypes(String.reified(), item.fields.coin_type) } ) }
+
+ static fromBcs( data: Uint8Array ): BribeMarkedAsToken { return BribeMarkedAsToken.fromFields( BribeMarkedAsToken.bcs.parse(data) ) }
+
+ toJSONField() { return {
+
+ poolHiveAddr: this.poolHiveAddr,coinType: this.coinType,
+
+} }
+
+ toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
+
+ static fromJSONField( field: any ): BribeMarkedAsToken { return BribeMarkedAsToken.reified( ).new( { poolHiveAddr: decodeFromJSONField("address", field.poolHiveAddr), coinType: decodeFromJSONField(String.reified(), field.coinType) } ) }
+
+ static fromJSON( json: Record<string, any> ): BribeMarkedAsToken { if (json.$typeName !== BribeMarkedAsToken.$typeName) { throw new Error("not a WithTwoGenerics json object") };
+
+ return BribeMarkedAsToken.fromJSONField( json, ) }
+
+ static fromSuiParsedData( content: SuiParsedData ): BribeMarkedAsToken { if (content.dataType !== "moveObject") { throw new Error("not an object"); } if (!isBribeMarkedAsToken(content.type)) { throw new Error(`object at ${(content.fields as any).id} is not a BribeMarkedAsToken object`); } return BribeMarkedAsToken.fromFieldsWithTypes( content ); }
+
+ static fromSuiObjectData( data: SuiObjectData ): BribeMarkedAsToken { if (data.bcs) { if (data.bcs.dataType !== "moveObject" || !isBribeMarkedAsToken(data.bcs.type)) { throw new Error(`object at is not a BribeMarkedAsToken object`); }
+
+ return BribeMarkedAsToken.fromBcs( fromB64(data.bcs.bcsBytes) ); } if (data.content) { return BribeMarkedAsToken.fromSuiParsedData( data.content ) } throw new Error( "Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request." ); }
+
+ static async fetch( client: SuiClient, id: string ): Promise<BribeMarkedAsToken> { const res = await client.getObject({ id, options: { showBcs: true, }, }); if (res.error) { throw new Error(`error fetching BribeMarkedAsToken object at id ${id}: ${res.error.code}`); } if (res.data?.bcs?.dataType !== "moveObject" || !isBribeMarkedAsToken(res.data.bcs.type)) { throw new Error(`object at id ${id} is not a BribeMarkedAsToken object`); }
+
+ return BribeMarkedAsToken.fromSuiObjectData( res.data ); }
 
  }
 
@@ -976,7 +1044,7 @@ export class FeedingFoodToBee implements StructClass { __StructClass = true as c
 
 export function isFeesClaimedForEmissions(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::dragon_food::FeesClaimedForEmissions`; }
 
-export interface FeesClaimedForEmissionsFields { isAdded: ToField<"bool">; hiveFeeClaimed: ToField<"u64">; honeyFeeClaimed: ToField<"u64">; cycle: ToField<"u64">; hiveFeeIndexIncrement: ToField<"u256">; honeyFeeIndexIncrement: ToField<"u256"> }
+export interface FeesClaimedForEmissionsFields { poolHiveAddr: ToField<"address">; isAdded: ToField<"bool">; hiveFeeClaimed: ToField<"u64">; honeyFeeClaimed: ToField<"u64">; cycle: ToField<"u64">; hiveFeeIndexIncrement: ToField<"u256">; honeyFeeIndexIncrement: ToField<"u256"> }
 
 export type FeesClaimedForEmissionsReified = Reified< FeesClaimedForEmissions, FeesClaimedForEmissionsFields >;
 
@@ -986,11 +1054,11 @@ export class FeesClaimedForEmissions implements StructClass { __StructClass = tr
 
  readonly $typeName = FeesClaimedForEmissions.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_food::FeesClaimedForEmissions`; readonly $typeArgs: []; readonly $isPhantom = FeesClaimedForEmissions.$isPhantom;
 
- readonly isAdded: ToField<"bool">; readonly hiveFeeClaimed: ToField<"u64">; readonly honeyFeeClaimed: ToField<"u64">; readonly cycle: ToField<"u64">; readonly hiveFeeIndexIncrement: ToField<"u256">; readonly honeyFeeIndexIncrement: ToField<"u256">
+ readonly poolHiveAddr: ToField<"address">; readonly isAdded: ToField<"bool">; readonly hiveFeeClaimed: ToField<"u64">; readonly honeyFeeClaimed: ToField<"u64">; readonly cycle: ToField<"u64">; readonly hiveFeeIndexIncrement: ToField<"u256">; readonly honeyFeeIndexIncrement: ToField<"u256">
 
  private constructor(typeArgs: [], fields: FeesClaimedForEmissionsFields, ) { this.$fullTypeName = composeSuiType( FeesClaimedForEmissions.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_food::FeesClaimedForEmissions`; this.$typeArgs = typeArgs;
 
- this.isAdded = fields.isAdded;; this.hiveFeeClaimed = fields.hiveFeeClaimed;; this.honeyFeeClaimed = fields.honeyFeeClaimed;; this.cycle = fields.cycle;; this.hiveFeeIndexIncrement = fields.hiveFeeIndexIncrement;; this.honeyFeeIndexIncrement = fields.honeyFeeIndexIncrement; }
+ this.poolHiveAddr = fields.poolHiveAddr;; this.isAdded = fields.isAdded;; this.hiveFeeClaimed = fields.hiveFeeClaimed;; this.honeyFeeClaimed = fields.honeyFeeClaimed;; this.cycle = fields.cycle;; this.hiveFeeIndexIncrement = fields.hiveFeeIndexIncrement;; this.honeyFeeIndexIncrement = fields.honeyFeeIndexIncrement; }
 
  static reified( ): FeesClaimedForEmissionsReified { return { typeName: FeesClaimedForEmissions.$typeName, fullTypeName: composeSuiType( FeesClaimedForEmissions.$typeName, ...[] ) as `${typeof PKG_V1}::dragon_food::FeesClaimedForEmissions`, typeArgs: [ ] as [], isPhantom: FeesClaimedForEmissions.$isPhantom, reifiedTypeArgs: [], fromFields: (fields: Record<string, any>) => FeesClaimedForEmissions.fromFields( fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => FeesClaimedForEmissions.fromFieldsWithTypes( item, ), fromBcs: (data: Uint8Array) => FeesClaimedForEmissions.fromBcs( data, ), bcs: FeesClaimedForEmissions.bcs, fromJSONField: (field: any) => FeesClaimedForEmissions.fromJSONField( field, ), fromJSON: (json: Record<string, any>) => FeesClaimedForEmissions.fromJSON( json, ), fromSuiParsedData: (content: SuiParsedData) => FeesClaimedForEmissions.fromSuiParsedData( content, ), fromSuiObjectData: (content: SuiObjectData) => FeesClaimedForEmissions.fromSuiObjectData( content, ), fetch: async (client: SuiClient, id: string) => FeesClaimedForEmissions.fetch( client, id, ), new: ( fields: FeesClaimedForEmissionsFields, ) => { return new FeesClaimedForEmissions( [], fields ) }, kind: "StructClassReified", } }
 
@@ -1000,29 +1068,29 @@ export class FeesClaimedForEmissions implements StructClass { __StructClass = tr
 
  static get bcs() { return bcs.struct("FeesClaimedForEmissions", {
 
- is_added: bcs.bool(), hive_fee_claimed: bcs.u64(), honey_fee_claimed: bcs.u64(), cycle: bcs.u64(), hive_fee_index_increment: bcs.u256(), honey_fee_index_increment: bcs.u256()
+ pool_hive_addr: bcs.bytes(32).transform({ input: (val: string) => fromHEX(val), output: (val: Uint8Array) => toHEX(val), }), is_added: bcs.bool(), hive_fee_claimed: bcs.u64(), honey_fee_claimed: bcs.u64(), cycle: bcs.u64(), hive_fee_index_increment: bcs.u256(), honey_fee_index_increment: bcs.u256()
 
 }) };
 
- static fromFields( fields: Record<string, any> ): FeesClaimedForEmissions { return FeesClaimedForEmissions.reified( ).new( { isAdded: decodeFromFields("bool", fields.is_added), hiveFeeClaimed: decodeFromFields("u64", fields.hive_fee_claimed), honeyFeeClaimed: decodeFromFields("u64", fields.honey_fee_claimed), cycle: decodeFromFields("u64", fields.cycle), hiveFeeIndexIncrement: decodeFromFields("u256", fields.hive_fee_index_increment), honeyFeeIndexIncrement: decodeFromFields("u256", fields.honey_fee_index_increment) } ) }
+ static fromFields( fields: Record<string, any> ): FeesClaimedForEmissions { return FeesClaimedForEmissions.reified( ).new( { poolHiveAddr: decodeFromFields("address", fields.pool_hive_addr), isAdded: decodeFromFields("bool", fields.is_added), hiveFeeClaimed: decodeFromFields("u64", fields.hive_fee_claimed), honeyFeeClaimed: decodeFromFields("u64", fields.honey_fee_claimed), cycle: decodeFromFields("u64", fields.cycle), hiveFeeIndexIncrement: decodeFromFields("u256", fields.hive_fee_index_increment), honeyFeeIndexIncrement: decodeFromFields("u256", fields.honey_fee_index_increment) } ) }
 
  static fromFieldsWithTypes( item: FieldsWithTypes ): FeesClaimedForEmissions { if (!isFeesClaimedForEmissions(item.type)) { throw new Error("not a FeesClaimedForEmissions type");
 
  }
 
- return FeesClaimedForEmissions.reified( ).new( { isAdded: decodeFromFieldsWithTypes("bool", item.fields.is_added), hiveFeeClaimed: decodeFromFieldsWithTypes("u64", item.fields.hive_fee_claimed), honeyFeeClaimed: decodeFromFieldsWithTypes("u64", item.fields.honey_fee_claimed), cycle: decodeFromFieldsWithTypes("u64", item.fields.cycle), hiveFeeIndexIncrement: decodeFromFieldsWithTypes("u256", item.fields.hive_fee_index_increment), honeyFeeIndexIncrement: decodeFromFieldsWithTypes("u256", item.fields.honey_fee_index_increment) } ) }
+ return FeesClaimedForEmissions.reified( ).new( { poolHiveAddr: decodeFromFieldsWithTypes("address", item.fields.pool_hive_addr), isAdded: decodeFromFieldsWithTypes("bool", item.fields.is_added), hiveFeeClaimed: decodeFromFieldsWithTypes("u64", item.fields.hive_fee_claimed), honeyFeeClaimed: decodeFromFieldsWithTypes("u64", item.fields.honey_fee_claimed), cycle: decodeFromFieldsWithTypes("u64", item.fields.cycle), hiveFeeIndexIncrement: decodeFromFieldsWithTypes("u256", item.fields.hive_fee_index_increment), honeyFeeIndexIncrement: decodeFromFieldsWithTypes("u256", item.fields.honey_fee_index_increment) } ) }
 
  static fromBcs( data: Uint8Array ): FeesClaimedForEmissions { return FeesClaimedForEmissions.fromFields( FeesClaimedForEmissions.bcs.parse(data) ) }
 
  toJSONField() { return {
 
- isAdded: this.isAdded,hiveFeeClaimed: this.hiveFeeClaimed.toString(),honeyFeeClaimed: this.honeyFeeClaimed.toString(),cycle: this.cycle.toString(),hiveFeeIndexIncrement: this.hiveFeeIndexIncrement.toString(),honeyFeeIndexIncrement: this.honeyFeeIndexIncrement.toString(),
+ poolHiveAddr: this.poolHiveAddr,isAdded: this.isAdded,hiveFeeClaimed: this.hiveFeeClaimed.toString(),honeyFeeClaimed: this.honeyFeeClaimed.toString(),cycle: this.cycle.toString(),hiveFeeIndexIncrement: this.hiveFeeIndexIncrement.toString(),honeyFeeIndexIncrement: this.honeyFeeIndexIncrement.toString(),
 
 } }
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField( field: any ): FeesClaimedForEmissions { return FeesClaimedForEmissions.reified( ).new( { isAdded: decodeFromJSONField("bool", field.isAdded), hiveFeeClaimed: decodeFromJSONField("u64", field.hiveFeeClaimed), honeyFeeClaimed: decodeFromJSONField("u64", field.honeyFeeClaimed), cycle: decodeFromJSONField("u64", field.cycle), hiveFeeIndexIncrement: decodeFromJSONField("u256", field.hiveFeeIndexIncrement), honeyFeeIndexIncrement: decodeFromJSONField("u256", field.honeyFeeIndexIncrement) } ) }
+ static fromJSONField( field: any ): FeesClaimedForEmissions { return FeesClaimedForEmissions.reified( ).new( { poolHiveAddr: decodeFromJSONField("address", field.poolHiveAddr), isAdded: decodeFromJSONField("bool", field.isAdded), hiveFeeClaimed: decodeFromJSONField("u64", field.hiveFeeClaimed), honeyFeeClaimed: decodeFromJSONField("u64", field.honeyFeeClaimed), cycle: decodeFromJSONField("u64", field.cycle), hiveFeeIndexIncrement: decodeFromJSONField("u256", field.hiveFeeIndexIncrement), honeyFeeIndexIncrement: decodeFromJSONField("u256", field.honeyFeeIndexIncrement) } ) }
 
  static fromJSON( json: Record<string, any> ): FeesClaimedForEmissions { if (json.$typeName !== FeesClaimedForEmissions.$typeName) { throw new Error("not a WithTwoGenerics json object") };
 
@@ -2886,7 +2954,7 @@ export class VoteConfig implements StructClass { __StructClass = true as const;
 
 export function isVotingBribes(type: string): boolean { type = compressSuiType(type); return type.startsWith(`${PKG_V1}::dragon_food::VotingBribes` + '<'); }
 
-export interface VotingBribesFields<X extends PhantomTypeArgument> { id: ToField<UID>; bribe: ToField<Balance<X>>; cycleToHiveBribesMap: ToField<LinkedTable<"u64", "u64">>; cycleToHoneyBribesMap: ToField<LinkedTable<"u64", "u64">> }
+export interface VotingBribesFields<X extends PhantomTypeArgument> { id: ToField<UID>; bribe: ToField<Balance<X>>; isMemeToken: ToField<"bool">; cycleToHiveBribesMap: ToField<LinkedTable<"u64", "u64">>; cycleToHoneyBribesMap: ToField<LinkedTable<"u64", "u64">> }
 
 export type VotingBribesReified<X extends PhantomTypeArgument> = Reified< VotingBribes<X>, VotingBribesFields<X> >;
 
@@ -2896,11 +2964,11 @@ export class VotingBribes<X extends PhantomTypeArgument> implements StructClass 
 
  readonly $typeName = VotingBribes.$typeName; readonly $fullTypeName: `${typeof PKG_V1}::dragon_food::VotingBribes<${PhantomToTypeStr<X>}>`; readonly $typeArgs: [PhantomToTypeStr<X>]; readonly $isPhantom = VotingBribes.$isPhantom;
 
- readonly id: ToField<UID>; readonly bribe: ToField<Balance<X>>; readonly cycleToHiveBribesMap: ToField<LinkedTable<"u64", "u64">>; readonly cycleToHoneyBribesMap: ToField<LinkedTable<"u64", "u64">>
+ readonly id: ToField<UID>; readonly bribe: ToField<Balance<X>>; readonly isMemeToken: ToField<"bool">; readonly cycleToHiveBribesMap: ToField<LinkedTable<"u64", "u64">>; readonly cycleToHoneyBribesMap: ToField<LinkedTable<"u64", "u64">>
 
  private constructor(typeArgs: [PhantomToTypeStr<X>], fields: VotingBribesFields<X>, ) { this.$fullTypeName = composeSuiType( VotingBribes.$typeName, ...typeArgs ) as `${typeof PKG_V1}::dragon_food::VotingBribes<${PhantomToTypeStr<X>}>`; this.$typeArgs = typeArgs;
 
- this.id = fields.id;; this.bribe = fields.bribe;; this.cycleToHiveBribesMap = fields.cycleToHiveBribesMap;; this.cycleToHoneyBribesMap = fields.cycleToHoneyBribesMap; }
+ this.id = fields.id;; this.bribe = fields.bribe;; this.isMemeToken = fields.isMemeToken;; this.cycleToHiveBribesMap = fields.cycleToHiveBribesMap;; this.cycleToHoneyBribesMap = fields.cycleToHoneyBribesMap; }
 
  static reified<X extends PhantomReified<PhantomTypeArgument>>( X: X ): VotingBribesReified<ToPhantomTypeArgument<X>> { return { typeName: VotingBribes.$typeName, fullTypeName: composeSuiType( VotingBribes.$typeName, ...[extractType(X)] ) as `${typeof PKG_V1}::dragon_food::VotingBribes<${PhantomToTypeStr<ToPhantomTypeArgument<X>>}>`, typeArgs: [ extractType(X) ] as [PhantomToTypeStr<ToPhantomTypeArgument<X>>], isPhantom: VotingBribes.$isPhantom, reifiedTypeArgs: [X], fromFields: (fields: Record<string, any>) => VotingBribes.fromFields( X, fields, ), fromFieldsWithTypes: (item: FieldsWithTypes) => VotingBribes.fromFieldsWithTypes( X, item, ), fromBcs: (data: Uint8Array) => VotingBribes.fromBcs( X, data, ), bcs: VotingBribes.bcs, fromJSONField: (field: any) => VotingBribes.fromJSONField( X, field, ), fromJSON: (json: Record<string, any>) => VotingBribes.fromJSON( X, json, ), fromSuiParsedData: (content: SuiParsedData) => VotingBribes.fromSuiParsedData( X, content, ), fromSuiObjectData: (content: SuiObjectData) => VotingBribes.fromSuiObjectData( X, content, ), fetch: async (client: SuiClient, id: string) => VotingBribes.fetch( client, X, id, ), new: ( fields: VotingBribesFields<ToPhantomTypeArgument<X>>, ) => { return new VotingBribes( [extractType(X)], fields ) }, kind: "StructClassReified", } }
 
@@ -2910,29 +2978,29 @@ export class VotingBribes<X extends PhantomTypeArgument> implements StructClass 
 
  static get bcs() { return bcs.struct("VotingBribes", {
 
- id: UID.bcs, bribe: Balance.bcs, cycle_to_hive_bribes_map: LinkedTable.bcs(bcs.u64()), cycle_to_honey_bribes_map: LinkedTable.bcs(bcs.u64())
+ id: UID.bcs, bribe: Balance.bcs, is_meme_token: bcs.bool(), cycle_to_hive_bribes_map: LinkedTable.bcs(bcs.u64()), cycle_to_honey_bribes_map: LinkedTable.bcs(bcs.u64())
 
 }) };
 
- static fromFields<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, fields: Record<string, any> ): VotingBribes<ToPhantomTypeArgument<X>> { return VotingBribes.reified( typeArg, ).new( { id: decodeFromFields(UID.reified(), fields.id), bribe: decodeFromFields(Balance.reified(typeArg), fields.bribe), cycleToHiveBribesMap: decodeFromFields(LinkedTable.reified("u64", reified.phantom("u64")), fields.cycle_to_hive_bribes_map), cycleToHoneyBribesMap: decodeFromFields(LinkedTable.reified("u64", reified.phantom("u64")), fields.cycle_to_honey_bribes_map) } ) }
+ static fromFields<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, fields: Record<string, any> ): VotingBribes<ToPhantomTypeArgument<X>> { return VotingBribes.reified( typeArg, ).new( { id: decodeFromFields(UID.reified(), fields.id), bribe: decodeFromFields(Balance.reified(typeArg), fields.bribe), isMemeToken: decodeFromFields("bool", fields.is_meme_token), cycleToHiveBribesMap: decodeFromFields(LinkedTable.reified("u64", reified.phantom("u64")), fields.cycle_to_hive_bribes_map), cycleToHoneyBribesMap: decodeFromFields(LinkedTable.reified("u64", reified.phantom("u64")), fields.cycle_to_honey_bribes_map) } ) }
 
  static fromFieldsWithTypes<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, item: FieldsWithTypes ): VotingBribes<ToPhantomTypeArgument<X>> { if (!isVotingBribes(item.type)) { throw new Error("not a VotingBribes type");
 
  } assertFieldsWithTypesArgsMatch(item, [typeArg]);
 
- return VotingBribes.reified( typeArg, ).new( { id: decodeFromFieldsWithTypes(UID.reified(), item.fields.id), bribe: decodeFromFieldsWithTypes(Balance.reified(typeArg), item.fields.bribe), cycleToHiveBribesMap: decodeFromFieldsWithTypes(LinkedTable.reified("u64", reified.phantom("u64")), item.fields.cycle_to_hive_bribes_map), cycleToHoneyBribesMap: decodeFromFieldsWithTypes(LinkedTable.reified("u64", reified.phantom("u64")), item.fields.cycle_to_honey_bribes_map) } ) }
+ return VotingBribes.reified( typeArg, ).new( { id: decodeFromFieldsWithTypes(UID.reified(), item.fields.id), bribe: decodeFromFieldsWithTypes(Balance.reified(typeArg), item.fields.bribe), isMemeToken: decodeFromFieldsWithTypes("bool", item.fields.is_meme_token), cycleToHiveBribesMap: decodeFromFieldsWithTypes(LinkedTable.reified("u64", reified.phantom("u64")), item.fields.cycle_to_hive_bribes_map), cycleToHoneyBribesMap: decodeFromFieldsWithTypes(LinkedTable.reified("u64", reified.phantom("u64")), item.fields.cycle_to_honey_bribes_map) } ) }
 
  static fromBcs<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, data: Uint8Array ): VotingBribes<ToPhantomTypeArgument<X>> { return VotingBribes.fromFields( typeArg, VotingBribes.bcs.parse(data) ) }
 
  toJSONField() { return {
 
- id: this.id,bribe: this.bribe.toJSONField(),cycleToHiveBribesMap: this.cycleToHiveBribesMap.toJSONField(),cycleToHoneyBribesMap: this.cycleToHoneyBribesMap.toJSONField(),
+ id: this.id,bribe: this.bribe.toJSONField(),isMemeToken: this.isMemeToken,cycleToHiveBribesMap: this.cycleToHiveBribesMap.toJSONField(),cycleToHoneyBribesMap: this.cycleToHoneyBribesMap.toJSONField(),
 
 } }
 
  toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() } }
 
- static fromJSONField<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, field: any ): VotingBribes<ToPhantomTypeArgument<X>> { return VotingBribes.reified( typeArg, ).new( { id: decodeFromJSONField(UID.reified(), field.id), bribe: decodeFromJSONField(Balance.reified(typeArg), field.bribe), cycleToHiveBribesMap: decodeFromJSONField(LinkedTable.reified("u64", reified.phantom("u64")), field.cycleToHiveBribesMap), cycleToHoneyBribesMap: decodeFromJSONField(LinkedTable.reified("u64", reified.phantom("u64")), field.cycleToHoneyBribesMap) } ) }
+ static fromJSONField<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, field: any ): VotingBribes<ToPhantomTypeArgument<X>> { return VotingBribes.reified( typeArg, ).new( { id: decodeFromJSONField(UID.reified(), field.id), bribe: decodeFromJSONField(Balance.reified(typeArg), field.bribe), isMemeToken: decodeFromJSONField("bool", field.isMemeToken), cycleToHiveBribesMap: decodeFromJSONField(LinkedTable.reified("u64", reified.phantom("u64")), field.cycleToHiveBribesMap), cycleToHoneyBribesMap: decodeFromJSONField(LinkedTable.reified("u64", reified.phantom("u64")), field.cycleToHoneyBribesMap) } ) }
 
  static fromJSON<X extends PhantomReified<PhantomTypeArgument>>( typeArg: X, json: Record<string, any> ): VotingBribes<ToPhantomTypeArgument<X>> { if (json.$typeName !== VotingBribes.$typeName) { throw new Error("not a WithTwoGenerics json object") }; assertReifiedTypeArgsMatch( composeSuiType(VotingBribes.$typeName, extractType(typeArg)), json.$typeArgs, [typeArg], )
 
