@@ -2,7 +2,7 @@
 import { bcs, BcsType } from '@mysten/sui/bcs'
 import { fromHEX, toHEX } from '@mysten/sui/utils'
 import { FieldsWithTypes, compressSuiType, parseTypeName } from './util'
-import { SuiClient, SuiParsedData, SuiObjectData } from '@mysten/sui/client'
+import { SuiClient, SuiParsedData, SuiObjectData } from '@mysten/sui.js/dist/cjs/client'
 
 // for backwards compatibility
 export { vector } from './vector'
@@ -154,9 +154,9 @@ export type ToJSON<T extends TypeArgument> = T extends 'bool'
   : T extends { $typeName: '0x2::url::Url' }
   ? string
   : T extends {
-      $typeName: '0x1::option::Option'
-      __inner: infer U extends TypeArgument
-    }
+    $typeName: '0x1::option::Option'
+    __inner: infer U extends TypeArgument
+  }
   ? ToJSON<U> | null
   : T extends VectorClass
   ? ReturnType<T['toJSONField']>
@@ -191,9 +191,9 @@ export type ToField<T extends TypeArgument> = T extends 'bool'
   : T extends { $typeName: '0x2::url::Url' }
   ? string
   : T extends {
-      $typeName: '0x1::option::Option'
-      __inner: infer U extends TypeArgument
-    }
+    $typeName: '0x1::option::Option'
+    __inner: infer U extends TypeArgument
+  }
   ? ToField<U> | null
   : T extends VectorClass
   ? T['elements']
