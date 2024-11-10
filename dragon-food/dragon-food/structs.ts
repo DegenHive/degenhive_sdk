@@ -14,7 +14,7 @@ import { HIVE } from "../../yield-flow/hive/structs";
 import { HONEY } from "../../yield-flow/honey/structs";
 import { DragonFoodCapability } from "../../yield-flow/yield-flow/structs";
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { bcs, fromB64, toHEX } from "@mysten/bcs";
+import { bcs, fromB64, fromHEX, toHEX } from "@mysten/bcs";
 
 
 import { dragonfood } from ".."

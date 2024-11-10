@@ -1,4 +1,3 @@
-
 import { bcs, ObjectArg as SuiObjectArg } from '@mysten/sui.js/bcs'
 import { TransactionArgument, TransactionBlock as Transaction, TransactionObjectInput, TransactionObjectArgument } from "@mysten/sui.js/transactions";
 import { BcsType } from '@mysten/bcs'
@@ -108,30 +107,30 @@ export function pure(tx: Transaction, arg: PureArg, type: string): TransactionAr
     const { typeName, typeArgs } = parseTypeName(type)
     switch (typeName) {
       case 'bool':
-        return bcs.Bool
+        return bcs.Bool as any
       case 'u8':
-        return bcs.U8
+        return bcs.U8 as any
       case 'u16':
-        return bcs.U16
+        return bcs.U16 as any
       case 'u32':
-        return bcs.U32
+        return bcs.U32 as any
       case 'u64':
-        return bcs.U64
+        return bcs.U64 as any
       case 'u128':
-        return bcs.U128
+        return bcs.U128 as any
       case 'u256':
-        return bcs.U256
+        return bcs.U256 as any
       case 'address':
-        return bcs.Address
+        return bcs.Address as any
       case '0x1::string::String':
       case '0x1::ascii::String':
-        return bcs.String
+        return bcs.String as any
       case '0x2::object::ID':
-        return bcs.Address
+        return bcs.Address as any
       case '0x1::option::Option':
-        return bcs.option(getBcsForType(typeArgs[0]))
+        return bcs.vector(getBcsForType(typeArgs[0]) as any) as unknown as BcsType<any>
       case 'vector':
-        return bcs.vector(getBcsForType(typeArgs[0]))
+        return bcs.vector(getBcsForType(typeArgs[0]) as any) as unknown as BcsType<any>
       default:
         throw new Error(`invalid primitive type ${type}`)
     }
@@ -199,7 +198,7 @@ export function pure(tx: Transaction, arg: PureArg, type: string): TransactionAr
   switch (typeName) {
     case '0x1::option::Option':
       if (arg === null) {
-        return tx.pure.option('bool', null) // 'bool' is arbitrary
+        return tx.pure('bool', null) // 'bool' is arbitrary
       }
       if (consistsOnlyOfPrimitiveValues([arg])) {
         return tx.pure(getBcsForType(type).serialize(arg))
@@ -233,7 +232,7 @@ export function pure(tx: Transaction, arg: PureArg, type: string): TransactionAr
 
       return tx.makeMoveVec({
         type: typeArgs[0],
-        elements: arg as Array<TransactionObjectArgument>,
+        objects: arg as Array<TransactionObjectArgument>,
       })
     default:
       return tx.pure(getBcsForType(type).serialize(arg))

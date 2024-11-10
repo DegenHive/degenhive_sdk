@@ -10,7 +10,7 @@ import { VecMap } from "../vec-map/structs";
 import { VecSet } from "../vec-set/structs";
 
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { fromB64, fromHEX, toHEX } from "@mysten/sui/utils";
+import { bcs, BcsType, fromB64, fromHEX, toHEX } from "@mysten/bcs";
 
 /* ============================== RuleKey =============================== */
 
