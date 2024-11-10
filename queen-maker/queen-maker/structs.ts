@@ -10,7 +10,7 @@ import { FieldsWithTypes, composeSuiType, compressSuiType } from "../../_framewo
 import { MysticalBee } from "../../dragon-trainer/dragon-trainer/structs";
 import { HIVE } from "../../yield-flow/hive/structs";;
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { bcs, fromB64, fromHEX } from "@mysten/bcs";
+import { bcs, fromB64, fromHEX, toHEX } from "@mysten/bcs";
 import { queenmaker } from ".."
 
 const PUBLISHED_AT = queenmaker.PUBLISHED_AT

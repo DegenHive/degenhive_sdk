@@ -4,10 +4,9 @@ import { TokenPolicyCap } from "../../_dependencies/source/0x2/token/structs";
 import { PhantomReified, PhantomToTypeStr, PhantomTypeArgument, Reified, StructClass, ToField, ToPhantomTypeArgument, ToTypeStr, assertFieldsWithTypesArgsMatch, assertReifiedTypeArgsMatch, decodeFromFields, decodeFromFieldsWithTypes, decodeFromJSONField, extractType, phantom } from "../../_framework/reified";
 import { FieldsWithTypes, composeSuiType, compressSuiType, parseTypeName } from "../../_framework/util";
 import { PKG_V1 } from "../index";
-import { bcs } from "@mysten/sui/bcs";
-import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { fromB64 } from "@mysten/sui/utils";
 
+import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
+import { bcs, BcsType, fromB64, fromHEX } from "@mysten/bcs";
 /* ============================== HoneyBurnt =============================== */
 
 export function isHoneyBurnt(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::honey_trade::HoneyBurnt`; }

@@ -6,7 +6,7 @@ import { PhantomReified, Reified, StructClass, ToField, ToTypeStr, decodeFromFie
 import { FieldsWithTypes, composeSuiType, compressSuiType } from "../../_framework/util";
 import { TwapUpdateCap } from "../../dragon-trainer/dragon-trainer/structs";
 import { PKG_V1 } from "../index";
-import { bcs } from "@mysten/sui/bcs";
+
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
 import { fromB64, fromHEX, toHEX } from "@mysten/sui/utils";
 

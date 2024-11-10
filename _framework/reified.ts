@@ -1,39 +1,33 @@
 
-import { BcsType, bcs, fromHEX, toHEX } from '@mysten/bcs'
+import { bcs, BcsType, fromB64, fromHEX, toHEX } from "@mysten/bcs";
 import { FieldsWithTypes, compressSuiType, parseTypeName } from './util'
-import { SuiClient, SuiParsedData } from '@mysten/sui.js/client'
+import { SuiClient, SuiParsedData, SuiObjectData } from '@mysten/sui.js/dist/cjs/client'
+
+// for backwards compatibility
+export { vector } from './vector'
 
 export interface StructClass {
-  $typeName: string
-  $fullTypeName: string
-  $typeArgs: string[]
-  $isPhantom?: readonly boolean[]
+  readonly $typeName: string
+  readonly $fullTypeName: string
+  readonly $typeArgs: string[]
+  readonly $isPhantom: readonly boolean[]
   toJSONField(): Record<string, any>
   toJSON(): Record<string, any>
+
+  __StructClass: true
 }
 
 export interface VectorClass {
-  $fullTypeName: string
+  readonly $typeName: 'vector'
+  readonly $fullTypeName: string
+  readonly $typeArgs: [string]
+  readonly $isPhantom: readonly [false]
   toJSONField(): any[]
-  $isPhantom?: readonly [false]
-  readonly vec: any
-  readonly kind: 'VectorClass'
-}
+  toJSON(): Record<string, any>
 
-export class Vector<T extends TypeArgument> implements VectorClass {
-  readonly $fullTypeName: `vector<${ToTypeStr<T>}>`
-  $isPhantom?: readonly [false]
-  readonly vec: Array<ToField<T>>
-  constructor(fullTypeName: string, vec: Array<ToField<T>>) {
-    this.$fullTypeName = fullTypeName as `vector<${ToTypeStr<T>}>`
-    this.vec = vec
-  }
+  readonly elements: any
 
-  toJSONField(): Array<ToJSON<T>> {
-    return null as any
-  }
   __VectorClass: true
-  readonly kind = 'VectorClass'
 }
 
 export type Primitive = 'bool' | 'u8' | 'u16' | 'u32' | 'u64' | 'u128' | 'u256' | 'address'
@@ -43,27 +37,34 @@ export interface StructClassReified<T extends StructClass, Fields> {
   typeName: T['$typeName'] // e.g., '0x2::balance::Balance', without type arguments
   fullTypeName: ToTypeStr<T> // e.g., '0x2::balance::Balance<0x2::sui:SUI>'
   typeArgs: T['$typeArgs'] // e.g., ['0x2::sui:SUI']
+  isPhantom: T['$isPhantom'] // e.g., [true, false]
   reifiedTypeArgs: Array<Reified<TypeArgument, any> | PhantomReified<PhantomTypeArgument>>
   bcs: BcsType<any>
-  isPhantom?: T['$isPhantom'] // e.g., [true, false]
   fromFields(fields: Record<string, any>): T
   fromFieldsWithTypes(item: FieldsWithTypes): T
   fromBcs(data: Uint8Array): T
   fromJSONField: (field: any) => T
   fromJSON: (json: Record<string, any>) => T
   fromSuiParsedData: (content: SuiParsedData) => T
+  fromSuiObjectData: (data: SuiObjectData) => T
   fetch: (client: SuiClient, id: string) => Promise<T>
   new: (fields: Fields) => T
   kind: 'StructClassReified'
 }
 
 export interface VectorClassReified<T extends VectorClass, Elements> {
+  typeName: T['$typeName']
   fullTypeName: ToTypeStr<T>
-  isPhantom?: readonly [false]
+  typeArgs: T['$typeArgs']
+  isPhantom: readonly [false]
+  reifiedTypeArgs: Array<Reified<TypeArgument, any>>
   bcs: BcsType<any>
   fromFields(fields: any[]): T
   fromFieldsWithTypes(item: FieldsWithTypes): T
+  fromBcs(data: Uint8Array): T
   fromJSONField: (field: any) => T
+  fromJSON: (json: Record<string, any>) => T
+  new: (elements: Elements) => T
   kind: 'VectorClassReified'
 }
 
@@ -124,36 +125,6 @@ export type ToTypeStr<T extends TypeArgument> = T extends Primitive
 export type PhantomToTypeStr<T extends PhantomTypeArgument> = T extends PhantomTypeArgument
   ? T
   : never
-
-export function vector<T extends Reified<TypeArgument, any>>(
-  T: T
-): VectorClassReified<Vector<ToTypeArgument<T>>, any> {
-  const fullTypeName = `vector<${extractType(T)}>` as `vector<${ToTypeStr<ToTypeArgument<T>>}>`
-
-  return {
-    fullTypeName,
-    bcs: bcs.vector(toBcs(T)),
-    fromFieldsWithTypes: (item: FieldsWithTypes) => {
-      return new Vector(
-        fullTypeName,
-        (item as unknown as any[]).map((field: any) => decodeFromFieldsWithTypes(T, field))
-      )
-    },
-    fromFields: (fields: any[]) => {
-      return new Vector(
-        fullTypeName,
-        fields.map(field => decodeFromFields(T, field))
-      )
-    },
-
-    fromJSONField: (field: any) =>
-      new Vector(
-        fullTypeName,
-        field.map((field: any) => decodeFromJSONField(T, field))
-      ),
-    kind: 'VectorClassReified',
-  }
-}
 
 export type ToJSON<T extends TypeArgument> = T extends 'bool'
   ? boolean
@@ -224,7 +195,7 @@ export type ToField<T extends TypeArgument> = T extends 'bool'
   }
   ? ToField<U> | null
   : T extends VectorClass
-  ? T['vec']
+  ? T['elements']
   : T extends StructClass
   ? T
   : never
@@ -266,7 +237,7 @@ export function extractType<T extends PhantomReified<PhantomTypeArgument>>(
 export function extractType<
   T extends Reified<TypeArgument, any> | PhantomReified<PhantomTypeArgument>,
 >(reified: T): string
-export function extractType(reified: Reified<TypeArgument, any> | PhantomReified<string>): String {
+export function extractType(reified: Reified<TypeArgument, any> | PhantomReified<string>): string {
   switch (reified) {
     case 'u8':
     case 'u16':
@@ -305,7 +276,7 @@ export function decodeFromFields(reified: Reified<TypeArgument, any>, field: any
       return `0x${field}`
   }
   if (reified.kind === 'VectorClassReified') {
-    return reified.fromFields(field).vec
+    return reified.fromFields(field).elements
   }
   switch (reified.typeName) {
     case '0x1::string::String':
@@ -343,7 +314,7 @@ export function decodeFromFieldsWithTypes(reified: Reified<TypeArgument, any>, i
       return item
   }
   if (reified.kind === 'VectorClassReified') {
-    return reified.fromFieldsWithTypes(item).vec
+    return reified.fromFieldsWithTypes(item).elements
   }
   switch (reified.typeName) {
     case '0x1::string::String':
@@ -446,7 +417,7 @@ export function decodeFromJSONField(typeArg: Reified<TypeArgument, any>, field: 
       return field
   }
   if (typeArg.kind === 'VectorClassReified') {
-    return typeArg.fromJSONField(field).vec
+    return typeArg.fromJSONField(field).elements
   }
   switch (typeArg.typeName) {
     case '0x1::string::String':

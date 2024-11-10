@@ -12,7 +12,7 @@ import { FieldsWithTypes, composeSuiType, compressSuiType } from "../../_framewo
 import { Vector } from "../../_framework/vector";
 import { DSUI } from "../../yield-flow/dsui/structs";
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { bcs, fromB64, fromHEX } from "@mysten/bcs";
+import { bcs, fromB64, fromHEX, toHEX } from "@mysten/bcs";
 import { dsuivault } from ".."
 
 const PUBLISHED_AT = dsuivault.PUBLISHED_AT

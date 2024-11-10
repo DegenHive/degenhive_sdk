@@ -3,10 +3,9 @@ import { PhantomReified, Reified, StructClass, ToField, ToTypeStr, decodeFromFie
 import { FieldsWithTypes, composeSuiType, compressSuiType } from "../../_framework/util";
 import { Vector } from "../../_framework/vector";
 import { PKG_V1 } from "../index";
-import { bcs } from "@mysten/sui/bcs";
-import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
-import { fromB64 } from "@mysten/sui/utils";
 
+import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
+import { bcs, BcsType, fromB64, fromHEX } from "@mysten/bcs";
 /* ============================== StablePoolConfig =============================== */
 
 export function isStablePoolConfig(type: string): boolean { type = compressSuiType(type); return type === `${PKG_V1}::stable_math::StablePoolConfig`; }

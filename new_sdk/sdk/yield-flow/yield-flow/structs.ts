@@ -12,7 +12,7 @@ import { Vector } from "../../_framework/vector";
 import { HIVE } from "../hive/structs";
 import { HONEY } from "../honey/structs";
 import { PKG_V1 } from "../index";
-import { bcs } from "@mysten/sui/bcs";
+
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
 import { fromB64, fromHEX, toHEX } from "@mysten/sui/utils";
 

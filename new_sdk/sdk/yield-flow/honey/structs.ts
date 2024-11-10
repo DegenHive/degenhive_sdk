@@ -3,7 +3,7 @@ import { VecMap } from "../../_dependencies/source/0x2/vec-map/structs";
 import { PhantomReified, Reified, StructClass, ToField, ToTypeStr, decodeFromFields, decodeFromFieldsWithTypes, decodeFromJSONField, phantom } from "../../_framework/reified";
 import { FieldsWithTypes, composeSuiType, compressSuiType } from "../../_framework/util";
 import { PKG_V1 } from "../index";
-import { bcs } from "@mysten/sui/bcs";
+
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
 import { fromB64, fromHEX, toHEX } from "@mysten/sui/utils";
 
