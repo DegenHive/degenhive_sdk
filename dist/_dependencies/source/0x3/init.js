@@ -15,9 +15,14 @@ const votingPower = require("./voting-power/structs");
 function registerClasses(loader) {
     loader.register(validatorCap.UnverifiedValidatorOperationCap);
     loader.register(validatorCap.ValidatorOperationCap);
+    loader.register(stakingPool.FungibleStakedSui);
+    loader.register(stakingPool.FungibleStakedSuiData);
+    loader.register(stakingPool.FungibleStakedSuiDataKey);
     loader.register(stakingPool.PoolTokenExchangeRate);
     loader.register(stakingPool.StakedSui);
     loader.register(stakingPool.StakingPool);
+    loader.register(validator.ConvertingToFungibleStakedSuiEvent);
+    loader.register(validator.RedeemingFungibleStakedSuiEvent);
     loader.register(validator.StakingRequestEvent);
     loader.register(validator.UnstakingRequestEvent);
     loader.register(validator.Validator);

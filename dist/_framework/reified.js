@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Vector = void 0;
+exports.vector = void 0;
 exports.phantom = phantom;
-exports.vector = vector;
 exports.toBcs = toBcs;
 exports.extractType = extractType;
 exports.decodeFromFields = decodeFromFields;
@@ -13,17 +12,9 @@ exports.fieldToJSON = fieldToJSON;
 exports.decodeFromJSONField = decodeFromJSONField;
 const bcs_1 = require("@mysten/bcs");
 const util_1 = require("./util");
-class Vector {
-    constructor(fullTypeName, vec) {
-        this.kind = 'VectorClass';
-        this.$fullTypeName = fullTypeName;
-        this.vec = vec;
-    }
-    toJSONField() {
-        return null;
-    }
-}
-exports.Vector = Vector;
+// for backwards compatibility
+var vector_1 = require("./vector");
+Object.defineProperty(exports, "vector", { enumerable: true, get: function () { return vector_1.vector; } });
 function phantom(type) {
     if (typeof type === 'string') {
         return {
@@ -37,21 +28,6 @@ function phantom(type) {
             kind: 'PhantomReified',
         };
     }
-}
-function vector(T) {
-    const fullTypeName = `vector<${extractType(T)}>`;
-    return {
-        fullTypeName,
-        bcs: bcs_1.bcs.vector(toBcs(T)),
-        fromFieldsWithTypes: (item) => {
-            return new Vector(fullTypeName, item.map((field) => decodeFromFieldsWithTypes(T, field)));
-        },
-        fromFields: (fields) => {
-            return new Vector(fullTypeName, fields.map(field => decodeFromFields(T, field)));
-        },
-        fromJSONField: (field) => new Vector(fullTypeName, field.map((field) => decodeFromJSONField(T, field))),
-        kind: 'VectorClassReified',
-    };
 }
 const Address = bcs_1.bcs.bytes(32).transform({
     input: (val) => (0, bcs_1.fromHEX)(val),
@@ -116,7 +92,7 @@ function decodeFromFields(reified, field) {
             return `0x${field}`;
     }
     if (reified.kind === 'VectorClassReified') {
-        return reified.fromFields(field).vec;
+        return reified.fromFields(field).elements;
     }
     switch (reified.typeName) {
         case '0x1::string::String':
@@ -153,7 +129,7 @@ function decodeFromFieldsWithTypes(reified, item) {
             return item;
     }
     if (reified.kind === 'VectorClassReified') {
-        return reified.fromFieldsWithTypes(item).vec;
+        return reified.fromFieldsWithTypes(item).elements;
     }
     switch (reified.typeName) {
         case '0x1::string::String':
@@ -239,7 +215,7 @@ function decodeFromJSONField(typeArg, field) {
             return field;
     }
     if (typeArg.kind === 'VectorClassReified') {
-        return typeArg.fromJSONField(field).vec;
+        return typeArg.fromJSONField(field).elements;
     }
     switch (typeArg.typeName) {
         case '0x1::string::String':

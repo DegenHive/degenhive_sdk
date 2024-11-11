@@ -8,12 +8,15 @@ const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/bag/structs");
 const structs_2 = require("../../0x2/balance/structs");
 const structs_3 = require("../../0x2/sui/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StakeSubsidy =============================== */
-function isStakeSubsidy(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::stake_subsidy::StakeSubsidy"; }
+function isStakeSubsidy(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::stake_subsidy::StakeSubsidy`; }
 class StakeSubsidy {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = StakeSubsidy.$typeName;
+        this.$isPhantom = StakeSubsidy.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(StakeSubsidy.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.balance = fields.balance;
@@ -28,7 +31,7 @@ class StakeSubsidy {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: StakeSubsidy.$typeName, fullTypeName: (0, util_1.composeSuiType)(StakeSubsidy.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => StakeSubsidy.fromFields(fields), fromFieldsWithTypes: (item) => StakeSubsidy.fromFieldsWithTypes(item), fromBcs: (data) => StakeSubsidy.fromBcs(data), bcs: StakeSubsidy.bcs, fromJSONField: (field) => StakeSubsidy.fromJSONField(field), fromJSON: (json) => StakeSubsidy.fromJSON(json), fromSuiParsedData: (content) => StakeSubsidy.fromSuiParsedData(content), fetch: async (client, id) => StakeSubsidy.fetch(client, id), new: (fields) => { return new StakeSubsidy([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: StakeSubsidy.$typeName, fullTypeName: (0, util_1.composeSuiType)(StakeSubsidy.$typeName, ...[]), typeArgs: [], isPhantom: StakeSubsidy.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => StakeSubsidy.fromFields(fields), fromFieldsWithTypes: (item) => StakeSubsidy.fromFieldsWithTypes(item), fromBcs: (data) => StakeSubsidy.fromBcs(data), bcs: StakeSubsidy.bcs, fromJSONField: (field) => StakeSubsidy.fromJSONField(field), fromJSON: (json) => StakeSubsidy.fromJSON(json), fromSuiParsedData: (content) => StakeSubsidy.fromSuiParsedData(content), fromSuiObjectData: (content) => StakeSubsidy.fromSuiObjectData(content), fetch: async (client, id) => StakeSubsidy.fetch(client, id), new: (fields) => { return new StakeSubsidy([], fields); }, kind: "StructClassReified", }; }
     static get r() { return StakeSubsidy.reified(); }
     static phantom() { return (0, reified_1.phantom)(StakeSubsidy.reified()); }
     static get p() { return StakeSubsidy.phantom(); }
@@ -65,6 +68,18 @@ class StakeSubsidy {
     } if (!isStakeSubsidy(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a StakeSubsidy object`);
     } return StakeSubsidy.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isStakeSubsidy(data.bcs.type)) {
+                throw new Error(`object at is not a StakeSubsidy object`);
+            }
+            return StakeSubsidy.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return StakeSubsidy.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -74,9 +89,10 @@ class StakeSubsidy {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isStakeSubsidy(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a StakeSubsidy object`);
         }
-        return StakeSubsidy.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return StakeSubsidy.fromSuiObjectData(res.data);
     }
 }
 exports.StakeSubsidy = StakeSubsidy;
-StakeSubsidy.$typeName = "0x3::stake_subsidy::StakeSubsidy";
+StakeSubsidy.$typeName = `${index_1.PKG_V17}::stake_subsidy::StakeSubsidy`;
 StakeSubsidy.$numTypeParams = 0;
+StakeSubsidy.$isPhantom = [];

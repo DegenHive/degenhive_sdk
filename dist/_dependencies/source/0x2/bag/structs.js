@@ -4,20 +4,23 @@ exports.Bag = void 0;
 exports.isBag = isBag;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const structs_1 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Bag =============================== */
-function isBag(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::bag::Bag"; }
+function isBag(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::bag::Bag`; }
 class Bag {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Bag.$typeName;
+        this.$isPhantom = Bag.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Bag.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.size = fields.size;
     }
-    static reified() { return { typeName: Bag.$typeName, fullTypeName: (0, util_1.composeSuiType)(Bag.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Bag.fromFields(fields), fromFieldsWithTypes: (item) => Bag.fromFieldsWithTypes(item), fromBcs: (data) => Bag.fromBcs(data), bcs: Bag.bcs, fromJSONField: (field) => Bag.fromJSONField(field), fromJSON: (json) => Bag.fromJSON(json), fromSuiParsedData: (content) => Bag.fromSuiParsedData(content), fetch: async (client, id) => Bag.fetch(client, id), new: (fields) => { return new Bag([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Bag.$typeName, fullTypeName: (0, util_1.composeSuiType)(Bag.$typeName, ...[]), typeArgs: [], isPhantom: Bag.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Bag.fromFields(fields), fromFieldsWithTypes: (item) => Bag.fromFieldsWithTypes(item), fromBcs: (data) => Bag.fromBcs(data), bcs: Bag.bcs, fromJSONField: (field) => Bag.fromJSONField(field), fromJSON: (json) => Bag.fromJSON(json), fromSuiParsedData: (content) => Bag.fromSuiParsedData(content), fromSuiObjectData: (content) => Bag.fromSuiObjectData(content), fetch: async (client, id) => Bag.fetch(client, id), new: (fields) => { return new Bag([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Bag.reified(); }
     static phantom() { return (0, reified_1.phantom)(Bag.reified()); }
     static get p() { return Bag.phantom(); }
@@ -54,6 +57,18 @@ class Bag {
     } if (!isBag(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Bag object`);
     } return Bag.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isBag(data.bcs.type)) {
+                throw new Error(`object at is not a Bag object`);
+            }
+            return Bag.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Bag.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,9 +78,10 @@ class Bag {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isBag(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Bag object`);
         }
-        return Bag.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Bag.fromSuiObjectData(res.data);
     }
 }
 exports.Bag = Bag;
-Bag.$typeName = "0x2::bag::Bag";
+Bag.$typeName = `${index_1.PKG_V28}::bag::Bag`;
 Bag.$numTypeParams = 0;
+Bag.$isPhantom = [];

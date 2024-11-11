@@ -7,14 +7,17 @@ exports.isVersionUpdated = isVersionUpdated;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const structs_3 = require("../vec-map/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Display =============================== */
-function isDisplay(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::Display<"); }
+function isDisplay(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::display::Display` + '<'); }
 class Display {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Display.$typeName;
+        this.$isPhantom = Display.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Display.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -23,7 +26,7 @@ class Display {
         ;
         this.version = fields.version;
     }
-    static reified(T) { return { typeName: Display.$typeName, fullTypeName: (0, util_1.composeSuiType)(Display.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => Display.fromFields(T, fields), fromFieldsWithTypes: (item) => Display.fromFieldsWithTypes(T, item), fromBcs: (data) => Display.fromBcs(T, data), bcs: Display.bcs, fromJSONField: (field) => Display.fromJSONField(T, field), fromJSON: (json) => Display.fromJSON(T, json), fromSuiParsedData: (content) => Display.fromSuiParsedData(T, content), fetch: async (client, id) => Display.fetch(client, T, id), new: (fields) => { return new Display([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: Display.$typeName, fullTypeName: (0, util_1.composeSuiType)(Display.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: Display.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => Display.fromFields(T, fields), fromFieldsWithTypes: (item) => Display.fromFieldsWithTypes(T, item), fromBcs: (data) => Display.fromBcs(T, data), bcs: Display.bcs, fromJSONField: (field) => Display.fromJSONField(T, field), fromJSON: (json) => Display.fromJSON(T, json), fromSuiParsedData: (content) => Display.fromSuiParsedData(T, content), fromSuiObjectData: (content) => Display.fromSuiObjectData(T, content), fetch: async (client, id) => Display.fetch(client, T, id), new: (fields) => { return new Display([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Display.reified; }
     static phantom(T) { return (0, reified_1.phantom)(Display.reified(T)); }
     static get p() { return Display.phantom; }
@@ -62,6 +65,29 @@ class Display {
     } if (!isDisplay(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Display object`);
     } return Display.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isDisplay(data.bcs.type)) {
+                throw new Error(`object at is not a Display object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return Display.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Display.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -71,22 +97,25 @@ class Display {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isDisplay(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Display object`);
         }
-        return Display.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Display.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.Display = Display;
-Display.$typeName = "0x2::display::Display";
+Display.$typeName = `${index_1.PKG_V28}::display::Display`;
 Display.$numTypeParams = 1;
+Display.$isPhantom = [true,];
 /* ============================== DisplayCreated =============================== */
-function isDisplayCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::DisplayCreated<"); }
+function isDisplayCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::display::DisplayCreated` + '<'); }
 class DisplayCreated {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = DisplayCreated.$typeName;
+        this.$isPhantom = DisplayCreated.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(DisplayCreated.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified(T) { return { typeName: DisplayCreated.$typeName, fullTypeName: (0, util_1.composeSuiType)(DisplayCreated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => DisplayCreated.fromFields(T, fields), fromFieldsWithTypes: (item) => DisplayCreated.fromFieldsWithTypes(T, item), fromBcs: (data) => DisplayCreated.fromBcs(T, data), bcs: DisplayCreated.bcs, fromJSONField: (field) => DisplayCreated.fromJSONField(T, field), fromJSON: (json) => DisplayCreated.fromJSON(T, json), fromSuiParsedData: (content) => DisplayCreated.fromSuiParsedData(T, content), fetch: async (client, id) => DisplayCreated.fetch(client, T, id), new: (fields) => { return new DisplayCreated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: DisplayCreated.$typeName, fullTypeName: (0, util_1.composeSuiType)(DisplayCreated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: DisplayCreated.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => DisplayCreated.fromFields(T, fields), fromFieldsWithTypes: (item) => DisplayCreated.fromFieldsWithTypes(T, item), fromBcs: (data) => DisplayCreated.fromBcs(T, data), bcs: DisplayCreated.bcs, fromJSONField: (field) => DisplayCreated.fromJSONField(T, field), fromJSON: (json) => DisplayCreated.fromJSON(T, json), fromSuiParsedData: (content) => DisplayCreated.fromSuiParsedData(T, content), fromSuiObjectData: (content) => DisplayCreated.fromSuiObjectData(T, content), fetch: async (client, id) => DisplayCreated.fetch(client, T, id), new: (fields) => { return new DisplayCreated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return DisplayCreated.reified; }
     static phantom(T) { return (0, reified_1.phantom)(DisplayCreated.reified(T)); }
     static get p() { return DisplayCreated.phantom; }
@@ -125,6 +154,29 @@ class DisplayCreated {
     } if (!isDisplayCreated(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a DisplayCreated object`);
     } return DisplayCreated.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isDisplayCreated(data.bcs.type)) {
+                throw new Error(`object at is not a DisplayCreated object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return DisplayCreated.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return DisplayCreated.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -134,17 +186,20 @@ class DisplayCreated {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isDisplayCreated(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a DisplayCreated object`);
         }
-        return DisplayCreated.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return DisplayCreated.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.DisplayCreated = DisplayCreated;
-DisplayCreated.$typeName = "0x2::display::DisplayCreated";
+DisplayCreated.$typeName = `${index_1.PKG_V28}::display::DisplayCreated`;
 DisplayCreated.$numTypeParams = 1;
+DisplayCreated.$isPhantom = [true,];
 /* ============================== VersionUpdated =============================== */
-function isVersionUpdated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::display::VersionUpdated<"); }
+function isVersionUpdated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::display::VersionUpdated` + '<'); }
 class VersionUpdated {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = VersionUpdated.$typeName;
+        this.$isPhantom = VersionUpdated.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(VersionUpdated.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -153,7 +208,7 @@ class VersionUpdated {
         ;
         this.fields = fields.fields;
     }
-    static reified(T) { return { typeName: VersionUpdated.$typeName, fullTypeName: (0, util_1.composeSuiType)(VersionUpdated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => VersionUpdated.fromFields(T, fields), fromFieldsWithTypes: (item) => VersionUpdated.fromFieldsWithTypes(T, item), fromBcs: (data) => VersionUpdated.fromBcs(T, data), bcs: VersionUpdated.bcs, fromJSONField: (field) => VersionUpdated.fromJSONField(T, field), fromJSON: (json) => VersionUpdated.fromJSON(T, json), fromSuiParsedData: (content) => VersionUpdated.fromSuiParsedData(T, content), fetch: async (client, id) => VersionUpdated.fetch(client, T, id), new: (fields) => { return new VersionUpdated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: VersionUpdated.$typeName, fullTypeName: (0, util_1.composeSuiType)(VersionUpdated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: VersionUpdated.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => VersionUpdated.fromFields(T, fields), fromFieldsWithTypes: (item) => VersionUpdated.fromFieldsWithTypes(T, item), fromBcs: (data) => VersionUpdated.fromBcs(T, data), bcs: VersionUpdated.bcs, fromJSONField: (field) => VersionUpdated.fromJSONField(T, field), fromJSON: (json) => VersionUpdated.fromJSON(T, json), fromSuiParsedData: (content) => VersionUpdated.fromSuiParsedData(T, content), fromSuiObjectData: (content) => VersionUpdated.fromSuiObjectData(T, content), fetch: async (client, id) => VersionUpdated.fetch(client, T, id), new: (fields) => { return new VersionUpdated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return VersionUpdated.reified; }
     static phantom(T) { return (0, reified_1.phantom)(VersionUpdated.reified(T)); }
     static get p() { return VersionUpdated.phantom; }
@@ -192,6 +247,29 @@ class VersionUpdated {
     } if (!isVersionUpdated(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a VersionUpdated object`);
     } return VersionUpdated.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isVersionUpdated(data.bcs.type)) {
+                throw new Error(`object at is not a VersionUpdated object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return VersionUpdated.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return VersionUpdated.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -201,9 +279,10 @@ class VersionUpdated {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isVersionUpdated(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a VersionUpdated object`);
         }
-        return VersionUpdated.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return VersionUpdated.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.VersionUpdated = VersionUpdated;
-VersionUpdated.$typeName = "0x2::display::VersionUpdated";
+VersionUpdated.$typeName = `${index_1.PKG_V28}::display::VersionUpdated`;
 VersionUpdated.$numTypeParams = 1;
+VersionUpdated.$isPhantom = [true,];

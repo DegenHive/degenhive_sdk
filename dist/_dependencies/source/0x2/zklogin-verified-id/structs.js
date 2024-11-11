@@ -5,13 +5,16 @@ exports.isVerifiedID = isVerifiedID;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VerifiedID =============================== */
-function isVerifiedID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::zklogin_verified_id::VerifiedID"; }
+function isVerifiedID(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::zklogin_verified_id::VerifiedID`; }
 class VerifiedID {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = VerifiedID.$typeName;
+        this.$isPhantom = VerifiedID.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(VerifiedID.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -26,7 +29,7 @@ class VerifiedID {
         ;
         this.audience = fields.audience;
     }
-    static reified() { return { typeName: VerifiedID.$typeName, fullTypeName: (0, util_1.composeSuiType)(VerifiedID.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => VerifiedID.fromFields(fields), fromFieldsWithTypes: (item) => VerifiedID.fromFieldsWithTypes(item), fromBcs: (data) => VerifiedID.fromBcs(data), bcs: VerifiedID.bcs, fromJSONField: (field) => VerifiedID.fromJSONField(field), fromJSON: (json) => VerifiedID.fromJSON(json), fromSuiParsedData: (content) => VerifiedID.fromSuiParsedData(content), fetch: async (client, id) => VerifiedID.fetch(client, id), new: (fields) => { return new VerifiedID([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: VerifiedID.$typeName, fullTypeName: (0, util_1.composeSuiType)(VerifiedID.$typeName, ...[]), typeArgs: [], isPhantom: VerifiedID.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => VerifiedID.fromFields(fields), fromFieldsWithTypes: (item) => VerifiedID.fromFieldsWithTypes(item), fromBcs: (data) => VerifiedID.fromBcs(data), bcs: VerifiedID.bcs, fromJSONField: (field) => VerifiedID.fromJSONField(field), fromJSON: (json) => VerifiedID.fromJSON(json), fromSuiParsedData: (content) => VerifiedID.fromSuiParsedData(content), fromSuiObjectData: (content) => VerifiedID.fromSuiObjectData(content), fetch: async (client, id) => VerifiedID.fetch(client, id), new: (fields) => { return new VerifiedID([], fields); }, kind: "StructClassReified", }; }
     static get r() { return VerifiedID.reified(); }
     static phantom() { return (0, reified_1.phantom)(VerifiedID.reified()); }
     static get p() { return VerifiedID.phantom(); }
@@ -63,6 +66,18 @@ class VerifiedID {
     } if (!isVerifiedID(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a VerifiedID object`);
     } return VerifiedID.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isVerifiedID(data.bcs.type)) {
+                throw new Error(`object at is not a VerifiedID object`);
+            }
+            return VerifiedID.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return VerifiedID.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -72,9 +87,10 @@ class VerifiedID {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isVerifiedID(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a VerifiedID object`);
         }
-        return VerifiedID.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return VerifiedID.fromSuiObjectData(res.data);
     }
 }
 exports.VerifiedID = VerifiedID;
-VerifiedID.$typeName = "0x2::zklogin_verified_id::VerifiedID";
+VerifiedID.$typeName = `${index_1.PKG_V28}::zklogin_verified_id::VerifiedID`;
 VerifiedID.$numTypeParams = 0;
+VerifiedID.$isPhantom = [];

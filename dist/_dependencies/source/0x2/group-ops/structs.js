@@ -5,17 +5,20 @@ exports.isElement = isElement;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Element =============================== */
-function isElement(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::group_ops::Element<"); }
+function isElement(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::group_ops::Element` + '<'); }
 class Element {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Element.$typeName;
+        this.$isPhantom = Element.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Element.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.bytes = fields.bytes;
     }
-    static reified(T) { return { typeName: Element.$typeName, fullTypeName: (0, util_1.composeSuiType)(Element.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => Element.fromFields(T, fields), fromFieldsWithTypes: (item) => Element.fromFieldsWithTypes(T, item), fromBcs: (data) => Element.fromBcs(T, data), bcs: Element.bcs, fromJSONField: (field) => Element.fromJSONField(T, field), fromJSON: (json) => Element.fromJSON(T, json), fromSuiParsedData: (content) => Element.fromSuiParsedData(T, content), fetch: async (client, id) => Element.fetch(client, T, id), new: (fields) => { return new Element([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: Element.$typeName, fullTypeName: (0, util_1.composeSuiType)(Element.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: Element.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => Element.fromFields(T, fields), fromFieldsWithTypes: (item) => Element.fromFieldsWithTypes(T, item), fromBcs: (data) => Element.fromBcs(T, data), bcs: Element.bcs, fromJSONField: (field) => Element.fromJSONField(T, field), fromJSON: (json) => Element.fromJSON(T, json), fromSuiParsedData: (content) => Element.fromSuiParsedData(T, content), fromSuiObjectData: (content) => Element.fromSuiObjectData(T, content), fetch: async (client, id) => Element.fetch(client, T, id), new: (fields) => { return new Element([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Element.reified; }
     static phantom(T) { return (0, reified_1.phantom)(Element.reified(T)); }
     static get p() { return Element.phantom; }
@@ -54,6 +57,29 @@ class Element {
     } if (!isElement(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Element object`);
     } return Element.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isElement(data.bcs.type)) {
+                throw new Error(`object at is not a Element object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return Element.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Element.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,9 +89,10 @@ class Element {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isElement(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Element object`);
         }
-        return Element.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Element.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.Element = Element;
-Element.$typeName = "0x2::group_ops::Element";
+Element.$typeName = `${index_1.PKG_V28}::group_ops::Element`;
 Element.$numTypeParams = 1;
+Element.$isPhantom = [true,];

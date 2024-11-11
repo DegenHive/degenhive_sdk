@@ -5,17 +5,20 @@ exports.isID = isID;
 exports.isUID = isUID;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ID =============================== */
-function isID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::object::ID"; }
+function isID(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::object::ID`; }
 class ID {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ID.$typeName;
+        this.$isPhantom = ID.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ID.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.bytes = fields.bytes;
     }
-    static reified() { return { typeName: ID.$typeName, fullTypeName: (0, util_1.composeSuiType)(ID.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ID.fromFields(fields), fromFieldsWithTypes: (item) => ID.fromFieldsWithTypes(item), fromBcs: (data) => ID.fromBcs(data), bcs: ID.bcs, fromJSONField: (field) => ID.fromJSONField(field), fromJSON: (json) => ID.fromJSON(json), fromSuiParsedData: (content) => ID.fromSuiParsedData(content), fetch: async (client, id) => ID.fetch(client, id), new: (fields) => { return new ID([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ID.$typeName, fullTypeName: (0, util_1.composeSuiType)(ID.$typeName, ...[]), typeArgs: [], isPhantom: ID.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ID.fromFields(fields), fromFieldsWithTypes: (item) => ID.fromFieldsWithTypes(item), fromBcs: (data) => ID.fromBcs(data), bcs: ID.bcs, fromJSONField: (field) => ID.fromJSONField(field), fromJSON: (json) => ID.fromJSON(json), fromSuiParsedData: (content) => ID.fromSuiParsedData(content), fromSuiObjectData: (content) => ID.fromSuiObjectData(content), fetch: async (client, id) => ID.fetch(client, id), new: (fields) => { return new ID([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ID.reified(); }
     static phantom() { return (0, reified_1.phantom)(ID.reified()); }
     static get p() { return ID.phantom(); }
@@ -52,6 +55,18 @@ class ID {
     } if (!isID(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ID object`);
     } return ID.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isID(data.bcs.type)) {
+                throw new Error(`object at is not a ID object`);
+            }
+            return ID.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ID.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -61,22 +76,25 @@ class ID {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isID(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ID object`);
         }
-        return ID.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ID.fromSuiObjectData(res.data);
     }
 }
 exports.ID = ID;
-ID.$typeName = "0x2::object::ID";
+ID.$typeName = `${index_1.PKG_V28}::object::ID`;
 ID.$numTypeParams = 0;
+ID.$isPhantom = [];
 /* ============================== UID =============================== */
-function isUID(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::object::UID"; }
+function isUID(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::object::UID`; }
 class UID {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = UID.$typeName;
+        this.$isPhantom = UID.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(UID.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified() { return { typeName: UID.$typeName, fullTypeName: (0, util_1.composeSuiType)(UID.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => UID.fromFields(fields), fromFieldsWithTypes: (item) => UID.fromFieldsWithTypes(item), fromBcs: (data) => UID.fromBcs(data), bcs: UID.bcs, fromJSONField: (field) => UID.fromJSONField(field), fromJSON: (json) => UID.fromJSON(json), fromSuiParsedData: (content) => UID.fromSuiParsedData(content), fetch: async (client, id) => UID.fetch(client, id), new: (fields) => { return new UID([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: UID.$typeName, fullTypeName: (0, util_1.composeSuiType)(UID.$typeName, ...[]), typeArgs: [], isPhantom: UID.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => UID.fromFields(fields), fromFieldsWithTypes: (item) => UID.fromFieldsWithTypes(item), fromBcs: (data) => UID.fromBcs(data), bcs: UID.bcs, fromJSONField: (field) => UID.fromJSONField(field), fromJSON: (json) => UID.fromJSON(json), fromSuiParsedData: (content) => UID.fromSuiParsedData(content), fromSuiObjectData: (content) => UID.fromSuiObjectData(content), fetch: async (client, id) => UID.fetch(client, id), new: (fields) => { return new UID([], fields); }, kind: "StructClassReified", }; }
     static get r() { return UID.reified(); }
     static phantom() { return (0, reified_1.phantom)(UID.reified()); }
     static get p() { return UID.phantom(); }
@@ -113,6 +131,18 @@ class UID {
     } if (!isUID(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a UID object`);
     } return UID.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUID(data.bcs.type)) {
+                throw new Error(`object at is not a UID object`);
+            }
+            return UID.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return UID.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -122,9 +152,10 @@ class UID {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUID(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a UID object`);
         }
-        return UID.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return UID.fromSuiObjectData(res.data);
     }
 }
 exports.UID = UID;
-UID.$typeName = "0x2::object::UID";
+UID.$typeName = `${index_1.PKG_V28}::object::UID`;
 UID.$numTypeParams = 0;
+UID.$isPhantom = [];

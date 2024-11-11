@@ -6,20 +6,23 @@ exports.isReferent = isReferent;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Borrow =============================== */
-function isBorrow(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::borrow::Borrow"; }
+function isBorrow(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::borrow::Borrow`; }
 class Borrow {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Borrow.$typeName;
+        this.$isPhantom = Borrow.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Borrow.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.ref = fields.ref;
         ;
         this.obj = fields.obj;
     }
-    static reified() { return { typeName: Borrow.$typeName, fullTypeName: (0, util_1.composeSuiType)(Borrow.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Borrow.fromFields(fields), fromFieldsWithTypes: (item) => Borrow.fromFieldsWithTypes(item), fromBcs: (data) => Borrow.fromBcs(data), bcs: Borrow.bcs, fromJSONField: (field) => Borrow.fromJSONField(field), fromJSON: (json) => Borrow.fromJSON(json), fromSuiParsedData: (content) => Borrow.fromSuiParsedData(content), fetch: async (client, id) => Borrow.fetch(client, id), new: (fields) => { return new Borrow([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Borrow.$typeName, fullTypeName: (0, util_1.composeSuiType)(Borrow.$typeName, ...[]), typeArgs: [], isPhantom: Borrow.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Borrow.fromFields(fields), fromFieldsWithTypes: (item) => Borrow.fromFieldsWithTypes(item), fromBcs: (data) => Borrow.fromBcs(data), bcs: Borrow.bcs, fromJSONField: (field) => Borrow.fromJSONField(field), fromJSON: (json) => Borrow.fromJSON(json), fromSuiParsedData: (content) => Borrow.fromSuiParsedData(content), fromSuiObjectData: (content) => Borrow.fromSuiObjectData(content), fetch: async (client, id) => Borrow.fetch(client, id), new: (fields) => { return new Borrow([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Borrow.reified(); }
     static phantom() { return (0, reified_1.phantom)(Borrow.reified()); }
     static get p() { return Borrow.phantom(); }
@@ -56,6 +59,18 @@ class Borrow {
     } if (!isBorrow(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Borrow object`);
     } return Borrow.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isBorrow(data.bcs.type)) {
+                throw new Error(`object at is not a Borrow object`);
+            }
+            return Borrow.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Borrow.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -65,24 +80,27 @@ class Borrow {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isBorrow(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Borrow object`);
         }
-        return Borrow.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Borrow.fromSuiObjectData(res.data);
     }
 }
 exports.Borrow = Borrow;
-Borrow.$typeName = "0x2::borrow::Borrow";
+Borrow.$typeName = `${index_1.PKG_V28}::borrow::Borrow`;
 Borrow.$numTypeParams = 0;
+Borrow.$isPhantom = [];
 /* ============================== Referent =============================== */
-function isReferent(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::borrow::Referent<"); }
+function isReferent(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::borrow::Referent` + '<'); }
 class Referent {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Referent.$typeName;
+        this.$isPhantom = Referent.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Referent.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.value = fields.value;
     }
-    static reified(T) { return { typeName: Referent.$typeName, fullTypeName: (0, util_1.composeSuiType)(Referent.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => Referent.fromFields(T, fields), fromFieldsWithTypes: (item) => Referent.fromFieldsWithTypes(T, item), fromBcs: (data) => Referent.fromBcs(T, data), bcs: Referent.bcs((0, reified_1.toBcs)(T)), fromJSONField: (field) => Referent.fromJSONField(T, field), fromJSON: (json) => Referent.fromJSON(T, json), fromSuiParsedData: (content) => Referent.fromSuiParsedData(T, content), fetch: async (client, id) => Referent.fetch(client, T, id), new: (fields) => { return new Referent([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: Referent.$typeName, fullTypeName: (0, util_1.composeSuiType)(Referent.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: Referent.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => Referent.fromFields(T, fields), fromFieldsWithTypes: (item) => Referent.fromFieldsWithTypes(T, item), fromBcs: (data) => Referent.fromBcs(T, data), bcs: Referent.bcs((0, reified_1.toBcs)(T)), fromJSONField: (field) => Referent.fromJSONField(T, field), fromJSON: (json) => Referent.fromJSON(T, json), fromSuiParsedData: (content) => Referent.fromSuiParsedData(T, content), fromSuiObjectData: (content) => Referent.fromSuiObjectData(T, content), fetch: async (client, id) => Referent.fetch(client, T, id), new: (fields) => { return new Referent([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Referent.reified; }
     static phantom(T) { return (0, reified_1.phantom)(Referent.reified(T)); }
     static get p() { return Referent.phantom; }
@@ -106,7 +124,7 @@ class Referent {
     }
     toJSONField() {
         return {
-            id: this.id, value: (0, reified_1.fieldToJSON)(`0x1::option::Option<${this.$typeArgs[0]}>`, this.value),
+            id: this.id, value: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<${this.$typeArgs[0]}>`, this.value),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -124,6 +142,29 @@ class Referent {
     } if (!isReferent(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Referent object`);
     } return Referent.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isReferent(data.bcs.type)) {
+                throw new Error(`object at is not a Referent object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return Referent.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Referent.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -133,9 +174,10 @@ class Referent {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isReferent(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Referent object`);
         }
-        return Referent.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Referent.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.Referent = Referent;
-Referent.$typeName = "0x2::borrow::Referent";
+Referent.$typeName = `${index_1.PKG_V28}::borrow::Referent`;
 Referent.$numTypeParams = 1;
+Referent.$isPhantom = [false,];

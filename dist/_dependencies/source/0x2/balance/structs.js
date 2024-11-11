@@ -5,17 +5,20 @@ exports.isBalance = isBalance;
 exports.isSupply = isSupply;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Balance =============================== */
-function isBalance(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::balance::Balance<"); }
+function isBalance(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::balance::Balance` + '<'); }
 class Balance {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Balance.$typeName;
+        this.$isPhantom = Balance.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Balance.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.value = fields.value;
     }
-    static reified(T) { return { typeName: Balance.$typeName, fullTypeName: (0, util_1.composeSuiType)(Balance.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => Balance.fromFields(T, fields), fromFieldsWithTypes: (item) => Balance.fromFieldsWithTypes(T, item), fromBcs: (data) => Balance.fromBcs(T, data), bcs: Balance.bcs, fromJSONField: (field) => Balance.fromJSONField(T, field), fromJSON: (json) => Balance.fromJSON(T, json), fromSuiParsedData: (content) => Balance.fromSuiParsedData(T, content), fetch: async (client, id) => Balance.fetch(client, T, id), new: (fields) => { return new Balance([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: Balance.$typeName, fullTypeName: (0, util_1.composeSuiType)(Balance.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: Balance.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => Balance.fromFields(T, fields), fromFieldsWithTypes: (item) => Balance.fromFieldsWithTypes(T, item), fromBcs: (data) => Balance.fromBcs(T, data), bcs: Balance.bcs, fromJSONField: (field) => Balance.fromJSONField(T, field), fromJSON: (json) => Balance.fromJSON(T, json), fromSuiParsedData: (content) => Balance.fromSuiParsedData(T, content), fromSuiObjectData: (content) => Balance.fromSuiObjectData(T, content), fetch: async (client, id) => Balance.fetch(client, T, id), new: (fields) => { return new Balance([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Balance.reified; }
     static phantom(T) { return (0, reified_1.phantom)(Balance.reified(T)); }
     static get p() { return Balance.phantom; }
@@ -54,6 +57,29 @@ class Balance {
     } if (!isBalance(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Balance object`);
     } return Balance.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isBalance(data.bcs.type)) {
+                throw new Error(`object at is not a Balance object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return Balance.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Balance.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,22 +89,25 @@ class Balance {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isBalance(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Balance object`);
         }
-        return Balance.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Balance.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.Balance = Balance;
-Balance.$typeName = "0x2::balance::Balance";
+Balance.$typeName = `${index_1.PKG_V28}::balance::Balance`;
 Balance.$numTypeParams = 1;
+Balance.$isPhantom = [true,];
 /* ============================== Supply =============================== */
-function isSupply(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::balance::Supply<"); }
+function isSupply(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::balance::Supply` + '<'); }
 class Supply {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Supply.$typeName;
+        this.$isPhantom = Supply.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Supply.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.value = fields.value;
     }
-    static reified(T) { return { typeName: Supply.$typeName, fullTypeName: (0, util_1.composeSuiType)(Supply.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => Supply.fromFields(T, fields), fromFieldsWithTypes: (item) => Supply.fromFieldsWithTypes(T, item), fromBcs: (data) => Supply.fromBcs(T, data), bcs: Supply.bcs, fromJSONField: (field) => Supply.fromJSONField(T, field), fromJSON: (json) => Supply.fromJSON(T, json), fromSuiParsedData: (content) => Supply.fromSuiParsedData(T, content), fetch: async (client, id) => Supply.fetch(client, T, id), new: (fields) => { return new Supply([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: Supply.$typeName, fullTypeName: (0, util_1.composeSuiType)(Supply.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: Supply.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => Supply.fromFields(T, fields), fromFieldsWithTypes: (item) => Supply.fromFieldsWithTypes(T, item), fromBcs: (data) => Supply.fromBcs(T, data), bcs: Supply.bcs, fromJSONField: (field) => Supply.fromJSONField(T, field), fromJSON: (json) => Supply.fromJSON(T, json), fromSuiParsedData: (content) => Supply.fromSuiParsedData(T, content), fromSuiObjectData: (content) => Supply.fromSuiObjectData(T, content), fetch: async (client, id) => Supply.fetch(client, T, id), new: (fields) => { return new Supply([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Supply.reified; }
     static phantom(T) { return (0, reified_1.phantom)(Supply.reified(T)); }
     static get p() { return Supply.phantom; }
@@ -117,6 +146,29 @@ class Supply {
     } if (!isSupply(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Supply object`);
     } return Supply.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSupply(data.bcs.type)) {
+                throw new Error(`object at is not a Supply object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return Supply.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Supply.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -126,9 +178,10 @@ class Supply {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSupply(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Supply object`);
         }
-        return Supply.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Supply.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.Supply = Supply;
-Supply.$typeName = "0x2::balance::Supply";
+Supply.$typeName = `${index_1.PKG_V28}::balance::Supply`;
 Supply.$numTypeParams = 1;
+Supply.$isPhantom = [true,];

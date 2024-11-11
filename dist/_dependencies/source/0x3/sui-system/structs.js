@@ -5,19 +5,22 @@ exports.isSuiSystemState = isSuiSystemState;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/object/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== SuiSystemState =============================== */
-function isSuiSystemState(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system::SuiSystemState"; }
+function isSuiSystemState(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system::SuiSystemState`; }
 class SuiSystemState {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SuiSystemState.$typeName;
+        this.$isPhantom = SuiSystemState.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SuiSystemState.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.version = fields.version;
     }
-    static reified() { return { typeName: SuiSystemState.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemState.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SuiSystemState.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemState.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemState.fromBcs(data), bcs: SuiSystemState.bcs, fromJSONField: (field) => SuiSystemState.fromJSONField(field), fromJSON: (json) => SuiSystemState.fromJSON(json), fromSuiParsedData: (content) => SuiSystemState.fromSuiParsedData(content), fetch: async (client, id) => SuiSystemState.fetch(client, id), new: (fields) => { return new SuiSystemState([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SuiSystemState.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemState.$typeName, ...[]), typeArgs: [], isPhantom: SuiSystemState.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SuiSystemState.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemState.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemState.fromBcs(data), bcs: SuiSystemState.bcs, fromJSONField: (field) => SuiSystemState.fromJSONField(field), fromJSON: (json) => SuiSystemState.fromJSON(json), fromSuiParsedData: (content) => SuiSystemState.fromSuiParsedData(content), fromSuiObjectData: (content) => SuiSystemState.fromSuiObjectData(content), fetch: async (client, id) => SuiSystemState.fetch(client, id), new: (fields) => { return new SuiSystemState([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SuiSystemState.reified(); }
     static phantom() { return (0, reified_1.phantom)(SuiSystemState.reified()); }
     static get p() { return SuiSystemState.phantom(); }
@@ -54,6 +57,18 @@ class SuiSystemState {
     } if (!isSuiSystemState(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SuiSystemState object`);
     } return SuiSystemState.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSuiSystemState(data.bcs.type)) {
+                throw new Error(`object at is not a SuiSystemState object`);
+            }
+            return SuiSystemState.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SuiSystemState.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,9 +78,10 @@ class SuiSystemState {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSuiSystemState(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SuiSystemState object`);
         }
-        return SuiSystemState.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SuiSystemState.fromSuiObjectData(res.data);
     }
 }
 exports.SuiSystemState = SuiSystemState;
-SuiSystemState.$typeName = "0x3::sui_system::SuiSystemState";
+SuiSystemState.$typeName = `${index_1.PKG_V17}::sui_system::SuiSystemState`;
 SuiSystemState.$numTypeParams = 0;
+SuiSystemState.$isPhantom = [];

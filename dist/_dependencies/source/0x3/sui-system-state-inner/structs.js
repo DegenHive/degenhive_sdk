@@ -14,15 +14,18 @@ const structs_2 = require("../../0x2/balance/structs");
 const structs_3 = require("../../0x2/sui/structs");
 const structs_4 = require("../../0x2/vec-map/structs");
 const structs_5 = require("../../0x2/vec-set/structs");
+const index_1 = require("../index");
 const structs_6 = require("../stake-subsidy/structs");
 const structs_7 = require("../storage-fund/structs");
 const structs_8 = require("../validator-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== SuiSystemStateInner =============================== */
-function isSuiSystemStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SuiSystemStateInner"; }
+function isSuiSystemStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system_state_inner::SuiSystemStateInner`; }
 class SuiSystemStateInner {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SuiSystemStateInner.$typeName;
+        this.$isPhantom = SuiSystemStateInner.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SuiSystemStateInner.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -57,7 +60,7 @@ class SuiSystemStateInner {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: SuiSystemStateInner.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemStateInner.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SuiSystemStateInner.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemStateInner.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemStateInner.fromBcs(data), bcs: SuiSystemStateInner.bcs, fromJSONField: (field) => SuiSystemStateInner.fromJSONField(field), fromJSON: (json) => SuiSystemStateInner.fromJSON(json), fromSuiParsedData: (content) => SuiSystemStateInner.fromSuiParsedData(content), fetch: async (client, id) => SuiSystemStateInner.fetch(client, id), new: (fields) => { return new SuiSystemStateInner([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SuiSystemStateInner.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemStateInner.$typeName, ...[]), typeArgs: [], isPhantom: SuiSystemStateInner.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SuiSystemStateInner.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemStateInner.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemStateInner.fromBcs(data), bcs: SuiSystemStateInner.bcs, fromJSONField: (field) => SuiSystemStateInner.fromJSONField(field), fromJSON: (json) => SuiSystemStateInner.fromJSON(json), fromSuiParsedData: (content) => SuiSystemStateInner.fromSuiParsedData(content), fromSuiObjectData: (content) => SuiSystemStateInner.fromSuiObjectData(content), fetch: async (client, id) => SuiSystemStateInner.fetch(client, id), new: (fields) => { return new SuiSystemStateInner([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SuiSystemStateInner.reified(); }
     static phantom() { return (0, reified_1.phantom)(SuiSystemStateInner.reified()); }
     static get p() { return SuiSystemStateInner.phantom(); }
@@ -94,6 +97,18 @@ class SuiSystemStateInner {
     } if (!isSuiSystemStateInner(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SuiSystemStateInner object`);
     } return SuiSystemStateInner.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSuiSystemStateInner(data.bcs.type)) {
+                throw new Error(`object at is not a SuiSystemStateInner object`);
+            }
+            return SuiSystemStateInner.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SuiSystemStateInner.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -103,17 +118,20 @@ class SuiSystemStateInner {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSuiSystemStateInner(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SuiSystemStateInner object`);
         }
-        return SuiSystemStateInner.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SuiSystemStateInner.fromSuiObjectData(res.data);
     }
 }
 exports.SuiSystemStateInner = SuiSystemStateInner;
-SuiSystemStateInner.$typeName = "0x3::sui_system_state_inner::SuiSystemStateInner";
+SuiSystemStateInner.$typeName = `${index_1.PKG_V17}::sui_system_state_inner::SuiSystemStateInner`;
 SuiSystemStateInner.$numTypeParams = 0;
+SuiSystemStateInner.$isPhantom = [];
 /* ============================== SuiSystemStateInnerV2 =============================== */
-function isSuiSystemStateInnerV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SuiSystemStateInnerV2"; }
+function isSuiSystemStateInnerV2(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system_state_inner::SuiSystemStateInnerV2`; }
 class SuiSystemStateInnerV2 {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SuiSystemStateInnerV2.$typeName;
+        this.$isPhantom = SuiSystemStateInnerV2.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SuiSystemStateInnerV2.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -148,7 +166,7 @@ class SuiSystemStateInnerV2 {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: SuiSystemStateInnerV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemStateInnerV2.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SuiSystemStateInnerV2.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemStateInnerV2.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemStateInnerV2.fromBcs(data), bcs: SuiSystemStateInnerV2.bcs, fromJSONField: (field) => SuiSystemStateInnerV2.fromJSONField(field), fromJSON: (json) => SuiSystemStateInnerV2.fromJSON(json), fromSuiParsedData: (content) => SuiSystemStateInnerV2.fromSuiParsedData(content), fetch: async (client, id) => SuiSystemStateInnerV2.fetch(client, id), new: (fields) => { return new SuiSystemStateInnerV2([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SuiSystemStateInnerV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(SuiSystemStateInnerV2.$typeName, ...[]), typeArgs: [], isPhantom: SuiSystemStateInnerV2.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SuiSystemStateInnerV2.fromFields(fields), fromFieldsWithTypes: (item) => SuiSystemStateInnerV2.fromFieldsWithTypes(item), fromBcs: (data) => SuiSystemStateInnerV2.fromBcs(data), bcs: SuiSystemStateInnerV2.bcs, fromJSONField: (field) => SuiSystemStateInnerV2.fromJSONField(field), fromJSON: (json) => SuiSystemStateInnerV2.fromJSON(json), fromSuiParsedData: (content) => SuiSystemStateInnerV2.fromSuiParsedData(content), fromSuiObjectData: (content) => SuiSystemStateInnerV2.fromSuiObjectData(content), fetch: async (client, id) => SuiSystemStateInnerV2.fetch(client, id), new: (fields) => { return new SuiSystemStateInnerV2([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SuiSystemStateInnerV2.reified(); }
     static phantom() { return (0, reified_1.phantom)(SuiSystemStateInnerV2.reified()); }
     static get p() { return SuiSystemStateInnerV2.phantom(); }
@@ -185,6 +203,18 @@ class SuiSystemStateInnerV2 {
     } if (!isSuiSystemStateInnerV2(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SuiSystemStateInnerV2 object`);
     } return SuiSystemStateInnerV2.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSuiSystemStateInnerV2(data.bcs.type)) {
+                throw new Error(`object at is not a SuiSystemStateInnerV2 object`);
+            }
+            return SuiSystemStateInnerV2.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SuiSystemStateInnerV2.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -194,17 +224,20 @@ class SuiSystemStateInnerV2 {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSuiSystemStateInnerV2(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SuiSystemStateInnerV2 object`);
         }
-        return SuiSystemStateInnerV2.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SuiSystemStateInnerV2.fromSuiObjectData(res.data);
     }
 }
 exports.SuiSystemStateInnerV2 = SuiSystemStateInnerV2;
-SuiSystemStateInnerV2.$typeName = "0x3::sui_system_state_inner::SuiSystemStateInnerV2";
+SuiSystemStateInnerV2.$typeName = `${index_1.PKG_V17}::sui_system_state_inner::SuiSystemStateInnerV2`;
 SuiSystemStateInnerV2.$numTypeParams = 0;
+SuiSystemStateInnerV2.$isPhantom = [];
 /* ============================== SystemEpochInfoEvent =============================== */
-function isSystemEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemEpochInfoEvent"; }
+function isSystemEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system_state_inner::SystemEpochInfoEvent`; }
 class SystemEpochInfoEvent {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SystemEpochInfoEvent.$typeName;
+        this.$isPhantom = SystemEpochInfoEvent.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SystemEpochInfoEvent.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -231,7 +264,7 @@ class SystemEpochInfoEvent {
         ;
         this.leftoverStorageFundInflow = fields.leftoverStorageFundInflow;
     }
-    static reified() { return { typeName: SystemEpochInfoEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemEpochInfoEvent.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SystemEpochInfoEvent.fromFields(fields), fromFieldsWithTypes: (item) => SystemEpochInfoEvent.fromFieldsWithTypes(item), fromBcs: (data) => SystemEpochInfoEvent.fromBcs(data), bcs: SystemEpochInfoEvent.bcs, fromJSONField: (field) => SystemEpochInfoEvent.fromJSONField(field), fromJSON: (json) => SystemEpochInfoEvent.fromJSON(json), fromSuiParsedData: (content) => SystemEpochInfoEvent.fromSuiParsedData(content), fetch: async (client, id) => SystemEpochInfoEvent.fetch(client, id), new: (fields) => { return new SystemEpochInfoEvent([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SystemEpochInfoEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemEpochInfoEvent.$typeName, ...[]), typeArgs: [], isPhantom: SystemEpochInfoEvent.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SystemEpochInfoEvent.fromFields(fields), fromFieldsWithTypes: (item) => SystemEpochInfoEvent.fromFieldsWithTypes(item), fromBcs: (data) => SystemEpochInfoEvent.fromBcs(data), bcs: SystemEpochInfoEvent.bcs, fromJSONField: (field) => SystemEpochInfoEvent.fromJSONField(field), fromJSON: (json) => SystemEpochInfoEvent.fromJSON(json), fromSuiParsedData: (content) => SystemEpochInfoEvent.fromSuiParsedData(content), fromSuiObjectData: (content) => SystemEpochInfoEvent.fromSuiObjectData(content), fetch: async (client, id) => SystemEpochInfoEvent.fetch(client, id), new: (fields) => { return new SystemEpochInfoEvent([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SystemEpochInfoEvent.reified(); }
     static phantom() { return (0, reified_1.phantom)(SystemEpochInfoEvent.reified()); }
     static get p() { return SystemEpochInfoEvent.phantom(); }
@@ -268,6 +301,18 @@ class SystemEpochInfoEvent {
     } if (!isSystemEpochInfoEvent(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SystemEpochInfoEvent object`);
     } return SystemEpochInfoEvent.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSystemEpochInfoEvent(data.bcs.type)) {
+                throw new Error(`object at is not a SystemEpochInfoEvent object`);
+            }
+            return SystemEpochInfoEvent.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SystemEpochInfoEvent.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -277,17 +322,20 @@ class SystemEpochInfoEvent {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSystemEpochInfoEvent(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SystemEpochInfoEvent object`);
         }
-        return SystemEpochInfoEvent.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SystemEpochInfoEvent.fromSuiObjectData(res.data);
     }
 }
 exports.SystemEpochInfoEvent = SystemEpochInfoEvent;
-SystemEpochInfoEvent.$typeName = "0x3::sui_system_state_inner::SystemEpochInfoEvent";
+SystemEpochInfoEvent.$typeName = `${index_1.PKG_V17}::sui_system_state_inner::SystemEpochInfoEvent`;
 SystemEpochInfoEvent.$numTypeParams = 0;
+SystemEpochInfoEvent.$isPhantom = [];
 /* ============================== SystemParameters =============================== */
-function isSystemParameters(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemParameters"; }
+function isSystemParameters(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system_state_inner::SystemParameters`; }
 class SystemParameters {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SystemParameters.$typeName;
+        this.$isPhantom = SystemParameters.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SystemParameters.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epochDurationMs = fields.epochDurationMs;
@@ -306,7 +354,7 @@ class SystemParameters {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: SystemParameters.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemParameters.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SystemParameters.fromFields(fields), fromFieldsWithTypes: (item) => SystemParameters.fromFieldsWithTypes(item), fromBcs: (data) => SystemParameters.fromBcs(data), bcs: SystemParameters.bcs, fromJSONField: (field) => SystemParameters.fromJSONField(field), fromJSON: (json) => SystemParameters.fromJSON(json), fromSuiParsedData: (content) => SystemParameters.fromSuiParsedData(content), fetch: async (client, id) => SystemParameters.fetch(client, id), new: (fields) => { return new SystemParameters([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SystemParameters.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemParameters.$typeName, ...[]), typeArgs: [], isPhantom: SystemParameters.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SystemParameters.fromFields(fields), fromFieldsWithTypes: (item) => SystemParameters.fromFieldsWithTypes(item), fromBcs: (data) => SystemParameters.fromBcs(data), bcs: SystemParameters.bcs, fromJSONField: (field) => SystemParameters.fromJSONField(field), fromJSON: (json) => SystemParameters.fromJSON(json), fromSuiParsedData: (content) => SystemParameters.fromSuiParsedData(content), fromSuiObjectData: (content) => SystemParameters.fromSuiObjectData(content), fetch: async (client, id) => SystemParameters.fetch(client, id), new: (fields) => { return new SystemParameters([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SystemParameters.reified(); }
     static phantom() { return (0, reified_1.phantom)(SystemParameters.reified()); }
     static get p() { return SystemParameters.phantom(); }
@@ -343,6 +391,18 @@ class SystemParameters {
     } if (!isSystemParameters(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SystemParameters object`);
     } return SystemParameters.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSystemParameters(data.bcs.type)) {
+                throw new Error(`object at is not a SystemParameters object`);
+            }
+            return SystemParameters.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SystemParameters.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -352,17 +412,20 @@ class SystemParameters {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSystemParameters(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SystemParameters object`);
         }
-        return SystemParameters.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SystemParameters.fromSuiObjectData(res.data);
     }
 }
 exports.SystemParameters = SystemParameters;
-SystemParameters.$typeName = "0x3::sui_system_state_inner::SystemParameters";
+SystemParameters.$typeName = `${index_1.PKG_V17}::sui_system_state_inner::SystemParameters`;
 SystemParameters.$numTypeParams = 0;
+SystemParameters.$isPhantom = [];
 /* ============================== SystemParametersV2 =============================== */
-function isSystemParametersV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::sui_system_state_inner::SystemParametersV2"; }
+function isSystemParametersV2(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::sui_system_state_inner::SystemParametersV2`; }
 class SystemParametersV2 {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = SystemParametersV2.$typeName;
+        this.$isPhantom = SystemParametersV2.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(SystemParametersV2.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epochDurationMs = fields.epochDurationMs;
@@ -383,7 +446,7 @@ class SystemParametersV2 {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: SystemParametersV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemParametersV2.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => SystemParametersV2.fromFields(fields), fromFieldsWithTypes: (item) => SystemParametersV2.fromFieldsWithTypes(item), fromBcs: (data) => SystemParametersV2.fromBcs(data), bcs: SystemParametersV2.bcs, fromJSONField: (field) => SystemParametersV2.fromJSONField(field), fromJSON: (json) => SystemParametersV2.fromJSON(json), fromSuiParsedData: (content) => SystemParametersV2.fromSuiParsedData(content), fetch: async (client, id) => SystemParametersV2.fetch(client, id), new: (fields) => { return new SystemParametersV2([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: SystemParametersV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(SystemParametersV2.$typeName, ...[]), typeArgs: [], isPhantom: SystemParametersV2.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => SystemParametersV2.fromFields(fields), fromFieldsWithTypes: (item) => SystemParametersV2.fromFieldsWithTypes(item), fromBcs: (data) => SystemParametersV2.fromBcs(data), bcs: SystemParametersV2.bcs, fromJSONField: (field) => SystemParametersV2.fromJSONField(field), fromJSON: (json) => SystemParametersV2.fromJSON(json), fromSuiParsedData: (content) => SystemParametersV2.fromSuiParsedData(content), fromSuiObjectData: (content) => SystemParametersV2.fromSuiObjectData(content), fetch: async (client, id) => SystemParametersV2.fetch(client, id), new: (fields) => { return new SystemParametersV2([], fields); }, kind: "StructClassReified", }; }
     static get r() { return SystemParametersV2.reified(); }
     static phantom() { return (0, reified_1.phantom)(SystemParametersV2.reified()); }
     static get p() { return SystemParametersV2.phantom(); }
@@ -420,6 +483,18 @@ class SystemParametersV2 {
     } if (!isSystemParametersV2(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a SystemParametersV2 object`);
     } return SystemParametersV2.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isSystemParametersV2(data.bcs.type)) {
+                throw new Error(`object at is not a SystemParametersV2 object`);
+            }
+            return SystemParametersV2.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return SystemParametersV2.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -429,9 +504,10 @@ class SystemParametersV2 {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isSystemParametersV2(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a SystemParametersV2 object`);
         }
-        return SystemParametersV2.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return SystemParametersV2.fromSuiObjectData(res.data);
     }
 }
 exports.SystemParametersV2 = SystemParametersV2;
-SystemParametersV2.$typeName = "0x3::sui_system_state_inner::SystemParametersV2";
+SystemParametersV2.$typeName = `${index_1.PKG_V17}::sui_system_state_inner::SystemParametersV2`;
 SystemParametersV2.$numTypeParams = 0;
+SystemParametersV2.$isPhantom = [];

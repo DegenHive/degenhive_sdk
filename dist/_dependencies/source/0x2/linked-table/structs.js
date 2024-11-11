@@ -6,13 +6,16 @@ exports.isNode = isNode;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== LinkedTable =============================== */
-function isLinkedTable(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::linked_table::LinkedTable<"); }
+function isLinkedTable(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::linked_table::LinkedTable` + '<'); }
 class LinkedTable {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = LinkedTable.$typeName;
+        this.$isPhantom = LinkedTable.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(LinkedTable.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -23,7 +26,7 @@ class LinkedTable {
         ;
         this.tail = fields.tail;
     }
-    static reified(K, V) { return { typeName: LinkedTable.$typeName, fullTypeName: (0, util_1.composeSuiType)(LinkedTable.$typeName, ...[(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)]), typeArgs: [(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], reifiedTypeArgs: [K, V], fromFields: (fields) => LinkedTable.fromFields([K, V], fields), fromFieldsWithTypes: (item) => LinkedTable.fromFieldsWithTypes([K, V], item), fromBcs: (data) => LinkedTable.fromBcs([K, V], data), bcs: LinkedTable.bcs((0, reified_1.toBcs)(K)), fromJSONField: (field) => LinkedTable.fromJSONField([K, V], field), fromJSON: (json) => LinkedTable.fromJSON([K, V], json), fromSuiParsedData: (content) => LinkedTable.fromSuiParsedData([K, V], content), fetch: async (client, id) => LinkedTable.fetch(client, [K, V], id), new: (fields) => { return new LinkedTable([(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], fields); }, kind: "StructClassReified", }; }
+    static reified(K, V) { return { typeName: LinkedTable.$typeName, fullTypeName: (0, util_1.composeSuiType)(LinkedTable.$typeName, ...[(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)]), typeArgs: [(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], isPhantom: LinkedTable.$isPhantom, reifiedTypeArgs: [K, V], fromFields: (fields) => LinkedTable.fromFields([K, V], fields), fromFieldsWithTypes: (item) => LinkedTable.fromFieldsWithTypes([K, V], item), fromBcs: (data) => LinkedTable.fromBcs([K, V], data), bcs: LinkedTable.bcs((0, reified_1.toBcs)(K)), fromJSONField: (field) => LinkedTable.fromJSONField([K, V], field), fromJSON: (json) => LinkedTable.fromJSON([K, V], json), fromSuiParsedData: (content) => LinkedTable.fromSuiParsedData([K, V], content), fromSuiObjectData: (content) => LinkedTable.fromSuiObjectData([K, V], content), fetch: async (client, id) => LinkedTable.fetch(client, [K, V], id), new: (fields) => { return new LinkedTable([(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], fields); }, kind: "StructClassReified", }; }
     static get r() { return LinkedTable.reified; }
     static phantom(K, V) { return (0, reified_1.phantom)(LinkedTable.reified(K, V)); }
     static get p() { return LinkedTable.phantom; }
@@ -44,7 +47,7 @@ class LinkedTable {
     static fromBcs(typeArgs, data) { return LinkedTable.fromFields(typeArgs, LinkedTable.bcs((0, reified_1.toBcs)(typeArgs[0])).parse(data)); }
     toJSONField() {
         return {
-            id: this.id, size: this.size.toString(), head: (0, reified_1.fieldToJSON)(`0x1::option::Option<${this.$typeArgs[0]}>`, this.head), tail: (0, reified_1.fieldToJSON)(`0x1::option::Option<${this.$typeArgs[0]}>`, this.tail),
+            id: this.id, size: this.size.toString(), head: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<${this.$typeArgs[0]}>`, this.head), tail: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<${this.$typeArgs[0]}>`, this.tail),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -62,6 +65,31 @@ class LinkedTable {
     } if (!isLinkedTable(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a LinkedTable object`);
     } return LinkedTable.fromFieldsWithTypes(typeArgs, content); }
+    static fromSuiObjectData(typeArgs, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isLinkedTable(data.bcs.type)) {
+                throw new Error(`object at is not a LinkedTable object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 2) {
+                throw new Error(`type argument mismatch: expected 2 type arguments but got ${gotTypeArgs.length}`);
+            }
+            ;
+            for (let i = 0; i < 2; i++) {
+                const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[i]);
+                const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArgs[i]));
+                if (gotTypeArg !== expectedTypeArg) {
+                    throw new Error(`type argument mismatch at position ${i}: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+                }
+            }
+            ;
+            return LinkedTable.fromBcs(typeArgs, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return LinkedTable.fromSuiParsedData(typeArgs, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArgs, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -71,17 +99,20 @@ class LinkedTable {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isLinkedTable(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a LinkedTable object`);
         }
-        return LinkedTable.fromBcs(typeArgs, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return LinkedTable.fromSuiObjectData(typeArgs, res.data);
     }
 }
 exports.LinkedTable = LinkedTable;
-LinkedTable.$typeName = "0x2::linked_table::LinkedTable";
+LinkedTable.$typeName = `${index_1.PKG_V28}::linked_table::LinkedTable`;
 LinkedTable.$numTypeParams = 2;
+LinkedTable.$isPhantom = [false, true,];
 /* ============================== Node =============================== */
-function isNode(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::linked_table::Node<"); }
+function isNode(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::linked_table::Node` + '<'); }
 class Node {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Node.$typeName;
+        this.$isPhantom = Node.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Node.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.prev = fields.prev;
@@ -90,7 +121,7 @@ class Node {
         ;
         this.value = fields.value;
     }
-    static reified(K, V) { return { typeName: Node.$typeName, fullTypeName: (0, util_1.composeSuiType)(Node.$typeName, ...[(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)]), typeArgs: [(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], reifiedTypeArgs: [K, V], fromFields: (fields) => Node.fromFields([K, V], fields), fromFieldsWithTypes: (item) => Node.fromFieldsWithTypes([K, V], item), fromBcs: (data) => Node.fromBcs([K, V], data), bcs: Node.bcs((0, reified_1.toBcs)(K), (0, reified_1.toBcs)(V)), fromJSONField: (field) => Node.fromJSONField([K, V], field), fromJSON: (json) => Node.fromJSON([K, V], json), fromSuiParsedData: (content) => Node.fromSuiParsedData([K, V], content), fetch: async (client, id) => Node.fetch(client, [K, V], id), new: (fields) => { return new Node([(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], fields); }, kind: "StructClassReified", }; }
+    static reified(K, V) { return { typeName: Node.$typeName, fullTypeName: (0, util_1.composeSuiType)(Node.$typeName, ...[(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)]), typeArgs: [(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], isPhantom: Node.$isPhantom, reifiedTypeArgs: [K, V], fromFields: (fields) => Node.fromFields([K, V], fields), fromFieldsWithTypes: (item) => Node.fromFieldsWithTypes([K, V], item), fromBcs: (data) => Node.fromBcs([K, V], data), bcs: Node.bcs((0, reified_1.toBcs)(K), (0, reified_1.toBcs)(V)), fromJSONField: (field) => Node.fromJSONField([K, V], field), fromJSON: (json) => Node.fromJSON([K, V], json), fromSuiParsedData: (content) => Node.fromSuiParsedData([K, V], content), fromSuiObjectData: (content) => Node.fromSuiObjectData([K, V], content), fetch: async (client, id) => Node.fetch(client, [K, V], id), new: (fields) => { return new Node([(0, reified_1.extractType)(K), (0, reified_1.extractType)(V)], fields); }, kind: "StructClassReified", }; }
     static get r() { return Node.reified; }
     static phantom(K, V) { return (0, reified_1.phantom)(Node.reified(K, V)); }
     static get p() { return Node.phantom; }
@@ -111,7 +142,7 @@ class Node {
     static fromBcs(typeArgs, data) { return Node.fromFields(typeArgs, Node.bcs((0, reified_1.toBcs)(typeArgs[0]), (0, reified_1.toBcs)(typeArgs[1])).parse(data)); }
     toJSONField() {
         return {
-            prev: (0, reified_1.fieldToJSON)(`0x1::option::Option<${this.$typeArgs[0]}>`, this.prev), next: (0, reified_1.fieldToJSON)(`0x1::option::Option<${this.$typeArgs[0]}>`, this.next), value: (0, reified_1.fieldToJSON)(this.$typeArgs[1], this.value),
+            prev: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<${this.$typeArgs[0]}>`, this.prev), next: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<${this.$typeArgs[0]}>`, this.next), value: (0, reified_1.fieldToJSON)(this.$typeArgs[1], this.value),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -129,6 +160,31 @@ class Node {
     } if (!isNode(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Node object`);
     } return Node.fromFieldsWithTypes(typeArgs, content); }
+    static fromSuiObjectData(typeArgs, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isNode(data.bcs.type)) {
+                throw new Error(`object at is not a Node object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 2) {
+                throw new Error(`type argument mismatch: expected 2 type arguments but got ${gotTypeArgs.length}`);
+            }
+            ;
+            for (let i = 0; i < 2; i++) {
+                const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[i]);
+                const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArgs[i]));
+                if (gotTypeArg !== expectedTypeArg) {
+                    throw new Error(`type argument mismatch at position ${i}: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+                }
+            }
+            ;
+            return Node.fromBcs(typeArgs, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Node.fromSuiParsedData(typeArgs, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArgs, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -138,9 +194,10 @@ class Node {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isNode(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Node object`);
         }
-        return Node.fromBcs(typeArgs, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Node.fromSuiObjectData(typeArgs, res.data);
     }
 }
 exports.Node = Node;
-Node.$typeName = "0x2::linked_table::Node";
+Node.$typeName = `${index_1.PKG_V28}::linked_table::Node`;
 Node.$numTypeParams = 2;
+Node.$isPhantom = [false, false,];

@@ -5,19 +5,22 @@ exports.isVotingPowerInfo = isVotingPowerInfo;
 exports.isVotingPowerInfoV2 = isVotingPowerInfoV2;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VotingPowerInfo =============================== */
-function isVotingPowerInfo(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::voting_power::VotingPowerInfo"; }
+function isVotingPowerInfo(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::voting_power::VotingPowerInfo`; }
 class VotingPowerInfo {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = VotingPowerInfo.$typeName;
+        this.$isPhantom = VotingPowerInfo.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(VotingPowerInfo.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.validatorIndex = fields.validatorIndex;
         ;
         this.votingPower = fields.votingPower;
     }
-    static reified() { return { typeName: VotingPowerInfo.$typeName, fullTypeName: (0, util_1.composeSuiType)(VotingPowerInfo.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => VotingPowerInfo.fromFields(fields), fromFieldsWithTypes: (item) => VotingPowerInfo.fromFieldsWithTypes(item), fromBcs: (data) => VotingPowerInfo.fromBcs(data), bcs: VotingPowerInfo.bcs, fromJSONField: (field) => VotingPowerInfo.fromJSONField(field), fromJSON: (json) => VotingPowerInfo.fromJSON(json), fromSuiParsedData: (content) => VotingPowerInfo.fromSuiParsedData(content), fetch: async (client, id) => VotingPowerInfo.fetch(client, id), new: (fields) => { return new VotingPowerInfo([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: VotingPowerInfo.$typeName, fullTypeName: (0, util_1.composeSuiType)(VotingPowerInfo.$typeName, ...[]), typeArgs: [], isPhantom: VotingPowerInfo.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => VotingPowerInfo.fromFields(fields), fromFieldsWithTypes: (item) => VotingPowerInfo.fromFieldsWithTypes(item), fromBcs: (data) => VotingPowerInfo.fromBcs(data), bcs: VotingPowerInfo.bcs, fromJSONField: (field) => VotingPowerInfo.fromJSONField(field), fromJSON: (json) => VotingPowerInfo.fromJSON(json), fromSuiParsedData: (content) => VotingPowerInfo.fromSuiParsedData(content), fromSuiObjectData: (content) => VotingPowerInfo.fromSuiObjectData(content), fetch: async (client, id) => VotingPowerInfo.fetch(client, id), new: (fields) => { return new VotingPowerInfo([], fields); }, kind: "StructClassReified", }; }
     static get r() { return VotingPowerInfo.reified(); }
     static phantom() { return (0, reified_1.phantom)(VotingPowerInfo.reified()); }
     static get p() { return VotingPowerInfo.phantom(); }
@@ -54,6 +57,18 @@ class VotingPowerInfo {
     } if (!isVotingPowerInfo(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a VotingPowerInfo object`);
     } return VotingPowerInfo.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isVotingPowerInfo(data.bcs.type)) {
+                throw new Error(`object at is not a VotingPowerInfo object`);
+            }
+            return VotingPowerInfo.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return VotingPowerInfo.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,17 +78,20 @@ class VotingPowerInfo {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isVotingPowerInfo(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a VotingPowerInfo object`);
         }
-        return VotingPowerInfo.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return VotingPowerInfo.fromSuiObjectData(res.data);
     }
 }
 exports.VotingPowerInfo = VotingPowerInfo;
-VotingPowerInfo.$typeName = "0x3::voting_power::VotingPowerInfo";
+VotingPowerInfo.$typeName = `${index_1.PKG_V17}::voting_power::VotingPowerInfo`;
 VotingPowerInfo.$numTypeParams = 0;
+VotingPowerInfo.$isPhantom = [];
 /* ============================== VotingPowerInfoV2 =============================== */
-function isVotingPowerInfoV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::voting_power::VotingPowerInfoV2"; }
+function isVotingPowerInfoV2(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::voting_power::VotingPowerInfoV2`; }
 class VotingPowerInfoV2 {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = VotingPowerInfoV2.$typeName;
+        this.$isPhantom = VotingPowerInfoV2.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(VotingPowerInfoV2.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.validatorIndex = fields.validatorIndex;
@@ -82,7 +100,7 @@ class VotingPowerInfoV2 {
         ;
         this.stake = fields.stake;
     }
-    static reified() { return { typeName: VotingPowerInfoV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(VotingPowerInfoV2.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => VotingPowerInfoV2.fromFields(fields), fromFieldsWithTypes: (item) => VotingPowerInfoV2.fromFieldsWithTypes(item), fromBcs: (data) => VotingPowerInfoV2.fromBcs(data), bcs: VotingPowerInfoV2.bcs, fromJSONField: (field) => VotingPowerInfoV2.fromJSONField(field), fromJSON: (json) => VotingPowerInfoV2.fromJSON(json), fromSuiParsedData: (content) => VotingPowerInfoV2.fromSuiParsedData(content), fetch: async (client, id) => VotingPowerInfoV2.fetch(client, id), new: (fields) => { return new VotingPowerInfoV2([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: VotingPowerInfoV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(VotingPowerInfoV2.$typeName, ...[]), typeArgs: [], isPhantom: VotingPowerInfoV2.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => VotingPowerInfoV2.fromFields(fields), fromFieldsWithTypes: (item) => VotingPowerInfoV2.fromFieldsWithTypes(item), fromBcs: (data) => VotingPowerInfoV2.fromBcs(data), bcs: VotingPowerInfoV2.bcs, fromJSONField: (field) => VotingPowerInfoV2.fromJSONField(field), fromJSON: (json) => VotingPowerInfoV2.fromJSON(json), fromSuiParsedData: (content) => VotingPowerInfoV2.fromSuiParsedData(content), fromSuiObjectData: (content) => VotingPowerInfoV2.fromSuiObjectData(content), fetch: async (client, id) => VotingPowerInfoV2.fetch(client, id), new: (fields) => { return new VotingPowerInfoV2([], fields); }, kind: "StructClassReified", }; }
     static get r() { return VotingPowerInfoV2.reified(); }
     static phantom() { return (0, reified_1.phantom)(VotingPowerInfoV2.reified()); }
     static get p() { return VotingPowerInfoV2.phantom(); }
@@ -119,6 +137,18 @@ class VotingPowerInfoV2 {
     } if (!isVotingPowerInfoV2(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a VotingPowerInfoV2 object`);
     } return VotingPowerInfoV2.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isVotingPowerInfoV2(data.bcs.type)) {
+                throw new Error(`object at is not a VotingPowerInfoV2 object`);
+            }
+            return VotingPowerInfoV2.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return VotingPowerInfoV2.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -128,9 +158,10 @@ class VotingPowerInfoV2 {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isVotingPowerInfoV2(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a VotingPowerInfoV2 object`);
         }
-        return VotingPowerInfoV2.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return VotingPowerInfoV2.fromSuiObjectData(res.data);
     }
 }
 exports.VotingPowerInfoV2 = VotingPowerInfoV2;
-VotingPowerInfoV2.$typeName = "0x3::voting_power::VotingPowerInfoV2";
+VotingPowerInfoV2.$typeName = `${index_1.PKG_V17}::voting_power::VotingPowerInfoV2`;
 VotingPowerInfoV2.$numTypeParams = 0;
+VotingPowerInfoV2.$isPhantom = [];

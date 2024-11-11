@@ -12,20 +12,23 @@ const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/type-name/structs");
 const structs_2 = require("../balance/structs");
+const index_1 = require("../index");
 const structs_3 = require("../object/structs");
 const structs_4 = require("../sui/structs");
 const structs_5 = require("../vec-set/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== RuleKey =============================== */
-function isRuleKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::RuleKey<"); }
+function isRuleKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::RuleKey` + '<'); }
 class RuleKey {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = RuleKey.$typeName;
+        this.$isPhantom = RuleKey.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(RuleKey.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.dummyField = fields.dummyField;
     }
-    static reified(T) { return { typeName: RuleKey.$typeName, fullTypeName: (0, util_1.composeSuiType)(RuleKey.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => RuleKey.fromFields(T, fields), fromFieldsWithTypes: (item) => RuleKey.fromFieldsWithTypes(T, item), fromBcs: (data) => RuleKey.fromBcs(T, data), bcs: RuleKey.bcs, fromJSONField: (field) => RuleKey.fromJSONField(T, field), fromJSON: (json) => RuleKey.fromJSON(T, json), fromSuiParsedData: (content) => RuleKey.fromSuiParsedData(T, content), fetch: async (client, id) => RuleKey.fetch(client, T, id), new: (fields) => { return new RuleKey([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: RuleKey.$typeName, fullTypeName: (0, util_1.composeSuiType)(RuleKey.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: RuleKey.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => RuleKey.fromFields(T, fields), fromFieldsWithTypes: (item) => RuleKey.fromFieldsWithTypes(T, item), fromBcs: (data) => RuleKey.fromBcs(T, data), bcs: RuleKey.bcs, fromJSONField: (field) => RuleKey.fromJSONField(T, field), fromJSON: (json) => RuleKey.fromJSON(T, json), fromSuiParsedData: (content) => RuleKey.fromSuiParsedData(T, content), fromSuiObjectData: (content) => RuleKey.fromSuiObjectData(T, content), fetch: async (client, id) => RuleKey.fetch(client, T, id), new: (fields) => { return new RuleKey([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return RuleKey.reified; }
     static phantom(T) { return (0, reified_1.phantom)(RuleKey.reified(T)); }
     static get p() { return RuleKey.phantom; }
@@ -64,6 +67,29 @@ class RuleKey {
     } if (!isRuleKey(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a RuleKey object`);
     } return RuleKey.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isRuleKey(data.bcs.type)) {
+                throw new Error(`object at is not a RuleKey object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return RuleKey.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return RuleKey.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -73,17 +99,20 @@ class RuleKey {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isRuleKey(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a RuleKey object`);
         }
-        return RuleKey.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return RuleKey.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.RuleKey = RuleKey;
-RuleKey.$typeName = "0x2::transfer_policy::RuleKey";
+RuleKey.$typeName = `${index_1.PKG_V28}::transfer_policy::RuleKey`;
 RuleKey.$numTypeParams = 1;
+RuleKey.$isPhantom = [true,];
 /* ============================== TransferPolicy =============================== */
-function isTransferPolicy(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicy<"); }
+function isTransferPolicy(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::TransferPolicy` + '<'); }
 class TransferPolicy {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TransferPolicy.$typeName;
+        this.$isPhantom = TransferPolicy.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TransferPolicy.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -92,7 +121,7 @@ class TransferPolicy {
         ;
         this.rules = fields.rules;
     }
-    static reified(T) { return { typeName: TransferPolicy.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicy.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicy.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicy.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicy.fromBcs(T, data), bcs: TransferPolicy.bcs, fromJSONField: (field) => TransferPolicy.fromJSONField(T, field), fromJSON: (json) => TransferPolicy.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicy.fromSuiParsedData(T, content), fetch: async (client, id) => TransferPolicy.fetch(client, T, id), new: (fields) => { return new TransferPolicy([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: TransferPolicy.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicy.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: TransferPolicy.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicy.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicy.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicy.fromBcs(T, data), bcs: TransferPolicy.bcs, fromJSONField: (field) => TransferPolicy.fromJSONField(T, field), fromJSON: (json) => TransferPolicy.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicy.fromSuiParsedData(T, content), fromSuiObjectData: (content) => TransferPolicy.fromSuiObjectData(T, content), fetch: async (client, id) => TransferPolicy.fetch(client, T, id), new: (fields) => { return new TransferPolicy([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return TransferPolicy.reified; }
     static phantom(T) { return (0, reified_1.phantom)(TransferPolicy.reified(T)); }
     static get p() { return TransferPolicy.phantom; }
@@ -131,6 +160,29 @@ class TransferPolicy {
     } if (!isTransferPolicy(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TransferPolicy object`);
     } return TransferPolicy.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTransferPolicy(data.bcs.type)) {
+                throw new Error(`object at is not a TransferPolicy object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return TransferPolicy.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TransferPolicy.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -140,24 +192,27 @@ class TransferPolicy {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTransferPolicy(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TransferPolicy object`);
         }
-        return TransferPolicy.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TransferPolicy.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.TransferPolicy = TransferPolicy;
-TransferPolicy.$typeName = "0x2::transfer_policy::TransferPolicy";
+TransferPolicy.$typeName = `${index_1.PKG_V28}::transfer_policy::TransferPolicy`;
 TransferPolicy.$numTypeParams = 1;
+TransferPolicy.$isPhantom = [true,];
 /* ============================== TransferPolicyCap =============================== */
-function isTransferPolicyCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyCap<"); }
+function isTransferPolicyCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::TransferPolicyCap` + '<'); }
 class TransferPolicyCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TransferPolicyCap.$typeName;
+        this.$isPhantom = TransferPolicyCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TransferPolicyCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.policyId = fields.policyId;
     }
-    static reified(T) { return { typeName: TransferPolicyCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyCap.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyCap.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyCap.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyCap.fromBcs(T, data), bcs: TransferPolicyCap.bcs, fromJSONField: (field) => TransferPolicyCap.fromJSONField(T, field), fromJSON: (json) => TransferPolicyCap.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyCap.fromSuiParsedData(T, content), fetch: async (client, id) => TransferPolicyCap.fetch(client, T, id), new: (fields) => { return new TransferPolicyCap([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: TransferPolicyCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyCap.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: TransferPolicyCap.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyCap.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyCap.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyCap.fromBcs(T, data), bcs: TransferPolicyCap.bcs, fromJSONField: (field) => TransferPolicyCap.fromJSONField(T, field), fromJSON: (json) => TransferPolicyCap.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyCap.fromSuiParsedData(T, content), fromSuiObjectData: (content) => TransferPolicyCap.fromSuiObjectData(T, content), fetch: async (client, id) => TransferPolicyCap.fetch(client, T, id), new: (fields) => { return new TransferPolicyCap([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return TransferPolicyCap.reified; }
     static phantom(T) { return (0, reified_1.phantom)(TransferPolicyCap.reified(T)); }
     static get p() { return TransferPolicyCap.phantom; }
@@ -196,6 +251,29 @@ class TransferPolicyCap {
     } if (!isTransferPolicyCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TransferPolicyCap object`);
     } return TransferPolicyCap.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTransferPolicyCap(data.bcs.type)) {
+                throw new Error(`object at is not a TransferPolicyCap object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return TransferPolicyCap.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TransferPolicyCap.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -205,22 +283,25 @@ class TransferPolicyCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTransferPolicyCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TransferPolicyCap object`);
         }
-        return TransferPolicyCap.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TransferPolicyCap.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.TransferPolicyCap = TransferPolicyCap;
-TransferPolicyCap.$typeName = "0x2::transfer_policy::TransferPolicyCap";
+TransferPolicyCap.$typeName = `${index_1.PKG_V28}::transfer_policy::TransferPolicyCap`;
 TransferPolicyCap.$numTypeParams = 1;
+TransferPolicyCap.$isPhantom = [true,];
 /* ============================== TransferPolicyCreated =============================== */
-function isTransferPolicyCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyCreated<"); }
+function isTransferPolicyCreated(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::TransferPolicyCreated` + '<'); }
 class TransferPolicyCreated {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TransferPolicyCreated.$typeName;
+        this.$isPhantom = TransferPolicyCreated.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TransferPolicyCreated.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified(T) { return { typeName: TransferPolicyCreated.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyCreated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyCreated.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyCreated.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyCreated.fromBcs(T, data), bcs: TransferPolicyCreated.bcs, fromJSONField: (field) => TransferPolicyCreated.fromJSONField(T, field), fromJSON: (json) => TransferPolicyCreated.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyCreated.fromSuiParsedData(T, content), fetch: async (client, id) => TransferPolicyCreated.fetch(client, T, id), new: (fields) => { return new TransferPolicyCreated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: TransferPolicyCreated.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyCreated.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: TransferPolicyCreated.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyCreated.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyCreated.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyCreated.fromBcs(T, data), bcs: TransferPolicyCreated.bcs, fromJSONField: (field) => TransferPolicyCreated.fromJSONField(T, field), fromJSON: (json) => TransferPolicyCreated.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyCreated.fromSuiParsedData(T, content), fromSuiObjectData: (content) => TransferPolicyCreated.fromSuiObjectData(T, content), fetch: async (client, id) => TransferPolicyCreated.fetch(client, T, id), new: (fields) => { return new TransferPolicyCreated([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return TransferPolicyCreated.reified; }
     static phantom(T) { return (0, reified_1.phantom)(TransferPolicyCreated.reified(T)); }
     static get p() { return TransferPolicyCreated.phantom; }
@@ -259,6 +340,29 @@ class TransferPolicyCreated {
     } if (!isTransferPolicyCreated(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TransferPolicyCreated object`);
     } return TransferPolicyCreated.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTransferPolicyCreated(data.bcs.type)) {
+                throw new Error(`object at is not a TransferPolicyCreated object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return TransferPolicyCreated.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TransferPolicyCreated.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -268,22 +372,25 @@ class TransferPolicyCreated {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTransferPolicyCreated(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TransferPolicyCreated object`);
         }
-        return TransferPolicyCreated.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TransferPolicyCreated.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.TransferPolicyCreated = TransferPolicyCreated;
-TransferPolicyCreated.$typeName = "0x2::transfer_policy::TransferPolicyCreated";
+TransferPolicyCreated.$typeName = `${index_1.PKG_V28}::transfer_policy::TransferPolicyCreated`;
 TransferPolicyCreated.$numTypeParams = 1;
+TransferPolicyCreated.$isPhantom = [true,];
 /* ============================== TransferPolicyDestroyed =============================== */
-function isTransferPolicyDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferPolicyDestroyed<"); }
+function isTransferPolicyDestroyed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::TransferPolicyDestroyed` + '<'); }
 class TransferPolicyDestroyed {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TransferPolicyDestroyed.$typeName;
+        this.$isPhantom = TransferPolicyDestroyed.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TransferPolicyDestroyed.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified(T) { return { typeName: TransferPolicyDestroyed.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyDestroyed.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyDestroyed.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyDestroyed.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyDestroyed.fromBcs(T, data), bcs: TransferPolicyDestroyed.bcs, fromJSONField: (field) => TransferPolicyDestroyed.fromJSONField(T, field), fromJSON: (json) => TransferPolicyDestroyed.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyDestroyed.fromSuiParsedData(T, content), fetch: async (client, id) => TransferPolicyDestroyed.fetch(client, T, id), new: (fields) => { return new TransferPolicyDestroyed([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: TransferPolicyDestroyed.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferPolicyDestroyed.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: TransferPolicyDestroyed.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => TransferPolicyDestroyed.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferPolicyDestroyed.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferPolicyDestroyed.fromBcs(T, data), bcs: TransferPolicyDestroyed.bcs, fromJSONField: (field) => TransferPolicyDestroyed.fromJSONField(T, field), fromJSON: (json) => TransferPolicyDestroyed.fromJSON(T, json), fromSuiParsedData: (content) => TransferPolicyDestroyed.fromSuiParsedData(T, content), fromSuiObjectData: (content) => TransferPolicyDestroyed.fromSuiObjectData(T, content), fetch: async (client, id) => TransferPolicyDestroyed.fetch(client, T, id), new: (fields) => { return new TransferPolicyDestroyed([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return TransferPolicyDestroyed.reified; }
     static phantom(T) { return (0, reified_1.phantom)(TransferPolicyDestroyed.reified(T)); }
     static get p() { return TransferPolicyDestroyed.phantom; }
@@ -322,6 +429,29 @@ class TransferPolicyDestroyed {
     } if (!isTransferPolicyDestroyed(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TransferPolicyDestroyed object`);
     } return TransferPolicyDestroyed.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTransferPolicyDestroyed(data.bcs.type)) {
+                throw new Error(`object at is not a TransferPolicyDestroyed object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return TransferPolicyDestroyed.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TransferPolicyDestroyed.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -331,17 +461,20 @@ class TransferPolicyDestroyed {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTransferPolicyDestroyed(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TransferPolicyDestroyed object`);
         }
-        return TransferPolicyDestroyed.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TransferPolicyDestroyed.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.TransferPolicyDestroyed = TransferPolicyDestroyed;
-TransferPolicyDestroyed.$typeName = "0x2::transfer_policy::TransferPolicyDestroyed";
+TransferPolicyDestroyed.$typeName = `${index_1.PKG_V28}::transfer_policy::TransferPolicyDestroyed`;
 TransferPolicyDestroyed.$numTypeParams = 1;
+TransferPolicyDestroyed.$isPhantom = [true,];
 /* ============================== TransferRequest =============================== */
-function isTransferRequest(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::transfer_policy::TransferRequest<"); }
+function isTransferRequest(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::transfer_policy::TransferRequest` + '<'); }
 class TransferRequest {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TransferRequest.$typeName;
+        this.$isPhantom = TransferRequest.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TransferRequest.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.item = fields.item;
@@ -352,7 +485,7 @@ class TransferRequest {
         ;
         this.receipts = fields.receipts;
     }
-    static reified(T) { return { typeName: TransferRequest.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferRequest.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => TransferRequest.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferRequest.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferRequest.fromBcs(T, data), bcs: TransferRequest.bcs, fromJSONField: (field) => TransferRequest.fromJSONField(T, field), fromJSON: (json) => TransferRequest.fromJSON(T, json), fromSuiParsedData: (content) => TransferRequest.fromSuiParsedData(T, content), fetch: async (client, id) => TransferRequest.fetch(client, T, id), new: (fields) => { return new TransferRequest([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: TransferRequest.$typeName, fullTypeName: (0, util_1.composeSuiType)(TransferRequest.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: TransferRequest.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => TransferRequest.fromFields(T, fields), fromFieldsWithTypes: (item) => TransferRequest.fromFieldsWithTypes(T, item), fromBcs: (data) => TransferRequest.fromBcs(T, data), bcs: TransferRequest.bcs, fromJSONField: (field) => TransferRequest.fromJSONField(T, field), fromJSON: (json) => TransferRequest.fromJSON(T, json), fromSuiParsedData: (content) => TransferRequest.fromSuiParsedData(T, content), fromSuiObjectData: (content) => TransferRequest.fromSuiObjectData(T, content), fetch: async (client, id) => TransferRequest.fetch(client, T, id), new: (fields) => { return new TransferRequest([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return TransferRequest.reified; }
     static phantom(T) { return (0, reified_1.phantom)(TransferRequest.reified(T)); }
     static get p() { return TransferRequest.phantom; }
@@ -391,6 +524,29 @@ class TransferRequest {
     } if (!isTransferRequest(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TransferRequest object`);
     } return TransferRequest.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTransferRequest(data.bcs.type)) {
+                throw new Error(`object at is not a TransferRequest object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return TransferRequest.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TransferRequest.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -400,9 +556,10 @@ class TransferRequest {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTransferRequest(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TransferRequest object`);
         }
-        return TransferRequest.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TransferRequest.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.TransferRequest = TransferRequest;
-TransferRequest.$typeName = "0x2::transfer_policy::TransferRequest";
+TransferRequest.$typeName = `${index_1.PKG_V28}::transfer_policy::TransferRequest`;
 TransferRequest.$numTypeParams = 1;
+TransferRequest.$isPhantom = [true,];

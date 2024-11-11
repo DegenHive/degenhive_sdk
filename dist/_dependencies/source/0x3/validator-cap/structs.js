@@ -6,19 +6,22 @@ exports.isValidatorOperationCap = isValidatorOperationCap;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/object/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== UnverifiedValidatorOperationCap =============================== */
-function isUnverifiedValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_cap::UnverifiedValidatorOperationCap"; }
+function isUnverifiedValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_cap::UnverifiedValidatorOperationCap`; }
 class UnverifiedValidatorOperationCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = UnverifiedValidatorOperationCap.$typeName;
+        this.$isPhantom = UnverifiedValidatorOperationCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(UnverifiedValidatorOperationCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.authorizerValidatorAddress = fields.authorizerValidatorAddress;
     }
-    static reified() { return { typeName: UnverifiedValidatorOperationCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(UnverifiedValidatorOperationCap.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => UnverifiedValidatorOperationCap.fromFields(fields), fromFieldsWithTypes: (item) => UnverifiedValidatorOperationCap.fromFieldsWithTypes(item), fromBcs: (data) => UnverifiedValidatorOperationCap.fromBcs(data), bcs: UnverifiedValidatorOperationCap.bcs, fromJSONField: (field) => UnverifiedValidatorOperationCap.fromJSONField(field), fromJSON: (json) => UnverifiedValidatorOperationCap.fromJSON(json), fromSuiParsedData: (content) => UnverifiedValidatorOperationCap.fromSuiParsedData(content), fetch: async (client, id) => UnverifiedValidatorOperationCap.fetch(client, id), new: (fields) => { return new UnverifiedValidatorOperationCap([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: UnverifiedValidatorOperationCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(UnverifiedValidatorOperationCap.$typeName, ...[]), typeArgs: [], isPhantom: UnverifiedValidatorOperationCap.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => UnverifiedValidatorOperationCap.fromFields(fields), fromFieldsWithTypes: (item) => UnverifiedValidatorOperationCap.fromFieldsWithTypes(item), fromBcs: (data) => UnverifiedValidatorOperationCap.fromBcs(data), bcs: UnverifiedValidatorOperationCap.bcs, fromJSONField: (field) => UnverifiedValidatorOperationCap.fromJSONField(field), fromJSON: (json) => UnverifiedValidatorOperationCap.fromJSON(json), fromSuiParsedData: (content) => UnverifiedValidatorOperationCap.fromSuiParsedData(content), fromSuiObjectData: (content) => UnverifiedValidatorOperationCap.fromSuiObjectData(content), fetch: async (client, id) => UnverifiedValidatorOperationCap.fetch(client, id), new: (fields) => { return new UnverifiedValidatorOperationCap([], fields); }, kind: "StructClassReified", }; }
     static get r() { return UnverifiedValidatorOperationCap.reified(); }
     static phantom() { return (0, reified_1.phantom)(UnverifiedValidatorOperationCap.reified()); }
     static get p() { return UnverifiedValidatorOperationCap.phantom(); }
@@ -55,6 +58,18 @@ class UnverifiedValidatorOperationCap {
     } if (!isUnverifiedValidatorOperationCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a UnverifiedValidatorOperationCap object`);
     } return UnverifiedValidatorOperationCap.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUnverifiedValidatorOperationCap(data.bcs.type)) {
+                throw new Error(`object at is not a UnverifiedValidatorOperationCap object`);
+            }
+            return UnverifiedValidatorOperationCap.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return UnverifiedValidatorOperationCap.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -64,22 +79,25 @@ class UnverifiedValidatorOperationCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUnverifiedValidatorOperationCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a UnverifiedValidatorOperationCap object`);
         }
-        return UnverifiedValidatorOperationCap.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return UnverifiedValidatorOperationCap.fromSuiObjectData(res.data);
     }
 }
 exports.UnverifiedValidatorOperationCap = UnverifiedValidatorOperationCap;
-UnverifiedValidatorOperationCap.$typeName = "0x3::validator_cap::UnverifiedValidatorOperationCap";
+UnverifiedValidatorOperationCap.$typeName = `${index_1.PKG_V17}::validator_cap::UnverifiedValidatorOperationCap`;
 UnverifiedValidatorOperationCap.$numTypeParams = 0;
+UnverifiedValidatorOperationCap.$isPhantom = [];
 /* ============================== ValidatorOperationCap =============================== */
-function isValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_cap::ValidatorOperationCap"; }
+function isValidatorOperationCap(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_cap::ValidatorOperationCap`; }
 class ValidatorOperationCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorOperationCap.$typeName;
+        this.$isPhantom = ValidatorOperationCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorOperationCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.authorizerValidatorAddress = fields.authorizerValidatorAddress;
     }
-    static reified() { return { typeName: ValidatorOperationCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorOperationCap.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorOperationCap.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorOperationCap.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorOperationCap.fromBcs(data), bcs: ValidatorOperationCap.bcs, fromJSONField: (field) => ValidatorOperationCap.fromJSONField(field), fromJSON: (json) => ValidatorOperationCap.fromJSON(json), fromSuiParsedData: (content) => ValidatorOperationCap.fromSuiParsedData(content), fetch: async (client, id) => ValidatorOperationCap.fetch(client, id), new: (fields) => { return new ValidatorOperationCap([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorOperationCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorOperationCap.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorOperationCap.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorOperationCap.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorOperationCap.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorOperationCap.fromBcs(data), bcs: ValidatorOperationCap.bcs, fromJSONField: (field) => ValidatorOperationCap.fromJSONField(field), fromJSON: (json) => ValidatorOperationCap.fromJSON(json), fromSuiParsedData: (content) => ValidatorOperationCap.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorOperationCap.fromSuiObjectData(content), fetch: async (client, id) => ValidatorOperationCap.fetch(client, id), new: (fields) => { return new ValidatorOperationCap([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorOperationCap.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorOperationCap.reified()); }
     static get p() { return ValidatorOperationCap.phantom(); }
@@ -116,6 +134,18 @@ class ValidatorOperationCap {
     } if (!isValidatorOperationCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorOperationCap object`);
     } return ValidatorOperationCap.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorOperationCap(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorOperationCap object`);
+            }
+            return ValidatorOperationCap.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorOperationCap.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -125,9 +155,10 @@ class ValidatorOperationCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorOperationCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorOperationCap object`);
         }
-        return ValidatorOperationCap.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorOperationCap.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorOperationCap = ValidatorOperationCap;
-ValidatorOperationCap.$typeName = "0x3::validator_cap::ValidatorOperationCap";
+ValidatorOperationCap.$typeName = `${index_1.PKG_V17}::validator_cap::ValidatorOperationCap`;
 ValidatorOperationCap.$numTypeParams = 0;
+ValidatorOperationCap.$isPhantom = [];

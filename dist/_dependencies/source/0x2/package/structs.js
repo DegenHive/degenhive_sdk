@@ -9,13 +9,16 @@ const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/ascii/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Publisher =============================== */
-function isPublisher(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::Publisher"; }
+function isPublisher(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::package::Publisher`; }
 class Publisher {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Publisher.$typeName;
+        this.$isPhantom = Publisher.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Publisher.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -24,7 +27,7 @@ class Publisher {
         ;
         this.moduleName = fields.moduleName;
     }
-    static reified() { return { typeName: Publisher.$typeName, fullTypeName: (0, util_1.composeSuiType)(Publisher.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Publisher.fromFields(fields), fromFieldsWithTypes: (item) => Publisher.fromFieldsWithTypes(item), fromBcs: (data) => Publisher.fromBcs(data), bcs: Publisher.bcs, fromJSONField: (field) => Publisher.fromJSONField(field), fromJSON: (json) => Publisher.fromJSON(json), fromSuiParsedData: (content) => Publisher.fromSuiParsedData(content), fetch: async (client, id) => Publisher.fetch(client, id), new: (fields) => { return new Publisher([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Publisher.$typeName, fullTypeName: (0, util_1.composeSuiType)(Publisher.$typeName, ...[]), typeArgs: [], isPhantom: Publisher.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Publisher.fromFields(fields), fromFieldsWithTypes: (item) => Publisher.fromFieldsWithTypes(item), fromBcs: (data) => Publisher.fromBcs(data), bcs: Publisher.bcs, fromJSONField: (field) => Publisher.fromJSONField(field), fromJSON: (json) => Publisher.fromJSON(json), fromSuiParsedData: (content) => Publisher.fromSuiParsedData(content), fromSuiObjectData: (content) => Publisher.fromSuiObjectData(content), fetch: async (client, id) => Publisher.fetch(client, id), new: (fields) => { return new Publisher([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Publisher.reified(); }
     static phantom() { return (0, reified_1.phantom)(Publisher.reified()); }
     static get p() { return Publisher.phantom(); }
@@ -61,6 +64,18 @@ class Publisher {
     } if (!isPublisher(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Publisher object`);
     } return Publisher.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isPublisher(data.bcs.type)) {
+                throw new Error(`object at is not a Publisher object`);
+            }
+            return Publisher.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Publisher.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -70,17 +85,20 @@ class Publisher {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isPublisher(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Publisher object`);
         }
-        return Publisher.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Publisher.fromSuiObjectData(res.data);
     }
 }
 exports.Publisher = Publisher;
-Publisher.$typeName = "0x2::package::Publisher";
+Publisher.$typeName = `${index_1.PKG_V28}::package::Publisher`;
 Publisher.$numTypeParams = 0;
+Publisher.$isPhantom = [];
 /* ============================== UpgradeCap =============================== */
-function isUpgradeCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeCap"; }
+function isUpgradeCap(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::package::UpgradeCap`; }
 class UpgradeCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = UpgradeCap.$typeName;
+        this.$isPhantom = UpgradeCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(UpgradeCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -91,7 +109,7 @@ class UpgradeCap {
         ;
         this.policy = fields.policy;
     }
-    static reified() { return { typeName: UpgradeCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeCap.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => UpgradeCap.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeCap.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeCap.fromBcs(data), bcs: UpgradeCap.bcs, fromJSONField: (field) => UpgradeCap.fromJSONField(field), fromJSON: (json) => UpgradeCap.fromJSON(json), fromSuiParsedData: (content) => UpgradeCap.fromSuiParsedData(content), fetch: async (client, id) => UpgradeCap.fetch(client, id), new: (fields) => { return new UpgradeCap([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: UpgradeCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeCap.$typeName, ...[]), typeArgs: [], isPhantom: UpgradeCap.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => UpgradeCap.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeCap.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeCap.fromBcs(data), bcs: UpgradeCap.bcs, fromJSONField: (field) => UpgradeCap.fromJSONField(field), fromJSON: (json) => UpgradeCap.fromJSON(json), fromSuiParsedData: (content) => UpgradeCap.fromSuiParsedData(content), fromSuiObjectData: (content) => UpgradeCap.fromSuiObjectData(content), fetch: async (client, id) => UpgradeCap.fetch(client, id), new: (fields) => { return new UpgradeCap([], fields); }, kind: "StructClassReified", }; }
     static get r() { return UpgradeCap.reified(); }
     static phantom() { return (0, reified_1.phantom)(UpgradeCap.reified()); }
     static get p() { return UpgradeCap.phantom(); }
@@ -128,6 +146,18 @@ class UpgradeCap {
     } if (!isUpgradeCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a UpgradeCap object`);
     } return UpgradeCap.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUpgradeCap(data.bcs.type)) {
+                throw new Error(`object at is not a UpgradeCap object`);
+            }
+            return UpgradeCap.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return UpgradeCap.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -137,24 +167,27 @@ class UpgradeCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUpgradeCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a UpgradeCap object`);
         }
-        return UpgradeCap.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return UpgradeCap.fromSuiObjectData(res.data);
     }
 }
 exports.UpgradeCap = UpgradeCap;
-UpgradeCap.$typeName = "0x2::package::UpgradeCap";
+UpgradeCap.$typeName = `${index_1.PKG_V28}::package::UpgradeCap`;
 UpgradeCap.$numTypeParams = 0;
+UpgradeCap.$isPhantom = [];
 /* ============================== UpgradeReceipt =============================== */
-function isUpgradeReceipt(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeReceipt"; }
+function isUpgradeReceipt(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::package::UpgradeReceipt`; }
 class UpgradeReceipt {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = UpgradeReceipt.$typeName;
+        this.$isPhantom = UpgradeReceipt.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(UpgradeReceipt.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.cap = fields.cap;
         ;
         this.package = fields.package;
     }
-    static reified() { return { typeName: UpgradeReceipt.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeReceipt.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => UpgradeReceipt.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeReceipt.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeReceipt.fromBcs(data), bcs: UpgradeReceipt.bcs, fromJSONField: (field) => UpgradeReceipt.fromJSONField(field), fromJSON: (json) => UpgradeReceipt.fromJSON(json), fromSuiParsedData: (content) => UpgradeReceipt.fromSuiParsedData(content), fetch: async (client, id) => UpgradeReceipt.fetch(client, id), new: (fields) => { return new UpgradeReceipt([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: UpgradeReceipt.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeReceipt.$typeName, ...[]), typeArgs: [], isPhantom: UpgradeReceipt.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => UpgradeReceipt.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeReceipt.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeReceipt.fromBcs(data), bcs: UpgradeReceipt.bcs, fromJSONField: (field) => UpgradeReceipt.fromJSONField(field), fromJSON: (json) => UpgradeReceipt.fromJSON(json), fromSuiParsedData: (content) => UpgradeReceipt.fromSuiParsedData(content), fromSuiObjectData: (content) => UpgradeReceipt.fromSuiObjectData(content), fetch: async (client, id) => UpgradeReceipt.fetch(client, id), new: (fields) => { return new UpgradeReceipt([], fields); }, kind: "StructClassReified", }; }
     static get r() { return UpgradeReceipt.reified(); }
     static phantom() { return (0, reified_1.phantom)(UpgradeReceipt.reified()); }
     static get p() { return UpgradeReceipt.phantom(); }
@@ -191,6 +224,18 @@ class UpgradeReceipt {
     } if (!isUpgradeReceipt(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a UpgradeReceipt object`);
     } return UpgradeReceipt.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUpgradeReceipt(data.bcs.type)) {
+                throw new Error(`object at is not a UpgradeReceipt object`);
+            }
+            return UpgradeReceipt.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return UpgradeReceipt.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -200,17 +245,20 @@ class UpgradeReceipt {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUpgradeReceipt(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a UpgradeReceipt object`);
         }
-        return UpgradeReceipt.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return UpgradeReceipt.fromSuiObjectData(res.data);
     }
 }
 exports.UpgradeReceipt = UpgradeReceipt;
-UpgradeReceipt.$typeName = "0x2::package::UpgradeReceipt";
+UpgradeReceipt.$typeName = `${index_1.PKG_V28}::package::UpgradeReceipt`;
 UpgradeReceipt.$numTypeParams = 0;
+UpgradeReceipt.$isPhantom = [];
 /* ============================== UpgradeTicket =============================== */
-function isUpgradeTicket(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::package::UpgradeTicket"; }
+function isUpgradeTicket(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::package::UpgradeTicket`; }
 class UpgradeTicket {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = UpgradeTicket.$typeName;
+        this.$isPhantom = UpgradeTicket.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(UpgradeTicket.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.cap = fields.cap;
@@ -221,7 +269,7 @@ class UpgradeTicket {
         ;
         this.digest = fields.digest;
     }
-    static reified() { return { typeName: UpgradeTicket.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeTicket.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => UpgradeTicket.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeTicket.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeTicket.fromBcs(data), bcs: UpgradeTicket.bcs, fromJSONField: (field) => UpgradeTicket.fromJSONField(field), fromJSON: (json) => UpgradeTicket.fromJSON(json), fromSuiParsedData: (content) => UpgradeTicket.fromSuiParsedData(content), fetch: async (client, id) => UpgradeTicket.fetch(client, id), new: (fields) => { return new UpgradeTicket([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: UpgradeTicket.$typeName, fullTypeName: (0, util_1.composeSuiType)(UpgradeTicket.$typeName, ...[]), typeArgs: [], isPhantom: UpgradeTicket.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => UpgradeTicket.fromFields(fields), fromFieldsWithTypes: (item) => UpgradeTicket.fromFieldsWithTypes(item), fromBcs: (data) => UpgradeTicket.fromBcs(data), bcs: UpgradeTicket.bcs, fromJSONField: (field) => UpgradeTicket.fromJSONField(field), fromJSON: (json) => UpgradeTicket.fromJSON(json), fromSuiParsedData: (content) => UpgradeTicket.fromSuiParsedData(content), fromSuiObjectData: (content) => UpgradeTicket.fromSuiObjectData(content), fetch: async (client, id) => UpgradeTicket.fetch(client, id), new: (fields) => { return new UpgradeTicket([], fields); }, kind: "StructClassReified", }; }
     static get r() { return UpgradeTicket.reified(); }
     static phantom() { return (0, reified_1.phantom)(UpgradeTicket.reified()); }
     static get p() { return UpgradeTicket.phantom(); }
@@ -258,6 +306,18 @@ class UpgradeTicket {
     } if (!isUpgradeTicket(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a UpgradeTicket object`);
     } return UpgradeTicket.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUpgradeTicket(data.bcs.type)) {
+                throw new Error(`object at is not a UpgradeTicket object`);
+            }
+            return UpgradeTicket.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return UpgradeTicket.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -267,9 +327,10 @@ class UpgradeTicket {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUpgradeTicket(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a UpgradeTicket object`);
         }
-        return UpgradeTicket.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return UpgradeTicket.fromSuiObjectData(res.data);
     }
 }
 exports.UpgradeTicket = UpgradeTicket;
-UpgradeTicket.$typeName = "0x2::package::UpgradeTicket";
+UpgradeTicket.$typeName = `${index_1.PKG_V28}::package::UpgradeTicket`;
 UpgradeTicket.$numTypeParams = 0;
+UpgradeTicket.$isPhantom = [];

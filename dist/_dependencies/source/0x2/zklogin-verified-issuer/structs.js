@@ -5,13 +5,16 @@ exports.isVerifiedIssuer = isVerifiedIssuer;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== VerifiedIssuer =============================== */
-function isVerifiedIssuer(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::zklogin_verified_issuer::VerifiedIssuer"; }
+function isVerifiedIssuer(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::zklogin_verified_issuer::VerifiedIssuer`; }
 class VerifiedIssuer {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = VerifiedIssuer.$typeName;
+        this.$isPhantom = VerifiedIssuer.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(VerifiedIssuer.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -20,7 +23,7 @@ class VerifiedIssuer {
         ;
         this.issuer = fields.issuer;
     }
-    static reified() { return { typeName: VerifiedIssuer.$typeName, fullTypeName: (0, util_1.composeSuiType)(VerifiedIssuer.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => VerifiedIssuer.fromFields(fields), fromFieldsWithTypes: (item) => VerifiedIssuer.fromFieldsWithTypes(item), fromBcs: (data) => VerifiedIssuer.fromBcs(data), bcs: VerifiedIssuer.bcs, fromJSONField: (field) => VerifiedIssuer.fromJSONField(field), fromJSON: (json) => VerifiedIssuer.fromJSON(json), fromSuiParsedData: (content) => VerifiedIssuer.fromSuiParsedData(content), fetch: async (client, id) => VerifiedIssuer.fetch(client, id), new: (fields) => { return new VerifiedIssuer([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: VerifiedIssuer.$typeName, fullTypeName: (0, util_1.composeSuiType)(VerifiedIssuer.$typeName, ...[]), typeArgs: [], isPhantom: VerifiedIssuer.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => VerifiedIssuer.fromFields(fields), fromFieldsWithTypes: (item) => VerifiedIssuer.fromFieldsWithTypes(item), fromBcs: (data) => VerifiedIssuer.fromBcs(data), bcs: VerifiedIssuer.bcs, fromJSONField: (field) => VerifiedIssuer.fromJSONField(field), fromJSON: (json) => VerifiedIssuer.fromJSON(json), fromSuiParsedData: (content) => VerifiedIssuer.fromSuiParsedData(content), fromSuiObjectData: (content) => VerifiedIssuer.fromSuiObjectData(content), fetch: async (client, id) => VerifiedIssuer.fetch(client, id), new: (fields) => { return new VerifiedIssuer([], fields); }, kind: "StructClassReified", }; }
     static get r() { return VerifiedIssuer.reified(); }
     static phantom() { return (0, reified_1.phantom)(VerifiedIssuer.reified()); }
     static get p() { return VerifiedIssuer.phantom(); }
@@ -57,6 +60,18 @@ class VerifiedIssuer {
     } if (!isVerifiedIssuer(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a VerifiedIssuer object`);
     } return VerifiedIssuer.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isVerifiedIssuer(data.bcs.type)) {
+                throw new Error(`object at is not a VerifiedIssuer object`);
+            }
+            return VerifiedIssuer.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return VerifiedIssuer.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -66,9 +81,10 @@ class VerifiedIssuer {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isVerifiedIssuer(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a VerifiedIssuer object`);
         }
-        return VerifiedIssuer.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return VerifiedIssuer.fromSuiObjectData(res.data);
     }
 }
 exports.VerifiedIssuer = VerifiedIssuer;
-VerifiedIssuer.$typeName = "0x2::zklogin_verified_issuer::VerifiedIssuer";
+VerifiedIssuer.$typeName = `${index_1.PKG_V28}::zklogin_verified_issuer::VerifiedIssuer`;
 VerifiedIssuer.$numTypeParams = 0;
+VerifiedIssuer.$isPhantom = [];

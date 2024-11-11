@@ -6,12 +6,15 @@ exports.isExtensionKey = isExtensionKey;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../bag/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Extension =============================== */
-function isExtension(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk_extension::Extension"; }
+function isExtension(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk_extension::Extension`; }
 class Extension {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Extension.$typeName;
+        this.$isPhantom = Extension.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Extension.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.storage = fields.storage;
@@ -20,7 +23,7 @@ class Extension {
         ;
         this.isEnabled = fields.isEnabled;
     }
-    static reified() { return { typeName: Extension.$typeName, fullTypeName: (0, util_1.composeSuiType)(Extension.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Extension.fromFields(fields), fromFieldsWithTypes: (item) => Extension.fromFieldsWithTypes(item), fromBcs: (data) => Extension.fromBcs(data), bcs: Extension.bcs, fromJSONField: (field) => Extension.fromJSONField(field), fromJSON: (json) => Extension.fromJSON(json), fromSuiParsedData: (content) => Extension.fromSuiParsedData(content), fetch: async (client, id) => Extension.fetch(client, id), new: (fields) => { return new Extension([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Extension.$typeName, fullTypeName: (0, util_1.composeSuiType)(Extension.$typeName, ...[]), typeArgs: [], isPhantom: Extension.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Extension.fromFields(fields), fromFieldsWithTypes: (item) => Extension.fromFieldsWithTypes(item), fromBcs: (data) => Extension.fromBcs(data), bcs: Extension.bcs, fromJSONField: (field) => Extension.fromJSONField(field), fromJSON: (json) => Extension.fromJSON(json), fromSuiParsedData: (content) => Extension.fromSuiParsedData(content), fromSuiObjectData: (content) => Extension.fromSuiObjectData(content), fetch: async (client, id) => Extension.fetch(client, id), new: (fields) => { return new Extension([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Extension.reified(); }
     static phantom() { return (0, reified_1.phantom)(Extension.reified()); }
     static get p() { return Extension.phantom(); }
@@ -57,6 +60,18 @@ class Extension {
     } if (!isExtension(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Extension object`);
     } return Extension.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isExtension(data.bcs.type)) {
+                throw new Error(`object at is not a Extension object`);
+            }
+            return Extension.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Extension.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -66,22 +81,25 @@ class Extension {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isExtension(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Extension object`);
         }
-        return Extension.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Extension.fromSuiObjectData(res.data);
     }
 }
 exports.Extension = Extension;
-Extension.$typeName = "0x2::kiosk_extension::Extension";
+Extension.$typeName = `${index_1.PKG_V28}::kiosk_extension::Extension`;
 Extension.$numTypeParams = 0;
+Extension.$isPhantom = [];
 /* ============================== ExtensionKey =============================== */
-function isExtensionKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk_extension::ExtensionKey<"); }
+function isExtensionKey(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::kiosk_extension::ExtensionKey` + '<'); }
 class ExtensionKey {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ExtensionKey.$typeName;
+        this.$isPhantom = ExtensionKey.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ExtensionKey.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.dummyField = fields.dummyField;
     }
-    static reified(Ext) { return { typeName: ExtensionKey.$typeName, fullTypeName: (0, util_1.composeSuiType)(ExtensionKey.$typeName, ...[(0, reified_1.extractType)(Ext)]), typeArgs: [(0, reified_1.extractType)(Ext)], reifiedTypeArgs: [Ext], fromFields: (fields) => ExtensionKey.fromFields(Ext, fields), fromFieldsWithTypes: (item) => ExtensionKey.fromFieldsWithTypes(Ext, item), fromBcs: (data) => ExtensionKey.fromBcs(Ext, data), bcs: ExtensionKey.bcs, fromJSONField: (field) => ExtensionKey.fromJSONField(Ext, field), fromJSON: (json) => ExtensionKey.fromJSON(Ext, json), fromSuiParsedData: (content) => ExtensionKey.fromSuiParsedData(Ext, content), fetch: async (client, id) => ExtensionKey.fetch(client, Ext, id), new: (fields) => { return new ExtensionKey([(0, reified_1.extractType)(Ext)], fields); }, kind: "StructClassReified", }; }
+    static reified(Ext) { return { typeName: ExtensionKey.$typeName, fullTypeName: (0, util_1.composeSuiType)(ExtensionKey.$typeName, ...[(0, reified_1.extractType)(Ext)]), typeArgs: [(0, reified_1.extractType)(Ext)], isPhantom: ExtensionKey.$isPhantom, reifiedTypeArgs: [Ext], fromFields: (fields) => ExtensionKey.fromFields(Ext, fields), fromFieldsWithTypes: (item) => ExtensionKey.fromFieldsWithTypes(Ext, item), fromBcs: (data) => ExtensionKey.fromBcs(Ext, data), bcs: ExtensionKey.bcs, fromJSONField: (field) => ExtensionKey.fromJSONField(Ext, field), fromJSON: (json) => ExtensionKey.fromJSON(Ext, json), fromSuiParsedData: (content) => ExtensionKey.fromSuiParsedData(Ext, content), fromSuiObjectData: (content) => ExtensionKey.fromSuiObjectData(Ext, content), fetch: async (client, id) => ExtensionKey.fetch(client, Ext, id), new: (fields) => { return new ExtensionKey([(0, reified_1.extractType)(Ext)], fields); }, kind: "StructClassReified", }; }
     static get r() { return ExtensionKey.reified; }
     static phantom(Ext) { return (0, reified_1.phantom)(ExtensionKey.reified(Ext)); }
     static get p() { return ExtensionKey.phantom; }
@@ -120,6 +138,29 @@ class ExtensionKey {
     } if (!isExtensionKey(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ExtensionKey object`);
     } return ExtensionKey.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isExtensionKey(data.bcs.type)) {
+                throw new Error(`object at is not a ExtensionKey object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return ExtensionKey.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ExtensionKey.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -129,9 +170,10 @@ class ExtensionKey {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isExtensionKey(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ExtensionKey object`);
         }
-        return ExtensionKey.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ExtensionKey.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.ExtensionKey = ExtensionKey;
-ExtensionKey.$typeName = "0x2::kiosk_extension::ExtensionKey";
+ExtensionKey.$typeName = `${index_1.PKG_V28}::kiosk_extension::ExtensionKey`;
 ExtensionKey.$numTypeParams = 1;
+ExtensionKey.$isPhantom = [true,];

@@ -5,12 +5,15 @@ exports.isTxContext = isTxContext;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== TxContext =============================== */
-function isTxContext(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::tx_context::TxContext"; }
+function isTxContext(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::tx_context::TxContext`; }
 class TxContext {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TxContext.$typeName;
+        this.$isPhantom = TxContext.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TxContext.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.sender = fields.sender;
@@ -23,7 +26,7 @@ class TxContext {
         ;
         this.idsCreated = fields.idsCreated;
     }
-    static reified() { return { typeName: TxContext.$typeName, fullTypeName: (0, util_1.composeSuiType)(TxContext.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => TxContext.fromFields(fields), fromFieldsWithTypes: (item) => TxContext.fromFieldsWithTypes(item), fromBcs: (data) => TxContext.fromBcs(data), bcs: TxContext.bcs, fromJSONField: (field) => TxContext.fromJSONField(field), fromJSON: (json) => TxContext.fromJSON(json), fromSuiParsedData: (content) => TxContext.fromSuiParsedData(content), fetch: async (client, id) => TxContext.fetch(client, id), new: (fields) => { return new TxContext([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: TxContext.$typeName, fullTypeName: (0, util_1.composeSuiType)(TxContext.$typeName, ...[]), typeArgs: [], isPhantom: TxContext.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => TxContext.fromFields(fields), fromFieldsWithTypes: (item) => TxContext.fromFieldsWithTypes(item), fromBcs: (data) => TxContext.fromBcs(data), bcs: TxContext.bcs, fromJSONField: (field) => TxContext.fromJSONField(field), fromJSON: (json) => TxContext.fromJSON(json), fromSuiParsedData: (content) => TxContext.fromSuiParsedData(content), fromSuiObjectData: (content) => TxContext.fromSuiObjectData(content), fetch: async (client, id) => TxContext.fetch(client, id), new: (fields) => { return new TxContext([], fields); }, kind: "StructClassReified", }; }
     static get r() { return TxContext.reified(); }
     static phantom() { return (0, reified_1.phantom)(TxContext.reified()); }
     static get p() { return TxContext.phantom(); }
@@ -60,6 +63,18 @@ class TxContext {
     } if (!isTxContext(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TxContext object`);
     } return TxContext.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTxContext(data.bcs.type)) {
+                throw new Error(`object at is not a TxContext object`);
+            }
+            return TxContext.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TxContext.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -69,9 +84,10 @@ class TxContext {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTxContext(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TxContext object`);
         }
-        return TxContext.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TxContext.fromSuiObjectData(res.data);
     }
 }
 exports.TxContext = TxContext;
-TxContext.$typeName = "0x2::tx_context::TxContext";
+TxContext.$typeName = `${index_1.PKG_V28}::tx_context::TxContext`;
 TxContext.$numTypeParams = 0;
+TxContext.$isPhantom = [];

@@ -5,19 +5,22 @@ exports.isBitVector = isBitVector;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== BitVector =============================== */
-function isBitVector(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::bit_vector::BitVector"; }
+function isBitVector(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V11}::bit_vector::BitVector`; }
 class BitVector {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = BitVector.$typeName;
+        this.$isPhantom = BitVector.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(BitVector.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.length = fields.length;
         ;
         this.bitField = fields.bitField;
     }
-    static reified() { return { typeName: BitVector.$typeName, fullTypeName: (0, util_1.composeSuiType)(BitVector.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => BitVector.fromFields(fields), fromFieldsWithTypes: (item) => BitVector.fromFieldsWithTypes(item), fromBcs: (data) => BitVector.fromBcs(data), bcs: BitVector.bcs, fromJSONField: (field) => BitVector.fromJSONField(field), fromJSON: (json) => BitVector.fromJSON(json), fromSuiParsedData: (content) => BitVector.fromSuiParsedData(content), fetch: async (client, id) => BitVector.fetch(client, id), new: (fields) => { return new BitVector([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: BitVector.$typeName, fullTypeName: (0, util_1.composeSuiType)(BitVector.$typeName, ...[]), typeArgs: [], isPhantom: BitVector.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => BitVector.fromFields(fields), fromFieldsWithTypes: (item) => BitVector.fromFieldsWithTypes(item), fromBcs: (data) => BitVector.fromBcs(data), bcs: BitVector.bcs, fromJSONField: (field) => BitVector.fromJSONField(field), fromJSON: (json) => BitVector.fromJSON(json), fromSuiParsedData: (content) => BitVector.fromSuiParsedData(content), fromSuiObjectData: (content) => BitVector.fromSuiObjectData(content), fetch: async (client, id) => BitVector.fetch(client, id), new: (fields) => { return new BitVector([], fields); }, kind: "StructClassReified", }; }
     static get r() { return BitVector.reified(); }
     static phantom() { return (0, reified_1.phantom)(BitVector.reified()); }
     static get p() { return BitVector.phantom(); }
@@ -54,6 +57,18 @@ class BitVector {
     } if (!isBitVector(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a BitVector object`);
     } return BitVector.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isBitVector(data.bcs.type)) {
+                throw new Error(`object at is not a BitVector object`);
+            }
+            return BitVector.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return BitVector.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -63,9 +78,10 @@ class BitVector {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isBitVector(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a BitVector object`);
         }
-        return BitVector.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return BitVector.fromSuiObjectData(res.data);
     }
 }
 exports.BitVector = BitVector;
-BitVector.$typeName = "0x1::bit_vector::BitVector";
+BitVector.$typeName = `${index_1.PKG_V11}::bit_vector::BitVector`;
 BitVector.$numTypeParams = 0;
+BitVector.$isPhantom = [];

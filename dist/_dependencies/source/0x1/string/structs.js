@@ -5,17 +5,20 @@ exports.isString = isString;
 const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== String =============================== */
-function isString(type) { type = (0, util_1.compressSuiType)(type); return type === "0x1::string::String"; }
+function isString(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V11}::string::String`; }
 class String {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = String.$typeName;
+        this.$isPhantom = String.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(String.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.bytes = fields.bytes;
     }
-    static reified() { return { typeName: String.$typeName, fullTypeName: (0, util_1.composeSuiType)(String.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => String.fromFields(fields), fromFieldsWithTypes: (item) => String.fromFieldsWithTypes(item), fromBcs: (data) => String.fromBcs(data), bcs: String.bcs, fromJSONField: (field) => String.fromJSONField(field), fromJSON: (json) => String.fromJSON(json), fromSuiParsedData: (content) => String.fromSuiParsedData(content), fetch: async (client, id) => String.fetch(client, id), new: (fields) => { return new String([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: String.$typeName, fullTypeName: (0, util_1.composeSuiType)(String.$typeName, ...[]), typeArgs: [], isPhantom: String.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => String.fromFields(fields), fromFieldsWithTypes: (item) => String.fromFieldsWithTypes(item), fromBcs: (data) => String.fromBcs(data), bcs: String.bcs, fromJSONField: (field) => String.fromJSONField(field), fromJSON: (json) => String.fromJSON(json), fromSuiParsedData: (content) => String.fromSuiParsedData(content), fromSuiObjectData: (content) => String.fromSuiObjectData(content), fetch: async (client, id) => String.fetch(client, id), new: (fields) => { return new String([], fields); }, kind: "StructClassReified", }; }
     static get r() { return String.reified(); }
     static phantom() { return (0, reified_1.phantom)(String.reified()); }
     static get p() { return String.phantom(); }
@@ -52,6 +55,18 @@ class String {
     } if (!isString(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a String object`);
     } return String.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isString(data.bcs.type)) {
+                throw new Error(`object at is not a String object`);
+            }
+            return String.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return String.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -61,9 +76,10 @@ class String {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isString(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a String object`);
         }
-        return String.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return String.fromSuiObjectData(res.data);
     }
 }
 exports.String = String;
-String.$typeName = "0x1::string::String";
+String.$typeName = `${index_1.PKG_V11}::string::String`;
 String.$numTypeParams = 0;
+String.$isPhantom = [];

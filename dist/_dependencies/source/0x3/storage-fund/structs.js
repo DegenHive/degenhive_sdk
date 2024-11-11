@@ -7,19 +7,22 @@ const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/balance/structs");
 const structs_2 = require("../../0x2/sui/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== StorageFund =============================== */
-function isStorageFund(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::storage_fund::StorageFund"; }
+function isStorageFund(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::storage_fund::StorageFund`; }
 class StorageFund {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = StorageFund.$typeName;
+        this.$isPhantom = StorageFund.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(StorageFund.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.totalObjectStorageRebates = fields.totalObjectStorageRebates;
         ;
         this.nonRefundableBalance = fields.nonRefundableBalance;
     }
-    static reified() { return { typeName: StorageFund.$typeName, fullTypeName: (0, util_1.composeSuiType)(StorageFund.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => StorageFund.fromFields(fields), fromFieldsWithTypes: (item) => StorageFund.fromFieldsWithTypes(item), fromBcs: (data) => StorageFund.fromBcs(data), bcs: StorageFund.bcs, fromJSONField: (field) => StorageFund.fromJSONField(field), fromJSON: (json) => StorageFund.fromJSON(json), fromSuiParsedData: (content) => StorageFund.fromSuiParsedData(content), fetch: async (client, id) => StorageFund.fetch(client, id), new: (fields) => { return new StorageFund([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: StorageFund.$typeName, fullTypeName: (0, util_1.composeSuiType)(StorageFund.$typeName, ...[]), typeArgs: [], isPhantom: StorageFund.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => StorageFund.fromFields(fields), fromFieldsWithTypes: (item) => StorageFund.fromFieldsWithTypes(item), fromBcs: (data) => StorageFund.fromBcs(data), bcs: StorageFund.bcs, fromJSONField: (field) => StorageFund.fromJSONField(field), fromJSON: (json) => StorageFund.fromJSON(json), fromSuiParsedData: (content) => StorageFund.fromSuiParsedData(content), fromSuiObjectData: (content) => StorageFund.fromSuiObjectData(content), fetch: async (client, id) => StorageFund.fetch(client, id), new: (fields) => { return new StorageFund([], fields); }, kind: "StructClassReified", }; }
     static get r() { return StorageFund.reified(); }
     static phantom() { return (0, reified_1.phantom)(StorageFund.reified()); }
     static get p() { return StorageFund.phantom(); }
@@ -56,6 +59,18 @@ class StorageFund {
     } if (!isStorageFund(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a StorageFund object`);
     } return StorageFund.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isStorageFund(data.bcs.type)) {
+                throw new Error(`object at is not a StorageFund object`);
+            }
+            return StorageFund.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return StorageFund.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -65,9 +80,10 @@ class StorageFund {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isStorageFund(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a StorageFund object`);
         }
-        return StorageFund.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return StorageFund.fromSuiObjectData(res.data);
     }
 }
 exports.StorageFund = StorageFund;
-StorageFund.$typeName = "0x3::storage_fund::StorageFund";
+StorageFund.$typeName = `${index_1.PKG_V17}::storage_fund::StorageFund`;
 StorageFund.$numTypeParams = 0;
+StorageFund.$isPhantom = [];

@@ -5,17 +5,20 @@ exports.isUrl = isUrl;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/ascii/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Url =============================== */
-function isUrl(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::url::Url"; }
+function isUrl(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::url::Url`; }
 class Url {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Url.$typeName;
+        this.$isPhantom = Url.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Url.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.url = fields.url;
     }
-    static reified() { return { typeName: Url.$typeName, fullTypeName: (0, util_1.composeSuiType)(Url.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Url.fromFields(fields), fromFieldsWithTypes: (item) => Url.fromFieldsWithTypes(item), fromBcs: (data) => Url.fromBcs(data), bcs: Url.bcs, fromJSONField: (field) => Url.fromJSONField(field), fromJSON: (json) => Url.fromJSON(json), fromSuiParsedData: (content) => Url.fromSuiParsedData(content), fetch: async (client, id) => Url.fetch(client, id), new: (fields) => { return new Url([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Url.$typeName, fullTypeName: (0, util_1.composeSuiType)(Url.$typeName, ...[]), typeArgs: [], isPhantom: Url.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Url.fromFields(fields), fromFieldsWithTypes: (item) => Url.fromFieldsWithTypes(item), fromBcs: (data) => Url.fromBcs(data), bcs: Url.bcs, fromJSONField: (field) => Url.fromJSONField(field), fromJSON: (json) => Url.fromJSON(json), fromSuiParsedData: (content) => Url.fromSuiParsedData(content), fromSuiObjectData: (content) => Url.fromSuiObjectData(content), fetch: async (client, id) => Url.fetch(client, id), new: (fields) => { return new Url([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Url.reified(); }
     static phantom() { return (0, reified_1.phantom)(Url.reified()); }
     static get p() { return Url.phantom(); }
@@ -52,6 +55,18 @@ class Url {
     } if (!isUrl(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Url object`);
     } return Url.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isUrl(data.bcs.type)) {
+                throw new Error(`object at is not a Url object`);
+            }
+            return Url.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Url.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -61,9 +76,10 @@ class Url {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isUrl(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Url object`);
         }
-        return Url.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Url.fromSuiObjectData(res.data);
     }
 }
 exports.Url = Url;
-Url.$typeName = "0x2::url::Url";
+Url.$typeName = `${index_1.PKG_V28}::url::Url`;
 Url.$numTypeParams = 0;
+Url.$isPhantom = [];

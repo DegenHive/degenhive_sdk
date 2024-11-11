@@ -15,21 +15,24 @@ const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../balance/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const structs_3 = require("../sui/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== Borrow =============================== */
-function isBorrow(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::Borrow"; }
+function isBorrow(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::Borrow`; }
 class Borrow {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Borrow.$typeName;
+        this.$isPhantom = Borrow.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Borrow.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.kioskId = fields.kioskId;
         ;
         this.itemId = fields.itemId;
     }
-    static reified() { return { typeName: Borrow.$typeName, fullTypeName: (0, util_1.composeSuiType)(Borrow.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Borrow.fromFields(fields), fromFieldsWithTypes: (item) => Borrow.fromFieldsWithTypes(item), fromBcs: (data) => Borrow.fromBcs(data), bcs: Borrow.bcs, fromJSONField: (field) => Borrow.fromJSONField(field), fromJSON: (json) => Borrow.fromJSON(json), fromSuiParsedData: (content) => Borrow.fromSuiParsedData(content), fetch: async (client, id) => Borrow.fetch(client, id), new: (fields) => { return new Borrow([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Borrow.$typeName, fullTypeName: (0, util_1.composeSuiType)(Borrow.$typeName, ...[]), typeArgs: [], isPhantom: Borrow.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Borrow.fromFields(fields), fromFieldsWithTypes: (item) => Borrow.fromFieldsWithTypes(item), fromBcs: (data) => Borrow.fromBcs(data), bcs: Borrow.bcs, fromJSONField: (field) => Borrow.fromJSONField(field), fromJSON: (json) => Borrow.fromJSON(json), fromSuiParsedData: (content) => Borrow.fromSuiParsedData(content), fromSuiObjectData: (content) => Borrow.fromSuiObjectData(content), fetch: async (client, id) => Borrow.fetch(client, id), new: (fields) => { return new Borrow([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Borrow.reified(); }
     static phantom() { return (0, reified_1.phantom)(Borrow.reified()); }
     static get p() { return Borrow.phantom(); }
@@ -66,6 +69,18 @@ class Borrow {
     } if (!isBorrow(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Borrow object`);
     } return Borrow.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isBorrow(data.bcs.type)) {
+                throw new Error(`object at is not a Borrow object`);
+            }
+            return Borrow.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Borrow.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -75,22 +90,25 @@ class Borrow {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isBorrow(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Borrow object`);
         }
-        return Borrow.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Borrow.fromSuiObjectData(res.data);
     }
 }
 exports.Borrow = Borrow;
-Borrow.$typeName = "0x2::kiosk::Borrow";
+Borrow.$typeName = `${index_1.PKG_V28}::kiosk::Borrow`;
 Borrow.$numTypeParams = 0;
+Borrow.$isPhantom = [];
 /* ============================== Item =============================== */
-function isItem(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::Item"; }
+function isItem(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::Item`; }
 class Item {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Item.$typeName;
+        this.$isPhantom = Item.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Item.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified() { return { typeName: Item.$typeName, fullTypeName: (0, util_1.composeSuiType)(Item.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Item.fromFields(fields), fromFieldsWithTypes: (item) => Item.fromFieldsWithTypes(item), fromBcs: (data) => Item.fromBcs(data), bcs: Item.bcs, fromJSONField: (field) => Item.fromJSONField(field), fromJSON: (json) => Item.fromJSON(json), fromSuiParsedData: (content) => Item.fromSuiParsedData(content), fetch: async (client, id) => Item.fetch(client, id), new: (fields) => { return new Item([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Item.$typeName, fullTypeName: (0, util_1.composeSuiType)(Item.$typeName, ...[]), typeArgs: [], isPhantom: Item.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Item.fromFields(fields), fromFieldsWithTypes: (item) => Item.fromFieldsWithTypes(item), fromBcs: (data) => Item.fromBcs(data), bcs: Item.bcs, fromJSONField: (field) => Item.fromJSONField(field), fromJSON: (json) => Item.fromJSON(json), fromSuiParsedData: (content) => Item.fromSuiParsedData(content), fromSuiObjectData: (content) => Item.fromSuiObjectData(content), fetch: async (client, id) => Item.fetch(client, id), new: (fields) => { return new Item([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Item.reified(); }
     static phantom() { return (0, reified_1.phantom)(Item.reified()); }
     static get p() { return Item.phantom(); }
@@ -127,6 +145,18 @@ class Item {
     } if (!isItem(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Item object`);
     } return Item.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isItem(data.bcs.type)) {
+                throw new Error(`object at is not a Item object`);
+            }
+            return Item.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Item.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -136,24 +166,27 @@ class Item {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isItem(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Item object`);
         }
-        return Item.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Item.fromSuiObjectData(res.data);
     }
 }
 exports.Item = Item;
-Item.$typeName = "0x2::kiosk::Item";
+Item.$typeName = `${index_1.PKG_V28}::kiosk::Item`;
 Item.$numTypeParams = 0;
+Item.$isPhantom = [];
 /* ============================== ItemDelisted =============================== */
-function isItemDelisted(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk::ItemDelisted<"); }
+function isItemDelisted(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::kiosk::ItemDelisted` + '<'); }
 class ItemDelisted {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ItemDelisted.$typeName;
+        this.$isPhantom = ItemDelisted.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ItemDelisted.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.kiosk = fields.kiosk;
         ;
         this.id = fields.id;
     }
-    static reified(T) { return { typeName: ItemDelisted.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemDelisted.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => ItemDelisted.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemDelisted.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemDelisted.fromBcs(T, data), bcs: ItemDelisted.bcs, fromJSONField: (field) => ItemDelisted.fromJSONField(T, field), fromJSON: (json) => ItemDelisted.fromJSON(T, json), fromSuiParsedData: (content) => ItemDelisted.fromSuiParsedData(T, content), fetch: async (client, id) => ItemDelisted.fetch(client, T, id), new: (fields) => { return new ItemDelisted([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: ItemDelisted.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemDelisted.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: ItemDelisted.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => ItemDelisted.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemDelisted.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemDelisted.fromBcs(T, data), bcs: ItemDelisted.bcs, fromJSONField: (field) => ItemDelisted.fromJSONField(T, field), fromJSON: (json) => ItemDelisted.fromJSON(T, json), fromSuiParsedData: (content) => ItemDelisted.fromSuiParsedData(T, content), fromSuiObjectData: (content) => ItemDelisted.fromSuiObjectData(T, content), fetch: async (client, id) => ItemDelisted.fetch(client, T, id), new: (fields) => { return new ItemDelisted([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return ItemDelisted.reified; }
     static phantom(T) { return (0, reified_1.phantom)(ItemDelisted.reified(T)); }
     static get p() { return ItemDelisted.phantom; }
@@ -192,6 +225,29 @@ class ItemDelisted {
     } if (!isItemDelisted(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ItemDelisted object`);
     } return ItemDelisted.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isItemDelisted(data.bcs.type)) {
+                throw new Error(`object at is not a ItemDelisted object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return ItemDelisted.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ItemDelisted.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -201,17 +257,20 @@ class ItemDelisted {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isItemDelisted(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ItemDelisted object`);
         }
-        return ItemDelisted.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ItemDelisted.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.ItemDelisted = ItemDelisted;
-ItemDelisted.$typeName = "0x2::kiosk::ItemDelisted";
+ItemDelisted.$typeName = `${index_1.PKG_V28}::kiosk::ItemDelisted`;
 ItemDelisted.$numTypeParams = 1;
+ItemDelisted.$isPhantom = [true,];
 /* ============================== ItemListed =============================== */
-function isItemListed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk::ItemListed<"); }
+function isItemListed(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::kiosk::ItemListed` + '<'); }
 class ItemListed {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ItemListed.$typeName;
+        this.$isPhantom = ItemListed.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ItemListed.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.kiosk = fields.kiosk;
@@ -220,7 +279,7 @@ class ItemListed {
         ;
         this.price = fields.price;
     }
-    static reified(T) { return { typeName: ItemListed.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemListed.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => ItemListed.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemListed.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemListed.fromBcs(T, data), bcs: ItemListed.bcs, fromJSONField: (field) => ItemListed.fromJSONField(T, field), fromJSON: (json) => ItemListed.fromJSON(T, json), fromSuiParsedData: (content) => ItemListed.fromSuiParsedData(T, content), fetch: async (client, id) => ItemListed.fetch(client, T, id), new: (fields) => { return new ItemListed([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: ItemListed.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemListed.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: ItemListed.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => ItemListed.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemListed.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemListed.fromBcs(T, data), bcs: ItemListed.bcs, fromJSONField: (field) => ItemListed.fromJSONField(T, field), fromJSON: (json) => ItemListed.fromJSON(T, json), fromSuiParsedData: (content) => ItemListed.fromSuiParsedData(T, content), fromSuiObjectData: (content) => ItemListed.fromSuiObjectData(T, content), fetch: async (client, id) => ItemListed.fetch(client, T, id), new: (fields) => { return new ItemListed([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return ItemListed.reified; }
     static phantom(T) { return (0, reified_1.phantom)(ItemListed.reified(T)); }
     static get p() { return ItemListed.phantom; }
@@ -259,6 +318,29 @@ class ItemListed {
     } if (!isItemListed(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ItemListed object`);
     } return ItemListed.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isItemListed(data.bcs.type)) {
+                throw new Error(`object at is not a ItemListed object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return ItemListed.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ItemListed.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -268,17 +350,20 @@ class ItemListed {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isItemListed(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ItemListed object`);
         }
-        return ItemListed.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ItemListed.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.ItemListed = ItemListed;
-ItemListed.$typeName = "0x2::kiosk::ItemListed";
+ItemListed.$typeName = `${index_1.PKG_V28}::kiosk::ItemListed`;
 ItemListed.$numTypeParams = 1;
+ItemListed.$isPhantom = [true,];
 /* ============================== ItemPurchased =============================== */
-function isItemPurchased(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk::ItemPurchased<"); }
+function isItemPurchased(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::kiosk::ItemPurchased` + '<'); }
 class ItemPurchased {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ItemPurchased.$typeName;
+        this.$isPhantom = ItemPurchased.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ItemPurchased.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.kiosk = fields.kiosk;
@@ -287,7 +372,7 @@ class ItemPurchased {
         ;
         this.price = fields.price;
     }
-    static reified(T) { return { typeName: ItemPurchased.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemPurchased.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => ItemPurchased.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemPurchased.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemPurchased.fromBcs(T, data), bcs: ItemPurchased.bcs, fromJSONField: (field) => ItemPurchased.fromJSONField(T, field), fromJSON: (json) => ItemPurchased.fromJSON(T, json), fromSuiParsedData: (content) => ItemPurchased.fromSuiParsedData(T, content), fetch: async (client, id) => ItemPurchased.fetch(client, T, id), new: (fields) => { return new ItemPurchased([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: ItemPurchased.$typeName, fullTypeName: (0, util_1.composeSuiType)(ItemPurchased.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: ItemPurchased.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => ItemPurchased.fromFields(T, fields), fromFieldsWithTypes: (item) => ItemPurchased.fromFieldsWithTypes(T, item), fromBcs: (data) => ItemPurchased.fromBcs(T, data), bcs: ItemPurchased.bcs, fromJSONField: (field) => ItemPurchased.fromJSONField(T, field), fromJSON: (json) => ItemPurchased.fromJSON(T, json), fromSuiParsedData: (content) => ItemPurchased.fromSuiParsedData(T, content), fromSuiObjectData: (content) => ItemPurchased.fromSuiObjectData(T, content), fetch: async (client, id) => ItemPurchased.fetch(client, T, id), new: (fields) => { return new ItemPurchased([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return ItemPurchased.reified; }
     static phantom(T) { return (0, reified_1.phantom)(ItemPurchased.reified(T)); }
     static get p() { return ItemPurchased.phantom; }
@@ -326,6 +411,29 @@ class ItemPurchased {
     } if (!isItemPurchased(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ItemPurchased object`);
     } return ItemPurchased.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isItemPurchased(data.bcs.type)) {
+                throw new Error(`object at is not a ItemPurchased object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return ItemPurchased.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ItemPurchased.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -335,17 +443,20 @@ class ItemPurchased {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isItemPurchased(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ItemPurchased object`);
         }
-        return ItemPurchased.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ItemPurchased.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.ItemPurchased = ItemPurchased;
-ItemPurchased.$typeName = "0x2::kiosk::ItemPurchased";
+ItemPurchased.$typeName = `${index_1.PKG_V28}::kiosk::ItemPurchased`;
 ItemPurchased.$numTypeParams = 1;
+ItemPurchased.$isPhantom = [true,];
 /* ============================== Kiosk =============================== */
-function isKiosk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::Kiosk"; }
+function isKiosk(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::Kiosk`; }
 class Kiosk {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Kiosk.$typeName;
+        this.$isPhantom = Kiosk.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Kiosk.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -358,7 +469,7 @@ class Kiosk {
         ;
         this.allowExtensions = fields.allowExtensions;
     }
-    static reified() { return { typeName: Kiosk.$typeName, fullTypeName: (0, util_1.composeSuiType)(Kiosk.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Kiosk.fromFields(fields), fromFieldsWithTypes: (item) => Kiosk.fromFieldsWithTypes(item), fromBcs: (data) => Kiosk.fromBcs(data), bcs: Kiosk.bcs, fromJSONField: (field) => Kiosk.fromJSONField(field), fromJSON: (json) => Kiosk.fromJSON(json), fromSuiParsedData: (content) => Kiosk.fromSuiParsedData(content), fetch: async (client, id) => Kiosk.fetch(client, id), new: (fields) => { return new Kiosk([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Kiosk.$typeName, fullTypeName: (0, util_1.composeSuiType)(Kiosk.$typeName, ...[]), typeArgs: [], isPhantom: Kiosk.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Kiosk.fromFields(fields), fromFieldsWithTypes: (item) => Kiosk.fromFieldsWithTypes(item), fromBcs: (data) => Kiosk.fromBcs(data), bcs: Kiosk.bcs, fromJSONField: (field) => Kiosk.fromJSONField(field), fromJSON: (json) => Kiosk.fromJSON(json), fromSuiParsedData: (content) => Kiosk.fromSuiParsedData(content), fromSuiObjectData: (content) => Kiosk.fromSuiObjectData(content), fetch: async (client, id) => Kiosk.fetch(client, id), new: (fields) => { return new Kiosk([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Kiosk.reified(); }
     static phantom() { return (0, reified_1.phantom)(Kiosk.reified()); }
     static get p() { return Kiosk.phantom(); }
@@ -395,6 +506,18 @@ class Kiosk {
     } if (!isKiosk(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Kiosk object`);
     } return Kiosk.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isKiosk(data.bcs.type)) {
+                throw new Error(`object at is not a Kiosk object`);
+            }
+            return Kiosk.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Kiosk.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -404,24 +527,27 @@ class Kiosk {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isKiosk(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Kiosk object`);
         }
-        return Kiosk.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Kiosk.fromSuiObjectData(res.data);
     }
 }
 exports.Kiosk = Kiosk;
-Kiosk.$typeName = "0x2::kiosk::Kiosk";
+Kiosk.$typeName = `${index_1.PKG_V28}::kiosk::Kiosk`;
 Kiosk.$numTypeParams = 0;
+Kiosk.$isPhantom = [];
 /* ============================== KioskOwnerCap =============================== */
-function isKioskOwnerCap(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::KioskOwnerCap"; }
+function isKioskOwnerCap(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::KioskOwnerCap`; }
 class KioskOwnerCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = KioskOwnerCap.$typeName;
+        this.$isPhantom = KioskOwnerCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(KioskOwnerCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.for = fields.for;
     }
-    static reified() { return { typeName: KioskOwnerCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(KioskOwnerCap.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => KioskOwnerCap.fromFields(fields), fromFieldsWithTypes: (item) => KioskOwnerCap.fromFieldsWithTypes(item), fromBcs: (data) => KioskOwnerCap.fromBcs(data), bcs: KioskOwnerCap.bcs, fromJSONField: (field) => KioskOwnerCap.fromJSONField(field), fromJSON: (json) => KioskOwnerCap.fromJSON(json), fromSuiParsedData: (content) => KioskOwnerCap.fromSuiParsedData(content), fetch: async (client, id) => KioskOwnerCap.fetch(client, id), new: (fields) => { return new KioskOwnerCap([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: KioskOwnerCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(KioskOwnerCap.$typeName, ...[]), typeArgs: [], isPhantom: KioskOwnerCap.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => KioskOwnerCap.fromFields(fields), fromFieldsWithTypes: (item) => KioskOwnerCap.fromFieldsWithTypes(item), fromBcs: (data) => KioskOwnerCap.fromBcs(data), bcs: KioskOwnerCap.bcs, fromJSONField: (field) => KioskOwnerCap.fromJSONField(field), fromJSON: (json) => KioskOwnerCap.fromJSON(json), fromSuiParsedData: (content) => KioskOwnerCap.fromSuiParsedData(content), fromSuiObjectData: (content) => KioskOwnerCap.fromSuiObjectData(content), fetch: async (client, id) => KioskOwnerCap.fetch(client, id), new: (fields) => { return new KioskOwnerCap([], fields); }, kind: "StructClassReified", }; }
     static get r() { return KioskOwnerCap.reified(); }
     static phantom() { return (0, reified_1.phantom)(KioskOwnerCap.reified()); }
     static get p() { return KioskOwnerCap.phantom(); }
@@ -458,6 +584,18 @@ class KioskOwnerCap {
     } if (!isKioskOwnerCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a KioskOwnerCap object`);
     } return KioskOwnerCap.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isKioskOwnerCap(data.bcs.type)) {
+                throw new Error(`object at is not a KioskOwnerCap object`);
+            }
+            return KioskOwnerCap.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return KioskOwnerCap.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -467,24 +605,27 @@ class KioskOwnerCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isKioskOwnerCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a KioskOwnerCap object`);
         }
-        return KioskOwnerCap.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return KioskOwnerCap.fromSuiObjectData(res.data);
     }
 }
 exports.KioskOwnerCap = KioskOwnerCap;
-KioskOwnerCap.$typeName = "0x2::kiosk::KioskOwnerCap";
+KioskOwnerCap.$typeName = `${index_1.PKG_V28}::kiosk::KioskOwnerCap`;
 KioskOwnerCap.$numTypeParams = 0;
+KioskOwnerCap.$isPhantom = [];
 /* ============================== Listing =============================== */
-function isListing(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::Listing"; }
+function isListing(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::Listing`; }
 class Listing {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Listing.$typeName;
+        this.$isPhantom = Listing.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Listing.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.isExclusive = fields.isExclusive;
     }
-    static reified() { return { typeName: Listing.$typeName, fullTypeName: (0, util_1.composeSuiType)(Listing.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Listing.fromFields(fields), fromFieldsWithTypes: (item) => Listing.fromFieldsWithTypes(item), fromBcs: (data) => Listing.fromBcs(data), bcs: Listing.bcs, fromJSONField: (field) => Listing.fromJSONField(field), fromJSON: (json) => Listing.fromJSON(json), fromSuiParsedData: (content) => Listing.fromSuiParsedData(content), fetch: async (client, id) => Listing.fetch(client, id), new: (fields) => { return new Listing([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Listing.$typeName, fullTypeName: (0, util_1.composeSuiType)(Listing.$typeName, ...[]), typeArgs: [], isPhantom: Listing.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Listing.fromFields(fields), fromFieldsWithTypes: (item) => Listing.fromFieldsWithTypes(item), fromBcs: (data) => Listing.fromBcs(data), bcs: Listing.bcs, fromJSONField: (field) => Listing.fromJSONField(field), fromJSON: (json) => Listing.fromJSON(json), fromSuiParsedData: (content) => Listing.fromSuiParsedData(content), fromSuiObjectData: (content) => Listing.fromSuiObjectData(content), fetch: async (client, id) => Listing.fetch(client, id), new: (fields) => { return new Listing([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Listing.reified(); }
     static phantom() { return (0, reified_1.phantom)(Listing.reified()); }
     static get p() { return Listing.phantom(); }
@@ -521,6 +662,18 @@ class Listing {
     } if (!isListing(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Listing object`);
     } return Listing.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isListing(data.bcs.type)) {
+                throw new Error(`object at is not a Listing object`);
+            }
+            return Listing.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Listing.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -530,22 +683,25 @@ class Listing {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isListing(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Listing object`);
         }
-        return Listing.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Listing.fromSuiObjectData(res.data);
     }
 }
 exports.Listing = Listing;
-Listing.$typeName = "0x2::kiosk::Listing";
+Listing.$typeName = `${index_1.PKG_V28}::kiosk::Listing`;
 Listing.$numTypeParams = 0;
+Listing.$isPhantom = [];
 /* ============================== Lock =============================== */
-function isLock(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::kiosk::Lock"; }
+function isLock(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::kiosk::Lock`; }
 class Lock {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = Lock.$typeName;
+        this.$isPhantom = Lock.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(Lock.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
     }
-    static reified() { return { typeName: Lock.$typeName, fullTypeName: (0, util_1.composeSuiType)(Lock.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => Lock.fromFields(fields), fromFieldsWithTypes: (item) => Lock.fromFieldsWithTypes(item), fromBcs: (data) => Lock.fromBcs(data), bcs: Lock.bcs, fromJSONField: (field) => Lock.fromJSONField(field), fromJSON: (json) => Lock.fromJSON(json), fromSuiParsedData: (content) => Lock.fromSuiParsedData(content), fetch: async (client, id) => Lock.fetch(client, id), new: (fields) => { return new Lock([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: Lock.$typeName, fullTypeName: (0, util_1.composeSuiType)(Lock.$typeName, ...[]), typeArgs: [], isPhantom: Lock.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => Lock.fromFields(fields), fromFieldsWithTypes: (item) => Lock.fromFieldsWithTypes(item), fromBcs: (data) => Lock.fromBcs(data), bcs: Lock.bcs, fromJSONField: (field) => Lock.fromJSONField(field), fromJSON: (json) => Lock.fromJSON(json), fromSuiParsedData: (content) => Lock.fromSuiParsedData(content), fromSuiObjectData: (content) => Lock.fromSuiObjectData(content), fetch: async (client, id) => Lock.fetch(client, id), new: (fields) => { return new Lock([], fields); }, kind: "StructClassReified", }; }
     static get r() { return Lock.reified(); }
     static phantom() { return (0, reified_1.phantom)(Lock.reified()); }
     static get p() { return Lock.phantom(); }
@@ -582,6 +738,18 @@ class Lock {
     } if (!isLock(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a Lock object`);
     } return Lock.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isLock(data.bcs.type)) {
+                throw new Error(`object at is not a Lock object`);
+            }
+            return Lock.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return Lock.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -591,17 +759,20 @@ class Lock {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isLock(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a Lock object`);
         }
-        return Lock.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return Lock.fromSuiObjectData(res.data);
     }
 }
 exports.Lock = Lock;
-Lock.$typeName = "0x2::kiosk::Lock";
+Lock.$typeName = `${index_1.PKG_V28}::kiosk::Lock`;
 Lock.$numTypeParams = 0;
+Lock.$isPhantom = [];
 /* ============================== PurchaseCap =============================== */
-function isPurchaseCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith("0x2::kiosk::PurchaseCap<"); }
+function isPurchaseCap(type) { type = (0, util_1.compressSuiType)(type); return type.startsWith(`${index_1.PKG_V28}::kiosk::PurchaseCap` + '<'); }
 class PurchaseCap {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = PurchaseCap.$typeName;
+        this.$isPhantom = PurchaseCap.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(PurchaseCap.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
@@ -612,7 +783,7 @@ class PurchaseCap {
         ;
         this.minPrice = fields.minPrice;
     }
-    static reified(T) { return { typeName: PurchaseCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(PurchaseCap.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], reifiedTypeArgs: [T], fromFields: (fields) => PurchaseCap.fromFields(T, fields), fromFieldsWithTypes: (item) => PurchaseCap.fromFieldsWithTypes(T, item), fromBcs: (data) => PurchaseCap.fromBcs(T, data), bcs: PurchaseCap.bcs, fromJSONField: (field) => PurchaseCap.fromJSONField(T, field), fromJSON: (json) => PurchaseCap.fromJSON(T, json), fromSuiParsedData: (content) => PurchaseCap.fromSuiParsedData(T, content), fetch: async (client, id) => PurchaseCap.fetch(client, T, id), new: (fields) => { return new PurchaseCap([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
+    static reified(T) { return { typeName: PurchaseCap.$typeName, fullTypeName: (0, util_1.composeSuiType)(PurchaseCap.$typeName, ...[(0, reified_1.extractType)(T)]), typeArgs: [(0, reified_1.extractType)(T)], isPhantom: PurchaseCap.$isPhantom, reifiedTypeArgs: [T], fromFields: (fields) => PurchaseCap.fromFields(T, fields), fromFieldsWithTypes: (item) => PurchaseCap.fromFieldsWithTypes(T, item), fromBcs: (data) => PurchaseCap.fromBcs(T, data), bcs: PurchaseCap.bcs, fromJSONField: (field) => PurchaseCap.fromJSONField(T, field), fromJSON: (json) => PurchaseCap.fromJSON(T, json), fromSuiParsedData: (content) => PurchaseCap.fromSuiParsedData(T, content), fromSuiObjectData: (content) => PurchaseCap.fromSuiObjectData(T, content), fetch: async (client, id) => PurchaseCap.fetch(client, T, id), new: (fields) => { return new PurchaseCap([(0, reified_1.extractType)(T)], fields); }, kind: "StructClassReified", }; }
     static get r() { return PurchaseCap.reified; }
     static phantom(T) { return (0, reified_1.phantom)(PurchaseCap.reified(T)); }
     static get p() { return PurchaseCap.phantom; }
@@ -651,6 +822,29 @@ class PurchaseCap {
     } if (!isPurchaseCap(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a PurchaseCap object`);
     } return PurchaseCap.fromFieldsWithTypes(typeArg, content); }
+    static fromSuiObjectData(typeArg, data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isPurchaseCap(data.bcs.type)) {
+                throw new Error(`object at is not a PurchaseCap object`);
+            }
+            const gotTypeArgs = (0, util_1.parseTypeName)(data.bcs.type).typeArgs;
+            if (gotTypeArgs.length !== 1) {
+                throw new Error(`type argument mismatch: expected 1 type argument but got '${gotTypeArgs.length}'`);
+            }
+            ;
+            const gotTypeArg = (0, util_1.compressSuiType)(gotTypeArgs[0]);
+            const expectedTypeArg = (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg));
+            if (gotTypeArg !== (0, util_1.compressSuiType)((0, reified_1.extractType)(typeArg))) {
+                throw new Error(`type argument mismatch: expected '${expectedTypeArg}' but got '${gotTypeArg}'`);
+            }
+            ;
+            return PurchaseCap.fromBcs(typeArg, (0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return PurchaseCap.fromSuiParsedData(typeArg, data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, typeArg, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -660,9 +854,10 @@ class PurchaseCap {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isPurchaseCap(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a PurchaseCap object`);
         }
-        return PurchaseCap.fromBcs(typeArg, (0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return PurchaseCap.fromSuiObjectData(typeArg, res.data);
     }
 }
 exports.PurchaseCap = PurchaseCap;
-PurchaseCap.$typeName = "0x2::kiosk::PurchaseCap";
+PurchaseCap.$typeName = `${index_1.PKG_V28}::kiosk::PurchaseCap`;
 PurchaseCap.$numTypeParams = 1;
+PurchaseCap.$isPhantom = [true,];

@@ -9,12 +9,15 @@ const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/option/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== GenesisChainParameters =============================== */
-function isGenesisChainParameters(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::GenesisChainParameters"; }
+function isGenesisChainParameters(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::genesis::GenesisChainParameters`; }
 class GenesisChainParameters {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = GenesisChainParameters.$typeName;
+        this.$isPhantom = GenesisChainParameters.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(GenesisChainParameters.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.protocolVersion = fields.protocolVersion;
@@ -41,7 +44,7 @@ class GenesisChainParameters {
         ;
         this.validatorLowStakeGracePeriod = fields.validatorLowStakeGracePeriod;
     }
-    static reified() { return { typeName: GenesisChainParameters.$typeName, fullTypeName: (0, util_1.composeSuiType)(GenesisChainParameters.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => GenesisChainParameters.fromFields(fields), fromFieldsWithTypes: (item) => GenesisChainParameters.fromFieldsWithTypes(item), fromBcs: (data) => GenesisChainParameters.fromBcs(data), bcs: GenesisChainParameters.bcs, fromJSONField: (field) => GenesisChainParameters.fromJSONField(field), fromJSON: (json) => GenesisChainParameters.fromJSON(json), fromSuiParsedData: (content) => GenesisChainParameters.fromSuiParsedData(content), fetch: async (client, id) => GenesisChainParameters.fetch(client, id), new: (fields) => { return new GenesisChainParameters([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: GenesisChainParameters.$typeName, fullTypeName: (0, util_1.composeSuiType)(GenesisChainParameters.$typeName, ...[]), typeArgs: [], isPhantom: GenesisChainParameters.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => GenesisChainParameters.fromFields(fields), fromFieldsWithTypes: (item) => GenesisChainParameters.fromFieldsWithTypes(item), fromBcs: (data) => GenesisChainParameters.fromBcs(data), bcs: GenesisChainParameters.bcs, fromJSONField: (field) => GenesisChainParameters.fromJSONField(field), fromJSON: (json) => GenesisChainParameters.fromJSON(json), fromSuiParsedData: (content) => GenesisChainParameters.fromSuiParsedData(content), fromSuiObjectData: (content) => GenesisChainParameters.fromSuiObjectData(content), fetch: async (client, id) => GenesisChainParameters.fetch(client, id), new: (fields) => { return new GenesisChainParameters([], fields); }, kind: "StructClassReified", }; }
     static get r() { return GenesisChainParameters.reified(); }
     static phantom() { return (0, reified_1.phantom)(GenesisChainParameters.reified()); }
     static get p() { return GenesisChainParameters.phantom(); }
@@ -78,6 +81,18 @@ class GenesisChainParameters {
     } if (!isGenesisChainParameters(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a GenesisChainParameters object`);
     } return GenesisChainParameters.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isGenesisChainParameters(data.bcs.type)) {
+                throw new Error(`object at is not a GenesisChainParameters object`);
+            }
+            return GenesisChainParameters.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return GenesisChainParameters.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -87,17 +102,20 @@ class GenesisChainParameters {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isGenesisChainParameters(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a GenesisChainParameters object`);
         }
-        return GenesisChainParameters.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return GenesisChainParameters.fromSuiObjectData(res.data);
     }
 }
 exports.GenesisChainParameters = GenesisChainParameters;
-GenesisChainParameters.$typeName = "0x3::genesis::GenesisChainParameters";
+GenesisChainParameters.$typeName = `${index_1.PKG_V17}::genesis::GenesisChainParameters`;
 GenesisChainParameters.$numTypeParams = 0;
+GenesisChainParameters.$isPhantom = [];
 /* ============================== GenesisValidatorMetadata =============================== */
-function isGenesisValidatorMetadata(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::GenesisValidatorMetadata"; }
+function isGenesisValidatorMetadata(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::genesis::GenesisValidatorMetadata`; }
 class GenesisValidatorMetadata {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = GenesisValidatorMetadata.$typeName;
+        this.$isPhantom = GenesisValidatorMetadata.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(GenesisValidatorMetadata.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.name = fields.name;
@@ -130,7 +148,7 @@ class GenesisValidatorMetadata {
         ;
         this.workerAddress = fields.workerAddress;
     }
-    static reified() { return { typeName: GenesisValidatorMetadata.$typeName, fullTypeName: (0, util_1.composeSuiType)(GenesisValidatorMetadata.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => GenesisValidatorMetadata.fromFields(fields), fromFieldsWithTypes: (item) => GenesisValidatorMetadata.fromFieldsWithTypes(item), fromBcs: (data) => GenesisValidatorMetadata.fromBcs(data), bcs: GenesisValidatorMetadata.bcs, fromJSONField: (field) => GenesisValidatorMetadata.fromJSONField(field), fromJSON: (json) => GenesisValidatorMetadata.fromJSON(json), fromSuiParsedData: (content) => GenesisValidatorMetadata.fromSuiParsedData(content), fetch: async (client, id) => GenesisValidatorMetadata.fetch(client, id), new: (fields) => { return new GenesisValidatorMetadata([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: GenesisValidatorMetadata.$typeName, fullTypeName: (0, util_1.composeSuiType)(GenesisValidatorMetadata.$typeName, ...[]), typeArgs: [], isPhantom: GenesisValidatorMetadata.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => GenesisValidatorMetadata.fromFields(fields), fromFieldsWithTypes: (item) => GenesisValidatorMetadata.fromFieldsWithTypes(item), fromBcs: (data) => GenesisValidatorMetadata.fromBcs(data), bcs: GenesisValidatorMetadata.bcs, fromJSONField: (field) => GenesisValidatorMetadata.fromJSONField(field), fromJSON: (json) => GenesisValidatorMetadata.fromJSON(json), fromSuiParsedData: (content) => GenesisValidatorMetadata.fromSuiParsedData(content), fromSuiObjectData: (content) => GenesisValidatorMetadata.fromSuiObjectData(content), fetch: async (client, id) => GenesisValidatorMetadata.fetch(client, id), new: (fields) => { return new GenesisValidatorMetadata([], fields); }, kind: "StructClassReified", }; }
     static get r() { return GenesisValidatorMetadata.reified(); }
     static phantom() { return (0, reified_1.phantom)(GenesisValidatorMetadata.reified()); }
     static get p() { return GenesisValidatorMetadata.phantom(); }
@@ -167,6 +185,18 @@ class GenesisValidatorMetadata {
     } if (!isGenesisValidatorMetadata(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a GenesisValidatorMetadata object`);
     } return GenesisValidatorMetadata.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isGenesisValidatorMetadata(data.bcs.type)) {
+                throw new Error(`object at is not a GenesisValidatorMetadata object`);
+            }
+            return GenesisValidatorMetadata.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return GenesisValidatorMetadata.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -176,17 +206,20 @@ class GenesisValidatorMetadata {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isGenesisValidatorMetadata(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a GenesisValidatorMetadata object`);
         }
-        return GenesisValidatorMetadata.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return GenesisValidatorMetadata.fromSuiObjectData(res.data);
     }
 }
 exports.GenesisValidatorMetadata = GenesisValidatorMetadata;
-GenesisValidatorMetadata.$typeName = "0x3::genesis::GenesisValidatorMetadata";
+GenesisValidatorMetadata.$typeName = `${index_1.PKG_V17}::genesis::GenesisValidatorMetadata`;
 GenesisValidatorMetadata.$numTypeParams = 0;
+GenesisValidatorMetadata.$isPhantom = [];
 /* ============================== TokenAllocation =============================== */
-function isTokenAllocation(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::TokenAllocation"; }
+function isTokenAllocation(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::genesis::TokenAllocation`; }
 class TokenAllocation {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TokenAllocation.$typeName;
+        this.$isPhantom = TokenAllocation.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TokenAllocation.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.recipientAddress = fields.recipientAddress;
@@ -195,7 +228,7 @@ class TokenAllocation {
         ;
         this.stakedWithValidator = fields.stakedWithValidator;
     }
-    static reified() { return { typeName: TokenAllocation.$typeName, fullTypeName: (0, util_1.composeSuiType)(TokenAllocation.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => TokenAllocation.fromFields(fields), fromFieldsWithTypes: (item) => TokenAllocation.fromFieldsWithTypes(item), fromBcs: (data) => TokenAllocation.fromBcs(data), bcs: TokenAllocation.bcs, fromJSONField: (field) => TokenAllocation.fromJSONField(field), fromJSON: (json) => TokenAllocation.fromJSON(json), fromSuiParsedData: (content) => TokenAllocation.fromSuiParsedData(content), fetch: async (client, id) => TokenAllocation.fetch(client, id), new: (fields) => { return new TokenAllocation([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: TokenAllocation.$typeName, fullTypeName: (0, util_1.composeSuiType)(TokenAllocation.$typeName, ...[]), typeArgs: [], isPhantom: TokenAllocation.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => TokenAllocation.fromFields(fields), fromFieldsWithTypes: (item) => TokenAllocation.fromFieldsWithTypes(item), fromBcs: (data) => TokenAllocation.fromBcs(data), bcs: TokenAllocation.bcs, fromJSONField: (field) => TokenAllocation.fromJSONField(field), fromJSON: (json) => TokenAllocation.fromJSON(json), fromSuiParsedData: (content) => TokenAllocation.fromSuiParsedData(content), fromSuiObjectData: (content) => TokenAllocation.fromSuiObjectData(content), fetch: async (client, id) => TokenAllocation.fetch(client, id), new: (fields) => { return new TokenAllocation([], fields); }, kind: "StructClassReified", }; }
     static get r() { return TokenAllocation.reified(); }
     static phantom() { return (0, reified_1.phantom)(TokenAllocation.reified()); }
     static get p() { return TokenAllocation.phantom(); }
@@ -215,7 +248,7 @@ class TokenAllocation {
     static fromBcs(data) { return TokenAllocation.fromFields(TokenAllocation.bcs.parse(data)); }
     toJSONField() {
         return {
-            recipientAddress: this.recipientAddress, amountMist: this.amountMist.toString(), stakedWithValidator: (0, reified_1.fieldToJSON)(`0x1::option::Option<address>`, this.stakedWithValidator),
+            recipientAddress: this.recipientAddress, amountMist: this.amountMist.toString(), stakedWithValidator: (0, reified_1.fieldToJSON)(`${structs_1.Option.$typeName}<address>`, this.stakedWithValidator),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -232,6 +265,18 @@ class TokenAllocation {
     } if (!isTokenAllocation(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TokenAllocation object`);
     } return TokenAllocation.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTokenAllocation(data.bcs.type)) {
+                throw new Error(`object at is not a TokenAllocation object`);
+            }
+            return TokenAllocation.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TokenAllocation.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -241,24 +286,27 @@ class TokenAllocation {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTokenAllocation(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TokenAllocation object`);
         }
-        return TokenAllocation.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TokenAllocation.fromSuiObjectData(res.data);
     }
 }
 exports.TokenAllocation = TokenAllocation;
-TokenAllocation.$typeName = "0x3::genesis::TokenAllocation";
+TokenAllocation.$typeName = `${index_1.PKG_V17}::genesis::TokenAllocation`;
 TokenAllocation.$numTypeParams = 0;
+TokenAllocation.$isPhantom = [];
 /* ============================== TokenDistributionSchedule =============================== */
-function isTokenDistributionSchedule(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::genesis::TokenDistributionSchedule"; }
+function isTokenDistributionSchedule(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::genesis::TokenDistributionSchedule`; }
 class TokenDistributionSchedule {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = TokenDistributionSchedule.$typeName;
+        this.$isPhantom = TokenDistributionSchedule.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(TokenDistributionSchedule.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.stakeSubsidyFundMist = fields.stakeSubsidyFundMist;
         ;
         this.allocations = fields.allocations;
     }
-    static reified() { return { typeName: TokenDistributionSchedule.$typeName, fullTypeName: (0, util_1.composeSuiType)(TokenDistributionSchedule.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => TokenDistributionSchedule.fromFields(fields), fromFieldsWithTypes: (item) => TokenDistributionSchedule.fromFieldsWithTypes(item), fromBcs: (data) => TokenDistributionSchedule.fromBcs(data), bcs: TokenDistributionSchedule.bcs, fromJSONField: (field) => TokenDistributionSchedule.fromJSONField(field), fromJSON: (json) => TokenDistributionSchedule.fromJSON(json), fromSuiParsedData: (content) => TokenDistributionSchedule.fromSuiParsedData(content), fetch: async (client, id) => TokenDistributionSchedule.fetch(client, id), new: (fields) => { return new TokenDistributionSchedule([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: TokenDistributionSchedule.$typeName, fullTypeName: (0, util_1.composeSuiType)(TokenDistributionSchedule.$typeName, ...[]), typeArgs: [], isPhantom: TokenDistributionSchedule.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => TokenDistributionSchedule.fromFields(fields), fromFieldsWithTypes: (item) => TokenDistributionSchedule.fromFieldsWithTypes(item), fromBcs: (data) => TokenDistributionSchedule.fromBcs(data), bcs: TokenDistributionSchedule.bcs, fromJSONField: (field) => TokenDistributionSchedule.fromJSONField(field), fromJSON: (json) => TokenDistributionSchedule.fromJSON(json), fromSuiParsedData: (content) => TokenDistributionSchedule.fromSuiParsedData(content), fromSuiObjectData: (content) => TokenDistributionSchedule.fromSuiObjectData(content), fetch: async (client, id) => TokenDistributionSchedule.fetch(client, id), new: (fields) => { return new TokenDistributionSchedule([], fields); }, kind: "StructClassReified", }; }
     static get r() { return TokenDistributionSchedule.reified(); }
     static phantom() { return (0, reified_1.phantom)(TokenDistributionSchedule.reified()); }
     static get p() { return TokenDistributionSchedule.phantom(); }
@@ -278,7 +326,7 @@ class TokenDistributionSchedule {
     static fromBcs(data) { return TokenDistributionSchedule.fromFields(TokenDistributionSchedule.bcs.parse(data)); }
     toJSONField() {
         return {
-            stakeSubsidyFundMist: this.stakeSubsidyFundMist.toString(), allocations: (0, reified_1.fieldToJSON)(`vector<0x3::genesis::TokenAllocation>`, this.allocations),
+            stakeSubsidyFundMist: this.stakeSubsidyFundMist.toString(), allocations: (0, reified_1.fieldToJSON)(`vector<${TokenAllocation.$typeName}>`, this.allocations),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -295,6 +343,18 @@ class TokenDistributionSchedule {
     } if (!isTokenDistributionSchedule(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a TokenDistributionSchedule object`);
     } return TokenDistributionSchedule.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isTokenDistributionSchedule(data.bcs.type)) {
+                throw new Error(`object at is not a TokenDistributionSchedule object`);
+            }
+            return TokenDistributionSchedule.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return TokenDistributionSchedule.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -304,9 +364,10 @@ class TokenDistributionSchedule {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isTokenDistributionSchedule(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a TokenDistributionSchedule object`);
         }
-        return TokenDistributionSchedule.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return TokenDistributionSchedule.fromSuiObjectData(res.data);
     }
 }
 exports.TokenDistributionSchedule = TokenDistributionSchedule;
-TokenDistributionSchedule.$typeName = "0x3::genesis::TokenDistributionSchedule";
+TokenDistributionSchedule.$typeName = `${index_1.PKG_V17}::genesis::TokenDistributionSchedule`;
 TokenDistributionSchedule.$numTypeParams = 0;
+TokenDistributionSchedule.$isPhantom = [];

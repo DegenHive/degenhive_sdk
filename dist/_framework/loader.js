@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.structClassLoaderOnchain = exports.structClassLoaderSource = exports.StructClassLoader = void 0;
+exports.loader = exports.StructClassLoader = void 0;
 const util_1 = require("./util");
 const reified_1 = require("./reified");
+const init_loader_1 = require("./init-loader");
 class StructClassLoader {
     constructor() {
         this.map = new Map();
@@ -38,9 +39,18 @@ class StructClassLoader {
         if (cls.$numTypeParams !== typeArgs.length) {
             throw new Error(`Type ${typeName} expects ${cls.$numTypeParams} type arguments, but got ${typeArgs.length}`);
         }
-        return cls.reified(...typeArgs.map(t => this.reified(t)));
+        const reifiedTypeArgs = [];
+        for (let i = 0; i < typeArgs.length; i++) {
+            if (cls.$isPhantom[i]) {
+                reifiedTypeArgs.push((0, reified_1.phantom)(typeArgs[i]));
+            }
+            else {
+                reifiedTypeArgs.push(this.reified(typeArgs[i]));
+            }
+        }
+        return cls.reified(...reifiedTypeArgs);
     }
 }
 exports.StructClassLoader = StructClassLoader;
-exports.structClassLoaderSource = new StructClassLoader();
-exports.structClassLoaderOnchain = new StructClassLoader();
+exports.loader = new StructClassLoader();
+(0, init_loader_1.registerClasses)(exports.loader);

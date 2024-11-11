@@ -10,13 +10,16 @@ const reified = require("../../../../_framework/reified");
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x1/string/structs");
+const index_1 = require("../index");
 const structs_2 = require("../object/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ActiveJwk =============================== */
-function isActiveJwk(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::ActiveJwk"; }
+function isActiveJwk(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::authenticator_state::ActiveJwk`; }
 class ActiveJwk {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ActiveJwk.$typeName;
+        this.$isPhantom = ActiveJwk.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ActiveJwk.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.jwkId = fields.jwkId;
@@ -25,7 +28,7 @@ class ActiveJwk {
         ;
         this.epoch = fields.epoch;
     }
-    static reified() { return { typeName: ActiveJwk.$typeName, fullTypeName: (0, util_1.composeSuiType)(ActiveJwk.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ActiveJwk.fromFields(fields), fromFieldsWithTypes: (item) => ActiveJwk.fromFieldsWithTypes(item), fromBcs: (data) => ActiveJwk.fromBcs(data), bcs: ActiveJwk.bcs, fromJSONField: (field) => ActiveJwk.fromJSONField(field), fromJSON: (json) => ActiveJwk.fromJSON(json), fromSuiParsedData: (content) => ActiveJwk.fromSuiParsedData(content), fetch: async (client, id) => ActiveJwk.fetch(client, id), new: (fields) => { return new ActiveJwk([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ActiveJwk.$typeName, fullTypeName: (0, util_1.composeSuiType)(ActiveJwk.$typeName, ...[]), typeArgs: [], isPhantom: ActiveJwk.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ActiveJwk.fromFields(fields), fromFieldsWithTypes: (item) => ActiveJwk.fromFieldsWithTypes(item), fromBcs: (data) => ActiveJwk.fromBcs(data), bcs: ActiveJwk.bcs, fromJSONField: (field) => ActiveJwk.fromJSONField(field), fromJSON: (json) => ActiveJwk.fromJSON(json), fromSuiParsedData: (content) => ActiveJwk.fromSuiParsedData(content), fromSuiObjectData: (content) => ActiveJwk.fromSuiObjectData(content), fetch: async (client, id) => ActiveJwk.fetch(client, id), new: (fields) => { return new ActiveJwk([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ActiveJwk.reified(); }
     static phantom() { return (0, reified_1.phantom)(ActiveJwk.reified()); }
     static get p() { return ActiveJwk.phantom(); }
@@ -62,6 +65,18 @@ class ActiveJwk {
     } if (!isActiveJwk(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ActiveJwk object`);
     } return ActiveJwk.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isActiveJwk(data.bcs.type)) {
+                throw new Error(`object at is not a ActiveJwk object`);
+            }
+            return ActiveJwk.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ActiveJwk.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -71,24 +86,27 @@ class ActiveJwk {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isActiveJwk(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ActiveJwk object`);
         }
-        return ActiveJwk.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ActiveJwk.fromSuiObjectData(res.data);
     }
 }
 exports.ActiveJwk = ActiveJwk;
-ActiveJwk.$typeName = "0x2::authenticator_state::ActiveJwk";
+ActiveJwk.$typeName = `${index_1.PKG_V28}::authenticator_state::ActiveJwk`;
 ActiveJwk.$numTypeParams = 0;
+ActiveJwk.$isPhantom = [];
 /* ============================== AuthenticatorState =============================== */
-function isAuthenticatorState(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::AuthenticatorState"; }
+function isAuthenticatorState(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::authenticator_state::AuthenticatorState`; }
 class AuthenticatorState {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = AuthenticatorState.$typeName;
+        this.$isPhantom = AuthenticatorState.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(AuthenticatorState.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.id = fields.id;
         ;
         this.version = fields.version;
     }
-    static reified() { return { typeName: AuthenticatorState.$typeName, fullTypeName: (0, util_1.composeSuiType)(AuthenticatorState.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => AuthenticatorState.fromFields(fields), fromFieldsWithTypes: (item) => AuthenticatorState.fromFieldsWithTypes(item), fromBcs: (data) => AuthenticatorState.fromBcs(data), bcs: AuthenticatorState.bcs, fromJSONField: (field) => AuthenticatorState.fromJSONField(field), fromJSON: (json) => AuthenticatorState.fromJSON(json), fromSuiParsedData: (content) => AuthenticatorState.fromSuiParsedData(content), fetch: async (client, id) => AuthenticatorState.fetch(client, id), new: (fields) => { return new AuthenticatorState([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: AuthenticatorState.$typeName, fullTypeName: (0, util_1.composeSuiType)(AuthenticatorState.$typeName, ...[]), typeArgs: [], isPhantom: AuthenticatorState.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => AuthenticatorState.fromFields(fields), fromFieldsWithTypes: (item) => AuthenticatorState.fromFieldsWithTypes(item), fromBcs: (data) => AuthenticatorState.fromBcs(data), bcs: AuthenticatorState.bcs, fromJSONField: (field) => AuthenticatorState.fromJSONField(field), fromJSON: (json) => AuthenticatorState.fromJSON(json), fromSuiParsedData: (content) => AuthenticatorState.fromSuiParsedData(content), fromSuiObjectData: (content) => AuthenticatorState.fromSuiObjectData(content), fetch: async (client, id) => AuthenticatorState.fetch(client, id), new: (fields) => { return new AuthenticatorState([], fields); }, kind: "StructClassReified", }; }
     static get r() { return AuthenticatorState.reified(); }
     static phantom() { return (0, reified_1.phantom)(AuthenticatorState.reified()); }
     static get p() { return AuthenticatorState.phantom(); }
@@ -125,6 +143,18 @@ class AuthenticatorState {
     } if (!isAuthenticatorState(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a AuthenticatorState object`);
     } return AuthenticatorState.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isAuthenticatorState(data.bcs.type)) {
+                throw new Error(`object at is not a AuthenticatorState object`);
+            }
+            return AuthenticatorState.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return AuthenticatorState.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -134,24 +164,27 @@ class AuthenticatorState {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isAuthenticatorState(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a AuthenticatorState object`);
         }
-        return AuthenticatorState.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return AuthenticatorState.fromSuiObjectData(res.data);
     }
 }
 exports.AuthenticatorState = AuthenticatorState;
-AuthenticatorState.$typeName = "0x2::authenticator_state::AuthenticatorState";
+AuthenticatorState.$typeName = `${index_1.PKG_V28}::authenticator_state::AuthenticatorState`;
 AuthenticatorState.$numTypeParams = 0;
+AuthenticatorState.$isPhantom = [];
 /* ============================== AuthenticatorStateInner =============================== */
-function isAuthenticatorStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::AuthenticatorStateInner"; }
+function isAuthenticatorStateInner(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::authenticator_state::AuthenticatorStateInner`; }
 class AuthenticatorStateInner {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = AuthenticatorStateInner.$typeName;
+        this.$isPhantom = AuthenticatorStateInner.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(AuthenticatorStateInner.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.version = fields.version;
         ;
         this.activeJwks = fields.activeJwks;
     }
-    static reified() { return { typeName: AuthenticatorStateInner.$typeName, fullTypeName: (0, util_1.composeSuiType)(AuthenticatorStateInner.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => AuthenticatorStateInner.fromFields(fields), fromFieldsWithTypes: (item) => AuthenticatorStateInner.fromFieldsWithTypes(item), fromBcs: (data) => AuthenticatorStateInner.fromBcs(data), bcs: AuthenticatorStateInner.bcs, fromJSONField: (field) => AuthenticatorStateInner.fromJSONField(field), fromJSON: (json) => AuthenticatorStateInner.fromJSON(json), fromSuiParsedData: (content) => AuthenticatorStateInner.fromSuiParsedData(content), fetch: async (client, id) => AuthenticatorStateInner.fetch(client, id), new: (fields) => { return new AuthenticatorStateInner([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: AuthenticatorStateInner.$typeName, fullTypeName: (0, util_1.composeSuiType)(AuthenticatorStateInner.$typeName, ...[]), typeArgs: [], isPhantom: AuthenticatorStateInner.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => AuthenticatorStateInner.fromFields(fields), fromFieldsWithTypes: (item) => AuthenticatorStateInner.fromFieldsWithTypes(item), fromBcs: (data) => AuthenticatorStateInner.fromBcs(data), bcs: AuthenticatorStateInner.bcs, fromJSONField: (field) => AuthenticatorStateInner.fromJSONField(field), fromJSON: (json) => AuthenticatorStateInner.fromJSON(json), fromSuiParsedData: (content) => AuthenticatorStateInner.fromSuiParsedData(content), fromSuiObjectData: (content) => AuthenticatorStateInner.fromSuiObjectData(content), fetch: async (client, id) => AuthenticatorStateInner.fetch(client, id), new: (fields) => { return new AuthenticatorStateInner([], fields); }, kind: "StructClassReified", }; }
     static get r() { return AuthenticatorStateInner.reified(); }
     static phantom() { return (0, reified_1.phantom)(AuthenticatorStateInner.reified()); }
     static get p() { return AuthenticatorStateInner.phantom(); }
@@ -171,7 +204,7 @@ class AuthenticatorStateInner {
     static fromBcs(data) { return AuthenticatorStateInner.fromFields(AuthenticatorStateInner.bcs.parse(data)); }
     toJSONField() {
         return {
-            version: this.version.toString(), activeJwks: (0, reified_1.fieldToJSON)(`vector<0x2::authenticator_state::ActiveJwk>`, this.activeJwks),
+            version: this.version.toString(), activeJwks: (0, reified_1.fieldToJSON)(`vector<${ActiveJwk.$typeName}>`, this.activeJwks),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -188,6 +221,18 @@ class AuthenticatorStateInner {
     } if (!isAuthenticatorStateInner(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a AuthenticatorStateInner object`);
     } return AuthenticatorStateInner.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isAuthenticatorStateInner(data.bcs.type)) {
+                throw new Error(`object at is not a AuthenticatorStateInner object`);
+            }
+            return AuthenticatorStateInner.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return AuthenticatorStateInner.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -197,17 +242,20 @@ class AuthenticatorStateInner {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isAuthenticatorStateInner(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a AuthenticatorStateInner object`);
         }
-        return AuthenticatorStateInner.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return AuthenticatorStateInner.fromSuiObjectData(res.data);
     }
 }
 exports.AuthenticatorStateInner = AuthenticatorStateInner;
-AuthenticatorStateInner.$typeName = "0x2::authenticator_state::AuthenticatorStateInner";
+AuthenticatorStateInner.$typeName = `${index_1.PKG_V28}::authenticator_state::AuthenticatorStateInner`;
 AuthenticatorStateInner.$numTypeParams = 0;
+AuthenticatorStateInner.$isPhantom = [];
 /* ============================== JWK =============================== */
-function isJWK(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::JWK"; }
+function isJWK(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::authenticator_state::JWK`; }
 class JWK {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = JWK.$typeName;
+        this.$isPhantom = JWK.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(JWK.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.kty = fields.kty;
@@ -218,7 +266,7 @@ class JWK {
         ;
         this.alg = fields.alg;
     }
-    static reified() { return { typeName: JWK.$typeName, fullTypeName: (0, util_1.composeSuiType)(JWK.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => JWK.fromFields(fields), fromFieldsWithTypes: (item) => JWK.fromFieldsWithTypes(item), fromBcs: (data) => JWK.fromBcs(data), bcs: JWK.bcs, fromJSONField: (field) => JWK.fromJSONField(field), fromJSON: (json) => JWK.fromJSON(json), fromSuiParsedData: (content) => JWK.fromSuiParsedData(content), fetch: async (client, id) => JWK.fetch(client, id), new: (fields) => { return new JWK([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: JWK.$typeName, fullTypeName: (0, util_1.composeSuiType)(JWK.$typeName, ...[]), typeArgs: [], isPhantom: JWK.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => JWK.fromFields(fields), fromFieldsWithTypes: (item) => JWK.fromFieldsWithTypes(item), fromBcs: (data) => JWK.fromBcs(data), bcs: JWK.bcs, fromJSONField: (field) => JWK.fromJSONField(field), fromJSON: (json) => JWK.fromJSON(json), fromSuiParsedData: (content) => JWK.fromSuiParsedData(content), fromSuiObjectData: (content) => JWK.fromSuiObjectData(content), fetch: async (client, id) => JWK.fetch(client, id), new: (fields) => { return new JWK([], fields); }, kind: "StructClassReified", }; }
     static get r() { return JWK.reified(); }
     static phantom() { return (0, reified_1.phantom)(JWK.reified()); }
     static get p() { return JWK.phantom(); }
@@ -255,6 +303,18 @@ class JWK {
     } if (!isJWK(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a JWK object`);
     } return JWK.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isJWK(data.bcs.type)) {
+                throw new Error(`object at is not a JWK object`);
+            }
+            return JWK.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return JWK.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -264,24 +324,27 @@ class JWK {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isJWK(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a JWK object`);
         }
-        return JWK.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return JWK.fromSuiObjectData(res.data);
     }
 }
 exports.JWK = JWK;
-JWK.$typeName = "0x2::authenticator_state::JWK";
+JWK.$typeName = `${index_1.PKG_V28}::authenticator_state::JWK`;
 JWK.$numTypeParams = 0;
+JWK.$isPhantom = [];
 /* ============================== JwkId =============================== */
-function isJwkId(type) { type = (0, util_1.compressSuiType)(type); return type === "0x2::authenticator_state::JwkId"; }
+function isJwkId(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V28}::authenticator_state::JwkId`; }
 class JwkId {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = JwkId.$typeName;
+        this.$isPhantom = JwkId.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(JwkId.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.iss = fields.iss;
         ;
         this.kid = fields.kid;
     }
-    static reified() { return { typeName: JwkId.$typeName, fullTypeName: (0, util_1.composeSuiType)(JwkId.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => JwkId.fromFields(fields), fromFieldsWithTypes: (item) => JwkId.fromFieldsWithTypes(item), fromBcs: (data) => JwkId.fromBcs(data), bcs: JwkId.bcs, fromJSONField: (field) => JwkId.fromJSONField(field), fromJSON: (json) => JwkId.fromJSON(json), fromSuiParsedData: (content) => JwkId.fromSuiParsedData(content), fetch: async (client, id) => JwkId.fetch(client, id), new: (fields) => { return new JwkId([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: JwkId.$typeName, fullTypeName: (0, util_1.composeSuiType)(JwkId.$typeName, ...[]), typeArgs: [], isPhantom: JwkId.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => JwkId.fromFields(fields), fromFieldsWithTypes: (item) => JwkId.fromFieldsWithTypes(item), fromBcs: (data) => JwkId.fromBcs(data), bcs: JwkId.bcs, fromJSONField: (field) => JwkId.fromJSONField(field), fromJSON: (json) => JwkId.fromJSON(json), fromSuiParsedData: (content) => JwkId.fromSuiParsedData(content), fromSuiObjectData: (content) => JwkId.fromSuiObjectData(content), fetch: async (client, id) => JwkId.fetch(client, id), new: (fields) => { return new JwkId([], fields); }, kind: "StructClassReified", }; }
     static get r() { return JwkId.reified(); }
     static phantom() { return (0, reified_1.phantom)(JwkId.reified()); }
     static get p() { return JwkId.phantom(); }
@@ -318,6 +381,18 @@ class JwkId {
     } if (!isJwkId(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a JwkId object`);
     } return JwkId.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isJwkId(data.bcs.type)) {
+                throw new Error(`object at is not a JwkId object`);
+            }
+            return JwkId.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return JwkId.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -327,9 +402,10 @@ class JwkId {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isJwkId(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a JwkId object`);
         }
-        return JwkId.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return JwkId.fromSuiObjectData(res.data);
     }
 }
 exports.JwkId = JwkId;
-JwkId.$typeName = "0x2::authenticator_state::JwkId";
+JwkId.$typeName = `${index_1.PKG_V28}::authenticator_state::JwkId`;
 JwkId.$numTypeParams = 0;
+JwkId.$isPhantom = [];

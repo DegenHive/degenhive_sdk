@@ -5,17 +5,20 @@ exports.isValidatorWrapper = isValidatorWrapper;
 const reified_1 = require("../../../../_framework/reified");
 const util_1 = require("../../../../_framework/util");
 const structs_1 = require("../../0x2/versioned/structs");
+const index_1 = require("../index");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ValidatorWrapper =============================== */
-function isValidatorWrapper(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_wrapper::ValidatorWrapper"; }
+function isValidatorWrapper(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_wrapper::ValidatorWrapper`; }
 class ValidatorWrapper {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorWrapper.$typeName;
+        this.$isPhantom = ValidatorWrapper.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorWrapper.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.inner = fields.inner;
     }
-    static reified() { return { typeName: ValidatorWrapper.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorWrapper.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorWrapper.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorWrapper.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorWrapper.fromBcs(data), bcs: ValidatorWrapper.bcs, fromJSONField: (field) => ValidatorWrapper.fromJSONField(field), fromJSON: (json) => ValidatorWrapper.fromJSON(json), fromSuiParsedData: (content) => ValidatorWrapper.fromSuiParsedData(content), fetch: async (client, id) => ValidatorWrapper.fetch(client, id), new: (fields) => { return new ValidatorWrapper([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorWrapper.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorWrapper.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorWrapper.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorWrapper.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorWrapper.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorWrapper.fromBcs(data), bcs: ValidatorWrapper.bcs, fromJSONField: (field) => ValidatorWrapper.fromJSONField(field), fromJSON: (json) => ValidatorWrapper.fromJSON(json), fromSuiParsedData: (content) => ValidatorWrapper.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorWrapper.fromSuiObjectData(content), fetch: async (client, id) => ValidatorWrapper.fetch(client, id), new: (fields) => { return new ValidatorWrapper([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorWrapper.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorWrapper.reified()); }
     static get p() { return ValidatorWrapper.phantom(); }
@@ -52,6 +55,18 @@ class ValidatorWrapper {
     } if (!isValidatorWrapper(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorWrapper object`);
     } return ValidatorWrapper.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorWrapper(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorWrapper object`);
+            }
+            return ValidatorWrapper.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorWrapper.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -61,9 +76,10 @@ class ValidatorWrapper {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorWrapper(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorWrapper object`);
         }
-        return ValidatorWrapper.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorWrapper.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorWrapper = ValidatorWrapper;
-ValidatorWrapper.$typeName = "0x3::validator_wrapper::ValidatorWrapper";
+ValidatorWrapper.$typeName = `${index_1.PKG_V17}::validator_wrapper::ValidatorWrapper`;
 ValidatorWrapper.$numTypeParams = 0;
+ValidatorWrapper.$isPhantom = [];

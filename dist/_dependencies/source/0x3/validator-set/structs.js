@@ -14,15 +14,18 @@ const structs_2 = require("../../0x2/object/structs");
 const structs_3 = require("../../0x2/table-vec/structs");
 const structs_4 = require("../../0x2/table/structs");
 const structs_5 = require("../../0x2/vec-map/structs");
+const index_1 = require("../index");
 const structs_6 = require("../staking-pool/structs");
 const structs_7 = require("../validator-wrapper/structs");
 const structs_8 = require("../validator/structs");
 const bcs_1 = require("@mysten/bcs");
 /* ============================== ValidatorEpochInfoEvent =============================== */
-function isValidatorEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorEpochInfoEvent"; }
+function isValidatorEpochInfoEvent(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_set::ValidatorEpochInfoEvent`; }
 class ValidatorEpochInfoEvent {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorEpochInfoEvent.$typeName;
+        this.$isPhantom = ValidatorEpochInfoEvent.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorEpochInfoEvent.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -45,7 +48,7 @@ class ValidatorEpochInfoEvent {
         ;
         this.tallyingRuleGlobalScore = fields.tallyingRuleGlobalScore;
     }
-    static reified() { return { typeName: ValidatorEpochInfoEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorEpochInfoEvent.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorEpochInfoEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorEpochInfoEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorEpochInfoEvent.fromBcs(data), bcs: ValidatorEpochInfoEvent.bcs, fromJSONField: (field) => ValidatorEpochInfoEvent.fromJSONField(field), fromJSON: (json) => ValidatorEpochInfoEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorEpochInfoEvent.fromSuiParsedData(content), fetch: async (client, id) => ValidatorEpochInfoEvent.fetch(client, id), new: (fields) => { return new ValidatorEpochInfoEvent([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorEpochInfoEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorEpochInfoEvent.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorEpochInfoEvent.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorEpochInfoEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorEpochInfoEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorEpochInfoEvent.fromBcs(data), bcs: ValidatorEpochInfoEvent.bcs, fromJSONField: (field) => ValidatorEpochInfoEvent.fromJSONField(field), fromJSON: (json) => ValidatorEpochInfoEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorEpochInfoEvent.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorEpochInfoEvent.fromSuiObjectData(content), fetch: async (client, id) => ValidatorEpochInfoEvent.fetch(client, id), new: (fields) => { return new ValidatorEpochInfoEvent([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorEpochInfoEvent.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorEpochInfoEvent.reified()); }
     static get p() { return ValidatorEpochInfoEvent.phantom(); }
@@ -82,6 +85,18 @@ class ValidatorEpochInfoEvent {
     } if (!isValidatorEpochInfoEvent(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorEpochInfoEvent object`);
     } return ValidatorEpochInfoEvent.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorEpochInfoEvent(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorEpochInfoEvent object`);
+            }
+            return ValidatorEpochInfoEvent.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorEpochInfoEvent.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -91,17 +106,20 @@ class ValidatorEpochInfoEvent {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorEpochInfoEvent(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorEpochInfoEvent object`);
         }
-        return ValidatorEpochInfoEvent.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorEpochInfoEvent.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorEpochInfoEvent = ValidatorEpochInfoEvent;
-ValidatorEpochInfoEvent.$typeName = "0x3::validator_set::ValidatorEpochInfoEvent";
+ValidatorEpochInfoEvent.$typeName = `${index_1.PKG_V17}::validator_set::ValidatorEpochInfoEvent`;
 ValidatorEpochInfoEvent.$numTypeParams = 0;
+ValidatorEpochInfoEvent.$isPhantom = [];
 /* ============================== ValidatorEpochInfoEventV2 =============================== */
-function isValidatorEpochInfoEventV2(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorEpochInfoEventV2"; }
+function isValidatorEpochInfoEventV2(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_set::ValidatorEpochInfoEventV2`; }
 class ValidatorEpochInfoEventV2 {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorEpochInfoEventV2.$typeName;
+        this.$isPhantom = ValidatorEpochInfoEventV2.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorEpochInfoEventV2.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -126,7 +144,7 @@ class ValidatorEpochInfoEventV2 {
         ;
         this.tallyingRuleGlobalScore = fields.tallyingRuleGlobalScore;
     }
-    static reified() { return { typeName: ValidatorEpochInfoEventV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorEpochInfoEventV2.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorEpochInfoEventV2.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorEpochInfoEventV2.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorEpochInfoEventV2.fromBcs(data), bcs: ValidatorEpochInfoEventV2.bcs, fromJSONField: (field) => ValidatorEpochInfoEventV2.fromJSONField(field), fromJSON: (json) => ValidatorEpochInfoEventV2.fromJSON(json), fromSuiParsedData: (content) => ValidatorEpochInfoEventV2.fromSuiParsedData(content), fetch: async (client, id) => ValidatorEpochInfoEventV2.fetch(client, id), new: (fields) => { return new ValidatorEpochInfoEventV2([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorEpochInfoEventV2.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorEpochInfoEventV2.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorEpochInfoEventV2.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorEpochInfoEventV2.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorEpochInfoEventV2.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorEpochInfoEventV2.fromBcs(data), bcs: ValidatorEpochInfoEventV2.bcs, fromJSONField: (field) => ValidatorEpochInfoEventV2.fromJSONField(field), fromJSON: (json) => ValidatorEpochInfoEventV2.fromJSON(json), fromSuiParsedData: (content) => ValidatorEpochInfoEventV2.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorEpochInfoEventV2.fromSuiObjectData(content), fetch: async (client, id) => ValidatorEpochInfoEventV2.fetch(client, id), new: (fields) => { return new ValidatorEpochInfoEventV2([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorEpochInfoEventV2.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorEpochInfoEventV2.reified()); }
     static get p() { return ValidatorEpochInfoEventV2.phantom(); }
@@ -163,6 +181,18 @@ class ValidatorEpochInfoEventV2 {
     } if (!isValidatorEpochInfoEventV2(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorEpochInfoEventV2 object`);
     } return ValidatorEpochInfoEventV2.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorEpochInfoEventV2(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorEpochInfoEventV2 object`);
+            }
+            return ValidatorEpochInfoEventV2.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorEpochInfoEventV2.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -172,17 +202,20 @@ class ValidatorEpochInfoEventV2 {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorEpochInfoEventV2(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorEpochInfoEventV2 object`);
         }
-        return ValidatorEpochInfoEventV2.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorEpochInfoEventV2.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorEpochInfoEventV2 = ValidatorEpochInfoEventV2;
-ValidatorEpochInfoEventV2.$typeName = "0x3::validator_set::ValidatorEpochInfoEventV2";
+ValidatorEpochInfoEventV2.$typeName = `${index_1.PKG_V17}::validator_set::ValidatorEpochInfoEventV2`;
 ValidatorEpochInfoEventV2.$numTypeParams = 0;
+ValidatorEpochInfoEventV2.$isPhantom = [];
 /* ============================== ValidatorJoinEvent =============================== */
-function isValidatorJoinEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorJoinEvent"; }
+function isValidatorJoinEvent(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_set::ValidatorJoinEvent`; }
 class ValidatorJoinEvent {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorJoinEvent.$typeName;
+        this.$isPhantom = ValidatorJoinEvent.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorJoinEvent.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -191,7 +224,7 @@ class ValidatorJoinEvent {
         ;
         this.stakingPoolId = fields.stakingPoolId;
     }
-    static reified() { return { typeName: ValidatorJoinEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorJoinEvent.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorJoinEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorJoinEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorJoinEvent.fromBcs(data), bcs: ValidatorJoinEvent.bcs, fromJSONField: (field) => ValidatorJoinEvent.fromJSONField(field), fromJSON: (json) => ValidatorJoinEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorJoinEvent.fromSuiParsedData(content), fetch: async (client, id) => ValidatorJoinEvent.fetch(client, id), new: (fields) => { return new ValidatorJoinEvent([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorJoinEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorJoinEvent.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorJoinEvent.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorJoinEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorJoinEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorJoinEvent.fromBcs(data), bcs: ValidatorJoinEvent.bcs, fromJSONField: (field) => ValidatorJoinEvent.fromJSONField(field), fromJSON: (json) => ValidatorJoinEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorJoinEvent.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorJoinEvent.fromSuiObjectData(content), fetch: async (client, id) => ValidatorJoinEvent.fetch(client, id), new: (fields) => { return new ValidatorJoinEvent([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorJoinEvent.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorJoinEvent.reified()); }
     static get p() { return ValidatorJoinEvent.phantom(); }
@@ -228,6 +261,18 @@ class ValidatorJoinEvent {
     } if (!isValidatorJoinEvent(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorJoinEvent object`);
     } return ValidatorJoinEvent.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorJoinEvent(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorJoinEvent object`);
+            }
+            return ValidatorJoinEvent.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorJoinEvent.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -237,17 +282,20 @@ class ValidatorJoinEvent {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorJoinEvent(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorJoinEvent object`);
         }
-        return ValidatorJoinEvent.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorJoinEvent.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorJoinEvent = ValidatorJoinEvent;
-ValidatorJoinEvent.$typeName = "0x3::validator_set::ValidatorJoinEvent";
+ValidatorJoinEvent.$typeName = `${index_1.PKG_V17}::validator_set::ValidatorJoinEvent`;
 ValidatorJoinEvent.$numTypeParams = 0;
+ValidatorJoinEvent.$isPhantom = [];
 /* ============================== ValidatorLeaveEvent =============================== */
-function isValidatorLeaveEvent(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorLeaveEvent"; }
+function isValidatorLeaveEvent(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_set::ValidatorLeaveEvent`; }
 class ValidatorLeaveEvent {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorLeaveEvent.$typeName;
+        this.$isPhantom = ValidatorLeaveEvent.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorLeaveEvent.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.epoch = fields.epoch;
@@ -258,7 +306,7 @@ class ValidatorLeaveEvent {
         ;
         this.isVoluntary = fields.isVoluntary;
     }
-    static reified() { return { typeName: ValidatorLeaveEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorLeaveEvent.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorLeaveEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorLeaveEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorLeaveEvent.fromBcs(data), bcs: ValidatorLeaveEvent.bcs, fromJSONField: (field) => ValidatorLeaveEvent.fromJSONField(field), fromJSON: (json) => ValidatorLeaveEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorLeaveEvent.fromSuiParsedData(content), fetch: async (client, id) => ValidatorLeaveEvent.fetch(client, id), new: (fields) => { return new ValidatorLeaveEvent([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorLeaveEvent.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorLeaveEvent.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorLeaveEvent.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorLeaveEvent.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorLeaveEvent.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorLeaveEvent.fromBcs(data), bcs: ValidatorLeaveEvent.bcs, fromJSONField: (field) => ValidatorLeaveEvent.fromJSONField(field), fromJSON: (json) => ValidatorLeaveEvent.fromJSON(json), fromSuiParsedData: (content) => ValidatorLeaveEvent.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorLeaveEvent.fromSuiObjectData(content), fetch: async (client, id) => ValidatorLeaveEvent.fetch(client, id), new: (fields) => { return new ValidatorLeaveEvent([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorLeaveEvent.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorLeaveEvent.reified()); }
     static get p() { return ValidatorLeaveEvent.phantom(); }
@@ -295,6 +343,18 @@ class ValidatorLeaveEvent {
     } if (!isValidatorLeaveEvent(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorLeaveEvent object`);
     } return ValidatorLeaveEvent.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorLeaveEvent(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorLeaveEvent object`);
+            }
+            return ValidatorLeaveEvent.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorLeaveEvent.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -304,17 +364,20 @@ class ValidatorLeaveEvent {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorLeaveEvent(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorLeaveEvent object`);
         }
-        return ValidatorLeaveEvent.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorLeaveEvent.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorLeaveEvent = ValidatorLeaveEvent;
-ValidatorLeaveEvent.$typeName = "0x3::validator_set::ValidatorLeaveEvent";
+ValidatorLeaveEvent.$typeName = `${index_1.PKG_V17}::validator_set::ValidatorLeaveEvent`;
 ValidatorLeaveEvent.$numTypeParams = 0;
+ValidatorLeaveEvent.$isPhantom = [];
 /* ============================== ValidatorSet =============================== */
-function isValidatorSet(type) { type = (0, util_1.compressSuiType)(type); return type === "0x3::validator_set::ValidatorSet"; }
+function isValidatorSet(type) { type = (0, util_1.compressSuiType)(type); return type === `${index_1.PKG_V17}::validator_set::ValidatorSet`; }
 class ValidatorSet {
     constructor(typeArgs, fields) {
+        this.__StructClass = true;
         this.$typeName = ValidatorSet.$typeName;
+        this.$isPhantom = ValidatorSet.$isPhantom;
         this.$fullTypeName = (0, util_1.composeSuiType)(ValidatorSet.$typeName, ...typeArgs);
         this.$typeArgs = typeArgs;
         this.totalStake = fields.totalStake;
@@ -335,7 +398,7 @@ class ValidatorSet {
         ;
         this.extraFields = fields.extraFields;
     }
-    static reified() { return { typeName: ValidatorSet.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorSet.$typeName, ...[]), typeArgs: [], reifiedTypeArgs: [], fromFields: (fields) => ValidatorSet.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorSet.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorSet.fromBcs(data), bcs: ValidatorSet.bcs, fromJSONField: (field) => ValidatorSet.fromJSONField(field), fromJSON: (json) => ValidatorSet.fromJSON(json), fromSuiParsedData: (content) => ValidatorSet.fromSuiParsedData(content), fetch: async (client, id) => ValidatorSet.fetch(client, id), new: (fields) => { return new ValidatorSet([], fields); }, kind: "StructClassReified", }; }
+    static reified() { return { typeName: ValidatorSet.$typeName, fullTypeName: (0, util_1.composeSuiType)(ValidatorSet.$typeName, ...[]), typeArgs: [], isPhantom: ValidatorSet.$isPhantom, reifiedTypeArgs: [], fromFields: (fields) => ValidatorSet.fromFields(fields), fromFieldsWithTypes: (item) => ValidatorSet.fromFieldsWithTypes(item), fromBcs: (data) => ValidatorSet.fromBcs(data), bcs: ValidatorSet.bcs, fromJSONField: (field) => ValidatorSet.fromJSONField(field), fromJSON: (json) => ValidatorSet.fromJSON(json), fromSuiParsedData: (content) => ValidatorSet.fromSuiParsedData(content), fromSuiObjectData: (content) => ValidatorSet.fromSuiObjectData(content), fetch: async (client, id) => ValidatorSet.fetch(client, id), new: (fields) => { return new ValidatorSet([], fields); }, kind: "StructClassReified", }; }
     static get r() { return ValidatorSet.reified(); }
     static phantom() { return (0, reified_1.phantom)(ValidatorSet.reified()); }
     static get p() { return ValidatorSet.phantom(); }
@@ -355,7 +418,7 @@ class ValidatorSet {
     static fromBcs(data) { return ValidatorSet.fromFields(ValidatorSet.bcs.parse(data)); }
     toJSONField() {
         return {
-            totalStake: this.totalStake.toString(), activeValidators: (0, reified_1.fieldToJSON)(`vector<0x3::validator::Validator>`, this.activeValidators), pendingActiveValidators: this.pendingActiveValidators.toJSONField(), pendingRemovals: (0, reified_1.fieldToJSON)(`vector<u64>`, this.pendingRemovals), stakingPoolMappings: this.stakingPoolMappings.toJSONField(), inactiveValidators: this.inactiveValidators.toJSONField(), validatorCandidates: this.validatorCandidates.toJSONField(), atRiskValidators: this.atRiskValidators.toJSONField(), extraFields: this.extraFields.toJSONField(),
+            totalStake: this.totalStake.toString(), activeValidators: (0, reified_1.fieldToJSON)(`vector<${structs_8.Validator.$typeName}>`, this.activeValidators), pendingActiveValidators: this.pendingActiveValidators.toJSONField(), pendingRemovals: (0, reified_1.fieldToJSON)(`vector<u64>`, this.pendingRemovals), stakingPoolMappings: this.stakingPoolMappings.toJSONField(), inactiveValidators: this.inactiveValidators.toJSONField(), validatorCandidates: this.validatorCandidates.toJSONField(), atRiskValidators: this.atRiskValidators.toJSONField(), extraFields: this.extraFields.toJSONField(),
         };
     }
     toJSON() { return { $typeName: this.$typeName, $typeArgs: this.$typeArgs, ...this.toJSONField() }; }
@@ -372,6 +435,18 @@ class ValidatorSet {
     } if (!isValidatorSet(content.type)) {
         throw new Error(`object at ${content.fields.id} is not a ValidatorSet object`);
     } return ValidatorSet.fromFieldsWithTypes(content); }
+    static fromSuiObjectData(data) {
+        if (data.bcs) {
+            if (data.bcs.dataType !== "moveObject" || !isValidatorSet(data.bcs.type)) {
+                throw new Error(`object at is not a ValidatorSet object`);
+            }
+            return ValidatorSet.fromBcs((0, bcs_1.fromB64)(data.bcs.bcsBytes));
+        }
+        if (data.content) {
+            return ValidatorSet.fromSuiParsedData(data.content);
+        }
+        throw new Error("Both `bcs` and `content` fields are missing from the data. Include `showBcs` or `showContent` in the request.");
+    }
     static async fetch(client, id) {
         var _a, _b;
         const res = await client.getObject({ id, options: { showBcs: true, }, });
@@ -381,9 +456,10 @@ class ValidatorSet {
         if (((_b = (_a = res.data) === null || _a === void 0 ? void 0 : _a.bcs) === null || _b === void 0 ? void 0 : _b.dataType) !== "moveObject" || !isValidatorSet(res.data.bcs.type)) {
             throw new Error(`object at id ${id} is not a ValidatorSet object`);
         }
-        return ValidatorSet.fromBcs((0, bcs_1.fromB64)(res.data.bcs.bcsBytes));
+        return ValidatorSet.fromSuiObjectData(res.data);
     }
 }
 exports.ValidatorSet = ValidatorSet;
-ValidatorSet.$typeName = "0x3::validator_set::ValidatorSet";
+ValidatorSet.$typeName = `${index_1.PKG_V17}::validator_set::ValidatorSet`;
 ValidatorSet.$numTypeParams = 0;
+ValidatorSet.$isPhantom = [];
