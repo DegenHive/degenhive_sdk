@@ -19,6 +19,6 @@ export interface StakeWithValidatorArgs { suiSystemState: TransactionObjectInput
 
 export function stakeWithValidator(tx: Transaction, args: StakeWithValidatorArgs) { return tx.moveCall({ target: `${PUBLISHED_AT}::entry_script::stake_with_validator`, arguments: [obj(tx, args.suiSystemState), obj(tx, args.vault), obj(tx, args.suiCoin), pure(tx, args.toStake, `u64`), pure(tx, args.selectedValidator, `address`)], }) }
 
-export interface StakeSuiArgs { suiSystemState: TransactionObjectInput; vault: TransactionObjectInput; suiCoin: TransactionObjectInput; toStake: bigint | TransactionArgument }
+export interface StakeSuiArgs { suiCoin: TransactionObjectInput; toStake: bigint | TransactionArgument }
 
-export function stakeSui(tx: Transaction, args: StakeSuiArgs) { return tx.moveCall({ target: `${PUBLISHED_AT}::entry_script::stake_sui`, arguments: [obj(tx, args.suiSystemState), obj(tx, args.vault), obj(tx, args.suiCoin), pure(tx, args.toStake, `u64`)], }) }
+export function stakeSui(tx: Transaction, args: StakeSuiArgs) { return tx.moveCall({ target: `${PUBLISHED_AT}::entry_script::stake_sui`, arguments: [obj(tx, "0x5"), obj(tx, "0x85aaf87a770b4a09822e7ca3de7f9424a4f58688cfa120f55b294a98d599d402"), obj(tx, args.suiCoin), pure(tx, args.toStake, `u64`)], }) }

@@ -10,6 +10,7 @@
     "author": "akki",
     "license": "ISC",
     "dependencies": {
+      "@mysten/sui.js": "^0.54.1",
       "degenhive_pool_sdk": "^1.1.0"
     }
   }
