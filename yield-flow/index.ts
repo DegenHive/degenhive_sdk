@@ -3,6 +3,7 @@ export namespace yieldflow {
     export const PACKAGE_ID = "0x50c2216a078d3bdf5081fe436df9f42dfdbe538ebd9c935913ce2436362cff90";
     export const PUBLISHED_AT = "0x50c2216a078d3bdf5081fe436df9f42dfdbe538ebd9c935913ce2436362cff90";
     export const PKG_V1 = "0x50c2216a078d3bdf5081fe436df9f42dfdbe538ebd9c935913ce2436362cff90";
+    export const YIELD_FLOW_OBJECT = "0x5a79f26a90cf6a652cf45ad3dfbe1e3565503e70d866e3149292ccbc8fcd1420";
 }
 
 

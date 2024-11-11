@@ -23,3 +23,4 @@ __exportStar(require("./pool-math/index"), exports);
 __exportStar(require("./queen-maker/index"), exports);
 __exportStar(require("./yield-flow/index"), exports);
 __exportStar(require("./three-coin-amm/index"), exports);
+__exportStar(require("./degen-hive-dex-router/index"), exports);

@@ -50,8 +50,8 @@ console.log(chalk.magentaBright(`🚀 Deployer Account SUI Balance: ${chalk.bold
 
   console.log(stakeSui);
   stakeSui(txb,  {
-    suiSystemState: "0x5",
-    vault: "0x85aaf87a770b4a09822e7ca3de7f9424a4f58688cfa120f55b294a98d599d402",
+    // suiSystemState: "0x5",
+    // vault: "0x85aaf87a770b4a09822e7ca3de7f9424a4f58688cfa120f55b294a98d599d402",
     suiCoin: sui_coin,
     toStake: 100000
   });
