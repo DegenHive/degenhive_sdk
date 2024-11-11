@@ -17,7 +17,6 @@ import { GameMasterKey, MemepadCapability } from "../../dragon-trainer/dragon-tr
 import { SuiClient, SuiObjectData, SuiParsedData } from "@mysten/sui.js/dist/cjs/client";
 import { bcs, fromB64, fromHEX, toHEX } from "@mysten/bcs";;
 import { memepad } from ".."
-
 const PUBLISHED_AT = memepad.PUBLISHED_AT
 
 const PKG_V1 = memepad.PKG_V1
