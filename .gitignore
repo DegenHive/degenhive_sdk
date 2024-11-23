@@ -1,9 +1,6 @@
 
 node_modules
 .env
-test
-src
 /Latest
-old
-dist/Latest/
-scripts/node_modules
+sdk/dist/*
+examples/node_modules
