@@ -1,6 +1,6 @@
 export namespace memepad {
     export const PACKAGE_ID = "0x6bbb1e48e434578d373dd1a88cb0ea449cca4421aed301203ceca8e9a084eb26";
-    export const PUBLISHED_AT = "0x9c601e4ddc093bd65c2dd5c16e24cd13a48b0a8de9931b0d6801a8f7a4a0b90a";
+    export const PUBLISHED_AT = "0x2b9b0ba3d4efca53a2cbe669cd95d3c169fa3d2e889d2806279c339f51610a86";
     export const PKG_V1 = "0x9c601e4ddc093bd65c2dd5c16e24cd13a48b0a8de9931b0d6801a8f7a4a0b90a";
 
     export const CLOCK = "0x6";

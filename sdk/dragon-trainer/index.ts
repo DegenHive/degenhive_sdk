@@ -9,7 +9,6 @@ export namespace dragontrainer {
     export const MARKETPLACE = "0x8714e3aa8c2ae421420997a520b38a8bf66965acc9c130246437b14cd1bbb924";
     export const HIVE_GRAPH = "0x25706d8493025282679e4f161d3900237e9a72ba172d4753a9bc44d89c51adf4";
     export const CLOCK = "0x6";
-    export const PKG_V1 = "0x6a7ea1255160d2d3c77aa80440f17d4ae9092ef547141a34185e5b41c1c31c66";
 }
 export * as BeeScienceFunctions from './beescience/functions';
 export * as DragonTrainerFunctions from './dragon-trainer/functions';
