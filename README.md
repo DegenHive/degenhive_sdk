@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/degenhive"><img src="https://img.shields.io/npm/v/degenhive" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/degenhive-ai"><img src="https://img.shields.io/npm/v/degenhive-ai" alt="npm version"></a>
   <a href="https://github.com/degenhive/degenhive_sdk/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/degenhive" alt="license"></a>
   <a href="https://discord.gg/ujjNCJFYch"><img src="https://img.shields.io/discord/123456789?style=flat-square&color=7289da&label=discord" alt="Discord"></a>
   <a href="https://twitter.com/DegenHive"><img src="https://img.shields.io/twitter/follow/DegenHive?style=flat-square&color=1da1f2&label=twitter" alt="Twitter"></a>

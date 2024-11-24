@@ -1,7 +1,7 @@
 # DegenHive SDK
 
 <p align="center">
-  <img src="assets/logo.png" alt="DegenHive Logo" width="200"/>
+  <img src="../assets/logo.png" alt="DegenHive Logo" width="200"/>
 </p>
 
 <p align="center">
