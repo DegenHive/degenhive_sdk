@@ -1,6 +1,6 @@
 {
   "name": "degenhive",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "SDK to interact with DegenHive's move modules.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,9 +9,10 @@
     "lint:fix": "eslint src/*.ts src/**/*.ts --fix",
     "eslint": "eslint . --fix",
     "build": "rm -rf dist/ && tsc",
+    "semantic-release": "semantic-release",
     "testbuild": "tsc",
     "build:tsup": "npm run build:clean && npm run _build:node",
-    "build:clean": "rm -rf dist",    
+    "build:clean": "rm -rf dist",
     "publish:test": "node version.js && npm publish --tag experimental"
   },
   "keywords": [
@@ -19,21 +20,27 @@
     "Pool",
     "SDK",
     "Sui",
-    "Blockchain"    
+    "Blockchain"
   ],
   "repository": {
     "type": "git",
     "url": ""
-  },  
+  },
   "author": "queries@degenhive.ai",
   "license": "Apache-2.0",
   "dependencies": {
     "@mysten/bcs": "^1.0.2",
     "@mysten/sui.js": "^0.54.1"
-
   },
   "devDependencies": {
     "@types/node": "^20.14.8",
+    "semantic-release": "^24.2.0",
     "typescript": "^5.5.2"
+  },
+  "files": [
+    "dist", "../README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
   }
 }
