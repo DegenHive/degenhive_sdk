@@ -1,5 +1,5 @@
 {
-  "name": "degenhive",
+  "name": "degenhive-ai",
   "version": "0.0.0-development",
   "description": "SDK to interact with DegenHive's move modules.",
   "main": "dist/index.js",
