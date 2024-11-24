@@ -20,9 +20,13 @@ jobs:
         with: 
           node-version: "lts/*"
       - run: npm ci
+        working-directory: ./sdk
       - run: npm run build
+        working-directory: ./sdk
       - run: npm audit signatures
+        working-directory: ./sdk
       - name: Release
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+        working-directory: ./sdk
